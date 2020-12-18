@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30804.86
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "OrarApp", "OrarApp\OrarApp.vcxproj", "{89D023C7-90F7-4430-A5BF-7FD7E35DC310}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "OrarApp", "OrarApp\OrarApp.vcxproj", "{9F368329-CF42-4BA9-BDB2-15243D8FC4DF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|x64 = Release|x64
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{89D023C7-90F7-4430-A5BF-7FD7E35DC310}.Debug|x64.ActiveCfg = Debug|x64
-		{89D023C7-90F7-4430-A5BF-7FD7E35DC310}.Debug|x64.Build.0 = Debug|x64
-		{89D023C7-90F7-4430-A5BF-7FD7E35DC310}.Release|x64.ActiveCfg = Release|x64
-		{89D023C7-90F7-4430-A5BF-7FD7E35DC310}.Release|x64.Build.0 = Release|x64
+		{9F368329-CF42-4BA9-BDB2-15243D8FC4DF}.Debug|x64.ActiveCfg = Debug|x64
+		{9F368329-CF42-4BA9-BDB2-15243D8FC4DF}.Debug|x64.Build.0 = Debug|x64
+		{9F368329-CF42-4BA9-BDB2-15243D8FC4DF}.Release|x64.ActiveCfg = Release|x64
+		{9F368329-CF42-4BA9-BDB2-15243D8FC4DF}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {31EB0069-5B9D-4DF2-B030-99D993E46651}
+		SolutionGuid = {08175E84-8C0A-4BFD-9B1F-E85E00E5E288}
 	EndGlobalSection
 EndGlobal

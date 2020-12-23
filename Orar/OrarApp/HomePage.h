@@ -3,22 +3,20 @@
 #include <QWidget>
 #include "ui_HomePage.h"
 
-class OrarApp;
+class INavigator;
 
 class HomePage : public QWidget
 {
 	Q_OBJECT
 
 public:
-	HomePage(OrarApp* parentView, QWidget *parent = Q_NULLPTR);
+	HomePage(INavigator* navigator, QWidget *parent = Q_NULLPTR);
 	~HomePage();
-private slots:
-	void on_okButton_clicked();
 
-	void createNewTimeTable();
+private slots:
+	void on_pushButtonSecondView_clicked();
 
 private:
 	Ui::HomePage ui;
-	OrarApp* parentview;
-
+	INavigator *mNavigator;
 };

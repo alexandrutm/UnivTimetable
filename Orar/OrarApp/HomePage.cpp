@@ -1,8 +1,9 @@
 #include "HomePage.h"
-#include "OrarApp.h"
+#include"INavigator.h"
 
-HomePage::HomePage(OrarApp* parentView,QWidget *parent)
-	: QWidget(parent),parentview(parentView)
+
+HomePage::HomePage(INavigator *navigator,QWidget *parent)
+	: QWidget(parent),mNavigator(navigator)
 {
 	ui.setupUi(this);
 }
@@ -11,12 +12,11 @@ HomePage::~HomePage()
 {
 }
 
-void HomePage::on_okButton_clicked()
+
+void HomePage::on_pushButtonSecondView_clicked()
 {
-	parentview->ChangeViews(2);
+	mNavigator->ChangeView(INavigator::viewId::secondpage);
 }
 
-void HomePage::createNewTimeTable()
-{
-	
-}
+
+

@@ -30,15 +30,9 @@
     <QtUic Include="OrarApp.ui">
       <Filter>Resource Files</Filter>
     </QtUic>
-    <QtMoc Include="OrarApp.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
     <ClCompile Include="OrarApp.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClInclude Include="stdafx.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClCompile Include="stdafx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -53,13 +47,28 @@
     <ClCompile Include="HomePage.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ThirdPage.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SubjectDialog.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <QtMoc Include="SecondView.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
     <QtMoc Include="HomePage.h">
-      <Filter>Header Files</Filter>
+      <Filter>Source Files</Filter>
+    </QtMoc>
+    <QtMoc Include="OrarApp.h">
+      <Filter>Source Files</Filter>
+    </QtMoc>
+    <QtMoc Include="SecondView.h">
+      <Filter>Source Files</Filter>
+    </QtMoc>
+    <QtMoc Include="ThirdPage.h">
+      <Filter>Source Files</Filter>
+    </QtMoc>
+    <QtMoc Include="SubjectDialog.h">
+      <Filter>Source Files</Filter>
     </QtMoc>
   </ItemGroup>
   <ItemGroup>
@@ -69,5 +78,19 @@
     <QtUic Include="HomePage.ui">
       <Filter>Resource Files</Filter>
     </QtUic>
+    <QtUic Include="ThirdPage.ui">
+      <Filter>Resource Files</Filter>
+    </QtUic>
+    <QtUic Include="SubjectDialog.ui">
+      <Filter>Resource Files</Filter>
+    </QtUic>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="INavigator.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

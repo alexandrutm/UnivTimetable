@@ -7,6 +7,7 @@
 #include "SecondView.h"
 #include "INavigator.h"
 #include "ThirdPage.h"
+#include "Context.h"
 
 
 class OrarApp : public QMainWindow, public INavigator
@@ -15,14 +16,15 @@ class OrarApp : public QMainWindow, public INavigator
 
 public:
     OrarApp(QWidget *parent = Q_NULLPTR);
-    virtual void ChangeView(INavigator::viewId theView);
-    virtual void ChangeStatus(QString status);
+    void ChangeView(INavigator::viewId theView);
+    void ChangeStatus(QString status);
 
 private:
     Ui::OrarAppClass ui;
     QStackedWidget stackWid;
 
-    HomePage homepage;
-    SecondView secondpage;
-    ThirdPage thirdpage;
+    Context mContext;
+    HomePage mHomePage;
+    SecondView mSecondPage;
+    ThirdPage mThirdPage;
 };

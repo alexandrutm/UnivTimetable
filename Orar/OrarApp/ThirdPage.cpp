@@ -2,8 +2,8 @@
 #include"INavigator.h"
 #include"SubjectDialog.h"
 
-ThirdPage::ThirdPage(INavigator *navigator,QWidget *parent)
-	: QWidget(parent),mNavigator(navigator)
+ThirdPage::ThirdPage(INavigator *navigator, Context& aContext,QWidget *parent)
+	: QWidget(parent),mNavigator(navigator),mContext(aContext)
 {
 	ui.setupUi(this);
 	ui.stackedWidget->setCurrentIndex(0);

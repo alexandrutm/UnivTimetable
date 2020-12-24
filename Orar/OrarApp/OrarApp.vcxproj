@@ -101,6 +101,7 @@
     </QtMoc>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Context.cpp" />
     <ClCompile Include="SubjectDialog.cpp" />
     <ClCompile Include="ThirdPage.cpp" />
     <QtMoc Include="SubjectDialog.h" />
@@ -114,6 +115,7 @@
     <ClCompile Include="main.cpp" />
     <QtMoc Include="SecondView.h" />
     <QtMoc Include="HomePage.h" />
+    <ClInclude Include="Context.h" />
     <ClInclude Include="INavigator.h" />
     <ClInclude Include="stdafx.h" />
     <ClCompile Include="SecondView.cpp" />

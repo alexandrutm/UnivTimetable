@@ -5,13 +5,14 @@
 #include"SubjectDialog.h"
 
 class INavigator;
+class Context;
 
 class ThirdPage : public QWidget
 {
 	Q_OBJECT
 
 public:
-	ThirdPage(INavigator* navigator,QWidget *parent = Q_NULLPTR);
+	ThirdPage(INavigator* navigator,Context &aContext,QWidget *parent = Q_NULLPTR);
 	~ThirdPage();
 
 private slots:
@@ -25,4 +26,5 @@ private slots:
 private:
 	Ui::ThirdPage ui;
 	INavigator* mNavigator;
+	Context& mContext;
 };

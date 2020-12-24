@@ -22,6 +22,12 @@
       <Extensions>qrc;*</Extensions>
       <ParseFiles>false</ParseFiles>
     </Filter>
+    <Filter Include="Source Files\views">
+      <UniqueIdentifier>{5c8fc305-fc62-43cc-ab96-2b955a04a23a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\data">
+      <UniqueIdentifier>{cb323945-3724-4ae1-be06-df0fc7086790}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <QtRcc Include="OrarApp.qrc">
@@ -30,9 +36,6 @@
     <QtUic Include="OrarApp.ui">
       <Filter>Resource Files</Filter>
     </QtUic>
-    <ClCompile Include="OrarApp.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="stdafx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -41,34 +44,40 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SecondView.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="HomePage.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\views</Filter>
     </ClCompile>
-    <ClCompile Include="ThirdPage.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="OrarApp.cpp">
+      <Filter>Source Files\views</Filter>
+    </ClCompile>
+    <ClCompile Include="SecondView.cpp">
+      <Filter>Source Files\views</Filter>
     </ClCompile>
     <ClCompile Include="SubjectDialog.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\views</Filter>
+    </ClCompile>
+    <ClCompile Include="ThirdPage.cpp">
+      <Filter>Source Files\views</Filter>
+    </ClCompile>
+    <ClCompile Include="Context.cpp">
+      <Filter>Source Files\data</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="HomePage.h">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\views</Filter>
     </QtMoc>
     <QtMoc Include="OrarApp.h">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\views</Filter>
     </QtMoc>
     <QtMoc Include="SecondView.h">
-      <Filter>Source Files</Filter>
-    </QtMoc>
-    <QtMoc Include="ThirdPage.h">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\views</Filter>
     </QtMoc>
     <QtMoc Include="SubjectDialog.h">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\views</Filter>
+    </QtMoc>
+    <QtMoc Include="ThirdPage.h">
+      <Filter>Source Files\views</Filter>
     </QtMoc>
   </ItemGroup>
   <ItemGroup>
@@ -91,6 +100,9 @@
     </ClInclude>
     <ClInclude Include="INavigator.h">
       <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Context.h">
+      <Filter>Source Files\data</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

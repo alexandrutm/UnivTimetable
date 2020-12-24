@@ -3,15 +3,15 @@
 
 
 OrarApp::OrarApp(QWidget *parent)
-    : QMainWindow(parent), homepage(this,this),stackWid(this),secondpage(this,this),thirdpage(this,this)
+    : QMainWindow(parent), mHomePage(this,this),stackWid(this),mSecondPage(this,this),mThirdPage(this,mContext,this)
 {
     ui.setupUi(this);
     ui.statusBar->addWidget(ui.statusBarLabel);
     setCentralWidget(&stackWid);
 
-    stackWid.addWidget(&homepage);
-    stackWid.addWidget(&secondpage);
-    stackWid.addWidget(&thirdpage);
+    stackWid.addWidget(&mHomePage);
+    stackWid.addWidget(&mSecondPage);
+    stackWid.addWidget(&mThirdPage);
 
     stackWid.setCurrentIndex(0);
 }

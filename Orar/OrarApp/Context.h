@@ -13,9 +13,10 @@ public:
 	};
 
 
+	string GetName();
+	void SetColor(int i);
 
 private:
-
 
 	string mName;
 	Color mColor;
@@ -25,6 +26,7 @@ private:
 class Teacher
 {
 public:
+	string GetFirstName();
 
 private:
 	string mFirstName;
@@ -37,7 +39,8 @@ class Context
 public:
 	void AddTeacher(Teacher aTeacher);
 	void RemoveTeacherByFirstName(string aFirstName);
-
+	void AddSubject(Subject aSubject);
+	void RemoveSubjectByName(string aName);
 
 private:
 	vector<Subject>mSubjects;

@@ -62,6 +62,18 @@
     <ClCompile Include="Context.cpp">
       <Filter>Source Files\data</Filter>
     </ClCompile>
+    <ClCompile Include="Teacher.cpp">
+      <Filter>Source Files\data</Filter>
+    </ClCompile>
+    <ClCompile Include="Subject.cpp">
+      <Filter>Source Files\data</Filter>
+    </ClCompile>
+    <ClCompile Include="ClassesView.cpp">
+      <Filter>Source Files\views</Filter>
+    </ClCompile>
+    <ClCompile Include="SubjectView.cpp">
+      <Filter>Source Files\views</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="HomePage.h">
@@ -79,6 +91,12 @@
     <QtMoc Include="ThirdPage.h">
       <Filter>Source Files\views</Filter>
     </QtMoc>
+    <QtMoc Include="ClassesView.h">
+      <Filter>Source Files\views</Filter>
+    </QtMoc>
+    <QtMoc Include="SubjectView.h">
+      <Filter>Source Files\views</Filter>
+    </QtMoc>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="SecondView.ui">
@@ -93,6 +111,12 @@
     <QtUic Include="SubjectDialog.ui">
       <Filter>Resource Files</Filter>
     </QtUic>
+    <QtUic Include="ClassesView.ui">
+      <Filter>Resource Files</Filter>
+    </QtUic>
+    <QtUic Include="SubjectView.ui">
+      <Filter>Resource Files</Filter>
+    </QtUic>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -102,6 +126,12 @@
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="Context.h">
+      <Filter>Source Files\data</Filter>
+    </ClInclude>
+    <ClInclude Include="Subject.h">
+      <Filter>Source Files\data</Filter>
+    </ClInclude>
+    <ClInclude Include="Teacher.h">
       <Filter>Source Files\data</Filter>
     </ClInclude>
   </ItemGroup>

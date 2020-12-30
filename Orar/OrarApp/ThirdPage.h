@@ -17,14 +17,10 @@ public:
 
 private slots:
 	void on_NextButtonBasicInfo_clicked();
-	void on_NextButtonSubject_clicked();
-	void on_AddSubjectButton_clicked();
-
-	void on_listWidgetSubject_currentItemChanged();
 
 
 private:
 	Ui::ThirdPage ui;
-	INavigator* mNavigator;
+	INavigator *mNavigator;
 	Context& mContext;
 };

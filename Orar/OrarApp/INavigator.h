@@ -6,9 +6,11 @@ class INavigator
 public:
 
 	enum class viewId {
-		homepage = 0,
-		secondpage = 1,
-		thirdpage=2
+		homepage,
+		secondpage,
+		thirdpage,
+		subjectView,
+		classesView
 	};
 
 	virtual void ChangeView(viewId theView) = 0;

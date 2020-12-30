@@ -25,7 +25,7 @@
         <item row="0" column="0">
          <layout class="QVBoxLayout" name="verticalLayout">
           <item>
-           <widget class="QLineEdit" name="SubjectName">
+           <widget class="QLineEdit" name="Name">
             <property name="enabled">
              <bool>true</bool>
             </property>
@@ -91,7 +91,28 @@
            </widget>
           </item>
           <item>
-           <widget class="QComboBox" name="comboBox"/>
+           <widget class="QComboBox" name="Color">
+            <item>
+             <property name="text">
+              <string>Red</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Green</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Black</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Yellow</string>
+             </property>
+            </item>
+           </widget>
           </item>
          </layout>
         </item>
@@ -143,8 +164,8 @@
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>293</x>
-     <y>252</y>
+     <x>389</x>
+     <y>232</y>
     </hint>
     <hint type="destinationlabel">
      <x>344</x>

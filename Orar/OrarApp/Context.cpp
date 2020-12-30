@@ -1,5 +1,7 @@
-#include "stdafx.h"
-#include "Context.h"
+#include"Context.h"
+
+
+
 
 void Context::AddTeacher(Teacher aTeacher)
 {
@@ -46,21 +48,20 @@ void Context::RemoveSubjectByName(string aName)
 	}
 }
 
-string Teacher::GetFirstName()
+void Context::EditSubjectByName(string aOldName,string aNewName,int aColorPosition)
 {
-	return mFirstName;
+	auto i = begin(mSubjects);
+
+	while (i != end(mSubjects))
+	{
+		if ((*i).GetName() == aOldName)
+		{
+			(*i).SetName(aNewName);
+			(*i).SetColor(aColorPosition);
+		}
+		else
+			i++;
+	}
 }
 
-string Subject::GetName()
-{
-	return mName;
-}
 
-void Subject::SetColor(int i)
-{
-	//not optimal ///////// need changes
-	if (i == 0)
-		mColor = Color::red;
-	else if (i == 1)
-		mColor = Color::green;
-}

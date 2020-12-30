@@ -2,11 +2,16 @@
 
 #include <QtWidgets/QMainWindow>
 #include "ui_OrarApp.h"
+
 #include "SecondView.h"
 #include "HomePage.h"
 #include "SecondView.h"
-#include "INavigator.h"
 #include "ThirdPage.h"
+#include "SubjectView.h"
+#include "ClassesView.h"
+
+
+#include "INavigator.h"
 #include "Context.h"
 
 
@@ -24,7 +29,10 @@ private:
     QStackedWidget stackWid;
 
     Context mContext;
+    
     HomePage mHomePage;
     SecondView mSecondPage;
     ThirdPage mThirdPage;
+    SubjectView mSubjectView;
+    ClassesView mClassView;
 };

@@ -44,9 +44,6 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="HomePage.cpp">
-      <Filter>Source Files\views</Filter>
-    </ClCompile>
     <ClCompile Include="OrarApp.cpp">
       <Filter>Source Files\views</Filter>
     </ClCompile>
@@ -54,9 +51,6 @@
       <Filter>Source Files\views</Filter>
     </ClCompile>
     <ClCompile Include="SubjectDialog.cpp">
-      <Filter>Source Files\views</Filter>
-    </ClCompile>
-    <ClCompile Include="ThirdPage.cpp">
       <Filter>Source Files\views</Filter>
     </ClCompile>
     <ClCompile Include="Context.cpp">
@@ -74,11 +68,14 @@
     <ClCompile Include="SubjectView.cpp">
       <Filter>Source Files\views</Filter>
     </ClCompile>
+    <ClCompile Include="HomeView.cpp">
+      <Filter>Source Files\views</Filter>
+    </ClCompile>
+    <ClCompile Include="BasicInfoView.cpp">
+      <Filter>Source Files\views</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <QtMoc Include="HomePage.h">
-      <Filter>Source Files\views</Filter>
-    </QtMoc>
     <QtMoc Include="OrarApp.h">
       <Filter>Source Files\views</Filter>
     </QtMoc>
@@ -88,24 +85,21 @@
     <QtMoc Include="SubjectDialog.h">
       <Filter>Source Files\views</Filter>
     </QtMoc>
-    <QtMoc Include="ThirdPage.h">
-      <Filter>Source Files\views</Filter>
-    </QtMoc>
     <QtMoc Include="ClassesView.h">
       <Filter>Source Files\views</Filter>
     </QtMoc>
     <QtMoc Include="SubjectView.h">
       <Filter>Source Files\views</Filter>
     </QtMoc>
+    <QtMoc Include="HomeView.h">
+      <Filter>Source Files\views</Filter>
+    </QtMoc>
+    <QtMoc Include="BasicInfoView.h">
+      <Filter>Source Files\views</Filter>
+    </QtMoc>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="SecondView.ui">
-      <Filter>Resource Files</Filter>
-    </QtUic>
-    <QtUic Include="HomePage.ui">
-      <Filter>Resource Files</Filter>
-    </QtUic>
-    <QtUic Include="ThirdPage.ui">
       <Filter>Resource Files</Filter>
     </QtUic>
     <QtUic Include="SubjectDialog.ui">
@@ -115,6 +109,12 @@
       <Filter>Resource Files</Filter>
     </QtUic>
     <QtUic Include="SubjectView.ui">
+      <Filter>Resource Files</Filter>
+    </QtUic>
+    <QtUic Include="BasicInfoView.ui">
+      <Filter>Resource Files</Filter>
+    </QtUic>
+    <QtUic Include="HomeView.ui">
       <Filter>Resource Files</Filter>
     </QtUic>
   </ItemGroup>

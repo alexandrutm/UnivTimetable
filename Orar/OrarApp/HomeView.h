@@ -1,22 +1,22 @@
 #pragma once
 
 #include <QWidget>
-#include "ui_HomePage.h"
+#include "ui_HomeView.h"
 
 class INavigator;
 
-class HomePage : public QWidget
+class HomeView : public QWidget
 {
 	Q_OBJECT
 
 public:
-	HomePage(INavigator* navigator, QWidget *parent = Q_NULLPTR);
-	~HomePage();
+	HomeView(INavigator* navigator, QWidget *parent = Q_NULLPTR);
+	~HomeView();
 
 private slots:
 	void on_pushButtonSecondView_clicked();
 
 private:
-	Ui::HomePage ui;
+	Ui::HomeView ui;
 	INavigator *mNavigator;
 };

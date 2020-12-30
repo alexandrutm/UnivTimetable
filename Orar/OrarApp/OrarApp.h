@@ -4,9 +4,9 @@
 #include "ui_OrarApp.h"
 
 #include "SecondView.h"
-#include "HomePage.h"
+#include "HomeView.h"
 #include "SecondView.h"
-#include "ThirdPage.h"
+#include "BasicInfoView.h"
 #include "SubjectView.h"
 #include "ClassesView.h"
 
@@ -30,9 +30,9 @@ private:
 
     Context mContext;
     
-    HomePage mHomePage;
-    SecondView mSecondPage;
-    ThirdPage mThirdPage;
+    HomeView mHomeView;
+    SecondView mSecondView;
+    BasicInfoView mBasicInfoView;
     SubjectView mSubjectView;
     ClassesView mClassView;
 };

@@ -1,26 +1,26 @@
 #pragma once
 
 #include <QWidget>
-#include "ui_ThirdPage.h"
+#include "ui_BasicInfoView.h"
 #include"SubjectDialog.h"
 
 class INavigator;
 class Context;
 
-class ThirdPage : public QWidget
+class BasicInfoView : public QWidget
 {
 	Q_OBJECT
 
 public:
-	ThirdPage(INavigator* navigator,Context &aContext,QWidget *parent = Q_NULLPTR);
-	~ThirdPage();
+	BasicInfoView(INavigator* navigator,Context &aContext,QWidget *parent = Q_NULLPTR);
+	~BasicInfoView();
 
 private slots:
 	void on_NextButtonBasicInfo_clicked();
 
 
 private:
-	Ui::ThirdPage ui;
+	Ui::BasicInfoView ui;
 	INavigator *mNavigator;
 	Context& mContext;
 };

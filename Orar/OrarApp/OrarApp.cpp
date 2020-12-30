@@ -3,8 +3,8 @@
 
 
 OrarApp::OrarApp(QWidget *parent)
-    : QMainWindow(parent), mHomePage(this,this),stackWid(this),
-    mSecondPage(this,this),mThirdPage(this,mContext,this),mClassView(this),
+    : QMainWindow(parent), mHomeView(this,this),stackWid(this),
+    mSecondView(this,this),mBasicInfoView(this,mContext,this),mClassView(this),
     mSubjectView(this,mContext,this)
 
 {
@@ -12,9 +12,9 @@ OrarApp::OrarApp(QWidget *parent)
     ui.statusBar->addWidget(ui.statusBarLabel);
     setCentralWidget(&stackWid);
 
-    stackWid.addWidget(&mHomePage);
-    stackWid.addWidget(&mSecondPage);
-    stackWid.addWidget(&mThirdPage);
+    stackWid.addWidget(&mHomeView);
+    stackWid.addWidget(&mSecondView);
+    stackWid.addWidget(&mBasicInfoView);
     stackWid.addWidget(&mSubjectView);
     stackWid.addWidget(&mClassView);
 

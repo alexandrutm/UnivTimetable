@@ -107,23 +107,23 @@
     <ClCompile Include="SubjectDialog.cpp" />
     <ClCompile Include="SubjectView.cpp" />
     <ClCompile Include="Teacher.cpp" />
-    <ClCompile Include="ThirdPage.cpp" />
+    <ClCompile Include="BasicInfoView.cpp" />
     <QtMoc Include="ClassesView.h" />
     <ClInclude Include="Subject.h" />
     <QtMoc Include="SubjectView.h" />
     <ClInclude Include="Teacher.h" />
     <QtMoc Include="SubjectDialog.h" />
-    <QtMoc Include="ThirdPage.h" />
+    <QtMoc Include="BasicInfoView.h" />
     <QtRcc Include="OrarApp.qrc" />
     <QtUic Include="ClassesView.ui" />
-    <QtUic Include="HomePage.ui" />
+    <QtUic Include="HomeView.ui" />
     <QtUic Include="OrarApp.ui" />
     <QtMoc Include="OrarApp.h" />
-    <ClCompile Include="HomePage.cpp" />
+    <ClCompile Include="HomeView.cpp" />
     <ClCompile Include="OrarApp.cpp" />
     <ClCompile Include="main.cpp" />
     <QtMoc Include="SecondView.h" />
-    <QtMoc Include="HomePage.h" />
+    <QtMoc Include="HomeView.h" />
     <ClInclude Include="Context.h" />
     <ClInclude Include="INavigator.h" />
     <ClInclude Include="stdafx.h" />
@@ -135,7 +135,7 @@
     <QtUic Include="SecondView.ui" />
     <QtUic Include="SubjectDialog.ui" />
     <QtUic Include="SubjectView.ui" />
-    <QtUic Include="ThirdPage.ui" />
+    <QtUic Include="BasicInfoView.ui" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">

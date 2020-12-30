@@ -66,7 +66,7 @@ void SubjectView::on_DeleteSubjectButton_clicked()
 		
 		string subjectName=currentItem->text().toStdString();
 		
-		mContext.RemoveSubjectByName(subjectName);//remove subject from subjects vector
+		mContext.RemoveSubjectByName(subjectName);
 		delete currentItem;
 
 		if (ui.listWidgetSubject->count() > 0)
@@ -96,7 +96,7 @@ void SubjectView::on_EditSubjectButton_clicked()
 		//update item in context
 		mContext.EditSubjectByName(item->text().toStdString(), subjectName.toStdString(), colorNumber);
 		
-		//update itm in view
+		//update item in view
 		item->setText(subjectName);
 		item->setData(Qt::UserRole, colorNumber);
 	}

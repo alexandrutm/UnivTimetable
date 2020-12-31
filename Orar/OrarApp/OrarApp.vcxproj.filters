@@ -74,6 +74,12 @@
     <ClCompile Include="BasicInfoView.cpp">
       <Filter>Source Files\views</Filter>
     </ClCompile>
+    <ClCompile Include="ClassesDialog.cpp">
+      <Filter>Source Files\views</Filter>
+    </ClCompile>
+    <ClCompile Include="Classes.cpp">
+      <Filter>Source Files\data</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="OrarApp.h">
@@ -97,6 +103,9 @@
     <QtMoc Include="BasicInfoView.h">
       <Filter>Source Files\views</Filter>
     </QtMoc>
+    <QtMoc Include="ClassesDialog.h">
+      <Filter>Source Files\views</Filter>
+    </QtMoc>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="SecondView.ui">
@@ -117,6 +126,9 @@
     <QtUic Include="HomeView.ui">
       <Filter>Resource Files</Filter>
     </QtUic>
+    <QtUic Include="ClassesDialog.ui">
+      <Filter>Resource Files</Filter>
+    </QtUic>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -132,6 +144,9 @@
       <Filter>Source Files\data</Filter>
     </ClInclude>
     <ClInclude Include="Teacher.h">
+      <Filter>Source Files\data</Filter>
+    </ClInclude>
+    <ClInclude Include="Classes.h">
       <Filter>Source Files\data</Filter>
     </ClInclude>
   </ItemGroup>

@@ -30,28 +30,28 @@
           <item>
            <layout class="QGridLayout" name="gridLayout_5">
             <item row="0" column="0">
-             <widget class="QListWidget" name="listWidgetClasses"/>
+             <widget class="QListWidget" name="List"/>
             </item>
             <item row="0" column="1">
              <layout class="QVBoxLayout" name="verticalLayout_5">
               <item>
                <layout class="QVBoxLayout" name="verticalLayout_6">
                 <item>
-                 <widget class="QPushButton" name="AddClassesButton">
+                 <widget class="QPushButton" name="Add">
                   <property name="text">
                    <string>Add</string>
                   </property>
                  </widget>
                 </item>
                 <item>
-                 <widget class="QPushButton" name="EditClassesButton">
+                 <widget class="QPushButton" name="Edit">
                   <property name="text">
                    <string>Edit</string>
                   </property>
                  </widget>
                 </item>
                 <item>
-                 <widget class="QPushButton" name="DeleteClassesButton">
+                 <widget class="QPushButton" name="Delete">
                   <property name="text">
                    <string>Delete</string>
                   </property>
@@ -60,7 +60,7 @@
                </layout>
               </item>
               <item>
-               <widget class="QPushButton" name="NextClassesSubject">
+               <widget class="QPushButton" name="Next">
                 <property name="text">
                  <string>Next</string>
                 </property>
@@ -80,7 +80,7 @@
                </spacer>
               </item>
               <item>
-               <widget class="QPushButton" name="pushButton">
+               <widget class="QPushButton" name="Back">
                 <property name="text">
                  <string>Back</string>
                 </property>

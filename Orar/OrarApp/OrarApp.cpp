@@ -4,7 +4,7 @@
 
 OrarApp::OrarApp(QWidget *parent)
     : QMainWindow(parent), mHomeView(this,this),stackWid(this),
-    mSecondView(this,this),mBasicInfoView(this,mContext,this),mClassView(this),
+    mSecondView(this,this),mBasicInfoView(this,mContext,this),mClassView(this,mContext,this),
     mSubjectView(this,mContext,this)
 
 {

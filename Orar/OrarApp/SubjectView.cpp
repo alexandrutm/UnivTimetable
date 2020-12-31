@@ -35,15 +35,14 @@ void SubjectView::on_AddSubjectButton_clicked()
 			item->setData(Qt::UserRole, colorNumber);
 			ui.listWidgetSubject->setCurrentItem(item);
 
-			/// build and add subject to context
+			/// store data
 			Subject buildSubject;
 			buildSubject.SetColor(colorNumber);
 			buildSubject.SetName(subjectName.toStdString());
-
 			mContext.AddSubject(buildSubject);
 
 			//change status of statusbar
-			mNavigator->ChangeStatus("You have successfully added a new item");
+			mNavigator->ChangeStatus("You have successfully added a new subject");
 		}
 
 	}
@@ -71,8 +70,7 @@ void SubjectView::on_DeleteSubjectButton_clicked()
 
 		if (ui.listWidgetSubject->count() > 0)
 			ui.listWidgetSubject->setCurrentRow(row);
-		else
-			on_listWidgetSubject_currentItemChanged();
+
 	}
 }
 
@@ -86,22 +84,20 @@ void SubjectView::on_EditSubjectButton_clicked()
 	{
 		EditSubject.Name->setText(item->text());
 		EditSubject.Abbreviation->setText(item->text().left(2));
+
+		if (EditSubject.exec())
+		{
+			QString subjectName = EditSubject.Name->text();
+			int colorNumber = EditSubject.Color->currentIndex();
+
+			//update item in context
+			mContext.EditSubjectByName(item->text().toStdString(), subjectName.toStdString(), colorNumber);
+
+			//update item in view
+			item->setText(subjectName);
+			item->setData(Qt::UserRole, colorNumber);
+		}
 	}
-
-	if (EditSubject.exec())
-	{
-		QString subjectName = EditSubject.Name->text();
-		int colorNumber = EditSubject.Color->currentIndex();
-		
-		//update item in context
-		mContext.EditSubjectByName(item->text().toStdString(), subjectName.toStdString(), colorNumber);
-		
-		//update item in view
-		item->setText(subjectName);
-		item->setData(Qt::UserRole, colorNumber);
-	}
-
-
 }
 
 void SubjectView::on_listWidgetSubject_currentItemChanged()

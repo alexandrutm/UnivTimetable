@@ -101,6 +101,8 @@
     </QtMoc>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Classes.cpp" />
+    <ClCompile Include="ClassesDialog.cpp" />
     <ClCompile Include="ClassesView.cpp" />
     <ClCompile Include="Context.cpp" />
     <ClCompile Include="Subject.cpp" />
@@ -109,12 +111,15 @@
     <ClCompile Include="Teacher.cpp" />
     <ClCompile Include="BasicInfoView.cpp" />
     <QtMoc Include="ClassesView.h" />
+    <QtMoc Include="ClassesDialog.h" />
+    <ClInclude Include="Classes.h" />
     <ClInclude Include="Subject.h" />
     <QtMoc Include="SubjectView.h" />
     <ClInclude Include="Teacher.h" />
     <QtMoc Include="SubjectDialog.h" />
     <QtMoc Include="BasicInfoView.h" />
     <QtRcc Include="OrarApp.qrc" />
+    <QtUic Include="ClassesDialog.ui" />
     <QtUic Include="ClassesView.ui" />
     <QtUic Include="HomeView.ui" />
     <QtUic Include="OrarApp.ui" />

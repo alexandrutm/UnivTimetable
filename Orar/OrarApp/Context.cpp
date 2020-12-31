@@ -1,8 +1,5 @@
 #include"Context.h"
 
-
-
-
 void Context::AddTeacher(Teacher aTeacher)
 {
 	mTeachers.push_back(aTeacher);
@@ -64,4 +61,39 @@ void Context::EditSubjectByName(string aOldName,string aNewName,int aColorPositi
 	}
 }
 
+void Context::AddClass(Classes aClass)
+{
+	mClasses.push_back(aClass);
+}
 
+void Context::RemoveClassByName(string aName)
+{
+	auto i = begin(mClasses);
+
+	while (i != end(mClasses))
+	{
+		if ((*i).GetName() == aName)
+		{
+			i = mClasses.erase(i);
+			break;
+		}
+		else
+			i++;
+	}
+}
+
+void Context::EditClassesByName(string aOldName,string aNewName,int aNumberOfStudents)
+{
+	auto i = begin(mClasses);
+
+	while (i != end(mClasses))
+	{
+		if ((*i).GetName() == aOldName)
+		{
+			(*i).SetName(aNewName);
+			(*i).SetNumberOfStudents(aNumberOfStudents);
+		}
+		else
+			i++;
+	}
+}

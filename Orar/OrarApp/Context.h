@@ -1,6 +1,7 @@
 #pragma once
 #include "Teacher.h"
 #include "Subject.h"
+#include "Classes.h"
 
 
 class Context
@@ -15,7 +16,12 @@ public:
 	void RemoveSubjectByName(string aName);
 	void EditSubjectByName(string aOldName, string aNewName, int aColorPosition);
 
+	void AddClass(Classes aClass);
+	void RemoveClassByName(string aName);
+	void EditClassesByName(string aOldName, string aNewName, int aNumberOfStudents);
+
 private:
 	vector<Subject>mSubjects;
 	vector<Teacher>mTeachers;
+	vector<Classes>mClasses;
 };

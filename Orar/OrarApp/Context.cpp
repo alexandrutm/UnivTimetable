@@ -24,6 +24,22 @@ void Context::RemoveTeacherByFirstName(string aFirstName)
 
 }
 
+void Context::EditTeacherByFirstName(string aOldName, string aNewFirstName,string aNewLastName)
+{
+	auto i = begin(mTeachers);
+
+	while (i != end(mTeachers))
+	{
+		if ((*i).GetFirstName() == aOldName)
+		{
+			(*i).SetFirstName(aNewFirstName);
+			(*i).SetLastName(aNewLastName);
+		}
+		else
+			i++;
+	}
+}
+
 void Context::AddSubject(Subject aSubject)
 {
 	mSubjects.push_back(aSubject);
@@ -96,4 +112,9 @@ void Context::EditClassesByName(string aOldName,string aNewName,int aNumberOfStu
 		else
 			i++;
 	}
+}
+
+void Context::AddBasicInfo(BasicInfo aBasicInfo)
+{
+	mBasicInfo = aBasicInfo;
 }

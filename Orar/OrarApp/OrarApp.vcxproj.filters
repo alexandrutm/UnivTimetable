@@ -80,6 +80,15 @@
     <ClCompile Include="Classes.cpp">
       <Filter>Source Files\data</Filter>
     </ClCompile>
+    <ClCompile Include="TeacherView.cpp">
+      <Filter>Source Files\views</Filter>
+    </ClCompile>
+    <ClCompile Include="TeacherDialog.cpp">
+      <Filter>Source Files\views</Filter>
+    </ClCompile>
+    <ClCompile Include="BasicInfo.cpp">
+      <Filter>Source Files\data</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="OrarApp.h">
@@ -106,6 +115,12 @@
     <QtMoc Include="ClassesDialog.h">
       <Filter>Source Files\views</Filter>
     </QtMoc>
+    <QtMoc Include="TeacherView.h">
+      <Filter>Source Files\views</Filter>
+    </QtMoc>
+    <QtMoc Include="TeacherDialog.h">
+      <Filter>Source Files\views</Filter>
+    </QtMoc>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="SecondView.ui">
@@ -129,6 +144,12 @@
     <QtUic Include="ClassesDialog.ui">
       <Filter>Resource Files</Filter>
     </QtUic>
+    <QtUic Include="TeacherView.ui">
+      <Filter>Resource Files</Filter>
+    </QtUic>
+    <QtUic Include="TeacherDialog.ui">
+      <Filter>Resource Files</Filter>
+    </QtUic>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -147,6 +168,9 @@
       <Filter>Source Files\data</Filter>
     </ClInclude>
     <ClInclude Include="Classes.h">
+      <Filter>Source Files\data</Filter>
+    </ClInclude>
+    <ClInclude Include="BasicInfo.h">
       <Filter>Source Files\data</Filter>
     </ClInclude>
   </ItemGroup>

@@ -5,7 +5,7 @@
 OrarApp::OrarApp(QWidget *parent)
     : QMainWindow(parent), mHomeView(this,this),stackWid(this),
     mSecondView(this,this),mBasicInfoView(this,mContext,this),mClassView(this,mContext,this),
-    mSubjectView(this,mContext,this)
+    mSubjectView(this,mContext,this),mTeacher(this,mContext,this)
 
 {
     ui.setupUi(this);
@@ -17,6 +17,7 @@ OrarApp::OrarApp(QWidget *parent)
     stackWid.addWidget(&mBasicInfoView);
     stackWid.addWidget(&mSubjectView);
     stackWid.addWidget(&mClassView);
+    stackWid.addWidget(&mTeacher);
 
     stackWid.setCurrentIndex(0);
 }
@@ -31,7 +32,7 @@ void OrarApp::ChangeView(INavigator::viewId theView)
     {
         stackWid.setCurrentIndex(1);
     }
-    else if (theView == INavigator::viewId::thirdpage)
+    else if (theView == INavigator::viewId::basicInfoView)
     {
         stackWid.setCurrentIndex(2);
     }
@@ -42,6 +43,10 @@ void OrarApp::ChangeView(INavigator::viewId theView)
     else if (theView == INavigator::viewId::classesView)
     {
         stackWid.setCurrentIndex(4);
+    }
+    else if(theView == INavigator::viewId::teacherView)
+    {
+        stackWid.setCurrentIndex(5);
     }
 
 }

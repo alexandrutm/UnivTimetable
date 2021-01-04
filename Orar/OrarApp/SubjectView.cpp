@@ -41,7 +41,7 @@ void SubjectView::on_AddSubjectButton_clicked()
 			buildSubject.SetName(subjectName.toStdString());
 			mContext.AddSubject(buildSubject);
 
-			//change status of statusbar
+			//change statusbar
 			mNavigator->ChangeStatus("You have successfully added a new subject");
 		}
 
@@ -51,7 +51,7 @@ void SubjectView::on_AddSubjectButton_clicked()
 
 void SubjectView::on_pushButtonBackSubject_clicked()
 {
-	mNavigator->ChangeView(INavigator::viewId::thirdpage);
+	mNavigator->ChangeView(INavigator::viewId::basicInfoView);
 }
 
 void SubjectView::on_DeleteSubjectButton_clicked()

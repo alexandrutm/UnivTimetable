@@ -9,6 +9,7 @@
 #include "BasicInfoView.h"
 #include "SubjectView.h"
 #include "ClassesView.h"
+#include "TeacherView.h"
 
 
 #include "INavigator.h"
@@ -35,4 +36,5 @@ private:
     BasicInfoView mBasicInfoView;
     SubjectView mSubjectView;
     ClassesView mClassView;
+    TeacherView mTeacher;
 };

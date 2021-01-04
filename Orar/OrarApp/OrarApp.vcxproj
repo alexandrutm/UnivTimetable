@@ -101,6 +101,7 @@
     </QtMoc>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BasicInfo.cpp" />
     <ClCompile Include="Classes.cpp" />
     <ClCompile Include="ClassesDialog.cpp" />
     <ClCompile Include="ClassesView.cpp" />
@@ -110,8 +111,13 @@
     <ClCompile Include="SubjectView.cpp" />
     <ClCompile Include="Teacher.cpp" />
     <ClCompile Include="BasicInfoView.cpp" />
+    <ClCompile Include="TeacherDialog.cpp" />
+    <ClCompile Include="TeacherView.cpp" />
+    <QtMoc Include="TeacherDialog.h" />
+    <QtMoc Include="TeacherView.h" />
     <QtMoc Include="ClassesView.h" />
     <QtMoc Include="ClassesDialog.h" />
+    <ClInclude Include="BasicInfo.h" />
     <ClInclude Include="Classes.h" />
     <ClInclude Include="Subject.h" />
     <QtMoc Include="SubjectView.h" />
@@ -141,6 +147,8 @@
     <QtUic Include="SubjectDialog.ui" />
     <QtUic Include="SubjectView.ui" />
     <QtUic Include="BasicInfoView.ui" />
+    <QtUic Include="TeacherDialog.ui" />
+    <QtUic Include="TeacherView.ui" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">

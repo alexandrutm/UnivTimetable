@@ -13,7 +13,7 @@ SecondView::~SecondView()
 
 void SecondView::on_pushButtonBasicData_clicked()
 {
-	mNavigator->ChangeView(INavigator::viewId::thirdpage);
+	mNavigator->ChangeView(INavigator::viewId::basicInfoView);
 }
 
 void SecondView::on_backHome_clicked()

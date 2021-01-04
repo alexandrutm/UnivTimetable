@@ -89,6 +89,7 @@ void ClassesView::on_Delete_clicked()
 
 void ClassesView::on_Next_clicked()
 {
+	mNavigator->ChangeView(INavigator::viewId::teacherView);
 }
 
 void ClassesView::on_Back_clicked()

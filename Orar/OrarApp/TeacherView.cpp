@@ -92,5 +92,6 @@ void TeacherView::on_pushBtnBack_clicked()
 
 void TeacherView::on_pushBtnNext_clicked()
 {
+	mNavigator->ChangeView(INavigator::viewId::lessonView);
 }
 

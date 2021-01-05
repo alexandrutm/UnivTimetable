@@ -40,6 +40,26 @@ void Context::EditTeacherByFirstName(string aOldName, string aNewFirstName,strin
 	}
 }
 
+vector<Teacher>& Context::GetTeachers()
+{
+	return mTeachers;
+}
+
+QStringListModel* Context::GetTeacherModelComboBox()
+{
+	QStringList listOfNames;
+
+	for (int i = 0; i < mTeachers.size(); i++)
+	{
+		listOfNames << QString::fromStdString(mTeachers[i].GetFirstName());
+	}
+
+	QStringListModel* model = new QStringListModel();
+	model->setStringList(listOfNames);
+
+	return model;
+}
+
 void Context::AddSubject(Subject aSubject)
 {
 	mSubjects.push_back(aSubject);
@@ -77,6 +97,26 @@ void Context::EditSubjectByName(string aOldName,string aNewName,int aColorPositi
 	}
 }
 
+vector<Subject>& Context::GetSubjects()
+{
+	return mSubjects;
+}
+
+QStringListModel* Context::GetSubjectModelComboBox()
+{
+	QStringList listOfNames;
+
+	for (int i = 0; i < mSubjects.size(); i++)
+	{
+		listOfNames << QString::fromStdString(mSubjects[i].GetName());
+	}
+
+	QStringListModel* model = new QStringListModel();
+	model->setStringList(listOfNames);
+
+	return model;
+}
+
 void Context::AddClass(Classes aClass)
 {
 	mClasses.push_back(aClass);
@@ -112,6 +152,26 @@ void Context::EditClassesByName(string aOldName,string aNewName,int aNumberOfStu
 		else
 			i++;
 	}
+}
+
+vector<Classes>& Context::GetClasses()
+{
+	return mClasses;
+}
+
+QStringListModel* Context::GetClassModelComboBox()
+{
+	QStringList listOfNames;
+
+	for (int i = 0; i < mClasses.size(); i++)
+	{
+		listOfNames << QString::fromStdString(mClasses[i].GetName());
+	}
+
+	QStringListModel* model = new QStringListModel();
+	model->setStringList(listOfNames);
+
+	return model;
 }
 
 void Context::AddBasicInfo(BasicInfo aBasicInfo)

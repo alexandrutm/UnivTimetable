@@ -11,7 +11,8 @@ public:
 		basicInfoView,
 		subjectView,
 		classesView,
-		teacherView
+		teacherView,
+		lessonView
 	};
 
 	virtual void ChangeView(viewId theView) = 0;

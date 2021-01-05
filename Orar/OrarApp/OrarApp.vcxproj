@@ -106,6 +106,8 @@
     <ClCompile Include="ClassesDialog.cpp" />
     <ClCompile Include="ClassesView.cpp" />
     <ClCompile Include="Context.cpp" />
+    <ClCompile Include="LessonDialog.cpp" />
+    <ClCompile Include="LessonView.cpp" />
     <ClCompile Include="Subject.cpp" />
     <ClCompile Include="SubjectDialog.cpp" />
     <ClCompile Include="SubjectView.cpp" />
@@ -119,6 +121,9 @@
     <QtMoc Include="ClassesDialog.h" />
     <ClInclude Include="BasicInfo.h" />
     <ClInclude Include="Classes.h" />
+    <QtMoc Include="LessonView.h" />
+    <ClInclude Include="Lesson.h" />
+    <QtMoc Include="LessonDialog.h" />
     <ClInclude Include="Subject.h" />
     <QtMoc Include="SubjectView.h" />
     <ClInclude Include="Teacher.h" />
@@ -128,6 +133,8 @@
     <QtUic Include="ClassesDialog.ui" />
     <QtUic Include="ClassesView.ui" />
     <QtUic Include="HomeView.ui" />
+    <QtUic Include="LessonDialog.ui" />
+    <QtUic Include="LessonView.ui" />
     <QtUic Include="OrarApp.ui" />
     <QtMoc Include="OrarApp.h" />
     <ClCompile Include="HomeView.cpp" />

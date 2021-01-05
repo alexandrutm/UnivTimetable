@@ -10,6 +10,7 @@
 #include "SubjectView.h"
 #include "ClassesView.h"
 #include "TeacherView.h"
+#include "LessonView.h"
 
 
 #include "INavigator.h"
@@ -37,4 +38,5 @@ private:
     SubjectView mSubjectView;
     ClassesView mClassView;
     TeacherView mTeacher;
+    LessonView mLesson;
 };

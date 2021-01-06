@@ -2,7 +2,7 @@
 #include "INavigator.h"
 #include "Context.h"
 #include "ClassesDialog.h"
-#include "Classes.h"
+
 
 
 ClassesView::ClassesView(INavigator* aNavigator,Context & aContext,QWidget *parent)
@@ -85,14 +85,4 @@ void ClassesView::on_Delete_clicked()
 		if (ui.List->count() > 0)
 			ui.List->setCurrentRow(row);
 	}
-}
-
-void ClassesView::on_Next_clicked()
-{
-	mNavigator->ChangeView(INavigator::viewId::teacherView);
-}
-
-void ClassesView::on_Back_clicked()
-{
-	mNavigator->ChangeView(INavigator::viewId::subjectView);
 }

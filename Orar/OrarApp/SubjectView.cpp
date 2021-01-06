@@ -2,25 +2,20 @@
 #include "INavigator.h"
 #include "Context.h"
 #include "SubjectDialog.h"
-#include "Subject.h"
 
 SubjectView::SubjectView(INavigator* aNavigator,Context& aContext,QWidget *parent)
 	: QWidget(parent),mNavigator(aNavigator),mContext(aContext)
 {
 	ui.setupUi(this);
-	ui.stackedWidget->setCurrentIndex(0);
+
 }
 
 SubjectView::~SubjectView()
 {
 }
 
-void SubjectView::on_NextButtonSubject_clicked()
-{
-	mNavigator->ChangeView(INavigator::viewId::classesView);
-}
 
-void SubjectView::on_AddSubjectButton_clicked()
+void SubjectView::on_Add_clicked()
 {
 	SubjectDialog AddSubject(this);
 
@@ -49,12 +44,8 @@ void SubjectView::on_AddSubjectButton_clicked()
 
 }
 
-void SubjectView::on_pushButtonBackSubject_clicked()
-{
-	mNavigator->ChangeView(INavigator::viewId::basicInfoView);
-}
 
-void SubjectView::on_DeleteSubjectButton_clicked()
+void SubjectView::on_Delete_clicked()
 {
 	QListWidgetItem* currentItem = ui.listWidgetSubject->currentItem();
 	
@@ -74,7 +65,7 @@ void SubjectView::on_DeleteSubjectButton_clicked()
 	}
 }
 
-void SubjectView::on_EditSubjectButton_clicked()
+void SubjectView::on_Edit_clicked()
 {
 	SubjectDialog EditSubject(this);
 	QListWidgetItem* item = ui.listWidgetSubject->currentItem();
@@ -98,9 +89,4 @@ void SubjectView::on_EditSubjectButton_clicked()
 			item->setData(Qt::UserRole, colorNumber);
 		}
 	}
-}
-
-void SubjectView::on_listWidgetSubject_currentItemChanged()
-{
-
 }

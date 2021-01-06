@@ -1,54 +1,41 @@
 #include "LessonView.h"
-#include"INavigator.h"
+#include "INavigator.h"
 #include "LessonDialog.h"
+#include "Context.h"
 
 LessonView::LessonView(INavigator * aNavigator,Context& aContext,QWidget *parent)
 	: QWidget(parent),mNavigator(aNavigator),mContext(aContext)
 {
 	ui.setupUi(this);
+	QHeaderView* header = ui.tableWidget->horizontalHeader();
+	header->setSectionResizeMode(QHeaderView::Stretch);
 }
 
 LessonView::~LessonView()
 {
 }
 
-void LessonView::on_pushBtnEdit_clicked()
+void LessonView::on_Add_clicked()
 {
-}
-
-void LessonView::on_pushBtnDelete_clicked()
-{
-}
-
-void LessonView::on_pushBtnNext_clicked()
-{
-}
-
-void LessonView::on_pushBtnBack_clicked()
-{
-	mNavigator->ChangeView(INavigator::viewId::teacherView);
-}
-
-void LessonView::on_pushBtnAdd_clicked()
-{
-	LessonDialog AddDialog(mContext,this);
-	int column = 4;
-	int static row = 0;
+	LessonDialog AddDialog(this);
+	AddDialog.mTeacher->setModel(mContext.GetTeacherModelComboBox());
+	AddDialog.mSubject->setModel(mContext.GetSubjectModelComboBox());
+	AddDialog.mClasses->setModel(mContext.GetClassModelComboBox());
 
 
 	if (AddDialog.exec())
 	{
+
 		QString teacherName = AddDialog.mTeacher->currentText();
-			//get data AddDialog.mTeacher->itemData(AddDialog.mTeacher->currentIndex());
 		QString subjectName = AddDialog.mSubject->currentText();
 		QString className = AddDialog.mClasses->currentText();
 		int HoursPerWeek = AddDialog.mHoursPerWeek->value();
-		
+
 		ui.tableWidget->insertRow(ui.tableWidget->rowCount());
-		QTableWidgetItem* item;
-		for (int i = 0; i < column; i++)
+
+		for (int i = 0; i < ui.tableWidget->columnCount(); i++)
 		{
-			item = new QTableWidgetItem;
+			QTableWidgetItem* item = new QTableWidgetItem;
 
 			if (i == 0)
 				item->setText(teacherName);
@@ -60,9 +47,51 @@ void LessonView::on_pushBtnAdd_clicked()
 				item->setText(QString::number(HoursPerWeek));
 
 			item->setTextAlignment(Qt::AlignHCenter);
-			ui.tableWidget->setItem(ui.tableWidget->rowCount() - 1,i,item);
+			ui.tableWidget->setItem(ui.tableWidget->rowCount() - 1, i, item);
 		}
 	}
-
-	row++;
 }
+
+
+void LessonView::on_Edit_clicked()
+{
+	LessonDialog EditDialog(this);
+	EditDialog.mTeacher->setModel(mContext.GetTeacherModelComboBox());
+	EditDialog.mSubject->setModel(mContext.GetSubjectModelComboBox());
+	EditDialog.mClasses->setModel(mContext.GetClassModelComboBox());
+
+	if (EditDialog.exec()) {
+
+		QString teacherName = EditDialog.mTeacher->currentText();
+		QString subjectName = EditDialog.mSubject->currentText();
+		QString className = EditDialog.mClasses->currentText();
+		int HoursPerWeek = EditDialog.mHoursPerWeek->value();
+
+		int row = ui.tableWidget->currentRow();
+
+		for (int i = 0; i < ui.tableWidget->columnCount(); i++)
+		{
+
+				QTableWidgetItem* item = new QTableWidgetItem;
+
+				if (i == 0)
+					item->setText(teacherName);
+				if (i == 1)
+					item->setText(subjectName);
+				if (i == 2)
+					item->setText(className);
+				if (i == 3)
+					item->setText(QString::number(HoursPerWeek));
+
+				item->setTextAlignment(Qt::AlignHCenter);
+				ui.tableWidget->setItem(row, i, item);
+			
+		}
+	}
+}
+
+void LessonView::on_Delete_clicked()
+{
+}
+
+

@@ -16,8 +16,8 @@ public:
 	~BasicInfoView();
 
 private slots:
-	void on_NextButtonBasicInfo_clicked();
-
+	void on_Next_clicked();
+	void on_Back_clicked();
 
 private:
 	Ui::BasicInfoView ui;

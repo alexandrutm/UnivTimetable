@@ -2,7 +2,6 @@
 #include "INavigator.h"
 #include "Context.h"
 #include "TeacherDialog.h"
-#include "Teacher.h"
 
 TeacherView::TeacherView(INavigator* aNavigator, Context& aContext,QWidget *parent)
 	: QWidget(parent),mNavigator(aNavigator),mContext(aContext)
@@ -14,7 +13,7 @@ TeacherView::~TeacherView()
 {
 }
 
-void TeacherView::on_pushBtnAdd_clicked()
+void TeacherView::on_Add_clicked()
 {
 	TeacherDialog Add(this);
 
@@ -42,7 +41,7 @@ void TeacherView::on_pushBtnAdd_clicked()
 
 }
 
-void TeacherView::on_pushBtnEdit_clicked()
+void TeacherView::on_Edit_clicked()
 {
 	TeacherDialog Edit(this);
 
@@ -67,7 +66,7 @@ void TeacherView::on_pushBtnEdit_clicked()
 	}
 }
 
-void TeacherView::on_pushBtnDelete_clicked()
+void TeacherView::on_Delete_clicked()
 {
 	QListWidgetItem* item = ui.list->currentItem();
 
@@ -85,13 +84,4 @@ void TeacherView::on_pushBtnDelete_clicked()
 	}
 }
 
-void TeacherView::on_pushBtnBack_clicked()
-{
-	mNavigator->ChangeView(INavigator::viewId::classesView);
-}
-
-void TeacherView::on_pushBtnNext_clicked()
-{
-	mNavigator->ChangeView(INavigator::viewId::lessonView);
-}
 

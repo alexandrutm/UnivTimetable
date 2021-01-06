@@ -15,14 +15,9 @@ public:
 	~SubjectView();
 
 private slots:
-	void on_NextButtonSubject_clicked();
-	void on_AddSubjectButton_clicked();
-	void on_pushButtonBackSubject_clicked();
-	void on_DeleteSubjectButton_clicked();
-	void on_EditSubjectButton_clicked();
-
-	void on_listWidgetSubject_currentItemChanged();
-	
+	void on_Add_clicked();
+	void on_Edit_clicked();
+	void on_Delete_clicked();
 
 private:
 	Ui::SubjectView ui;

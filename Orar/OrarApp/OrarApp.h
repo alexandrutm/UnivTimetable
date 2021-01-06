@@ -26,9 +26,16 @@ public:
     void ChangeView(INavigator::viewId theView);
     void ChangeStatus(QString status);
 
+private slots:
+
+    void on_btnSubject_clicked();
+    void on_btnClass_clicked();
+    void on_btnRoom_clicked();
+    void on_btnTeacher_clicked();
+    void on_btnLesson_clicked();
+
 private:
     Ui::OrarAppClass ui;
-    QStackedWidget stackWid;
 
     Context mContext;
     

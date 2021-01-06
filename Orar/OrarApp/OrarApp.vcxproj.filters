@@ -47,14 +47,38 @@
     <ClCompile Include="OrarApp.cpp">
       <Filter>Source Files\views</Filter>
     </ClCompile>
+    <ClCompile Include="BasicInfoView.cpp">
+      <Filter>Source Files\views</Filter>
+    </ClCompile>
+    <ClCompile Include="ClassesDialog.cpp">
+      <Filter>Source Files\views</Filter>
+    </ClCompile>
+    <ClCompile Include="ClassesView.cpp">
+      <Filter>Source Files\views</Filter>
+    </ClCompile>
+    <ClCompile Include="HomeView.cpp">
+      <Filter>Source Files\views</Filter>
+    </ClCompile>
+    <ClCompile Include="LessonDialog.cpp">
+      <Filter>Source Files\views</Filter>
+    </ClCompile>
+    <ClCompile Include="LessonView.cpp">
+      <Filter>Source Files\views</Filter>
+    </ClCompile>
     <ClCompile Include="SecondView.cpp">
       <Filter>Source Files\views</Filter>
     </ClCompile>
     <ClCompile Include="SubjectDialog.cpp">
       <Filter>Source Files\views</Filter>
     </ClCompile>
-    <ClCompile Include="Context.cpp">
-      <Filter>Source Files\data</Filter>
+    <ClCompile Include="SubjectView.cpp">
+      <Filter>Source Files\views</Filter>
+    </ClCompile>
+    <ClCompile Include="TeacherDialog.cpp">
+      <Filter>Source Files\views</Filter>
+    </ClCompile>
+    <ClCompile Include="TeacherView.cpp">
+      <Filter>Source Files\views</Filter>
     </ClCompile>
     <ClCompile Include="Teacher.cpp">
       <Filter>Source Files\data</Filter>
@@ -62,42 +86,33 @@
     <ClCompile Include="Subject.cpp">
       <Filter>Source Files\data</Filter>
     </ClCompile>
-    <ClCompile Include="ClassesView.cpp">
-      <Filter>Source Files\views</Filter>
-    </ClCompile>
-    <ClCompile Include="SubjectView.cpp">
-      <Filter>Source Files\views</Filter>
-    </ClCompile>
-    <ClCompile Include="HomeView.cpp">
-      <Filter>Source Files\views</Filter>
-    </ClCompile>
-    <ClCompile Include="BasicInfoView.cpp">
-      <Filter>Source Files\views</Filter>
-    </ClCompile>
-    <ClCompile Include="ClassesDialog.cpp">
-      <Filter>Source Files\views</Filter>
+    <ClCompile Include="Context.cpp">
+      <Filter>Source Files\data</Filter>
     </ClCompile>
     <ClCompile Include="Classes.cpp">
       <Filter>Source Files\data</Filter>
     </ClCompile>
-    <ClCompile Include="TeacherView.cpp">
-      <Filter>Source Files\views</Filter>
-    </ClCompile>
-    <ClCompile Include="TeacherDialog.cpp">
-      <Filter>Source Files\views</Filter>
-    </ClCompile>
     <ClCompile Include="BasicInfo.cpp">
       <Filter>Source Files\data</Filter>
     </ClCompile>
-    <ClCompile Include="LessonView.cpp">
-      <Filter>Source Files\views</Filter>
-    </ClCompile>
-    <ClCompile Include="LessonDialog.cpp">
-      <Filter>Source Files\views</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <QtMoc Include="OrarApp.h">
+    <QtMoc Include="BasicInfoView.h">
+      <Filter>Source Files\views</Filter>
+    </QtMoc>
+    <QtMoc Include="ClassesDialog.h">
+      <Filter>Source Files\views</Filter>
+    </QtMoc>
+    <QtMoc Include="ClassesView.h">
+      <Filter>Source Files\views</Filter>
+    </QtMoc>
+    <QtMoc Include="HomeView.h">
+      <Filter>Source Files\views</Filter>
+    </QtMoc>
+    <QtMoc Include="LessonDialog.h">
+      <Filter>Source Files\views</Filter>
+    </QtMoc>
+    <QtMoc Include="LessonView.h">
       <Filter>Source Files\views</Filter>
     </QtMoc>
     <QtMoc Include="SecondView.h">
@@ -106,31 +121,16 @@
     <QtMoc Include="SubjectDialog.h">
       <Filter>Source Files\views</Filter>
     </QtMoc>
-    <QtMoc Include="ClassesView.h">
-      <Filter>Source Files\views</Filter>
-    </QtMoc>
     <QtMoc Include="SubjectView.h">
-      <Filter>Source Files\views</Filter>
-    </QtMoc>
-    <QtMoc Include="HomeView.h">
-      <Filter>Source Files\views</Filter>
-    </QtMoc>
-    <QtMoc Include="BasicInfoView.h">
-      <Filter>Source Files\views</Filter>
-    </QtMoc>
-    <QtMoc Include="ClassesDialog.h">
-      <Filter>Source Files\views</Filter>
-    </QtMoc>
-    <QtMoc Include="TeacherView.h">
       <Filter>Source Files\views</Filter>
     </QtMoc>
     <QtMoc Include="TeacherDialog.h">
       <Filter>Source Files\views</Filter>
     </QtMoc>
-    <QtMoc Include="LessonView.h">
+    <QtMoc Include="TeacherView.h">
       <Filter>Source Files\views</Filter>
     </QtMoc>
-    <QtMoc Include="LessonDialog.h">
+    <QtMoc Include="OrarApp.h">
       <Filter>Source Files\views</Filter>
     </QtMoc>
   </ItemGroup>
@@ -176,22 +176,22 @@
     <ClInclude Include="INavigator.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="Context.h">
-      <Filter>Source Files\data</Filter>
-    </ClInclude>
-    <ClInclude Include="Subject.h">
-      <Filter>Source Files\data</Filter>
-    </ClInclude>
-    <ClInclude Include="Teacher.h">
-      <Filter>Source Files\data</Filter>
-    </ClInclude>
     <ClInclude Include="Classes.h">
+      <Filter>Source Files\data</Filter>
+    </ClInclude>
+    <ClInclude Include="Context.h">
       <Filter>Source Files\data</Filter>
     </ClInclude>
     <ClInclude Include="BasicInfo.h">
       <Filter>Source Files\data</Filter>
     </ClInclude>
     <ClInclude Include="Lesson.h">
+      <Filter>Source Files\data</Filter>
+    </ClInclude>
+    <ClInclude Include="Subject.h">
+      <Filter>Source Files\data</Filter>
+    </ClInclude>
+    <ClInclude Include="Teacher.h">
       <Filter>Source Files\data</Filter>
     </ClInclude>
   </ItemGroup>

@@ -8,14 +8,13 @@ BasicInfoView::BasicInfoView(INavigator *navigator, Context& aContext,QWidget *p
 	: QWidget(parent),mNavigator(navigator),mContext(aContext)
 {
 	ui.setupUi(this);
-	ui.stackedWidget->setCurrentIndex(0);
 }
 
 BasicInfoView::~BasicInfoView()
 {
 }
 
-void BasicInfoView::on_NextButtonBasicInfo_clicked()
+void BasicInfoView::on_Next_clicked()
 {
 	BasicInfo newBasicInfo;
 	newBasicInfo.setSchoolName(ui.SchoolName->text().toStdString());
@@ -26,4 +25,9 @@ void BasicInfoView::on_NextButtonBasicInfo_clicked()
 	mContext.AddBasicInfo(newBasicInfo);
 
 	mNavigator->ChangeView(INavigator::viewId::subjectView);
+}
+
+void BasicInfoView::on_Back_clicked()
+{
+	mNavigator->ChangeView(INavigator::viewId::homepage);
 }

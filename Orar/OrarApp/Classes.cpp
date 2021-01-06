@@ -1,3 +1,4 @@
+#include "stdafx.h"
 #include "Classes.h"
 
 void Classes::SetNumberOfStudents(int aNrOfStudent)

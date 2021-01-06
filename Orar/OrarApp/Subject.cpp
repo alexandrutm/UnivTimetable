@@ -1,6 +1,5 @@
+#include"stdafx.h"
 #include"Subject.h"
-
-
 
 
 string Subject::GetName()

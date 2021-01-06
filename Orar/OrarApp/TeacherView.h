@@ -14,11 +14,9 @@ public:
 	TeacherView(INavigator* aNavigator, Context& aContext,QWidget *parent = Q_NULLPTR);
 	~TeacherView();
 private slots:
-	void on_pushBtnAdd_clicked();
-	void on_pushBtnEdit_clicked();
-	void on_pushBtnDelete_clicked();
-	void on_pushBtnBack_clicked();
-	void on_pushBtnNext_clicked();
+	void on_Add_clicked();
+	void on_Edit_clicked();
+	void on_Delete_clicked();
 
 private:
 	Ui::TeacherView ui;

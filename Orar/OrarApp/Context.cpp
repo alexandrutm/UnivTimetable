@@ -1,3 +1,4 @@
+#include"stdafx.h"
 #include"Context.h"
 
 void Context::AddTeacher(Teacher aTeacher)

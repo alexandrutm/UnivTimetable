@@ -15,7 +15,8 @@ public:
 
 private slots:
 	void on_backHome_clicked();
-	void on_pushButtonBasicData_clicked();
+	void on_enterData_clicked();
+
 
 private:
 	Ui::SecondView ui;

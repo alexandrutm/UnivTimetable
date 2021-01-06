@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>593</width>
-    <height>400</height>
+    <width>689</width>
+    <height>395</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -15,28 +15,88 @@
   </property>
   <widget class="QWidget" name="centralWidget">
    <property name="enabled">
-    <bool>false</bool>
+    <bool>true</bool>
    </property>
-   <widget class="QLabel" name="statusBarLabel">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>310</y>
-      <width>47</width>
-      <height>13</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Ready</string>
-    </property>
-   </widget>
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="0" column="0">
+     <widget class="QStackedWidget" name="centralStackWidget">
+      <widget class="QWidget" name="page_2">
+       <layout class="QFormLayout" name="formLayout">
+        <item row="0" column="0">
+         <widget class="QStackedWidget" name="btnStackedWidget">
+          <widget class="QWidget" name="page">
+           <layout class="QVBoxLayout" name="verticalLayout">
+            <item>
+             <layout class="QVBoxLayout" name="verticalLayout_2">
+              <item>
+               <widget class="QPushButton" name="btnSubject">
+                <property name="text">
+                 <string>Subject</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="btnClass">
+                <property name="text">
+                 <string>Class</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="btnRoom">
+                <property name="text">
+                 <string>Room</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="btnTeacher">
+                <property name="text">
+                 <string>Teacher</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QPushButton" name="btnLesson">
+                <property name="text">
+                 <string>Lesson</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <spacer name="verticalSpacer">
+                <property name="orientation">
+                 <enum>Qt::Vertical</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>20</width>
+                  <height>40</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </widget>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QStackedWidget" name="viewStackedWidget"/>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+   </layout>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>593</width>
+     <width>689</width>
      <height>21</height>
     </rect>
    </property>
@@ -47,7 +107,6 @@
     <addaction name="actionNew_File"/>
     <addaction name="actionOpen_File"/>
     <addaction name="separator"/>
-    <addaction name="actionSave"/>
     <addaction name="separator"/>
     <addaction name="actionClose"/>
    </widget>
@@ -76,7 +135,7 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
-   <addaction name="actionSave_2"/>
+   <addaction name="actionSave"/>
   </widget>
   <action name="actionNew_File">
    <property name="text">

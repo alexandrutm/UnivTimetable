@@ -1,8 +1,10 @@
 #pragma once
+#include"stdafx.h"
 #include "Teacher.h"
 #include "Subject.h"
 #include "Classes.h"
 #include "BasicInfo.h"
+
 
 
 class Context

@@ -1,4 +1,6 @@
+#include"stdafx.h"
 #include "BasicInfo.h"
+
 
 string BasicInfo::getSchoolName()
 {

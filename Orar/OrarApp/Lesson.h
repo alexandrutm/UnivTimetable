@@ -7,12 +7,14 @@ class Classes;
 
 class Lesson
 {
+public:
+	Lesson(shared_ptr<string>, shared_ptr<string>, shared_ptr<string>, shared_ptr<int>);
 
 
 private:
 
-	Subject* mSubject;
-	Teacher* mTeacher;
-	Classes* mClass;
-	int mHoursPerWeek;
+	shared_ptr<string> mSubject;
+	shared_ptr<string> mTeacher;
+	shared_ptr<string> mClass;
+	shared_ptr<int> mHoursPerWeek;
 };

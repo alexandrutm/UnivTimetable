@@ -3,6 +3,7 @@
 class Teacher;
 class Subject;
 class Classes;
+class Lesson;
 class BasicInfo;
 
 
@@ -30,6 +31,10 @@ public:
 	vector<shared_ptr<Classes>>& GetClasses();
 	QStringListModel* GetClassModelComboBox();
 
+	void AddLesson(shared_ptr<Lesson> aLesson);
+	void RemoveLesson();
+	void EditLesson();
+
 	void AddBasicInfo(shared_ptr<BasicInfo> aBasicInfo);
 
 
@@ -38,6 +43,7 @@ private:
 	vector<shared_ptr<Subject>>mSubjects;
 	vector<shared_ptr<Teacher>>mTeachers;
 	vector<shared_ptr<Classes>>mClasses;
+	vector<shared_ptr<Lesson>>mLessons;
 	shared_ptr<BasicInfo> mBasicInfo;
 
 };

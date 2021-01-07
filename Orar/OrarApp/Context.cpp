@@ -185,6 +185,19 @@ QStringListModel* Context::GetClassModelComboBox()
 	return model;
 }
 
+void Context::AddLesson(shared_ptr<Lesson> aLesson)
+{
+	mLessons.push_back(aLesson);
+}
+
+void Context::RemoveLesson()
+{
+}
+
+void Context::EditLesson()
+{
+}
+
 void Context::AddBasicInfo(shared_ptr<BasicInfo> aBasicInfo)
 {
 	mBasicInfo = aBasicInfo;

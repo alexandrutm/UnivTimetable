@@ -95,6 +95,9 @@
     <ClCompile Include="BasicInfo.cpp">
       <Filter>Source Files\data</Filter>
     </ClCompile>
+    <ClCompile Include="Lesson.cpp">
+      <Filter>Source Files\data</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="BasicInfoView.h">

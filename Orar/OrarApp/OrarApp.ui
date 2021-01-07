@@ -29,6 +29,13 @@
             <item>
              <layout class="QVBoxLayout" name="verticalLayout_2">
               <item>
+               <widget class="QPushButton" name="btnBasicInfo">
+                <property name="text">
+                 <string>Basic info</string>
+                </property>
+               </widget>
+              </item>
+              <item>
                <widget class="QPushButton" name="btnSubject">
                 <property name="text">
                  <string>Subject</string>
@@ -136,6 +143,7 @@
     <bool>false</bool>
    </attribute>
    <addaction name="actionSave"/>
+   <addaction name="NewTimetable"/>
   </widget>
   <action name="actionNew_File">
    <property name="text">
@@ -160,6 +168,11 @@
   <action name="actionSave_2">
    <property name="text">
     <string>Save</string>
+   </property>
+  </action>
+  <action name="NewTimetable">
+   <property name="text">
+    <string>New Timetable</string>
    </property>
   </action>
  </widget>

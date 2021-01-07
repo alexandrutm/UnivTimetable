@@ -106,6 +106,7 @@
     <ClCompile Include="ClassesDialog.cpp" />
     <ClCompile Include="ClassesView.cpp" />
     <ClCompile Include="Context.cpp" />
+    <ClCompile Include="Lesson.cpp" />
     <ClCompile Include="LessonDialog.cpp" />
     <ClCompile Include="LessonView.cpp" />
     <ClCompile Include="Subject.cpp" />

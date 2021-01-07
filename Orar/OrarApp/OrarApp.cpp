@@ -11,6 +11,8 @@ OrarApp::OrarApp(QWidget *parent)
     ui.setupUi(this);
     setCentralWidget(ui.centralStackWidget);
 
+    
+    
     ui.centralStackWidget->addWidget(&mHomeView);
     ui.centralStackWidget->addWidget(&mSecondView);
     ui.centralStackWidget->setCurrentIndex(1);
@@ -72,4 +74,9 @@ void OrarApp::on_btnTeacher_clicked()
 void OrarApp::on_btnLesson_clicked()
 {
     ui.viewStackedWidget->setCurrentIndex(4);
+}
+
+void OrarApp::on_btnBasicInfo_clicked()
+{
+    ui.viewStackedWidget->setCurrentIndex(0);
 }

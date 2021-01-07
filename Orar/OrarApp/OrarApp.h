@@ -33,6 +33,8 @@ private slots:
     void on_btnRoom_clicked();
     void on_btnTeacher_clicked();
     void on_btnLesson_clicked();
+    void on_btnBasicInfo_clicked();
+    
 
 private:
     Ui::OrarAppClass ui;

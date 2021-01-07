@@ -2,6 +2,7 @@
 #include "INavigator.h"
 #include "Context.h"
 #include "ClassesDialog.h"
+#include"Classes.h"
 
 
 
@@ -31,9 +32,7 @@ void ClassesView::on_Add_clicked()
 			ui.List->setCurrentItem(item);
 
 			//store data
-			Classes newClass;
-			newClass.SetName(name.toStdString());
-			newClass.SetNumberOfStudents(numberOfStudents);
+			shared_ptr<Classes> newClass = make_shared<Classes>(name.toStdString(),numberOfStudents);
 			mContext.AddClass(newClass);
 
 			mNavigator->ChangeStatus("You have successfully added a new class");
@@ -85,4 +84,9 @@ void ClassesView::on_Delete_clicked()
 		if (ui.List->count() > 0)
 			ui.List->setCurrentRow(row);
 	}
+}
+
+void ClassesView::on_Constraints_clicked()
+{
+
 }

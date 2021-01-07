@@ -16,12 +16,7 @@ BasicInfoView::~BasicInfoView()
 
 void BasicInfoView::on_Next_clicked()
 {
-	BasicInfo newBasicInfo;
-	newBasicInfo.setSchoolName(ui.SchoolName->text().toStdString());
-	newBasicInfo.setAcademicYear(ui.AcademicYear->text().toInt());
-	newBasicInfo.setHoursPerDay(ui.HoursPerDay->value());
-	newBasicInfo.setDayPerWeek(ui.DaysPerWeek->value());
-
+	shared_ptr<BasicInfo> newBasicInfo = make_shared<BasicInfo>(ui.SchoolName->text().toStdString(), ui.AcademicYear->text().toInt(), ui.HoursPerDay->value(), ui.DaysPerWeek->value());
 	mContext.AddBasicInfo(newBasicInfo);
 
 	mNavigator->ChangeView(INavigator::viewId::subjectView);
@@ -29,5 +24,5 @@ void BasicInfoView::on_Next_clicked()
 
 void BasicInfoView::on_Back_clicked()
 {
-	mNavigator->ChangeView(INavigator::viewId::homepage);
+	mNavigator->ChangeView(INavigator::viewId::secondpage);
 }

@@ -1,7 +1,16 @@
 #include"stdafx.h"
 #include"Context.h"
+#include"Teacher.h"
+#include"BasicInfo.h"
+#include"Classes.h"
+#include"Subject.h"
 
-void Context::AddTeacher(Teacher aTeacher)
+Context::Context()
+{
+
+}
+
+void Context::AddTeacher(shared_ptr<Teacher> aTeacher)
 {
 	mTeachers.push_back(aTeacher);
 }
@@ -9,12 +18,11 @@ void Context::AddTeacher(Teacher aTeacher)
 void Context::RemoveTeacherByFirstName(string aFirstName)
 {
 	//not optimal ///////// need changes
-
 	auto i = begin(mTeachers);
 
 	while (i != end(mTeachers))
 	{
-		if ((*i).GetFirstName() == aFirstName)
+		if ((*i)->GetFirstName().compare(aFirstName))
 		{
 			i = mTeachers.erase(i);
 			break;
@@ -31,17 +39,18 @@ void Context::EditTeacherByFirstName(string aOldName, string aNewFirstName,strin
 
 	while (i != end(mTeachers))
 	{
-		if ((*i).GetFirstName() == aOldName)
+		if ((*i)->GetFirstName() == aOldName)
 		{
-			(*i).SetFirstName(aNewFirstName);
-			(*i).SetLastName(aNewLastName);
+			(*i)->SetFirstName(aNewFirstName);
+			(*i)->SetLastName(aNewLastName);
+			break;
 		}
 		else
 			i++;
 	}
 }
 
-vector<Teacher>& Context::GetTeachers()
+vector<shared_ptr<Teacher>>& Context::GetTeachers()
 {
 	return mTeachers;
 }
@@ -52,7 +61,7 @@ QStringListModel* Context::GetTeacherModelComboBox()
 
 	for (int i = 0; i < mTeachers.size(); i++)
 	{
-		listOfNames << QString::fromStdString(mTeachers[i].GetFirstName());
+		listOfNames << QString::fromStdString(mTeachers[i]->GetFirstName());
 	}
 
 	QStringListModel* model = new QStringListModel();
@@ -61,7 +70,7 @@ QStringListModel* Context::GetTeacherModelComboBox()
 	return model;
 }
 
-void Context::AddSubject(Subject aSubject)
+void Context::AddSubject(shared_ptr<Subject> aSubject)
 {
 	mSubjects.push_back(aSubject);
 }
@@ -72,7 +81,7 @@ void Context::RemoveSubjectByName(string aName)
 
 	while (i != end(mSubjects))
 	{
-		if ((*i).GetName() == aName)
+		if ((*i)->GetName() == aName)
 		{
 			i = mSubjects.erase(i);
 			break;
@@ -82,23 +91,23 @@ void Context::RemoveSubjectByName(string aName)
 	}
 }
 
-void Context::EditSubjectByName(string aOldName,string aNewName,int aColorPosition)
+void Context::EditSubjectByName(string aOldName,string aNewName)
 {
 	auto i = begin(mSubjects);
 
 	while (i != end(mSubjects))
 	{
-		if ((*i).GetName() == aOldName)
+		if ((*i)->GetName() == aOldName)
 		{
-			(*i).SetName(aNewName);
-			(*i).SetColor(aColorPosition);
+			(*i)->SetName(aNewName);
+			break;
 		}
 		else
 			i++;
 	}
 }
 
-vector<Subject>& Context::GetSubjects()
+vector<shared_ptr<Subject>>& Context::GetSubjects()
 {
 	return mSubjects;
 }
@@ -109,7 +118,7 @@ QStringListModel* Context::GetSubjectModelComboBox()
 
 	for (int i = 0; i < mSubjects.size(); i++)
 	{
-		listOfNames << QString::fromStdString(mSubjects[i].GetName());
+		listOfNames << QString::fromStdString(mSubjects[i]->GetName());
 	}
 
 	QStringListModel* model = new QStringListModel();
@@ -118,7 +127,7 @@ QStringListModel* Context::GetSubjectModelComboBox()
 	return model;
 }
 
-void Context::AddClass(Classes aClass)
+void Context::AddClass(shared_ptr<Classes> aClass)
 {
 	mClasses.push_back(aClass);
 }
@@ -129,7 +138,7 @@ void Context::RemoveClassByName(string aName)
 
 	while (i != end(mClasses))
 	{
-		if ((*i).GetName() == aName)
+		if ((*i)->GetName() == aName)
 		{
 			i = mClasses.erase(i);
 			break;
@@ -145,17 +154,18 @@ void Context::EditClassesByName(string aOldName,string aNewName,int aNumberOfStu
 
 	while (i != end(mClasses))
 	{
-		if ((*i).GetName() == aOldName)
+		if ((*i)->GetName() == aOldName)
 		{
-			(*i).SetName(aNewName);
-			(*i).SetNumberOfStudents(aNumberOfStudents);
+			(*i)->SetName(aNewName);
+			(*i)->SetNumberOfStudents(aNumberOfStudents);
+			break;
 		}
 		else
 			i++;
 	}
 }
 
-vector<Classes>& Context::GetClasses()
+vector<shared_ptr<Classes>>& Context::GetClasses()
 {
 	return mClasses;
 }
@@ -166,7 +176,7 @@ QStringListModel* Context::GetClassModelComboBox()
 
 	for (int i = 0; i < mClasses.size(); i++)
 	{
-		listOfNames << QString::fromStdString(mClasses[i].GetName());
+		listOfNames << QString::fromStdString(mClasses[i]->GetName());
 	}
 
 	QStringListModel* model = new QStringListModel();
@@ -175,7 +185,7 @@ QStringListModel* Context::GetClassModelComboBox()
 	return model;
 }
 
-void Context::AddBasicInfo(BasicInfo aBasicInfo)
+void Context::AddBasicInfo(shared_ptr<BasicInfo> aBasicInfo)
 {
 	mBasicInfo = aBasicInfo;
 }

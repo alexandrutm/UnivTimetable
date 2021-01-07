@@ -18,6 +18,7 @@ private slots:
 	void on_Add_clicked();
 	void on_Edit_clicked();
 	void on_Delete_clicked();
+	void on_Constraints_clicked();
 
 private:
 	Ui::ClassesView ui;

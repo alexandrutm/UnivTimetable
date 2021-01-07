@@ -2,7 +2,7 @@
 
 #include <QWidget>
 #include "ui_BasicInfoView.h"
-#include"SubjectDialog.h"
+
 
 class INavigator;
 class Context;

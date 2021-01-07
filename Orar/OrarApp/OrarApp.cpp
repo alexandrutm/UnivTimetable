@@ -38,6 +38,10 @@ void OrarApp::ChangeView(INavigator::viewId theView)
     {
         ui.centralStackWidget->setCurrentIndex(0);
     }
+    else if (theView == INavigator::viewId::subjectView)
+    {
+        ui.viewStackedWidget->setCurrentIndex(1);
+    }
 
 }
 

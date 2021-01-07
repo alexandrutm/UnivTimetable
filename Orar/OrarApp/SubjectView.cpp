@@ -2,6 +2,7 @@
 #include "INavigator.h"
 #include "Context.h"
 #include "SubjectDialog.h"
+#include "Subject.h"
 
 SubjectView::SubjectView(INavigator* aNavigator,Context& aContext,QWidget *parent)
 	: QWidget(parent),mNavigator(aNavigator),mContext(aContext)
@@ -22,18 +23,14 @@ void SubjectView::on_Add_clicked()
 	if (AddSubject.exec())
 	{
 		QString subjectName = AddSubject.Name->text();
-		int colorNumber = AddSubject.Color->currentIndex();
 
 		if (!subjectName.isEmpty())
 		{
 			QListWidgetItem* item = new QListWidgetItem(subjectName, ui.listWidgetSubject);
-			item->setData(Qt::UserRole, colorNumber);
 			ui.listWidgetSubject->setCurrentItem(item);
 
 			/// store data
-			Subject buildSubject;
-			buildSubject.SetColor(colorNumber);
-			buildSubject.SetName(subjectName.toStdString());
+			shared_ptr<Subject> buildSubject = make_shared<Subject>(subjectName.toStdString());
 			mContext.AddSubject(buildSubject);
 
 			//change statusbar
@@ -79,14 +76,15 @@ void SubjectView::on_Edit_clicked()
 		if (EditSubject.exec())
 		{
 			QString subjectName = EditSubject.Name->text();
-			int colorNumber = EditSubject.Color->currentIndex();
 
-			//update item in context
-			mContext.EditSubjectByName(item->text().toStdString(), subjectName.toStdString(), colorNumber);
+			if (item->text().toStdString() != subjectName.toStdString())
+			{
+				//update item in context
+				mContext.EditSubjectByName(item->text().toStdString(), subjectName.toStdString());
 
-			//update item in view
-			item->setText(subjectName);
-			item->setData(Qt::UserRole, colorNumber);
+				//update item in view
+				item->setText(subjectName);
+			}
 		}
 	}
 }

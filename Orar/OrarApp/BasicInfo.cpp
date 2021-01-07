@@ -2,6 +2,10 @@
 #include "BasicInfo.h"
 
 
+BasicInfo::BasicInfo(string aName, int aAcademicYear, int aHoursPerDay, int aDaysPerWeek): mSchoolName(aName),mAcademicYear(aAcademicYear),mHoursPerDay(aHoursPerDay),mDayPerWeek(aDaysPerWeek)
+{
+}
+
 string BasicInfo::getSchoolName()
 {
 	return mSchoolName;

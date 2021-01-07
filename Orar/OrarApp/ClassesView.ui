@@ -22,9 +22,6 @@
      <layout class="QVBoxLayout" name="verticalLayout_7">
       <item>
        <layout class="QGridLayout" name="gridLayout_5">
-        <item row="0" column="0">
-         <widget class="QListWidget" name="List"/>
-        </item>
         <item row="0" column="1">
          <layout class="QVBoxLayout" name="verticalLayout_5">
           <item>
@@ -50,6 +47,13 @@
               </property>
              </widget>
             </item>
+            <item>
+             <widget class="QPushButton" name="Constraints">
+              <property name="text">
+               <string>Constraints</string>
+              </property>
+             </widget>
+            </item>
            </layout>
           </item>
           <item>
@@ -66,6 +70,9 @@
            </spacer>
           </item>
          </layout>
+        </item>
+        <item row="0" column="0">
+         <widget class="QListWidget" name="List"/>
         </item>
        </layout>
       </item>

@@ -1,6 +1,6 @@
-#include "OrarApp.h"
-#include "stdafx.h"
 #include <QtWidgets/QApplication>
+#include "stdafx.h"
+#include "OrarApp.h"
 
 int main(int argc, char *argv[])
 {

@@ -2,6 +2,7 @@
 #include "INavigator.h"
 #include "Context.h"
 #include "TeacherDialog.h"
+#include "Teacher.h"
 
 TeacherView::TeacherView(INavigator* aNavigator, Context& aContext,QWidget *parent)
 	: QWidget(parent),mNavigator(aNavigator),mContext(aContext)
@@ -28,10 +29,7 @@ void TeacherView::on_Add_clicked()
 			ui.list->setCurrentItem(item);
 
 			//store data
-			Teacher newTeacher;
-			
-			newTeacher.SetFirstName(firstName.toStdString());
-			newTeacher.SetLastName(lastName.toStdString());
+			shared_ptr<Teacher> newTeacher = make_shared<Teacher>(firstName.toStdString(), lastName.toStdString());
 			mContext.AddTeacher(newTeacher);
 
 			mNavigator->ChangeStatus("New teacher added");

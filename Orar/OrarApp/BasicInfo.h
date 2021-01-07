@@ -4,6 +4,8 @@
 class BasicInfo {
 public:
 
+	BasicInfo(string, int, int, int);
+
 	string getSchoolName();
 	int getAcademicYear();
 	int getHoursPerDay();

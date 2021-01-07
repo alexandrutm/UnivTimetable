@@ -1,42 +1,43 @@
 #pragma once
 #include"stdafx.h"
-#include "Teacher.h"
-#include "Subject.h"
-#include "Classes.h"
-#include "BasicInfo.h"
-
+class Teacher;
+class Subject;
+class Classes;
+class BasicInfo;
 
 
 class Context
 {
 public:
 
-	void AddTeacher(Teacher aTeacher);
+	Context();
+
+	void AddTeacher(shared_ptr<Teacher> aTeacher);
 	void RemoveTeacherByFirstName(string aFirstName);
 	void EditTeacherByFirstName(string aOldName, string aNewFirstName, string aNewLastName);
-	vector<Teacher>& GetTeachers();
+	vector<shared_ptr<Teacher>>& GetTeachers();
 	QStringListModel* GetTeacherModelComboBox();
 
-	void AddSubject(Subject aSubject);
+	void AddSubject(shared_ptr<Subject> aSubject);
 	void RemoveSubjectByName(string aName);
-	void EditSubjectByName(string aOldName, string aNewName, int aColorPosition);
-	vector<Subject>& GetSubjects();
+	void EditSubjectByName(string aOldName, string aNewName);
+	vector<shared_ptr<Subject>>& GetSubjects();
 	QStringListModel* GetSubjectModelComboBox();
 
-	void AddClass(Classes aClass);
+	void AddClass(shared_ptr<Classes> aClass);
 	void RemoveClassByName(string aName);
 	void EditClassesByName(string aOldName, string aNewName, int aNumberOfStudents);
-	vector<Classes>& GetClasses();
+	vector<shared_ptr<Classes>>& GetClasses();
 	QStringListModel* GetClassModelComboBox();
 
-	void AddBasicInfo(BasicInfo aBasicInfo);
+	void AddBasicInfo(shared_ptr<BasicInfo> aBasicInfo);
 
 
 
 private:
-	vector<Subject>mSubjects;
-	vector<Teacher>mTeachers;
-	vector<Classes>mClasses;
-	BasicInfo mBasicInfo;
+	vector<shared_ptr<Subject>>mSubjects;
+	vector<shared_ptr<Teacher>>mTeachers;
+	vector<shared_ptr<Classes>>mClasses;
+	shared_ptr<BasicInfo> mBasicInfo;
 
 };

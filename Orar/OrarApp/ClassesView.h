@@ -13,6 +13,7 @@ class ClassesView : public QWidget
 public:
 	ClassesView(INavigator *aNavigator,Context & aContext,QWidget *parent = Q_NULLPTR);
 	~ClassesView();
+	void ClearData();
 
 private slots:
 	void on_Add_clicked();

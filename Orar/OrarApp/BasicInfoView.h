@@ -14,6 +14,7 @@ class BasicInfoView : public QWidget
 public:
 	BasicInfoView(INavigator* navigator,Context &aContext,QWidget *parent = Q_NULLPTR);
 	~BasicInfoView();
+	void ClearData();
 
 private slots:
 	void on_Next_clicked();

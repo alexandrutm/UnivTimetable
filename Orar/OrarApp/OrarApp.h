@@ -34,7 +34,7 @@ private slots:
     void on_btnTeacher_clicked();
     void on_btnLesson_clicked();
     void on_btnBasicInfo_clicked();
-    
+    void on_actionNewTimetable_triggered();
 
 private:
     Ui::OrarAppClass ui;

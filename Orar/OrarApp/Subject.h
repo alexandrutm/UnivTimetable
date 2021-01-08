@@ -9,7 +9,7 @@ public:
 	Subject(string);
 	string GetName();
 	void SetName(string aName);
-
+	
 
 private:
 

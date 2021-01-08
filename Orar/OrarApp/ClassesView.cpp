@@ -1,3 +1,4 @@
+#include"stdafx.h"
 #include "ClassesView.h"
 #include "INavigator.h"
 #include "Context.h"
@@ -14,6 +15,11 @@ ClassesView::ClassesView(INavigator* aNavigator,Context & aContext,QWidget *pare
 
 ClassesView::~ClassesView()
 {
+}
+
+void ClassesView::ClearData()
+{
+	ui.List->clear();
 }
 
 void ClassesView::on_Add_clicked()

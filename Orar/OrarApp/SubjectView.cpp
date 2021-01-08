@@ -1,3 +1,4 @@
+#include"stdafx.h"
 #include "SubjectView.h"
 #include "INavigator.h"
 #include "Context.h"
@@ -15,6 +16,11 @@ SubjectView::~SubjectView()
 {
 }
 
+void SubjectView::ClearData()
+{
+	ui.listWidgetSubject->clear();
+}
+
 
 void SubjectView::on_Add_clicked()
 {
@@ -29,11 +35,9 @@ void SubjectView::on_Add_clicked()
 			QListWidgetItem* item = new QListWidgetItem(subjectName, ui.listWidgetSubject);
 			ui.listWidgetSubject->setCurrentItem(item);
 
-			/// store data
 			shared_ptr<Subject> buildSubject = make_shared<Subject>(subjectName.toStdString());
 			mContext.AddSubject(buildSubject);
 
-			//change statusbar
 			mNavigator->ChangeStatus("You have successfully added a new subject");
 		}
 

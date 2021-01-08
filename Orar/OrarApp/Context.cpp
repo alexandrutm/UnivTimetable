@@ -70,6 +70,18 @@ QStringListModel* Context::GetTeacherModelComboBox()
 	return model;
 }
 
+QStringList Context::GetTeacherList()
+{
+	QStringList list;
+
+	for (auto i : mTeachers)
+	{
+		list.append(QString::fromStdString((*i).GetFirstName()));
+	}
+
+	return list;
+}
+
 void Context::AddSubject(shared_ptr<Subject> aSubject)
 {
 	mSubjects.push_back(aSubject);
@@ -201,4 +213,13 @@ void Context::EditLesson()
 void Context::AddBasicInfo(shared_ptr<BasicInfo> aBasicInfo)
 {
 	mBasicInfo = aBasicInfo;
+}
+
+void Context::DeleteData()
+{
+	mTeachers.clear();
+	mSubjects.clear();
+	mClasses.clear();
+	mLessons.clear();
+	mBasicInfo.reset();
 }

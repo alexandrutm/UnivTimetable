@@ -1,3 +1,4 @@
+#include"stdafx.h"
 #include "BasicInfoView.h"
 #include"INavigator.h"
 #include"Context.h"
@@ -12,6 +13,14 @@ BasicInfoView::BasicInfoView(INavigator *navigator, Context& aContext,QWidget *p
 
 BasicInfoView::~BasicInfoView()
 {
+}
+
+void BasicInfoView::ClearData()
+{
+	ui.AcademicYear->clear();
+	ui.SchoolName->clear();
+	ui.HoursPerDay->clear();
+	ui.DaysPerWeek->clear();
 }
 
 void BasicInfoView::on_Next_clicked()

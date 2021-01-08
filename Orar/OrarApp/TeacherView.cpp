@@ -1,3 +1,4 @@
+#include "stdafx.h"
 #include "TeacherView.h"
 #include "INavigator.h"
 #include "Context.h"
@@ -14,23 +15,28 @@ TeacherView::~TeacherView()
 {
 }
 
+void TeacherView::ClearData()
+{
+	ui.list->clear();
+}
+
 void TeacherView::on_Add_clicked()
 {
 	TeacherDialog Add(this);
 
 	if (Add.exec())
 	{
+		//first store data in context and after that load data from context in ui
 		QString firstName = Add.mFirstName->text();
 		QString lastName = Add.mLastName->text();
 		if (!firstName.isEmpty())
 		{
-			QListWidgetItem* item = new QListWidgetItem(firstName, ui.list);
-			item->setData(Qt::UserRole,lastName);
-			ui.list->setCurrentItem(item);
-
-			//store data
 			shared_ptr<Teacher> newTeacher = make_shared<Teacher>(firstName.toStdString(), lastName.toStdString());
 			mContext.AddTeacher(newTeacher);
+
+			//load data in ui
+			ui.list->clear();
+			ui.list->insertItems(0, mContext.GetTeacherList());
 
 			mNavigator->ChangeStatus("New teacher added");
 		}

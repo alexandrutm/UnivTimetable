@@ -1,4 +1,12 @@
 <RCC>
-    <qresource prefix="OrarApp">
+    <qresource prefix="/OrarApp">
+        <file>img/FolderAdd.png</file>
+        <file>img/NewTimetable.png</file>
+        <file>img/NewTimetable2.png</file>
+        <file>img/Save.png</file>
+        <file>img/Save2.png</file>
+        <file>img/Save3.png</file>
+        <file>img/Save4.png</file>
+        <file>img/NewFile.png</file>
     </qresource>
 </RCC>

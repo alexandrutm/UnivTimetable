@@ -1,5 +1,6 @@
-#include "OrarApp.h"
 #include "stdafx.h"
+#include "OrarApp.h"
+
 
 
 OrarApp::OrarApp(QWidget *parent)
@@ -17,12 +18,13 @@ OrarApp::OrarApp(QWidget *parent)
     ui.centralStackWidget->addWidget(&mSecondView);
     ui.centralStackWidget->setCurrentIndex(1);
 
+
+    //////////// VIEW 
     ui.viewStackedWidget->addWidget(&mBasicInfoView);
     ui.viewStackedWidget->addWidget(&mSubjectView);
     ui.viewStackedWidget->addWidget(&mClassView);
     ui.viewStackedWidget->addWidget(&mTeacher);
     ui.viewStackedWidget->addWidget(&mLesson);
-
     ui.viewStackedWidget->setCurrentIndex(0);
 }
 
@@ -79,4 +81,26 @@ void OrarApp::on_btnLesson_clicked()
 void OrarApp::on_btnBasicInfo_clicked()
 {
     ui.viewStackedWidget->setCurrentIndex(0);
+}
+
+void OrarApp::on_actionNewTimetable_triggered()
+{
+    QMessageBox::StandardButton replay = QMessageBox::question(this, "New Timetable", "You lose all data", QMessageBox::Yes | QMessageBox::No);
+
+    if (replay == QMessageBox::Yes)
+    {
+        //delete data from context and from all forms
+        mContext.DeleteData();
+        ui.centralStackWidget->setCurrentIndex(1);
+        ui.viewStackedWidget->setCurrentIndex(0);
+        mBasicInfoView.ClearData();
+        mSubjectView.ClearData();
+        mClassView.ClearData();
+        mTeacher.ClearData();
+        mLesson.ClearData();
+    }
+    else
+    {
+
+    }
 }

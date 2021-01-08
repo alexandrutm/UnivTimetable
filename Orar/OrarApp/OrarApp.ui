@@ -111,9 +111,10 @@
     <property name="title">
      <string>File</string>
     </property>
-    <addaction name="actionNew_File"/>
-    <addaction name="actionOpen_File"/>
+    <addaction name="actionSave"/>
+    <addaction name="actionNewTimetable"/>
     <addaction name="separator"/>
+    <addaction name="actionOpen_File"/>
     <addaction name="separator"/>
     <addaction name="actionClose"/>
    </widget>
@@ -143,9 +144,13 @@
     <bool>false</bool>
    </attribute>
    <addaction name="actionSave"/>
-   <addaction name="NewTimetable"/>
+   <addaction name="actionNewTimetable"/>
   </widget>
   <action name="actionNew_File">
+   <property name="icon">
+    <iconset resource="OrarApp.qrc">
+     <normaloff>:/OrarApp/img/NewTimetable.png</normaloff>:/OrarApp/img/NewTimetable.png</iconset>
+   </property>
    <property name="text">
     <string>New File</string>
    </property>
@@ -156,6 +161,10 @@
    </property>
   </action>
   <action name="actionSave">
+   <property name="icon">
+    <iconset resource="OrarApp.qrc">
+     <normaloff>:/OrarApp/img/Save4.png</normaloff>:/OrarApp/img/Save4.png</iconset>
+   </property>
    <property name="text">
     <string>Save</string>
    </property>
@@ -165,12 +174,11 @@
     <string>Close</string>
    </property>
   </action>
-  <action name="actionSave_2">
-   <property name="text">
-    <string>Save</string>
+  <action name="actionNewTimetable">
+   <property name="icon">
+    <iconset resource="OrarApp.qrc">
+     <normaloff>:/OrarApp/img/NewFile.png</normaloff>:/OrarApp/img/NewFile.png</iconset>
    </property>
-  </action>
-  <action name="NewTimetable">
    <property name="text">
     <string>New Timetable</string>
    </property>

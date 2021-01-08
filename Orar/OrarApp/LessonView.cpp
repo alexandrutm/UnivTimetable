@@ -1,3 +1,4 @@
+#include"stdafx.h"
 #include "LessonView.h"
 #include "INavigator.h"
 #include "LessonDialog.h"
@@ -16,6 +17,11 @@ LessonView::~LessonView()
 {
 }
 
+void LessonView::ClearData()
+{
+	ui.tableWidget->clearContents();
+}
+
 void LessonView::on_Add_clicked()
 {
 	LessonDialog AddDialog(this);
@@ -26,12 +32,13 @@ void LessonView::on_Add_clicked()
 
 	if (AddDialog.exec())
 	{
-
+		//get data from dialog
 		QString teacherName = AddDialog.mTeacher->currentText();
 		QString subjectName = AddDialog.mSubject->currentText();
 		QString className = AddDialog.mClasses->currentText();
 		int HoursPerWeek = AddDialog.mHoursPerWeek->value();
 
+		//Add lesson to context
 		shared_ptr <string> aTeacher = make_shared<string>(teacherName.toStdString());
 		shared_ptr <string>aSubject = make_shared<string>(subjectName.toStdString());
 		shared_ptr <string> aClass = make_shared<string>(className.toStdString());
@@ -39,6 +46,7 @@ void LessonView::on_Add_clicked()
 		shared_ptr <Lesson> aLesson = make_shared<Lesson>(aTeacher, aSubject, aClass, aHoursPerWeek);
 		mContext.AddLesson(aLesson);
 
+		//add data to ui(table)
 		ui.tableWidget->insertRow(ui.tableWidget->rowCount());
 		for (int i = 0; i < ui.tableWidget->columnCount(); i++)
 		{

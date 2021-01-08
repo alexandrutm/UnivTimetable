@@ -13,6 +13,8 @@ class TeacherView : public QWidget
 public:
 	TeacherView(INavigator* aNavigator, Context& aContext,QWidget *parent = Q_NULLPTR);
 	~TeacherView();
+	void ClearData();
+
 private slots:
 	void on_Add_clicked();
 	void on_Edit_clicked();

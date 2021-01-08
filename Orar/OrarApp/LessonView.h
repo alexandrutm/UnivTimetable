@@ -13,6 +13,7 @@ class LessonView : public QWidget
 public:
 	LessonView(INavigator* aNavigator, Context& aContext,QWidget *parent = Q_NULLPTR);
 	~LessonView();
+	void ClearData();
 
 private slots:
 

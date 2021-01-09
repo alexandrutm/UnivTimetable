@@ -14,6 +14,7 @@ public:
 	TeacherView(INavigator* aNavigator, Context& aContext,QWidget *parent = Q_NULLPTR);
 	~TeacherView();
 	void ClearData();
+	QStringList GetTeacherList();
 
 private slots:
 	void on_Add_clicked();

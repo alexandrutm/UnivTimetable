@@ -14,6 +14,9 @@ public:
 	LessonView(INavigator* aNavigator, Context& aContext,QWidget *parent = Q_NULLPTR);
 	~LessonView();
 	void ClearData();
+	QStringListModel* GetTeacherModelComboBox();
+	QStringListModel* GetSubjectModelComboBox();
+	QStringListModel* GetClassModelComboBox();
 
 private slots:
 

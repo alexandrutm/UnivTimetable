@@ -55,33 +55,6 @@ vector<shared_ptr<Teacher>>& Context::GetTeachers()
 	return mTeachers;
 }
 
-QStringListModel* Context::GetTeacherModelComboBox()
-{
-	QStringList listOfNames;
-
-	for (int i = 0; i < mTeachers.size(); i++)
-	{
-		listOfNames << QString::fromStdString(mTeachers[i]->GetFirstName());
-	}
-
-	QStringListModel* model = new QStringListModel();
-	model->setStringList(listOfNames);
-
-	return model;
-}
-
-QStringList Context::GetTeacherList()
-{
-	QStringList list;
-
-	for (auto i : mTeachers)
-	{
-		list.append(QString::fromStdString((*i).GetFirstName()));
-	}
-
-	return list;
-}
-
 void Context::AddSubject(shared_ptr<Subject> aSubject)
 {
 	mSubjects.push_back(aSubject);
@@ -124,20 +97,6 @@ vector<shared_ptr<Subject>>& Context::GetSubjects()
 	return mSubjects;
 }
 
-QStringListModel* Context::GetSubjectModelComboBox()
-{
-	QStringList listOfNames;
-
-	for (int i = 0; i < mSubjects.size(); i++)
-	{
-		listOfNames << QString::fromStdString(mSubjects[i]->GetName());
-	}
-
-	QStringListModel* model = new QStringListModel();
-	model->setStringList(listOfNames);
-
-	return model;
-}
 
 void Context::AddClass(shared_ptr<Classes> aClass)
 {
@@ -182,20 +141,6 @@ vector<shared_ptr<Classes>>& Context::GetClasses()
 	return mClasses;
 }
 
-QStringListModel* Context::GetClassModelComboBox()
-{
-	QStringList listOfNames;
-
-	for (int i = 0; i < mClasses.size(); i++)
-	{
-		listOfNames << QString::fromStdString(mClasses[i]->GetName());
-	}
-
-	QStringListModel* model = new QStringListModel();
-	model->setStringList(listOfNames);
-
-	return model;
-}
 
 void Context::AddLesson(shared_ptr<Lesson> aLesson)
 {

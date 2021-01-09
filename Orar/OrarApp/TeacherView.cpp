@@ -20,6 +20,22 @@ void TeacherView::ClearData()
 	ui.list->clear();
 }
 
+QStringList TeacherView::GetTeacherList()
+{
+	QStringList list;
+
+	auto mTeachers = mContext.GetTeachers();
+
+	for (auto i : mTeachers)
+	{
+		list.append(QString::fromStdString((*i).GetFirstName()));
+	}
+
+	return list;
+}
+
+
+
 void TeacherView::on_Add_clicked()
 {
 	TeacherDialog Add(this);
@@ -36,7 +52,7 @@ void TeacherView::on_Add_clicked()
 
 			//load data in ui
 			ui.list->clear();
-			ui.list->insertItems(0, mContext.GetTeacherList());
+			ui.list->insertItems(0, this->GetTeacherList());
 
 			mNavigator->ChangeStatus("New teacher added");
 		}

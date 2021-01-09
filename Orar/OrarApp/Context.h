@@ -18,23 +18,16 @@ public:
 	void EditTeacherByFirstName(string aOldName, string aNewFirstName, string aNewLastName);
 	vector<shared_ptr<Teacher>>& GetTeachers();
 	//
-	QStringListModel* GetTeacherModelComboBox();
-	QStringList GetTeacherList();
-
 
 	void AddSubject(shared_ptr<Subject> aSubject);
 	void RemoveSubjectByName(string aName);
 	void EditSubjectByName(string aOldName, string aNewName);
 	vector<shared_ptr<Subject>>& GetSubjects();
-	QStringListModel* GetSubjectModelComboBox();
-	QStringList GetSubjectList();
-
+	
 	void AddClass(shared_ptr<Classes> aClass);
 	void RemoveClassByName(string aName);
 	void EditClassesByName(string aOldName, string aNewName, int aNumberOfStudents);
 	vector<shared_ptr<Classes>>& GetClasses();
-	QStringListModel* GetClassModelComboBox();
-	QStringList GetClassList();
 
 	void AddLesson(shared_ptr<Lesson> aLesson);
 	void RemoveLesson();

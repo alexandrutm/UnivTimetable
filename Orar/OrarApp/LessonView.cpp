@@ -3,6 +3,9 @@
 #include "INavigator.h"
 #include "LessonDialog.h"
 #include "Context.h"
+#include "Teacher.h"
+#include "Classes.h"
+#include "Subject.h"
 #include "Lesson.h"
 
 LessonView::LessonView(INavigator* aNavigator, Context& aContext, QWidget* parent)
@@ -25,9 +28,9 @@ void LessonView::ClearData()
 void LessonView::on_Add_clicked()
 {
 	LessonDialog AddDialog(this);
-	AddDialog.mTeacher->setModel(mContext.GetTeacherModelComboBox());
-	AddDialog.mSubject->setModel(mContext.GetSubjectModelComboBox());
-	AddDialog.mClasses->setModel(mContext.GetClassModelComboBox());
+	AddDialog.mTeacher->setModel(this->GetTeacherModelComboBox());
+	AddDialog.mSubject->setModel(this->GetSubjectModelComboBox());
+	AddDialog.mClasses->setModel(this->GetClassModelComboBox());
 
 
 	if (AddDialog.exec())
@@ -74,9 +77,9 @@ void LessonView::on_Add_clicked()
 void LessonView::on_Edit_clicked()
 {
 	LessonDialog EditDialog(this);
-	EditDialog.mTeacher->setModel(mContext.GetTeacherModelComboBox());
-	EditDialog.mSubject->setModel(mContext.GetSubjectModelComboBox());
-	EditDialog.mClasses->setModel(mContext.GetClassModelComboBox());
+	EditDialog.mTeacher->setModel(this->GetTeacherModelComboBox());
+	EditDialog.mSubject->setModel(this->GetSubjectModelComboBox());
+	EditDialog.mClasses->setModel(this->GetClassModelComboBox());
 
 	if (EditDialog.exec()) {
 
@@ -113,3 +116,51 @@ void LessonView::on_Delete_clicked()
 }
 
 
+QStringListModel* LessonView::GetTeacherModelComboBox()
+{
+	QStringList listOfNames;
+
+	auto mTeachers = mContext.GetTeachers();
+
+	for (int i = 0; i < mTeachers.size(); i++)
+	{
+		listOfNames << QString::fromStdString(mTeachers[i]->GetFirstName());
+	}
+
+	QStringListModel* model = new QStringListModel();
+	model->setStringList(listOfNames);
+
+	return model;
+}
+
+QStringListModel* LessonView::GetSubjectModelComboBox()
+{
+	QStringList listOfNames;
+	auto mSubjects = mContext.GetSubjects();
+	for (int i = 0; i < mSubjects.size(); i++)
+	{
+		listOfNames << QString::fromStdString(mSubjects[i]->GetName());
+	}
+
+	QStringListModel* model = new QStringListModel();
+	model->setStringList(listOfNames);
+
+	return model;
+}
+
+QStringListModel* LessonView::GetClassModelComboBox()
+{
+	QStringList listOfNames;
+	
+	auto mClasses = mContext.GetClasses();
+
+	for (int i = 0; i < mClasses.size(); i++)
+	{
+		listOfNames << QString::fromStdString(mClasses[i]->GetName());
+	}
+
+	QStringListModel* model = new QStringListModel();
+	model->setStringList(listOfNames);
+
+	return model;
+}

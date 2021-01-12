@@ -5,6 +5,9 @@ class Subject
 {
 public:
 
+	Subject() = default;
+	~Subject() = default;
+	Subject(const Subject&) = default;
 
 	Subject(string);
 	string GetName();
@@ -17,3 +20,5 @@ private:
 
 
 };
+
+Q_DECLARE_METATYPE(Subject);

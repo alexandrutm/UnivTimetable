@@ -3,6 +3,12 @@
 class Classes
 {
 public:
+
+	Classes() = default;
+	~Classes() = default;
+	Classes(const Classes&) = default;
+
+
 	Classes(string ,int);
 	void SetNumberOfStudents(int aNrOfStudent);
 	int GetNumberOfStudents();
@@ -14,3 +20,6 @@ private:
 	string mName;
 	int mNumberOfStudents;
 };
+
+
+Q_DECLARE_METATYPE(Classes);

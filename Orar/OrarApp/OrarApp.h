@@ -3,15 +3,12 @@
 #include <QtWidgets/QMainWindow>
 #include "ui_OrarApp.h"
 
-#include "SecondView.h"
 #include "HomeView.h"
-#include "SecondView.h"
 #include "BasicInfoView.h"
 #include "SubjectView.h"
 #include "ClassesView.h"
 #include "TeacherView.h"
 #include "LessonView.h"
-
 
 #include "INavigator.h"
 #include "Context.h"
@@ -24,6 +21,7 @@ class OrarApp : public QMainWindow, public INavigator
 public:
     OrarApp(QWidget *parent = Q_NULLPTR);
     void ChangeView(INavigator::viewId theView);
+    void ChangeStatus(string);
 
 private slots:
 
@@ -34,6 +32,7 @@ private slots:
     void on_btnLesson_clicked();
     void on_btnBasicInfo_clicked();
     void on_mToggle_clicked();
+
     void on_mNew_triggered();
 
 private:
@@ -42,7 +41,6 @@ private:
     Context mContext;
     
     HomeView mHomeView;
-    SecondView mSecondView;
     BasicInfoView mBasicInfoView;
     SubjectView mSubjectView;
     ClassesView mClassView;

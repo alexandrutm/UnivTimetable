@@ -17,7 +17,7 @@ TeacherView::~TeacherView()
 
 void TeacherView::ClearData()
 {
-	ui.list->clear();
+	ui.mList->clear();
 }
 
 QStringList TeacherView::GetTeacherList()
@@ -36,7 +36,7 @@ QStringList TeacherView::GetTeacherList()
 
 
 
-void TeacherView::on_Add_clicked()
+void TeacherView::on_mAdd_clicked()
 {
 	TeacherDialog Add(this);
 
@@ -51,8 +51,8 @@ void TeacherView::on_Add_clicked()
 			mContext.AddTeacher(newTeacher);
 
 			//load data in ui
-			ui.list->clear();
-			ui.list->insertItems(0, this->GetTeacherList());
+			ui.mList->clear();
+			ui.mList->insertItems(0, this->GetTeacherList());
 
 		}
 
@@ -60,11 +60,11 @@ void TeacherView::on_Add_clicked()
 
 }
 
-void TeacherView::on_Edit_clicked()
+void TeacherView::on_mEdit_clicked()
 {
 	TeacherDialog Edit(this);
 
-	QListWidgetItem* item = ui.list->currentItem();
+	QListWidgetItem* item = ui.mList->currentItem();
 
 	if (item)
 	{
@@ -85,22 +85,36 @@ void TeacherView::on_Edit_clicked()
 	}
 }
 
-void TeacherView::on_Delete_clicked()
+void TeacherView::on_mDelete_clicked()
 {
-	QListWidgetItem* item = ui.list->currentItem();
+	QListWidgetItem* item = ui.mList->currentItem();
 
 	if (item)
 	{
-		int row = ui.list->row(item);
-		ui.list->takeItem(row);
+		int row = ui.mList->row(item);
+		ui.mList->takeItem(row);
 
 		string name = item->text().toStdString();
 		mContext.RemoveTeacherByFirstName(name);
 		delete item;
 
-		if (ui.list->count() > 0)
-			ui.list->setCurrentRow(row);
+		if (ui.mList->count() > 0)
+			ui.mList->setCurrentRow(row);
 	}
+}
+
+void TeacherView::on_mConstraints_clicked()
+{
+}
+
+void TeacherView::on_mNext_clicked()
+{
+	mNavigator->ChangeView(INavigator::viewId::lessonView);
+}
+
+void TeacherView::on_mBack_clicked()
+{
+	mNavigator->ChangeView(INavigator::viewId::roomView);
 }
 
 

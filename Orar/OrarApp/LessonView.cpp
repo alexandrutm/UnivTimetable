@@ -25,7 +25,7 @@ void LessonView::ClearData()
 	ui.tableWidget->clearContents();
 }
 
-void LessonView::on_Add_clicked()
+void LessonView::on_mAdd_clicked()
 {
 	LessonDialog AddDialog(this);
 	AddDialog.mTeacher->setModel(this->GetTeacherModelComboBox());
@@ -74,7 +74,7 @@ void LessonView::on_Add_clicked()
 }
 
 
-void LessonView::on_Edit_clicked()
+void LessonView::on_mEdit_clicked()
 {
 	LessonDialog EditDialog(this);
 	EditDialog.mTeacher->setModel(this->GetTeacherModelComboBox());
@@ -111,8 +111,23 @@ void LessonView::on_Edit_clicked()
 	}
 }
 
-void LessonView::on_Delete_clicked()
+void LessonView::on_mDelete_clicked()
 {
+}
+
+void LessonView::on_mConstraints_clicked()
+{
+
+}
+
+void LessonView::on_mGenerate_clicked()
+{
+	//generate timetable
+}
+
+void LessonView::on_mBack_clicked()
+{
+	mNavigator->ChangeView(INavigator::viewId::teacherView);
 }
 
 

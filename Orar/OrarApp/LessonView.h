@@ -20,9 +20,13 @@ public:
 
 private slots:
 
-	void on_Add_clicked();
-	void on_Edit_clicked();
-	void on_Delete_clicked();
+	void on_mAdd_clicked();
+	void on_mEdit_clicked();
+	void on_mDelete_clicked();
+	void on_mConstraints_clicked();
+	void on_mGenerate_clicked();
+	void on_mBack_clicked();
+
 
 private:
 	Ui::LessonView ui;

@@ -4,20 +4,16 @@
 
 
 OrarApp::OrarApp(QWidget *parent)
-    : QMainWindow(parent), mHomeView(this,this),
-    mSecondView(this,this),mBasicInfoView(this,mContext,this),mClassView(this,mContext,this),
-    mSubjectView(this,mContext,this),mTeacher(this,mContext,this),mLesson(this,mContext,this)
+    : QMainWindow(parent), mHomeView(this,this),mBasicInfoView(this,mContext,this),
+    mClassView(this,mContext,this),mSubjectView(this,mContext,this),
+    mTeacher(this,mContext,this),mLesson(this,mContext,this)
 
 {
     ui.setupUi(this);
     setCentralWidget(ui.centralStackWidget);
-
-    
     
     ui.centralStackWidget->addWidget(&mHomeView);
-    ui.centralStackWidget->addWidget(&mSecondView);
     ui.centralStackWidget->setCurrentIndex(1);
-
 
     //////////// VIEW 
     ui.viewStackedWidget->addWidget(&mBasicInfoView);
@@ -34,10 +30,10 @@ void OrarApp::ChangeView(INavigator::viewId theView)
     {
         ui.centralStackWidget->setCurrentIndex(1);
     }
-    else if (theView == INavigator::viewId::secondpage)
-    {
-        ui.centralStackWidget->setCurrentIndex(2);
-    }
+    //else if (theView == INavigator::viewId::secondpage)
+   // {
+    //    ui.centralStackWidget->setCurrentIndex(2);
+    //}
     else if (theView == INavigator::viewId::basicInfoView)
     {
         ui.centralStackWidget->setCurrentIndex(0);
@@ -47,6 +43,11 @@ void OrarApp::ChangeView(INavigator::viewId theView)
         ui.viewStackedWidget->setCurrentIndex(1);
     }
 
+}
+
+void OrarApp::ChangeStatus(string aStatus)
+{
+    ui.statusBar->showMessage(QString::fromStdString(aStatus),5000);
 }
 
 

@@ -4,6 +4,11 @@
 class Teacher
 {
 public:
+
+	Teacher() = default;
+	~Teacher() = default;
+	Teacher(const Teacher&) = default;
+
 	Teacher(string, string);
 	string GetFirstName();
 	void SetFirstName(string aName);
@@ -14,3 +19,6 @@ private:
 	string mLastName;
 
 };
+
+
+Q_DECLARE_METATYPE(Teacher);

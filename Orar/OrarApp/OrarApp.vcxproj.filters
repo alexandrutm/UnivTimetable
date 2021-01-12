@@ -65,9 +65,6 @@
     <ClCompile Include="LessonView.cpp">
       <Filter>Source Files\views</Filter>
     </ClCompile>
-    <ClCompile Include="SecondView.cpp">
-      <Filter>Source Files\views</Filter>
-    </ClCompile>
     <ClCompile Include="SubjectDialog.cpp">
       <Filter>Source Files\views</Filter>
     </ClCompile>
@@ -118,9 +115,6 @@
     <QtMoc Include="LessonView.h">
       <Filter>Source Files\views</Filter>
     </QtMoc>
-    <QtMoc Include="SecondView.h">
-      <Filter>Source Files\views</Filter>
-    </QtMoc>
     <QtMoc Include="SubjectDialog.h">
       <Filter>Source Files\views</Filter>
     </QtMoc>
@@ -138,9 +132,6 @@
     </QtMoc>
   </ItemGroup>
   <ItemGroup>
-    <QtUic Include="SecondView.ui">
-      <Filter>Resource Files</Filter>
-    </QtUic>
     <QtUic Include="SubjectDialog.ui">
       <Filter>Resource Files</Filter>
     </QtUic>

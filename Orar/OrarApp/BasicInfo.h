@@ -4,6 +4,10 @@
 class BasicInfo {
 public:
 
+	BasicInfo() = default;
+	~BasicInfo() = default;
+	BasicInfo(const BasicInfo&) = default;
+
 	BasicInfo(string, int, int, int);
 
 	string getSchoolName();
@@ -26,3 +30,5 @@ private:
 	int mDayPerWeek;
 
 };
+
+Q_DECLARE_METATYPE(BasicInfo);

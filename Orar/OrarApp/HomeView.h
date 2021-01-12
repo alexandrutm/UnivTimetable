@@ -14,7 +14,7 @@ public:
 	~HomeView();
 
 private slots:
-	void on_pushButtonSecondView_clicked();
+	void on_mCreateNewTimetable_clicked();
 
 private:
 	Ui::HomeView ui;

@@ -19,10 +19,10 @@ ClassesView::~ClassesView()
 
 void ClassesView::ClearData()
 {
-	ui.List->clear();
+	ui.mList->clear();
 }
 
-void ClassesView::on_Add_clicked()
+void ClassesView::on_mAdd_clicked()
 {
 	ClassesDialog AddDialog(this);
 
@@ -33,9 +33,9 @@ void ClassesView::on_Add_clicked()
 
 		if (!name.isEmpty())
 		{
-			QListWidgetItem* item = new QListWidgetItem(name, ui.List);
+			QListWidgetItem* item = new QListWidgetItem(name, ui.mList);
 			item->setData(Qt::UserRole, numberOfStudents);
-			ui.List->setCurrentItem(item);
+			ui.mList->setCurrentItem(item);
 
 			//store data
 			shared_ptr<Classes> newClass = make_shared<Classes>(name.toStdString(),numberOfStudents);
@@ -45,10 +45,10 @@ void ClassesView::on_Add_clicked()
 
 }
 
-void ClassesView::on_Edit_clicked()
+void ClassesView::on_mEdit_clicked()
 {
 	ClassesDialog EditDialog(this);
-	QListWidgetItem* item = ui.List->currentItem();
+	QListWidgetItem* item = ui.mList->currentItem();
 
 	if (item)
 	{
@@ -71,26 +71,36 @@ void ClassesView::on_Edit_clicked()
 
 }
 
-void ClassesView::on_Delete_clicked()
+void ClassesView::on_mDelete_clicked()
 {
-	QListWidgetItem* item = ui.List->currentItem();
+	QListWidgetItem* item = ui.mList->currentItem();
 
 	if (item)
 	{
-		int row = ui.List->row(item);
-		ui.List->takeItem(row);
+		int row = ui.mList->row(item);
+		ui.mList->takeItem(row);
 
 		string name = item->text().toStdString();
 
 		mContext.RemoveClassByName(name);
 		delete item;
 
-		if (ui.List->count() > 0)
-			ui.List->setCurrentRow(row);
+		if (ui.mList->count() > 0)
+			ui.mList->setCurrentRow(row);
 	}
 }
 
-void ClassesView::on_Constraints_clicked()
+void ClassesView::on_mConstraints_clicked()
 {
 
+}
+
+void ClassesView::on_mNext_clicked()
+{
+	mNavigator->ChangeView(INavigator::viewId::roomView);
+}
+
+void ClassesView::on_mBack_clicked()
+{
+	mNavigator->ChangeView(INavigator::viewId::subjectView);
 }

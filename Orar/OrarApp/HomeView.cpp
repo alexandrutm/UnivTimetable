@@ -1,3 +1,4 @@
+#include"stdafx.h"
 #include "HomeView.h"
 #include"INavigator.h"
 
@@ -13,9 +14,9 @@ HomeView::~HomeView()
 }
 
 
-void HomeView::on_pushButtonSecondView_clicked()
+void HomeView::on_mCreateNewTimetable_clicked()
 {
-	mNavigator->ChangeView(INavigator::viewId::secondpage);
+	mNavigator->ChangeView(INavigator::viewId::basicInfoView);
 }
 
 

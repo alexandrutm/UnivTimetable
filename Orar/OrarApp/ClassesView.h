@@ -16,11 +16,12 @@ public:
 	void ClearData();
 
 private slots:
-	void on_Add_clicked();
-	void on_Edit_clicked();
-	void on_Delete_clicked();
-	void on_Constraints_clicked();
-
+	void on_mAdd_clicked();
+	void on_mEdit_clicked();
+	void on_mDelete_clicked();
+	void on_mConstraints_clicked();
+	void on_mNext_clicked();
+	void on_mBack_clicked();
 private:
 	Ui::ClassesView ui;
 

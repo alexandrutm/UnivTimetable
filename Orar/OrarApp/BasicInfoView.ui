@@ -198,6 +198,18 @@
      </property>
      <item>
       <widget class="QPushButton" name="Back">
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+	font: 75 11pt &quot;Times New Roman&quot;;
+	color: rgb(70, 70, 70);
+	background-color: rgb(200, 200, 200);
+	border: 0px solid;
+}
+
+QPushButton:hover {
+	background-color: rgb(231, 231, 231);
+}</string>
+       </property>
        <property name="text">
         <string>Back</string>
        </property>
@@ -218,6 +230,18 @@
      </item>
      <item>
       <widget class="QPushButton" name="Next">
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+	font: 75 11pt &quot;Times New Roman&quot;;
+	color: rgb(70, 70, 70);
+	background-color: rgb(200, 200, 200);
+	border: 0px solid;
+}
+
+QPushButton:hover {
+	background-color: rgb(231, 231, 231);
+}</string>
+       </property>
        <property name="text">
         <string>Next</string>
        </property>

@@ -18,11 +18,11 @@ SubjectView::~SubjectView()
 
 void SubjectView::ClearData()
 {
-	ui.listWidgetSubject->clear();
+	ui.mList->clear();
 }
 
 
-void SubjectView::on_Add_clicked()
+void SubjectView::on_mAdd_clicked()
 {
 	SubjectDialog AddSubject(this);
 
@@ -32,11 +32,13 @@ void SubjectView::on_Add_clicked()
 
 		if (!subjectName.isEmpty())
 		{
-			QListWidgetItem* item = new QListWidgetItem(subjectName, ui.listWidgetSubject);
-			ui.listWidgetSubject->setCurrentItem(item);
+			QListWidgetItem* item = new QListWidgetItem(subjectName, ui.mList);
+			ui.mList->setCurrentItem(item);
 
 			shared_ptr<Subject> buildSubject = make_shared<Subject>(subjectName.toStdString());
 			mContext.AddSubject(buildSubject);
+
+			mNavigator->ChangeStatus("A new subject was added");
 
 		}
 
@@ -45,30 +47,44 @@ void SubjectView::on_Add_clicked()
 }
 
 
-void SubjectView::on_Delete_clicked()
+void SubjectView::on_mDelete_clicked()
 {
-	QListWidgetItem* currentItem = ui.listWidgetSubject->currentItem();
+	QListWidgetItem* currentItem = ui.mList->currentItem();
 	
 	if (currentItem)
 	{
-		int row = ui.listWidgetSubject->row(currentItem);
-		ui.listWidgetSubject->takeItem(row);
+		int row = ui.mList->row(currentItem);
+		ui.mList->takeItem(row);
 		
 		string subjectName=currentItem->text().toStdString();
 		
 		mContext.RemoveSubjectByName(subjectName);
 		delete currentItem;
 
-		if (ui.listWidgetSubject->count() > 0)
-			ui.listWidgetSubject->setCurrentRow(row);
+		if (ui.mList->count() > 0)
+			ui.mList->setCurrentRow(row);
 
 	}
 }
 
-void SubjectView::on_Edit_clicked()
+void SubjectView::on_mConstraints_clicked()
+{
+}
+
+void SubjectView::on_mNext_clicked()
+{
+	mNavigator->ChangeView(INavigator::viewId::classesView);
+}
+
+void SubjectView::on_mBack_clicked()
+{
+	mNavigator->ChangeView(INavigator::viewId::basicInfoView);
+}
+
+void SubjectView::on_mEdit_clicked()
 {
 	SubjectDialog EditSubject(this);
-	QListWidgetItem* item = ui.listWidgetSubject->currentItem();
+	QListWidgetItem* item = ui.mList->currentItem();
 
 
 	if (item)

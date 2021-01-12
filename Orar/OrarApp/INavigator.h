@@ -16,6 +16,5 @@ public:
 	};
 
 	virtual void ChangeView(viewId theView) = 0;
-	virtual void ChangeStatus(QString status) = 0;
 	
 };

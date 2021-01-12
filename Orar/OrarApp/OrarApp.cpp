@@ -49,10 +49,6 @@ void OrarApp::ChangeView(INavigator::viewId theView)
 
 }
 
-void OrarApp::ChangeStatus(QString status)
-{
-    ui.statusBar->showMessage(status, 5000);
-}
 
 void OrarApp::on_btnSubject_clicked()
 {
@@ -83,7 +79,29 @@ void OrarApp::on_btnBasicInfo_clicked()
     ui.viewStackedWidget->setCurrentIndex(0);
 }
 
-void OrarApp::on_actionNewTimetable_triggered()
+void OrarApp::on_mToggle_clicked()
+{
+    auto width = ui.mLeftMenu->width();
+    int maxWidth = 150;
+    int minWidth = 10;
+    int widthExtended = 0;
+
+    if (width == minWidth)
+    {
+        widthExtended = maxWidth;
+    }
+    else
+        widthExtended = minWidth;
+
+    QPropertyAnimation* animation = new QPropertyAnimation(ui.mLeftMenu, "minimumWidth");
+    animation->setDuration(200);
+    animation->setStartValue(width);
+    animation->setEndValue(widthExtended);
+    animation->start();
+
+}
+
+void OrarApp::on_mNew_triggered()
 {
     QMessageBox::StandardButton replay = QMessageBox::question(this, "New Timetable", "You lose all data", QMessageBox::Yes | QMessageBox::No);
 

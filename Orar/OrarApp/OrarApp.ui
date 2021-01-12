@@ -6,91 +6,424 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>689</width>
-    <height>395</height>
+    <width>829</width>
+    <height>474</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>OrarApp</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true"/>
+  </property>
   <widget class="QWidget" name="centralWidget">
    <property name="enabled">
     <bool>true</bool>
    </property>
-   <layout class="QGridLayout" name="gridLayout">
-    <item row="0" column="0">
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <property name="spacing">
+     <number>0</number>
+    </property>
+    <property name="leftMargin">
+     <number>0</number>
+    </property>
+    <property name="topMargin">
+     <number>0</number>
+    </property>
+    <property name="rightMargin">
+     <number>0</number>
+    </property>
+    <property name="bottomMargin">
+     <number>0</number>
+    </property>
+    <item>
      <widget class="QStackedWidget" name="centralStackWidget">
-      <widget class="QWidget" name="page_2">
-       <layout class="QFormLayout" name="formLayout">
-        <item row="0" column="0">
-         <widget class="QStackedWidget" name="btnStackedWidget">
-          <widget class="QWidget" name="page">
-           <layout class="QVBoxLayout" name="verticalLayout">
-            <item>
-             <layout class="QVBoxLayout" name="verticalLayout_2">
+      <widget class="QWidget" name="page">
+       <layout class="QVBoxLayout" name="verticalLayout_11">
+        <property name="spacing">
+         <number>0</number>
+        </property>
+        <property name="leftMargin">
+         <number>0</number>
+        </property>
+        <property name="topMargin">
+         <number>0</number>
+        </property>
+        <property name="rightMargin">
+         <number>0</number>
+        </property>
+        <property name="bottomMargin">
+         <number>0</number>
+        </property>
+        <item>
+         <widget class="QFrame" name="mTopFrame">
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>30</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color: rgb(215, 250, 255);</string>
+          </property>
+          <property name="frameShape">
+           <enum>QFrame::NoFrame</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Raised</enum>
+          </property>
+          <layout class="QHBoxLayout" name="horizontalLayout_5">
+           <property name="spacing">
+            <number>0</number>
+           </property>
+           <property name="leftMargin">
+            <number>0</number>
+           </property>
+           <property name="topMargin">
+            <number>0</number>
+           </property>
+           <property name="rightMargin">
+            <number>0</number>
+           </property>
+           <property name="bottomMargin">
+            <number>0</number>
+           </property>
+           <item>
+            <widget class="QFrame" name="mToggleFrame">
+             <property name="maximumSize">
+              <size>
+               <width>50</width>
+               <height>40</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">background-color: rgb(255, 232, 229)</string>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Raised</enum>
+             </property>
+             <layout class="QVBoxLayout" name="verticalLayout_8">
+              <property name="spacing">
+               <number>0</number>
+              </property>
+              <property name="leftMargin">
+               <number>0</number>
+              </property>
+              <property name="topMargin">
+               <number>0</number>
+              </property>
+              <property name="rightMargin">
+               <number>0</number>
+              </property>
+              <property name="bottomMargin">
+               <number>0</number>
+              </property>
               <item>
-               <widget class="QPushButton" name="btnBasicInfo">
+               <widget class="QPushButton" name="mToggle">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true">color: rgb(0, 0, 0);
+border: 0px solid;</string>
+                </property>
                 <property name="text">
-                 <string>Basic info</string>
+                 <string/>
+                </property>
+                <property name="icon">
+                 <iconset resource="OrarApp.qrc">
+                  <normaloff>:/OrarApp/img/arrow.png</normaloff>:/OrarApp/img/arrow.png</iconset>
                 </property>
                </widget>
-              </item>
-              <item>
-               <widget class="QPushButton" name="btnSubject">
-                <property name="text">
-                 <string>Subject</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QPushButton" name="btnClass">
-                <property name="text">
-                 <string>Class</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QPushButton" name="btnRoom">
-                <property name="text">
-                 <string>Room</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QPushButton" name="btnTeacher">
-                <property name="text">
-                 <string>Teacher</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QPushButton" name="btnLesson">
-                <property name="text">
-                 <string>Lesson</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <spacer name="verticalSpacer">
-                <property name="orientation">
-                 <enum>Qt::Vertical</enum>
-                </property>
-                <property name="sizeHint" stdset="0">
-                 <size>
-                  <width>20</width>
-                  <height>40</height>
-                 </size>
-                </property>
-               </spacer>
               </item>
              </layout>
-            </item>
-           </layout>
-          </widget>
+            </widget>
+           </item>
+           <item>
+            <widget class="QFrame" name="mTopMenu">
+             <property name="maximumSize">
+              <size>
+               <width>16777215</width>
+               <height>40</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">background-color: rgb(255, 232, 229);</string>
+             </property>
+             <property name="frameShape">
+              <enum>QFrame::NoFrame</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Raised</enum>
+             </property>
+            </widget>
+           </item>
+          </layout>
          </widget>
         </item>
-        <item row="0" column="1">
-         <widget class="QStackedWidget" name="viewStackedWidget"/>
+        <item>
+         <widget class="QFrame" name="mContent">
+          <property name="frameShape">
+           <enum>QFrame::NoFrame</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Raised</enum>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_3">
+           <property name="leftMargin">
+            <number>0</number>
+           </property>
+           <property name="topMargin">
+            <number>0</number>
+           </property>
+           <property name="rightMargin">
+            <number>0</number>
+           </property>
+           <property name="bottomMargin">
+            <number>0</number>
+           </property>
+           <property name="spacing">
+            <number>0</number>
+           </property>
+           <item row="0" column="0">
+            <widget class="QFrame" name="mLeftMenu">
+             <property name="minimumSize">
+              <size>
+               <width>10</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>10</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">background-color: rgb(255, 232, 229)</string>
+             </property>
+             <property name="frameShape">
+              <enum>QFrame::NoFrame</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Raised</enum>
+             </property>
+             <layout class="QVBoxLayout" name="verticalLayout_9">
+              <property name="spacing">
+               <number>0</number>
+              </property>
+              <property name="leftMargin">
+               <number>0</number>
+              </property>
+              <property name="topMargin">
+               <number>0</number>
+              </property>
+              <property name="rightMargin">
+               <number>0</number>
+              </property>
+              <property name="bottomMargin">
+               <number>0</number>
+              </property>
+              <item alignment="Qt::AlignTop">
+               <widget class="QFrame" name="mLeftMenuTopBtn">
+                <property name="frameShape">
+                 <enum>QFrame::NoFrame</enum>
+                </property>
+                <property name="frameShadow">
+                 <enum>QFrame::Raised</enum>
+                </property>
+                <layout class="QVBoxLayout" name="verticalLayout_2">
+                 <item>
+                  <widget class="QPushButton" name="btnBasicInfo">
+                   <property name="minimumSize">
+                    <size>
+                     <width>0</width>
+                     <height>40</height>
+                    </size>
+                   </property>
+                   <property name="styleSheet">
+                    <string notr="true">QPushButton{
+	color: rgb(0, 0, 0);
+	background-color: rgb(255, 242, 238);
+	border: 0px solid;
+}
+
+QPushButton:hover {
+	
+	background-color: rgb(85, 255, 255);
+}</string>
+                   </property>
+                   <property name="text">
+                    <string>Basic info</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="btnSubject">
+                   <property name="minimumSize">
+                    <size>
+                     <width>0</width>
+                     <height>40</height>
+                    </size>
+                   </property>
+                   <property name="styleSheet">
+                    <string notr="true">QPushButton{
+	color: rgb(0, 0, 0);
+	background-color: rgb(255, 242, 238);
+	border: 0px solid;
+}
+
+QPushButton:hover {
+	
+	background-color: rgb(85, 255, 255);
+}</string>
+                   </property>
+                   <property name="text">
+                    <string>Subject</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="btnClass">
+                   <property name="minimumSize">
+                    <size>
+                     <width>0</width>
+                     <height>40</height>
+                    </size>
+                   </property>
+                   <property name="styleSheet">
+                    <string notr="true">QPushButton{
+	color: rgb(0, 0, 0);
+	background-color: rgb(255, 242, 238);
+	border: 0px solid;
+}
+
+QPushButton:hover {
+	
+	background-color: rgb(85, 255, 255);
+}</string>
+                   </property>
+                   <property name="text">
+                    <string>Class</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="btnRoom">
+                   <property name="minimumSize">
+                    <size>
+                     <width>0</width>
+                     <height>40</height>
+                    </size>
+                   </property>
+                   <property name="styleSheet">
+                    <string notr="true">QPushButton{
+	color: rgb(0, 0, 0);
+	background-color: rgb(255, 242, 238);
+	border: 0px solid;
+}
+
+QPushButton:hover {
+	
+	background-color: rgb(85, 255, 255);
+}</string>
+                   </property>
+                   <property name="text">
+                    <string>Room</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="btnTeacher">
+                   <property name="minimumSize">
+                    <size>
+                     <width>0</width>
+                     <height>40</height>
+                    </size>
+                   </property>
+                   <property name="styleSheet">
+                    <string notr="true">QPushButton{
+	color: rgb(0, 0, 0);
+	background-color: rgb(255, 242, 238);
+	border: 0px solid;
+}
+
+QPushButton:hover {
+	
+	background-color: rgb(85, 255, 255);
+}</string>
+                   </property>
+                   <property name="text">
+                    <string>Teacher</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="btnLesson">
+                   <property name="minimumSize">
+                    <size>
+                     <width>0</width>
+                     <height>40</height>
+                    </size>
+                   </property>
+                   <property name="styleSheet">
+                    <string notr="true">QPushButton{
+	color: rgb(0, 0, 0);
+	background-color: rgb(255, 242, 238);
+	border: 0px solid;
+}
+
+QPushButton:hover {
+	
+	background-color: rgb(85, 255, 255);
+}</string>
+                   </property>
+                   <property name="text">
+                    <string>Lesson</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QFrame" name="mView">
+             <property name="frameShape">
+              <enum>QFrame::NoFrame</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Raised</enum>
+             </property>
+             <layout class="QHBoxLayout" name="horizontalLayout_6">
+              <property name="spacing">
+               <number>0</number>
+              </property>
+              <property name="leftMargin">
+               <number>0</number>
+              </property>
+              <property name="topMargin">
+               <number>0</number>
+              </property>
+              <property name="rightMargin">
+               <number>0</number>
+              </property>
+              <property name="bottomMargin">
+               <number>0</number>
+              </property>
+              <item>
+               <widget class="QStackedWidget" name="viewStackedWidget"/>
+              </item>
+             </layout>
+            </widget>
+           </item>
+          </layout>
+         </widget>
         </item>
        </layout>
       </widget>
@@ -103,7 +436,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>689</width>
+     <width>829</width>
      <height>21</height>
     </rect>
    </property>
@@ -111,16 +444,21 @@
     <property name="title">
      <string>File</string>
     </property>
-    <addaction name="actionSave"/>
-    <addaction name="actionNewTimetable"/>
+    <addaction name="mNew"/>
     <addaction name="separator"/>
-    <addaction name="actionOpen_File"/>
+    <addaction name="mSave"/>
     <addaction name="separator"/>
-    <addaction name="actionClose"/>
+    <addaction name="mOpen"/>
+    <addaction name="mClose"/>
    </widget>
    <widget class="QMenu" name="menuView">
     <property name="title">
      <string>View</string>
+    </property>
+   </widget>
+   <widget class="QMenu" name="menuSettings">
+    <property name="title">
+     <string>Settings</string>
     </property>
    </widget>
    <widget class="QMenu" name="menuHelp">
@@ -128,12 +466,24 @@
      <string>Help</string>
     </property>
    </widget>
+   <widget class="QMenu" name="menuEdit">
+    <property name="title">
+     <string>Edit</string>
+    </property>
+   </widget>
    <addaction name="menuFile"/>
+   <addaction name="menuEdit"/>
    <addaction name="menuView"/>
+   <addaction name="menuSettings"/>
    <addaction name="menuHelp"/>
   </widget>
-  <widget class="QStatusBar" name="statusBar"/>
   <widget class="QToolBar" name="toolBar">
+   <property name="maximumSize">
+    <size>
+     <width>16777215</width>
+     <height>25</height>
+    </size>
+   </property>
    <property name="windowTitle">
     <string>toolBar</string>
    </property>
@@ -143,44 +493,41 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
-   <addaction name="actionSave"/>
-   <addaction name="actionNewTimetable"/>
+   <addaction name="mNew"/>
+   <addaction name="mOpen"/>
+   <addaction name="mSave"/>
+   <addaction name="separator"/>
   </widget>
-  <action name="actionNew_File">
+  <action name="mNew">
    <property name="icon">
     <iconset resource="OrarApp.qrc">
-     <normaloff>:/OrarApp/img/NewTimetable.png</normaloff>:/OrarApp/img/NewTimetable.png</iconset>
+     <normaloff>:/OrarApp/img/new.png</normaloff>:/OrarApp/img/new.png</iconset>
    </property>
    <property name="text">
-    <string>New File</string>
+    <string>New Timetable</string>
    </property>
   </action>
-  <action name="actionOpen_File">
-   <property name="text">
-    <string>Open File</string>
-   </property>
-  </action>
-  <action name="actionSave">
+  <action name="mSave">
    <property name="icon">
     <iconset resource="OrarApp.qrc">
-     <normaloff>:/OrarApp/img/Save4.png</normaloff>:/OrarApp/img/Save4.png</iconset>
+     <normaloff>:/OrarApp/img/save1.png</normaloff>:/OrarApp/img/save1.png</iconset>
    </property>
    <property name="text">
     <string>Save</string>
    </property>
   </action>
-  <action name="actionClose">
-   <property name="text">
-    <string>Close</string>
-   </property>
-  </action>
-  <action name="actionNewTimetable">
+  <action name="mOpen">
    <property name="icon">
     <iconset resource="OrarApp.qrc">
-     <normaloff>:/OrarApp/img/NewFile.png</normaloff>:/OrarApp/img/NewFile.png</iconset>
+     <normaloff>:/OrarApp/img/open.png</normaloff>:/OrarApp/img/open.png</iconset>
    </property>
    <property name="text">
-    <string>New Timetable</string>
+    <string>Open</string>
+   </property>
+  </action>
+  <action name="mClose">
+   <property name="text">
+    <string>Close</string>
    </property>
   </action>
  </widget>

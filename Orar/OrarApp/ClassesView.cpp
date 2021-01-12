@@ -40,8 +40,6 @@ void ClassesView::on_Add_clicked()
 			//store data
 			shared_ptr<Classes> newClass = make_shared<Classes>(name.toStdString(),numberOfStudents);
 			mContext.AddClass(newClass);
-
-			mNavigator->ChangeStatus("You have successfully added a new class");
 		}
 	}
 

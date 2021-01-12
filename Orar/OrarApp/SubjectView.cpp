@@ -38,7 +38,6 @@ void SubjectView::on_Add_clicked()
 			shared_ptr<Subject> buildSubject = make_shared<Subject>(subjectName.toStdString());
 			mContext.AddSubject(buildSubject);
 
-			mNavigator->ChangeStatus("You have successfully added a new subject");
 		}
 
 	}

@@ -24,7 +24,6 @@ class OrarApp : public QMainWindow, public INavigator
 public:
     OrarApp(QWidget *parent = Q_NULLPTR);
     void ChangeView(INavigator::viewId theView);
-    void ChangeStatus(QString status);
 
 private slots:
 
@@ -34,7 +33,8 @@ private slots:
     void on_btnTeacher_clicked();
     void on_btnLesson_clicked();
     void on_btnBasicInfo_clicked();
-    void on_actionNewTimetable_triggered();
+    void on_mToggle_clicked();
+    void on_mNew_triggered();
 
 private:
     Ui::OrarAppClass ui;

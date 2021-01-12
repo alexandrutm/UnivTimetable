@@ -54,7 +54,6 @@ void TeacherView::on_Add_clicked()
 			ui.list->clear();
 			ui.list->insertItems(0, this->GetTeacherList());
 
-			mNavigator->ChangeStatus("New teacher added");
 		}
 
 	}

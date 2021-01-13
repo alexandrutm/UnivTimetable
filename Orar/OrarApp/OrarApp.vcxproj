@@ -109,6 +109,7 @@
     <ClCompile Include="Lesson.cpp" />
     <ClCompile Include="LessonDialog.cpp" />
     <ClCompile Include="LessonView.cpp" />
+    <ClCompile Include="RoomView.cpp" />
     <ClCompile Include="Subject.cpp" />
     <ClCompile Include="SubjectDialog.cpp" />
     <ClCompile Include="SubjectView.cpp" />
@@ -125,6 +126,7 @@
     <QtMoc Include="LessonView.h" />
     <ClInclude Include="Lesson.h" />
     <QtMoc Include="LessonDialog.h" />
+    <QtMoc Include="RoomView.h" />
     <ClInclude Include="Subject.h" />
     <QtMoc Include="SubjectView.h" />
     <ClInclude Include="Teacher.h" />
@@ -149,6 +151,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <QtUic Include="RoomView.ui" />
     <QtUic Include="SubjectDialog.ui" />
     <QtUic Include="SubjectView.ui" />
     <QtUic Include="BasicInfoView.ui" />

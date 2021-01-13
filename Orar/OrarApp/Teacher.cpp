@@ -10,6 +10,11 @@ string Teacher::GetFirstName()
 	return mFirstName;
 }
 
+string Teacher::GetLastName()
+{
+	return mLastName;
+}
+
 void Teacher::SetFirstName(string aName)
 {
 	mFirstName = aName;

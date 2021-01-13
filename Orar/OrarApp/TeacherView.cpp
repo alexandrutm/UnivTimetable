@@ -20,18 +20,31 @@ void TeacherView::ClearData()
 	ui.mList->clear();
 }
 
-QStringList TeacherView::GetTeacherList()
+QStandardItemModel* TeacherView::GetTeacherTableModel()
 {
-	QStringList list;
 
+	QStandardItemModel* model = new QStandardItemModel(0, 2, this);
+	QStringList horizontalHeader;
+
+	horizontalHeader.append("First name");
+	horizontalHeader.append("Last name");
+
+	model->setHorizontalHeaderLabels(horizontalHeader);
+	
 	auto mTeachers = mContext.GetTeachers();
 
 	for (auto i : mTeachers)
 	{
-		list.append(QString::fromStdString((*i).GetFirstName()));
+		QVariant stored;
+		stored.setValue(*i);
+
+		QStandardItem* item = new QStandardItem();
+		item->setData(stored);
+
+		model->appendRow(item);
 	}
 
-	return list;
+	return model;
 }
 
 
@@ -51,10 +64,12 @@ void TeacherView::on_mAdd_clicked()
 			mContext.AddTeacher(newTeacher);
 
 			//load data in ui
-			ui.mList->clear();
-			ui.mList->insertItems(0, this->GetTeacherList());
+			ui.mTable->model()->clear();
+		//	ui.mTable->insertItems(0, this->GetTeacherList());
 
 		}
+
+
 
 	}
 
@@ -64,7 +79,7 @@ void TeacherView::on_mEdit_clicked()
 {
 	TeacherDialog Edit(this);
 
-	QListWidgetItem* item = ui.mList->currentItem();
+	QListWidgetItem* item = ui.mTable->currentItem();
 
 	if (item)
 	{
@@ -87,19 +102,19 @@ void TeacherView::on_mEdit_clicked()
 
 void TeacherView::on_mDelete_clicked()
 {
-	QListWidgetItem* item = ui.mList->currentItem();
+	QListWidgetItem* item = ui.mTable->currentItem();
 
 	if (item)
 	{
-		int row = ui.mList->row(item);
-		ui.mList->takeItem(row);
+		int row = ui.mTable->row(item);
+		ui.mTable->takeItem(row);
 
 		string name = item->text().toStdString();
 		mContext.RemoveTeacherByFirstName(name);
 		delete item;
 
-		if (ui.mList->count() > 0)
-			ui.mList->setCurrentRow(row);
+		if (ui.mTable->count() > 0)
+			ui.mTable->setCurrentRow(row);
 	}
 }
 

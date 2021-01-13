@@ -33,5 +33,5 @@ void BasicInfoView::on_Next_clicked()
 
 void BasicInfoView::on_Back_clicked()
 {
-	mNavigator->ChangeView(INavigator::viewId::basicInfoView);
+	mNavigator->ChangeView(INavigator::viewId::homepage);
 }

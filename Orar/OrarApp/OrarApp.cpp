@@ -5,7 +5,7 @@
 
 OrarApp::OrarApp(QWidget *parent)
     : QMainWindow(parent), mHomeView(this,this),mBasicInfoView(this,mContext,this),
-    mClassView(this,mContext,this),mSubjectView(this,mContext,this),
+    mClassView(this,mContext,this),mSubjectView(this,mContext,this),mRoomView(this,mContext,this),
     mTeacher(this,mContext,this),mLesson(this,mContext,this)
 
 {
@@ -19,6 +19,7 @@ OrarApp::OrarApp(QWidget *parent)
     ui.viewStackedWidget->addWidget(&mBasicInfoView);
     ui.viewStackedWidget->addWidget(&mSubjectView);
     ui.viewStackedWidget->addWidget(&mClassView);
+    ui.viewStackedWidget->addWidget(&mRoomView);
     ui.viewStackedWidget->addWidget(&mTeacher);
     ui.viewStackedWidget->addWidget(&mLesson);
     ui.viewStackedWidget->setCurrentIndex(0);
@@ -30,10 +31,6 @@ void OrarApp::ChangeView(INavigator::viewId theView)
     {
         ui.centralStackWidget->setCurrentIndex(1);
     }
-    //else if (theView == INavigator::viewId::secondpage)
-   // {
-    //    ui.centralStackWidget->setCurrentIndex(2);
-    //}
     else if (theView == INavigator::viewId::basicInfoView)
     {
         ui.centralStackWidget->setCurrentIndex(0);
@@ -41,6 +38,22 @@ void OrarApp::ChangeView(INavigator::viewId theView)
     else if (theView == INavigator::viewId::subjectView)
     {
         ui.viewStackedWidget->setCurrentIndex(1);
+    }
+    else if (theView == INavigator::viewId::classesView)
+    {
+        ui.viewStackedWidget->setCurrentIndex(2);
+    }
+    else if (theView == INavigator::viewId::roomView)
+    {
+        ui.viewStackedWidget->setCurrentIndex(3);
+    }
+    else if (theView == INavigator::viewId::teacherView)
+    {
+        ui.viewStackedWidget->setCurrentIndex(4);
+    }
+    else if (theView == INavigator::viewId::lessonView)
+    {
+        ui.viewStackedWidget->setCurrentIndex(5);
     }
 
 }
@@ -63,16 +76,17 @@ void OrarApp::on_btnClass_clicked()
 
 void OrarApp::on_btnRoom_clicked()
 {
+    ui.viewStackedWidget->setCurrentIndex(3);
 }
 
 void OrarApp::on_btnTeacher_clicked()
 {
-    ui.viewStackedWidget->setCurrentIndex(3);
+    ui.viewStackedWidget->setCurrentIndex(4);
 }
 
 void OrarApp::on_btnLesson_clicked()
 {
-    ui.viewStackedWidget->setCurrentIndex(4);
+    ui.viewStackedWidget->setCurrentIndex(5);
 }
 
 void OrarApp::on_btnBasicInfo_clicked()

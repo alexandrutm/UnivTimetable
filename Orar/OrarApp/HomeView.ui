@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>599</width>
+    <width>600</width>
     <height>347</height>
    </rect>
   </property>
@@ -66,15 +66,13 @@ color: rgb(70, 70, 70);</string>
       </widget>
      </item>
      <item>
-      <widget class="QTreeWidget" name="treeWidget">
+      <widget class="QFrame" name="frame_2">
        <property name="frameShape">
-        <enum>QFrame::NoFrame</enum>
+        <enum>QFrame::StyledPanel</enum>
        </property>
-       <column>
-        <property name="text">
-         <string notr="true">1</string>
-        </property>
-       </column>
+       <property name="frameShadow">
+        <enum>QFrame::Raised</enum>
+       </property>
       </widget>
      </item>
     </layout>

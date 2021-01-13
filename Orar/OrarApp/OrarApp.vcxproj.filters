@@ -95,9 +95,6 @@
     <ClCompile Include="Lesson.cpp">
       <Filter>Source Files\data</Filter>
     </ClCompile>
-    <ClCompile Include="RoomView.cpp">
-      <Filter>Source Files\views</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="BasicInfoView.h">
@@ -133,9 +130,6 @@
     <QtMoc Include="OrarApp.h">
       <Filter>Source Files\views</Filter>
     </QtMoc>
-    <QtMoc Include="RoomView.h">
-      <Filter>Source Files\views</Filter>
-    </QtMoc>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="SubjectDialog.ui">
@@ -166,9 +160,6 @@
       <Filter>Resource Files</Filter>
     </QtUic>
     <QtUic Include="LessonDialog.ui">
-      <Filter>Resource Files</Filter>
-    </QtUic>
-    <QtUic Include="RoomView.ui">
       <Filter>Resource Files</Filter>
     </QtUic>
   </ItemGroup>

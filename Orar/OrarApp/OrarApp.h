@@ -7,10 +7,8 @@
 #include "BasicInfoView.h"
 #include "SubjectView.h"
 #include "ClassesView.h"
-#include "RoomView.h"
 #include "TeacherView.h"
 #include "LessonView.h"
-
 
 #include "INavigator.h"
 #include "Context.h"
@@ -27,12 +25,12 @@ public:
 
 private slots:
 
-    void on_btnBasicInfo_clicked();
     void on_btnSubject_clicked();
     void on_btnClass_clicked();
     void on_btnRoom_clicked();
     void on_btnTeacher_clicked();
     void on_btnLesson_clicked();
+    void on_btnBasicInfo_clicked();
     void on_mToggle_clicked();
 
     void on_mNew_triggered();
@@ -46,7 +44,6 @@ private:
     BasicInfoView mBasicInfoView;
     SubjectView mSubjectView;
     ClassesView mClassView;
-    RoomView mRoomView;
     TeacherView mTeacher;
     LessonView mLesson;
 };

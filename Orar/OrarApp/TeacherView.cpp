@@ -56,6 +56,10 @@ void TeacherView::on_mAdd_clicked()
 			//update ui
 			this->UpdateList();
 		}
+		else
+		{
+			QMessageBox::about(this, "Name eror", "You need to fill all fields with *");
+		}
 
 	}
 
@@ -69,19 +73,18 @@ void TeacherView::on_mEdit_clicked()
 
 	if (item)
 	{
-		
-		Edit.mFirstName->setText(item->text());
-		Edit.mLastName->setText(item->data(Qt::UserRole).toString());
 
 		if (Edit.exec())
 		{
 			QString firstName = Edit.mFirstName->text();
 			QString lastName = Edit.mLastName->text();
 
-			mContext.EditTeacherByFirstName(item->text().toStdString(),firstName.toStdString(),lastName.toStdString());
+			shared_ptr<Teacher> oldTeacher = qvariant_cast<shared_ptr<Teacher>>(item->data(Qt::UserRole));
+			shared_ptr<Teacher>newTeacher = make_shared<Teacher>(firstName.toStdString(), lastName.toStdString());
 
-			item->setText(firstName);
-			item->setData(Qt::UserRole, lastName);
+			mContext.EditTeacher(oldTeacher, newTeacher);
+
+			this->UpdateList();
 		}
 	}
 }
@@ -92,8 +95,6 @@ void TeacherView::on_mDelete_clicked()
 
 	if (item)
 	{
-		int row = ui.mList->row(item);
-		ui.mList->takeItem(row);
 
 		string name = item->text().toStdString();
 		mContext.RemoveTeacherByFirstName(name);

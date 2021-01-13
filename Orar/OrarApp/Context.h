@@ -1,5 +1,4 @@
 #pragma once
-//#include"stdafx.h"
 class Teacher;
 class Subject;
 class Classes;
@@ -14,8 +13,8 @@ public:
 	Context();
 
 	void AddTeacher(shared_ptr<Teacher> aTeacher);
-	void RemoveTeacherByFirstName(string aFirstName);
-	void EditTeacherByFirstName(string aOldName, string aNewFirstName, string aNewLastName);
+	void RemoveTeacher(shared_ptr<Teacher>);
+	void EditTeacher(shared_ptr<Teacher>,shared_ptr<Teacher>);
 	vector<shared_ptr<Teacher>>& GetTeachers();
 	//
 

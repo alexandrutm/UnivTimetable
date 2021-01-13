@@ -15,7 +15,7 @@ void Context::AddTeacher(shared_ptr<Teacher> aTeacher)
 	mTeachers.push_back(aTeacher);
 }
 
-void Context::RemoveTeacherByFirstName(string aFirstName)
+void Context::RemoveTeacher(shared_ptr<Teacher>aTeacher)
 {
 	//not optimal ///////// need changes
 	auto i = begin(mTeachers);
@@ -33,20 +33,15 @@ void Context::RemoveTeacherByFirstName(string aFirstName)
 
 }
 
-void Context::EditTeacherByFirstName(string aOldName, string aNewFirstName,string aNewLastName)
+void Context::EditTeacher(shared_ptr<Teacher> aOldTeacher,shared_ptr<Teacher> aNewTeacher)
 {
-	auto i = begin(mTeachers);
+	auto it = find_if(mTeachers.begin(), mTeachers.end(), [&](shared_ptr<Teacher>const& p) {
+		return *p == *aOldTeacher;
+		});
 
-	while (i != end(mTeachers))
-	{
-		if ((*i)->GetFirstName() == aOldName)
-		{
-			(*i)->SetFirstName(aNewFirstName);
-			(*i)->SetLastName(aNewLastName);
-			break;
-		}
-		else
-			i++;
+	if (it != mTeachers.end()) {
+		(*(*it)).SetFirstName(aNewTeacher->GetFirstName());
+		(*(*it)).SetLastName(aNewTeacher->GetLastName());
 	}
 }
 

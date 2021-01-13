@@ -11,7 +11,6 @@ public:
 
 	Teacher(string, string);
 	string GetFirstName();
-	string GetLastName();
 	void SetFirstName(string aName);
 	void SetLastName(string aName);
 

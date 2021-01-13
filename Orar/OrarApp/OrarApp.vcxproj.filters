@@ -98,6 +98,9 @@
     <ClCompile Include="RoomView.cpp">
       <Filter>Source Files\views</Filter>
     </ClCompile>
+    <ClCompile Include="Room.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="BasicInfoView.h">
@@ -195,6 +198,9 @@
       <Filter>Source Files\data</Filter>
     </ClInclude>
     <ClInclude Include="Teacher.h">
+      <Filter>Source Files\data</Filter>
+    </ClInclude>
+    <ClInclude Include="Room.h">
       <Filter>Source Files\data</Filter>
     </ClInclude>
   </ItemGroup>

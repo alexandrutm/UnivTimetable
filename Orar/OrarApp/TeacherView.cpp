@@ -20,21 +20,23 @@ void TeacherView::ClearData()
 	ui.mList->clear();
 }
 
-QStringList TeacherView::GetTeacherList()
+void TeacherView::UpdateList()
 {
-	QStringList list;
+	this->ClearData();
 
 	auto mTeachers = mContext.GetTeachers();
 
 	for (auto i : mTeachers)
 	{
-		list.append(QString::fromStdString((*i).GetFirstName()));
+		QVariant teacher;
+		teacher.setValue(i);
+
+		QListWidgetItem* item = new QListWidgetItem(QString::fromStdString((*i).GetFirstName()), ui.mList);
+		item->setData(Qt::UserRole,teacher);
+		ui.mList->setCurrentItem(item);
 	}
 
-	return list;
 }
-
-
 
 void TeacherView::on_mAdd_clicked()
 {
@@ -42,18 +44,17 @@ void TeacherView::on_mAdd_clicked()
 
 	if (Add.exec())
 	{
-		//first store data in context and after that load data from context in ui
+		
 		QString firstName = Add.mFirstName->text();
 		QString lastName = Add.mLastName->text();
 		if (!firstName.isEmpty())
 		{
+			//first store data in context and after that load data from context in ui
 			shared_ptr<Teacher> newTeacher = make_shared<Teacher>(firstName.toStdString(), lastName.toStdString());
 			mContext.AddTeacher(newTeacher);
 
-			//load data in ui
-			ui.mList->clear();
-			ui.mList->insertItems(0, this->GetTeacherList());
-
+			//update ui
+			this->UpdateList();
 		}
 
 	}

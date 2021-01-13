@@ -33,13 +33,16 @@ void ClassesView::on_mAdd_clicked()
 
 		if (!name.isEmpty())
 		{
+			shared_ptr<Classes> newClass = make_shared<Classes>(name.toStdString(), numberOfStudents);
+			mContext.AddClass(newClass);
+
+			QVariant newClassVar;
+			newClassVar.setValue(newClass);
+
 			QListWidgetItem* item = new QListWidgetItem(name, ui.mList);
-			item->setData(Qt::UserRole, numberOfStudents);
+			item->setData(Qt::UserRole,newClassVar);
 			ui.mList->setCurrentItem(item);
 
-			//store data
-			shared_ptr<Classes> newClass = make_shared<Classes>(name.toStdString(),numberOfStudents);
-			mContext.AddClass(newClass);
 		}
 	}
 

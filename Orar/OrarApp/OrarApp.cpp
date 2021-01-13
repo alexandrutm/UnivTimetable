@@ -64,6 +64,11 @@ void OrarApp::ChangeStatus(string aStatus)
 }
 
 
+void OrarApp::on_btnBasicInfo_clicked()
+{
+    ui.viewStackedWidget->setCurrentIndex(0);
+}
+
 void OrarApp::on_btnSubject_clicked()
 {
     ui.viewStackedWidget->setCurrentIndex(1);
@@ -89,10 +94,7 @@ void OrarApp::on_btnLesson_clicked()
     ui.viewStackedWidget->setCurrentIndex(5);
 }
 
-void OrarApp::on_btnBasicInfo_clicked()
-{
-    ui.viewStackedWidget->setCurrentIndex(0);
-}
+
 
 void OrarApp::on_mToggle_clicked()
 {

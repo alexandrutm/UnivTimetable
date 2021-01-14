@@ -14,6 +14,7 @@ public:
 	ClassesView(INavigator *aNavigator,Context & aContext,QWidget *parent = Q_NULLPTR);
 	~ClassesView();
 	void ClearData();
+	void UpdateList();
 
 private slots:
 	void on_mAdd_clicked();

@@ -220,5 +220,6 @@ void Context::DeleteData()
 	mSubjects.clear();
 	mClasses.clear();
 	mLessons.clear();
+	mRooms.clear();
 	mBasicInfo.reset();
 }

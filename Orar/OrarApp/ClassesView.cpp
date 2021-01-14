@@ -22,6 +22,23 @@ void ClassesView::ClearData()
 	ui.mList->clear();
 }
 
+void ClassesView::UpdateList()
+{
+	this->ClearData();
+
+	auto mClasses = mContext.GetClasses();
+
+	for (auto i : mClasses)
+	{
+		QVariant classes;
+		classes.setValue(i);
+
+		QListWidgetItem* item = new QListWidgetItem(QString::fromStdString((*i).GetName()), ui.mList);
+		item->setData(Qt::UserRole, classes);
+		ui.mList->setCurrentItem(item);
+	}
+}
+
 void ClassesView::on_mAdd_clicked()
 {
 	ClassesDialog AddDialog(this);
@@ -36,14 +53,10 @@ void ClassesView::on_mAdd_clicked()
 			shared_ptr<Classes> newClass = make_shared<Classes>(name.toStdString(), numberOfStudents);
 			mContext.AddClass(newClass);
 
-			QVariant newClassVar;
-			newClassVar.setValue(newClass);
-
-			QListWidgetItem* item = new QListWidgetItem(name, ui.mList);
-			item->setData(Qt::UserRole,newClassVar);
-			ui.mList->setCurrentItem(item);
-
+			this->UpdateList();
 		}
+		else
+			QMessageBox::about(this, "Name error", "You need to insert a class name");
 	}
 
 }
@@ -55,22 +68,18 @@ void ClassesView::on_mEdit_clicked()
 
 	if (item)
 	{
-		EditDialog.Name->setText(item->text());
-		EditDialog.Abbreviation->setText(item->text().left(2));
-		EditDialog.NumberOfStudents->setValue(item->data(Qt::UserRole).toInt());
-
 		if (EditDialog.exec()) {
 			
 			QString name = EditDialog.Name->text();
 			int numberOfStudents = EditDialog.NumberOfStudents->value();
 
-			mContext.EditClassesByName(item->text().toStdString(), name.toStdString(), numberOfStudents);
+			shared_ptr<Classes> oldClass=qvariant_cast<shared_ptr<Classes>>(item->data(Qt::UserRole));
 
-			item->setText(name);
-			item->setData(Qt::UserRole, numberOfStudents);
+			mContext.EditClasses(oldClass,make_shared<Classes>(name.toStdString(),numberOfStudents));
+
+			this->UpdateList();
 		}
 	}
-
 
 }
 
@@ -80,16 +89,10 @@ void ClassesView::on_mDelete_clicked()
 
 	if (item)
 	{
-		int row = ui.mList->row(item);
-		ui.mList->takeItem(row);
-
-		string name = item->text().toStdString();
-
-		mContext.RemoveClassByName(name);
+		mContext.RemoveClass(qvariant_cast<shared_ptr<Classes>>(item->data(Qt::UserRole)));
 		delete item;
 
-		if (ui.mList->count() > 0)
-			ui.mList->setCurrentRow(row);
+		this->UpdateList();
 	}
 }
 

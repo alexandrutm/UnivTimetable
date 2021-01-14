@@ -47,6 +47,6 @@ private:
     SubjectView mSubjectView;
     ClassesView mClassView;
     RoomView mRoomView;
-    TeacherView mTeacher;
-    LessonView mLesson;
+    TeacherView mTeacherView;
+    LessonView mLessonView;
 };

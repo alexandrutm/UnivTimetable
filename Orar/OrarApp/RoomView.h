@@ -13,6 +13,8 @@ class RoomView : public QWidget
 public:
 	RoomView(INavigator* , Context&,QWidget *parent = Q_NULLPTR);
 	~RoomView();
+	void ClearData();
+
 private slots:
 	void on_mAdd_clicked();
 	void on_mEdit_clicked();

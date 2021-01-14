@@ -6,7 +6,7 @@
 OrarApp::OrarApp(QWidget *parent)
     : QMainWindow(parent), mHomeView(this,this),mBasicInfoView(this,mContext,this),
     mClassView(this,mContext,this),mSubjectView(this,mContext,this),mRoomView(this,mContext,this),
-    mTeacher(this,mContext,this),mLesson(this,mContext,this)
+    mTeacherView(this,mContext,this),mLessonView(this,mContext,this)
 
 {
     ui.setupUi(this);
@@ -20,8 +20,8 @@ OrarApp::OrarApp(QWidget *parent)
     ui.viewStackedWidget->addWidget(&mSubjectView);
     ui.viewStackedWidget->addWidget(&mClassView);
     ui.viewStackedWidget->addWidget(&mRoomView);
-    ui.viewStackedWidget->addWidget(&mTeacher);
-    ui.viewStackedWidget->addWidget(&mLesson);
+    ui.viewStackedWidget->addWidget(&mTeacherView);
+    ui.viewStackedWidget->addWidget(&mLessonView);
     ui.viewStackedWidget->setCurrentIndex(0);
 }
 
@@ -128,8 +128,9 @@ void OrarApp::on_mNew_triggered()
         mBasicInfoView.ClearData();
         mSubjectView.ClearData();
         mClassView.ClearData();
-        mTeacher.ClearData();
-        mLesson.ClearData();
+        mTeacherView.ClearData();
+        mRoomView.ClearData();
+        mLessonView.ClearData();
     }
     else
     {

@@ -12,6 +12,10 @@ RoomView::RoomView(INavigator* aNavigator, Context& aContext, QWidget* parent)
 RoomView::~RoomView()
 {
 }
+void RoomView::ClearData()
+{
+	ui.mList->clear();
+}
 void RoomView::on_mAdd_clicked()
 {
 

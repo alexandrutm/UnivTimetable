@@ -63,7 +63,6 @@ void OrarApp::ChangeStatus(string aStatus)
     ui.statusBar->showMessage(QString::fromStdString(aStatus),5000);
 }
 
-
 void OrarApp::on_btnBasicInfo_clicked()
 {
     ui.viewStackedWidget->setCurrentIndex(0);
@@ -93,8 +92,6 @@ void OrarApp::on_btnLesson_clicked()
 {
     ui.viewStackedWidget->setCurrentIndex(5);
 }
-
-
 
 void OrarApp::on_mToggle_clicked()
 {

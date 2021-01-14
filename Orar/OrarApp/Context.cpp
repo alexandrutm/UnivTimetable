@@ -4,6 +4,8 @@
 #include"BasicInfo.h"
 #include"Classes.h"
 #include"Subject.h"
+#include"Lesson.h"
+#include"Room.h"
 
 Context::Context()
 {
@@ -39,8 +41,7 @@ void Context::EditTeacher(shared_ptr<Teacher> aOldTeacher,shared_ptr<Teacher> aN
 		});
 
 	if (it != mTeachers.end()) {
-		(*(*it)).SetFirstName(aNewTeacher->GetFirstName());
-		(*(*it)).SetLastName(aNewTeacher->GetLastName());
+		(*it) = aNewTeacher;
 	}
 }
 
@@ -79,7 +80,7 @@ void Context::EditSubject(shared_ptr<Subject> aSubject, shared_ptr<Subject> aNew
 
 	if (i != mSubjects.end())
 	{
-		(*(*i)).SetName((*aNewSubject).GetName());
+		(*i) = aNewSubject;
 	}
 }
 
@@ -119,8 +120,7 @@ void Context::EditClasses(shared_ptr<Classes> aClass, shared_ptr<Classes> aNewCl
 
 	if (it != mClasses.end())
 	{
-		(*(*it)).SetName((*aNewClass).GetName());
-		(*(*it)).SetNumberOfStudents((*aNewClass).GetNumberOfStudents());
+		(*it) = aNewClass;
 	}
 }
 
@@ -153,11 +153,15 @@ void Context::RemoveLesson(shared_ptr<Lesson> aLesson)
 
 void Context::EditLesson(shared_ptr<Lesson> aLesson, shared_ptr<Lesson> aNewLesson)
 {
-	auto it = find_if(mLessons.begin(), mLessons.end(), [&](shared_ptr<Lesson>const& l)
+	auto it = find_if(mLessons.begin(), mLessons.end(), [&](shared_ptr<Lesson>const& c)
 		{
-			return *l == *aNewLesson;
+			return *c == *aNewLesson;
 		});
 
+	if (it != mLessons.end())
+	{
+		(*it) = aNewLesson;
+	}
 
 }
 
@@ -166,6 +170,44 @@ vector<shared_ptr<Lesson>>& Context::GetLesson()
 	return mLessons;
 }
 
+void Context::AddRoom(shared_ptr<Room> aRoom)
+{
+	mRooms.push_back(aRoom);
+}
+
+void Context::RemoveRoom(shared_ptr<Room> aRoom)
+{
+	auto it = begin(mRooms);
+
+	while (it != end(mRooms))
+	{
+		if (*it == aRoom)
+		{
+			it = mRooms.erase(it);
+			break;
+		}
+		else
+			it++;
+	}
+}
+
+void Context::EditRoom(shared_ptr<Room> aRoom, shared_ptr<Room> aNewRoom)
+{
+	auto it = find_if(mRooms.begin(), mRooms.end(), [&](shared_ptr<Room>const& r)
+		{
+			return *r == *aRoom;
+		});
+
+	if (it != mRooms.end())
+	{
+		(*it) = aNewRoom;
+	}
+}
+
+vector<shared_ptr<Room>>& Context::GetRooms()
+{
+	return mRooms;
+}
 
 void Context::AddBasicInfo(shared_ptr<BasicInfo> aBasicInfo)
 {

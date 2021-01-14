@@ -13,6 +13,7 @@ public:
 	~Lesson() = default;
 	Lesson(const Lesson&) = default;
 	bool operator==(const Lesson& aLesson);
+	Lesson& operator= (const Lesson & l);
 
 	Lesson(shared_ptr<Teacher>, shared_ptr<Classes>, shared_ptr<Subject>, shared_ptr<int>);
 

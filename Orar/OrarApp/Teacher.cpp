@@ -11,6 +11,16 @@ bool Teacher::operator==(const Teacher& aTeacher)
 	return false;
 }
 
+Teacher& Teacher::operator=(const Teacher& aTeacher)
+{
+	if (this != &aTeacher)
+	{
+		this->mFirstName = aTeacher.mFirstName;
+		this->mLastName = aTeacher.mLastName;
+	}
+	return *this;
+}
+
 Teacher::Teacher(string aFirstName, string aLastName):mFirstName(aFirstName),mLastName(aLastName)
 {
 }

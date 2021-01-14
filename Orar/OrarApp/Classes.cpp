@@ -32,3 +32,14 @@ bool Classes::operator==(const Classes& aClass)
 		return true;
 	return false;
 }
+
+Classes& Classes::operator=(const Classes& aClass)
+{
+	if (this != &aClass)
+	{
+		this->mName = aClass.mName;
+		this->mNumberOfStudents = aClass.mNumberOfStudents;
+	}
+
+	return *this;
+}

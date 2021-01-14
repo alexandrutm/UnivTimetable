@@ -9,6 +9,7 @@ public:
 	~Subject() = default;
 	Subject(const Subject&) = default;
 	bool operator==(const Subject&);
+	Subject& operator=(const Subject& aSubject);
 
 	Subject(string);
 	string GetName();

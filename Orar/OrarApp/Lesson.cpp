@@ -56,3 +56,16 @@ bool Lesson::operator==(const Lesson& aLesson)
 
 	return false;
 }
+
+Lesson& Lesson::operator=(const Lesson& l)
+{
+	if (this != &l)
+	{
+		this->mClass = l.mClass;
+		this->mTeacher = l.mTeacher;
+		this->mSubject = l.mSubject;
+		this->mHoursPerWeek = l.mHoursPerWeek;
+	}
+
+	return *this;
+}

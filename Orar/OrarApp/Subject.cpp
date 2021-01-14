@@ -9,6 +9,15 @@ bool Subject::operator==(const Subject& aSubject)
 	return false;
 }
 
+Subject& Subject::operator=(const Subject& aSubject)
+{
+	if (this != &aSubject)
+	{
+		this->mName = aSubject.mName;
+	}
+	return *this;
+}
+
 Subject::Subject(string aName):mName(aName)
 {
 }

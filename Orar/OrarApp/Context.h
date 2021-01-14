@@ -4,6 +4,7 @@ class Subject;
 class Classes;
 class Lesson;
 class BasicInfo;
+class Room;
 
 
 class Context
@@ -16,7 +17,6 @@ public:
 	void RemoveTeacher(shared_ptr<Teacher>);
 	void EditTeacher(shared_ptr<Teacher>,shared_ptr<Teacher>);
 	vector<shared_ptr<Teacher>>& GetTeachers();
-	//
 
 	void AddSubject(shared_ptr<Subject> aSubject);
 	void RemoveSubject(shared_ptr<Subject> aSubject);
@@ -33,6 +33,11 @@ public:
 	void EditLesson(shared_ptr<Lesson> aLesson, shared_ptr<Lesson> aNewLesson);
 	vector<shared_ptr<Lesson>>& GetLesson();
 
+	void AddRoom(shared_ptr<Room> aRoom);
+	void RemoveRoom(shared_ptr<Room> aRoom);
+	void EditRoom(shared_ptr<Room> aRoom, shared_ptr<Room> aNewRoom);
+	vector<shared_ptr<Room>>& GetRooms();
+
 	void AddBasicInfo(shared_ptr<BasicInfo> aBasicInfo);
 
 	void DeleteData();
@@ -42,6 +47,7 @@ private:
 	vector<shared_ptr<Teacher>>mTeachers;
 	vector<shared_ptr<Classes>>mClasses;
 	vector<shared_ptr<Lesson>>mLessons;
+	vector<shared_ptr<Room>>mRooms;
 	shared_ptr<BasicInfo> mBasicInfo;
 
 };

@@ -19,18 +19,19 @@ public:
 	//
 
 	void AddSubject(shared_ptr<Subject> aSubject);
-	void RemoveSubjectByName(string aName);
-	void EditSubjectByName(string aOldName, string aNewName);
+	void RemoveSubject(shared_ptr<Subject> aSubject);
+	void EditSubject(shared_ptr<Subject> aSubject, shared_ptr<Subject> aNewSubject);
 	vector<shared_ptr<Subject>>& GetSubjects();
 	
 	void AddClass(shared_ptr<Classes> aClass);
-	void RemoveClassByName(string aName);
-	void EditClassesByName(string aOldName, string aNewName, int aNumberOfStudents);
+	void RemoveClass(shared_ptr<Classes> aClass);
+	void EditClasses(shared_ptr<Classes> aClass, shared_ptr<Classes> aNewClass);
 	vector<shared_ptr<Classes>>& GetClasses();
 
 	void AddLesson(shared_ptr<Lesson> aLesson);
-	void RemoveLesson();
-	void EditLesson();
+	void RemoveLesson(shared_ptr<Lesson> aLesson);
+	void EditLesson(shared_ptr<Lesson> aLesson, shared_ptr<Lesson> aNewLesson);
+	vector<shared_ptr<Lesson>>& GetLesson();
 
 	void AddBasicInfo(shared_ptr<BasicInfo> aBasicInfo);
 

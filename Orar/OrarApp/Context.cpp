@@ -17,12 +17,11 @@ void Context::AddTeacher(shared_ptr<Teacher> aTeacher)
 
 void Context::RemoveTeacher(shared_ptr<Teacher>aTeacher)
 {
-	//not optimal ///////// need changes
 	auto i = begin(mTeachers);
 
 	while (i != end(mTeachers))
 	{
-		if ((*i)->GetFirstName().compare(aFirstName))
+		if ((*i)==aTeacher)
 		{
 			i = mTeachers.erase(i);
 			break;
@@ -35,8 +34,8 @@ void Context::RemoveTeacher(shared_ptr<Teacher>aTeacher)
 
 void Context::EditTeacher(shared_ptr<Teacher> aOldTeacher,shared_ptr<Teacher> aNewTeacher)
 {
-	auto it = find_if(mTeachers.begin(), mTeachers.end(), [&](shared_ptr<Teacher>const& p) {
-		return *p == *aOldTeacher;
+	auto it = find_if(mTeachers.begin(), mTeachers.end(), [&](shared_ptr<Teacher>const& t) {
+		return *t == *aOldTeacher;
 		});
 
 	if (it != mTeachers.end()) {
@@ -55,13 +54,13 @@ void Context::AddSubject(shared_ptr<Subject> aSubject)
 	mSubjects.push_back(aSubject);
 }
 
-void Context::RemoveSubjectByName(string aName)
+void Context::RemoveSubject(shared_ptr<Subject> aSubject)
 {
 	auto i = begin(mSubjects);
 
 	while (i != end(mSubjects))
 	{
-		if ((*i)->GetName() == aName)
+		if ((*i) == aSubject)
 		{
 			i = mSubjects.erase(i);
 			break;
@@ -71,21 +70,14 @@ void Context::RemoveSubjectByName(string aName)
 	}
 }
 
-void Context::EditSubjectByName(string aOldName,string aNewName)
+void Context::EditSubject(shared_ptr<Subject> aSubject, shared_ptr<Subject> aNewSubject)
 {
-	auto i = begin(mSubjects);
-
-	while (i != end(mSubjects))
-	{
-		if ((*i)->GetName() == aOldName)
+	auto i = find_if(mSubjects.begin(), mSubjects.end(), [&](shared_ptr<Subject>const& s)
 		{
-			(*i)->SetName(aNewName);
-			break;
-		}
-		else
-			i++;
-	}
+			return *s == *aSubject;
+		})
 }
+
 
 vector<shared_ptr<Subject>>& Context::GetSubjects()
 {
@@ -98,38 +90,14 @@ void Context::AddClass(shared_ptr<Classes> aClass)
 	mClasses.push_back(aClass);
 }
 
-void Context::RemoveClassByName(string aName)
+void Context::RemoveClass(shared_ptr<Classes> aClass)
 {
-	auto i = begin(mClasses);
-
-	while (i != end(mClasses))
-	{
-		if ((*i)->GetName() == aName)
-		{
-			i = mClasses.erase(i);
-			break;
-		}
-		else
-			i++;
-	}
 }
 
-void Context::EditClassesByName(string aOldName,string aNewName,int aNumberOfStudents)
+void Context::EditClasses(shared_ptr<Classes> aClass, shared_ptr<Classes> aNewClass)
 {
-	auto i = begin(mClasses);
-
-	while (i != end(mClasses))
-	{
-		if ((*i)->GetName() == aOldName)
-		{
-			(*i)->SetName(aNewName);
-			(*i)->SetNumberOfStudents(aNumberOfStudents);
-			break;
-		}
-		else
-			i++;
-	}
 }
+
 
 vector<shared_ptr<Classes>>& Context::GetClasses()
 {
@@ -142,13 +110,19 @@ void Context::AddLesson(shared_ptr<Lesson> aLesson)
 	mLessons.push_back(aLesson);
 }
 
-void Context::RemoveLesson()
+void Context::RemoveLesson(shared_ptr<Lesson> aLesson)
 {
 }
 
-void Context::EditLesson()
+void Context::EditLesson(shared_ptr<Lesson> aLesson, shared_ptr<Lesson> aNewLesson)
 {
 }
+
+vector<shared_ptr<Lesson>>& Context::GetLesson()
+{
+	// TODO: insert return statement here
+}
+
 
 void Context::AddBasicInfo(shared_ptr<BasicInfo> aBasicInfo)
 {

@@ -13,9 +13,19 @@ public:
 	~Lesson() = default;
 	Lesson(const Lesson&) = default;
 
+	Lesson(shared_ptr<Teacher>, shared_ptr<Classes>, shared_ptr<Subject>, shared_ptr<int>);
 
-	Lesson(shared_ptr<string>, shared_ptr<string>, shared_ptr<string>, shared_ptr<int>);
+	void SetTeacher(shared_ptr<Teacher>aTeacher);
+	void SetClass(shared_ptr<Classes>aClass);
+	void SetSubject(shared_ptr<Subject>aSubject);
+	void SetNumberOfHours(shared_ptr<int> aNumberOfHours);
 
+	shared_ptr<Teacher> GetTeacher();
+	shared_ptr<Classes> GetClass();
+	shared_ptr<Subject>GetSubject();
+	shared_ptr<int> GetNumberOfHours();
+
+	bool operator==(const Lesson& aLesson);
 
 private:
 

@@ -24,3 +24,11 @@ string Classes::GetName()
 {
 	return mName;
 }
+
+bool Classes::operator==(const Classes& aClass)
+{
+	if (this->mName == aClass.mName &&
+		this->mNumberOfStudents == aClass.mNumberOfStudents)
+		return true;
+	return false;
+}

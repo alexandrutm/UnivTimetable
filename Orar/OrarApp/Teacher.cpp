@@ -3,7 +3,8 @@
 
 bool Teacher::operator==(const Teacher& aTeacher)
 {
-	if (mLastName == aTeacher.mLastName && mFirstName ==aTeacher.mFirstName)
+	if (mLastName == aTeacher.mLastName && 
+		mFirstName ==aTeacher.mFirstName)
 	{
 		return true;
 	}

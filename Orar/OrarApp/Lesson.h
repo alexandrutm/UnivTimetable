@@ -12,6 +12,7 @@ public:
 	Lesson() = default;
 	~Lesson() = default;
 	Lesson(const Lesson&) = default;
+	bool operator==(const Lesson& aLesson);
 
 	Lesson(shared_ptr<Teacher>, shared_ptr<Classes>, shared_ptr<Subject>, shared_ptr<int>);
 
@@ -25,13 +26,13 @@ public:
 	shared_ptr<Subject>GetSubject();
 	shared_ptr<int> GetNumberOfHours();
 
-	bool operator==(const Lesson& aLesson);
+
 
 private:
 
-	shared_ptr<string> mSubject;
-	shared_ptr<string> mTeacher;
-	shared_ptr<string> mClass;
+	shared_ptr<Subject> mSubject;
+	shared_ptr<Teacher> mTeacher;
+	shared_ptr<Classes> mClass;
 	shared_ptr<int> mHoursPerWeek;
 };
 

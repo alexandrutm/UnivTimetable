@@ -2,6 +2,13 @@
 #include"Subject.h"
 
 
+bool Subject::operator==(const Subject& aSubject)
+{
+	if (this->mName == aSubject.mName)
+		return true;
+	return false;
+}
+
 Subject::Subject(string aName):mName(aName)
 {
 }

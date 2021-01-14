@@ -2,6 +2,7 @@
 
 class Room
 {
+
 	void SetNume(string);
 	string GetNume();
 

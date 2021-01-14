@@ -15,6 +15,7 @@ public:
 	void SetName(string aName);
 	string GetName();
 
+	bool operator==(const Classes& aClass);
 
 private:
 	string mName;

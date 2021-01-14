@@ -95,13 +95,14 @@ void TeacherView::on_mDelete_clicked()
 
 	if (item)
 	{
-
-		string name = item->text().toStdString();
-		mContext.RemoveTeacherByFirstName(name);
+		mContext.RemoveTeacher(qvariant_cast<shared_ptr<Teacher>>(item->data(Qt::UserRole)));
 		delete item;
 
-		if (ui.mList->count() > 0)
-			ui.mList->setCurrentRow(row);
+		this->UpdateList();
+	}
+	else
+	{
+		QMessageBox::about(this, "Delete", "Please choose what you want to delete");
 	}
 }
 

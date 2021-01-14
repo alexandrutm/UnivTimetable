@@ -75,15 +75,18 @@ void Context::EditSubject(shared_ptr<Subject> aSubject, shared_ptr<Subject> aNew
 	auto i = find_if(mSubjects.begin(), mSubjects.end(), [&](shared_ptr<Subject>const& s)
 		{
 			return *s == *aSubject;
-		})
-}
+		});
 
+	if (i != mSubjects.end())
+	{
+		(*(*i)).SetName((*aNewSubject).GetName());
+	}
+}
 
 vector<shared_ptr<Subject>>& Context::GetSubjects()
 {
 	return mSubjects;
 }
-
 
 void Context::AddClass(shared_ptr<Classes> aClass)
 {
@@ -92,18 +95,39 @@ void Context::AddClass(shared_ptr<Classes> aClass)
 
 void Context::RemoveClass(shared_ptr<Classes> aClass)
 {
+	auto i = begin(mClasses);
+
+	while (i != end(mClasses))
+	{
+		if ((*i) == aClass)
+		{
+			i = mClasses.erase(i);
+			break;
+		}
+		else
+			i++;
+		
+	}
 }
 
 void Context::EditClasses(shared_ptr<Classes> aClass, shared_ptr<Classes> aNewClass)
 {
-}
+	auto it = find_if(mClasses.begin(), mClasses.end(), [&](shared_ptr<Classes>const& c)
+		{
+			return *c == *aNewClass;
+		});
 
+	if (it != mClasses.end())
+	{
+		(*(*it)).SetName((*aNewClass).GetName());
+		(*(*it)).SetNumberOfStudents((*aNewClass).GetNumberOfStudents());
+	}
+}
 
 vector<shared_ptr<Classes>>& Context::GetClasses()
 {
 	return mClasses;
 }
-
 
 void Context::AddLesson(shared_ptr<Lesson> aLesson)
 {
@@ -112,15 +136,34 @@ void Context::AddLesson(shared_ptr<Lesson> aLesson)
 
 void Context::RemoveLesson(shared_ptr<Lesson> aLesson)
 {
+	auto i = begin(mLessons);
+
+	while (i != end(mLessons))
+	{
+		if ((*i) == aLesson)
+		{
+			i = mLessons.erase(i);
+			break;
+		}
+		else
+			i++;
+
+	}
 }
 
 void Context::EditLesson(shared_ptr<Lesson> aLesson, shared_ptr<Lesson> aNewLesson)
 {
+	auto it = find_if(mLessons.begin(), mLessons.end(), [&](shared_ptr<Lesson>const& l)
+		{
+			return *l == *aNewLesson;
+		});
+
+
 }
 
 vector<shared_ptr<Lesson>>& Context::GetLesson()
 {
-	// TODO: insert return statement here
+	return mLessons;
 }
 
 

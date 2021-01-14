@@ -15,17 +15,17 @@ public:
 	bool operator==(const Lesson& aLesson);
 	Lesson& operator= (const Lesson & l);
 
-	Lesson(shared_ptr<Teacher>, shared_ptr<Classes>, shared_ptr<Subject>, shared_ptr<int>);
+	Lesson(shared_ptr<Teacher>, shared_ptr<Subject>, shared_ptr<Classes>, int);
 
 	void SetTeacher(shared_ptr<Teacher>aTeacher);
 	void SetClass(shared_ptr<Classes>aClass);
 	void SetSubject(shared_ptr<Subject>aSubject);
-	void SetNumberOfHours(shared_ptr<int> aNumberOfHours);
+	void SetNumberOfHours(int aNumberOfHours);
 
 	shared_ptr<Teacher> GetTeacher();
 	shared_ptr<Classes> GetClass();
 	shared_ptr<Subject>GetSubject();
-	shared_ptr<int> GetNumberOfHours();
+	int GetNumberOfHours();
 
 
 
@@ -34,7 +34,7 @@ private:
 	shared_ptr<Subject> mSubject;
 	shared_ptr<Teacher> mTeacher;
 	shared_ptr<Classes> mClass;
-	shared_ptr<int> mHoursPerWeek;
+	int mHoursPerWeek;
 };
 
 Q_DECLARE_METATYPE(Lesson);

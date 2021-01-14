@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "Lesson.h"
 
-Lesson::Lesson(shared_ptr<Teacher> aTeacher,  shared_ptr<Classes>aClass, shared_ptr<Subject> aSubject, shared_ptr<int> aHoursPerWeek):
+Lesson::Lesson(shared_ptr<Teacher> aTeacher,  shared_ptr<Subject>aSubject, shared_ptr<Classes> aClass, int aHoursPerWeek):
 	mSubject(aSubject),mTeacher(aTeacher),mClass(aClass),mHoursPerWeek(aHoursPerWeek)
 {
 }
@@ -21,7 +21,7 @@ void Lesson::SetSubject(shared_ptr<Subject> aSubject)
 	this->mSubject = aSubject;
 }
 
-void Lesson::SetNumberOfHours(shared_ptr<int> aNumberOfHours)
+void Lesson::SetNumberOfHours(int aNumberOfHours)
 {
 	this->mHoursPerWeek = aNumberOfHours;
 }
@@ -41,7 +41,7 @@ shared_ptr<Subject> Lesson::GetSubject()
 	return mSubject;
 }
 
-shared_ptr<int> Lesson::GetNumberOfHours()
+int Lesson::GetNumberOfHours()
 {
 	return mHoursPerWeek;
 }

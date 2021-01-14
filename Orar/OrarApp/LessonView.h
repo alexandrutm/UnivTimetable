@@ -16,9 +16,6 @@ public:
 	void ClearData();
 	void UpdateTable();
 
-	QStringListModel* GetTeacherModelComboBox();
-	QStringListModel* GetSubjectModelComboBox();
-	QStringListModel* GetClassModelComboBox();
 
 private slots:
 

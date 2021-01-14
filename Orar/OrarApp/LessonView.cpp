@@ -47,7 +47,7 @@ void LessonView::UpdateTable()
 		QVariant classVar;
 		classVar.setValue(classPtr);
 
-		shared_ptr<int> hoursPerWeekPtr = (*j).GetNumberOfHours();
+		int hoursPerWeekPtr = (*j).GetNumberOfHours();
 		QVariant hoursPerWeekVar;
 		hoursPerWeekVar.setValue(hoursPerWeekPtr);
 
@@ -67,7 +67,7 @@ void LessonView::UpdateTable()
 				item->setText(QString::fromStdString((*classPtr).GetName()));
 			}
 			if (i == 3){
-				item->setText(QString::number((*hoursPerWeekPtr)));
+				item->setText(QString::number(hoursPerWeekPtr));
 			}
 
 			item->setTextAlignment(Qt::AlignHCenter);
@@ -79,27 +79,49 @@ void LessonView::UpdateTable()
 void LessonView::on_mAdd_clicked()
 {
 	LessonDialog AddDialog(this);
-	AddDialog.mTeacher->setModel(this->GetTeacherModelComboBox());
-	AddDialog.mSubject->setModel(this->GetSubjectModelComboBox());
-	AddDialog.mClasses->setModel(this->GetClassModelComboBox());
+	
+	auto mTeachers = mContext.GetTeachers();
+
+	for (auto i : mTeachers)
+	{
+		QVariant teacher;
+		teacher.setValue(i);
+		AddDialog.mTeacher->addItem(QString::fromStdString((*i).GetLastName()), teacher);
+	}
+
+
+	auto mSubject = mContext.GetSubjects();
+
+	for (auto i : mSubject)
+	{
+		QVariant subject;
+		subject.setValue(i);
+		AddDialog.mSubject->addItem(QString::fromStdString((*i).GetName()), subject);
+	}
+
+	auto mClass = mContext.GetClasses();
+
+	for (auto i : mClass)
+	{
+		QVariant classes;
+		classes.setValue(i);
+		AddDialog.mClasses->addItem(QString::fromStdString((*i).GetName()), classes);
+	}
+
+
 
 
 	if (AddDialog.exec())
 	{
 		//get data from dialog
-		QString teacherName = AddDialog.mTeacher->currentText();
-		QString subjectName = AddDialog.mSubject->currentText();
-		QString className = AddDialog.mClasses->currentText();
+		shared_ptr<Teacher> aTeacher = qvariant_cast<shared_ptr<Teacher>>(AddDialog.mTeacher->currentData());
+		shared_ptr<Subject> aSubject = qvariant_cast<shared_ptr<Subject>>(AddDialog.mSubject->currentData());
+		shared_ptr<Classes> aClass = qvariant_cast<shared_ptr<Classes>>(AddDialog.mClasses->currentData());
 		int HoursPerWeek = AddDialog.mHoursPerWeek->value();
 
 		//Add lesson to context
-	/*	shared_ptr <Teacher> aTeacher = make_shared<Teacher>(teacherName.toStdString());
-		shared_ptr <Subject>aSubject = make_shared<Subject>(subjectName.toStdString());
-		shared_ptr <Classes> aClass = make_shared<Classes>(className.toStdString());
-		shared_ptr <int>aHoursPerWeek = make_shared<int>(HoursPerWeek);*/
-		
-	/*	shared_ptr <Lesson> aLesson = make_shared<Lesson>(aTeacher, aSubject, aClass, aHoursPerWeek);
-		mContext.AddLesson(aLesson);*/
+		shared_ptr <Lesson> aLesson = make_shared<Lesson>(aTeacher, aSubject, aClass, HoursPerWeek);
+		mContext.AddLesson(aLesson);
 
 		this->UpdateTable();
 	}
@@ -109,9 +131,6 @@ void LessonView::on_mAdd_clicked()
 void LessonView::on_mEdit_clicked()
 {
 	LessonDialog EditDialog(this);
-	EditDialog.mTeacher->setModel(this->GetTeacherModelComboBox());
-	EditDialog.mSubject->setModel(this->GetSubjectModelComboBox());
-	EditDialog.mClasses->setModel(this->GetClassModelComboBox());
 
 	if (EditDialog.exec()) {
 
@@ -147,52 +166,3 @@ void LessonView::on_mBack_clicked()
 	mNavigator->ChangeView(INavigator::viewId::teacherView);
 }
 
-
-QStringListModel* LessonView::GetTeacherModelComboBox()
-{
-	QStringList listOfNames;
-
-	auto mTeachers = mContext.GetTeachers();
-
-	for (int i = 0; i < mTeachers.size(); i++)
-	{
-		listOfNames << QString::fromStdString(mTeachers[i]->GetFirstName());
-	}
-
-	QStringListModel* model = new QStringListModel();
-	model->setStringList(listOfNames);
-
-	return model;
-}
-
-QStringListModel* LessonView::GetSubjectModelComboBox()
-{
-	QStringList listOfNames;
-	auto mSubjects = mContext.GetSubjects();
-	for (int i = 0; i < mSubjects.size(); i++)
-	{
-		listOfNames << QString::fromStdString(mSubjects[i]->GetName());
-	}
-
-	QStringListModel* model = new QStringListModel();
-	model->setStringList(listOfNames);
-
-	return model;
-}
-
-QStringListModel* LessonView::GetClassModelComboBox()
-{
-	QStringList listOfNames;
-	
-	auto mClasses = mContext.GetClasses();
-
-	for (int i = 0; i < mClasses.size(); i++)
-	{
-		listOfNames << QString::fromStdString(mClasses[i]->GetName());
-	}
-
-	QStringListModel* model = new QStringListModel();
-	model->setStringList(listOfNames);
-
-	return model;
-}

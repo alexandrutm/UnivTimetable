@@ -31,7 +31,7 @@ public:
 	void AddLesson(shared_ptr<Lesson> aLesson);
 	void RemoveLesson(shared_ptr<Lesson> aLesson);
 	void EditLesson(shared_ptr<Lesson> aLesson, shared_ptr<Lesson> aNewLesson);
-	vector<shared_ptr<Lesson>>& GetLesson();
+	vector<shared_ptr<Lesson>>& GetLessons();
 
 	void AddRoom(shared_ptr<Room> aRoom);
 	void RemoveRoom(shared_ptr<Room> aRoom);

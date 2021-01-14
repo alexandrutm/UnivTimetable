@@ -165,7 +165,7 @@ void Context::EditLesson(shared_ptr<Lesson> aLesson, shared_ptr<Lesson> aNewLess
 
 }
 
-vector<shared_ptr<Lesson>>& Context::GetLesson()
+vector<shared_ptr<Lesson>>& Context::GetLessons()
 {
 	return mLessons;
 }

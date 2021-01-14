@@ -14,6 +14,8 @@ public:
 	LessonView(INavigator* aNavigator, Context& aContext,QWidget *parent = Q_NULLPTR);
 	~LessonView();
 	void ClearData();
+	void UpdateTable();
+
 	QStringListModel* GetTeacherModelComboBox();
 	QStringListModel* GetSubjectModelComboBox();
 	QStringListModel* GetClassModelComboBox();

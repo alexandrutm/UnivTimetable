@@ -25,6 +25,57 @@ void LessonView::ClearData()
 	ui.tableWidget->clearContents();
 }
 
+void LessonView::UpdateTable()
+{
+	this->ClearData();
+
+	auto Lessons = mContext.GetLessons();
+
+	for (auto j : Lessons)
+	{
+		ui.tableWidget->insertRow(ui.tableWidget->rowCount());
+
+		shared_ptr<Teacher> teacherPtr = (*j).GetTeacher();
+		QVariant teacherVar;
+		teacherVar.setValue(teacherPtr);
+
+		shared_ptr<Subject> subjectPtr = (*j).GetSubject();
+		QVariant subjectVar;
+		subjectVar.setValue(subjectPtr);
+
+		shared_ptr<Classes> classPtr = (*j).GetClass();
+		QVariant classVar;
+		classVar.setValue(classPtr);
+
+		shared_ptr<int> hoursPerWeekPtr = (*j).GetNumberOfHours();
+		QVariant hoursPerWeekVar;
+		hoursPerWeekVar.setValue(hoursPerWeekPtr);
+
+		for (int i = 0; i < ui.tableWidget->columnCount(); i++)
+		{
+			QTableWidgetItem* item = new QTableWidgetItem;
+
+
+			if (i == 0) {
+				item->setText(QString::fromStdString((*teacherPtr).GetLastName()));
+				//item->setData(Qt::UserRole,teacherVar);
+			}
+			if (i == 1) {
+				item->setText(QString::fromStdString((*subjectPtr).GetName()));
+			}
+			if (i == 2) {
+				item->setText(QString::fromStdString((*classPtr).GetName()));
+			}
+			if (i == 3){
+				item->setText(QString::number((*hoursPerWeekPtr)));
+			}
+
+			item->setTextAlignment(Qt::AlignHCenter);
+			ui.tableWidget->setItem(ui.tableWidget->rowCount() - 1, i, item);
+		}
+	}
+}
+
 void LessonView::on_mAdd_clicked()
 {
 	LessonDialog AddDialog(this);
@@ -42,34 +93,15 @@ void LessonView::on_mAdd_clicked()
 		int HoursPerWeek = AddDialog.mHoursPerWeek->value();
 
 		//Add lesson to context
-		shared_ptr <string> aTeacher = make_shared<string>(teacherName.toStdString());
-		shared_ptr <string>aSubject = make_shared<string>(subjectName.toStdString());
-		shared_ptr <string> aClass = make_shared<string>(className.toStdString());
-		shared_ptr <int>aHoursPerWeek = make_shared<int>(HoursPerWeek);
-		shared_ptr <Lesson> aLesson = make_shared<Lesson>(aTeacher, aSubject, aClass, aHoursPerWeek);
-		mContext.AddLesson(aLesson);
+	/*	shared_ptr <Teacher> aTeacher = make_shared<Teacher>(teacherName.toStdString());
+		shared_ptr <Subject>aSubject = make_shared<Subject>(subjectName.toStdString());
+		shared_ptr <Classes> aClass = make_shared<Classes>(className.toStdString());
+		shared_ptr <int>aHoursPerWeek = make_shared<int>(HoursPerWeek);*/
+		
+	/*	shared_ptr <Lesson> aLesson = make_shared<Lesson>(aTeacher, aSubject, aClass, aHoursPerWeek);
+		mContext.AddLesson(aLesson);*/
 
-		//add data to ui(table)
-		ui.tableWidget->insertRow(ui.tableWidget->rowCount());
-		for (int i = 0; i < ui.tableWidget->columnCount(); i++)
-		{
-			QTableWidgetItem* item = new QTableWidgetItem;
-
-			if (i == 0)
-				item->setText(teacherName);
-			if (i == 1)
-				item->setText(subjectName);
-			if (i == 2)
-				item->setText(className);
-			if (i == 3)
-				item->setText(QString::number(HoursPerWeek));
-
-			item->setTextAlignment(Qt::AlignHCenter);
-			ui.tableWidget->setItem(ui.tableWidget->rowCount() - 1, i, item);
-		}
-
-
-
+		this->UpdateTable();
 	}
 }
 
@@ -88,26 +120,11 @@ void LessonView::on_mEdit_clicked()
 		QString className = EditDialog.mClasses->currentText();
 		int HoursPerWeek = EditDialog.mHoursPerWeek->value();
 
-		int row = ui.tableWidget->currentRow();
-
-		for (int i = 0; i < ui.tableWidget->columnCount(); i++)
-		{
-
-			QTableWidgetItem* item = new QTableWidgetItem;
-
-			if (i == 0)
-				item->setText(teacherName);
-			if (i == 1)
-				item->setText(subjectName);
-			if (i == 2)
-				item->setText(className);
-			if (i == 3)
-				item->setText(QString::number(HoursPerWeek));
-
-			item->setTextAlignment(Qt::AlignHCenter);
-			ui.tableWidget->setItem(row, i, item);
-
-		}
+		//shared_ptr <Teacher> aTeacher = make_shared<Teacher>(teacherName.toStdString());
+		//shared_ptr <Subject>aSubject = make_shared<Subject>(subjectName.toStdString());
+		//shared_ptr <Classes> aClass = make_shared<Classes>(className.toStdString());
+		//shared_ptr <int>aHoursPerWeek = make_shared<int>(HoursPerWeek);
+		
 	}
 }
 

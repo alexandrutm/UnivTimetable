@@ -126,6 +126,7 @@ void LessonView::PopulateDialog(QString instruction)
 	}
 	else
 	{
+
 		QTableWidgetItem* currentItem = ui.tableWidget->currentItem();
 
 		if (aDialog.exec())
@@ -162,11 +163,6 @@ void LessonView::on_mDelete_clicked()
 void LessonView::on_mConstraints_clicked()
 {
 
-}
-
-void LessonView::on_mGenerate_clicked()
-{
-	//generate timetable
 }
 
 void LessonView::on_mBack_clicked()

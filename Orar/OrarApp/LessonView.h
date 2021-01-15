@@ -23,7 +23,6 @@ private slots:
 	void on_mEdit_clicked();
 	void on_mDelete_clicked();
 	void on_mConstraints_clicked();
-	void on_mGenerate_clicked();
 	void on_mBack_clicked();
 
 

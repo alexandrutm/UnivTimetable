@@ -46,6 +46,12 @@
         <property name="editTriggers">
          <set>QAbstractItemView::EditKeyPressed</set>
         </property>
+        <property name="selectionMode">
+         <enum>QAbstractItemView::SingleSelection</enum>
+        </property>
+        <property name="selectionBehavior">
+         <enum>QAbstractItemView::SelectRows</enum>
+        </property>
         <property name="showGrid">
          <bool>false</bool>
         </property>
@@ -224,7 +230,7 @@ QPushButton:hover {
          </spacer>
         </item>
         <item>
-         <widget class="QPushButton" name="mGenerate">
+         <widget class="QPushButton" name="mConstraints">
           <property name="minimumSize">
            <size>
             <width>0</width>
@@ -244,7 +250,7 @@ QPushButton:hover {
 }</string>
           </property>
           <property name="text">
-           <string>Generate</string>
+           <string>Constraints</string>
           </property>
          </widget>
         </item>

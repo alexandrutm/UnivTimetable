@@ -502,9 +502,11 @@ QPushButton:hover {
     <addaction name="mNew"/>
     <addaction name="separator"/>
     <addaction name="mSave"/>
+    <addaction name="mGenerate"/>
     <addaction name="separator"/>
     <addaction name="mOpen"/>
     <addaction name="mClose"/>
+    <addaction name="mImport_data"/>
    </widget>
    <widget class="QMenu" name="menuView">
     <property name="title">
@@ -552,6 +554,8 @@ QPushButton:hover {
    <addaction name="mOpen"/>
    <addaction name="mSave"/>
    <addaction name="separator"/>
+   <addaction name="mImport_data"/>
+   <addaction name="mGenerate"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <action name="mNew">
@@ -584,6 +588,24 @@ QPushButton:hover {
   <action name="mClose">
    <property name="text">
     <string>Close</string>
+   </property>
+  </action>
+  <action name="mGenerate">
+   <property name="icon">
+    <iconset resource="OrarApp.qrc">
+     <normaloff>:/OrarApp/img/Generate2.png</normaloff>:/OrarApp/img/Generate2.png</iconset>
+   </property>
+   <property name="text">
+    <string>Generate timetable</string>
+   </property>
+  </action>
+  <action name="mImport_data">
+   <property name="icon">
+    <iconset resource="OrarApp.qrc">
+     <normaloff>:/OrarApp/img/import4.png</normaloff>:/OrarApp/img/import4.png</iconset>
+   </property>
+   <property name="text">
+    <string>Import data</string>
    </property>
   </action>
  </widget>

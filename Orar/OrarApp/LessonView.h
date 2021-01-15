@@ -15,7 +15,7 @@ public:
 	~LessonView();
 	void ClearData();
 	void UpdateTable();
-
+	void PopulateDialog(QString instuction);
 
 private slots:
 

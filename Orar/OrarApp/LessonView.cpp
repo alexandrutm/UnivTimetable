@@ -76,17 +76,17 @@ void LessonView::UpdateTable()
 	}
 }
 
-void LessonView::on_mAdd_clicked()
+void LessonView::PopulateDialog(QString instruction)
 {
-	LessonDialog AddDialog(this);
-	
+	LessonDialog aDialog(this);
+
 	auto mTeachers = mContext.GetTeachers();
 
 	for (auto i : mTeachers)
 	{
 		QVariant teacher;
 		teacher.setValue(i);
-		AddDialog.mTeacher->addItem(QString::fromStdString((*i).GetLastName()), teacher);
+		aDialog.mTeacher->addItem(QString::fromStdString((*i).GetLastName()), teacher);
 	}
 
 
@@ -96,7 +96,7 @@ void LessonView::on_mAdd_clicked()
 	{
 		QVariant subject;
 		subject.setValue(i);
-		AddDialog.mSubject->addItem(QString::fromStdString((*i).GetName()), subject);
+		aDialog.mSubject->addItem(QString::fromStdString((*i).GetName()), subject);
 	}
 
 	auto mClass = mContext.GetClasses();
@@ -105,46 +105,54 @@ void LessonView::on_mAdd_clicked()
 	{
 		QVariant classes;
 		classes.setValue(i);
-		AddDialog.mClasses->addItem(QString::fromStdString((*i).GetName()), classes);
+		aDialog.mClasses->addItem(QString::fromStdString((*i).GetName()), classes);
 	}
 
+	if (instruction == "add") {
+		if (aDialog.exec())
+		{
+			//get data from dialog
+			shared_ptr<Teacher> aTeacher = qvariant_cast<shared_ptr<Teacher>>(aDialog.mTeacher->currentData());
+			shared_ptr<Subject> aSubject = qvariant_cast<shared_ptr<Subject>>(aDialog.mSubject->currentData());
+			shared_ptr<Classes> aClass = qvariant_cast<shared_ptr<Classes>>(aDialog.mClasses->currentData());
+			int HoursPerWeek = aDialog.mHoursPerWeek->value();
 
+			//Add lesson to context
+			shared_ptr <Lesson> aLesson = make_shared<Lesson>(aTeacher, aSubject, aClass, HoursPerWeek);
+			mContext.AddLesson(aLesson);
 
-
-	if (AddDialog.exec())
+			this->UpdateTable();
+		}
+	}
+	else
 	{
-		//get data from dialog
-		shared_ptr<Teacher> aTeacher = qvariant_cast<shared_ptr<Teacher>>(AddDialog.mTeacher->currentData());
-		shared_ptr<Subject> aSubject = qvariant_cast<shared_ptr<Subject>>(AddDialog.mSubject->currentData());
-		shared_ptr<Classes> aClass = qvariant_cast<shared_ptr<Classes>>(AddDialog.mClasses->currentData());
-		int HoursPerWeek = AddDialog.mHoursPerWeek->value();
+		QTableWidgetItem* currentItem = ui.tableWidget->currentItem();
 
-		//Add lesson to context
-		shared_ptr <Lesson> aLesson = make_shared<Lesson>(aTeacher, aSubject, aClass, HoursPerWeek);
-		mContext.AddLesson(aLesson);
+		if (aDialog.exec())
+		{
+			//get data from dialog
+			shared_ptr<Teacher> aTeacher = qvariant_cast<shared_ptr<Teacher>>(aDialog.mTeacher->currentData());
+			shared_ptr<Subject> aSubject = qvariant_cast<shared_ptr<Subject>>(aDialog.mSubject->currentData());
+			shared_ptr<Classes> aClass = qvariant_cast<shared_ptr<Classes>>(aDialog.mClasses->currentData());
+			int HoursPerWeek = aDialog.mHoursPerWeek->value();
 
-		this->UpdateTable();
+			//Add lesson to context
+			shared_ptr <Lesson> aLesson = make_shared<Lesson>(aTeacher, aSubject, aClass, HoursPerWeek);
+			mContext.AddLesson(aLesson);
+
+			this->UpdateTable();
+		}
 	}
 }
 
+void LessonView::on_mAdd_clicked()
+{
+	this->PopulateDialog("add");
+}
 
 void LessonView::on_mEdit_clicked()
 {
-	LessonDialog EditDialog(this);
-
-	if (EditDialog.exec()) {
-
-		QString teacherName = EditDialog.mTeacher->currentText();
-		QString subjectName = EditDialog.mSubject->currentText();
-		QString className = EditDialog.mClasses->currentText();
-		int HoursPerWeek = EditDialog.mHoursPerWeek->value();
-
-		//shared_ptr <Teacher> aTeacher = make_shared<Teacher>(teacherName.toStdString());
-		//shared_ptr <Subject>aSubject = make_shared<Subject>(subjectName.toStdString());
-		//shared_ptr <Classes> aClass = make_shared<Classes>(className.toStdString());
-		//shared_ptr <int>aHoursPerWeek = make_shared<int>(HoursPerWeek);
-		
-	}
+	this->PopulateDialog("edit");
 }
 
 void LessonView::on_mDelete_clicked()

@@ -36,12 +36,12 @@
      </property>
      <layout class="QHBoxLayout" name="horizontalLayout">
       <item>
-       <widget class="QListWidget" name="mList">
-        <property name="frameShape">
-         <enum>QFrame::NoFrame</enum>
+       <widget class="QTableView" name="mTable">
+        <property name="selectionMode">
+         <enum>QAbstractItemView::ExtendedSelection</enum>
         </property>
-        <property name="modelColumn">
-         <number>0</number>
+        <property name="selectionBehavior">
+         <enum>QAbstractItemView::SelectRows</enum>
         </property>
        </widget>
       </item>

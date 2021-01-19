@@ -17,6 +17,8 @@ public:
 	void RemoveTeacher(shared_ptr<Teacher>);
 	void EditTeacher(shared_ptr<Teacher>,shared_ptr<Teacher>);
 	vector<shared_ptr<Teacher>>& GetTeachers();
+	int GetTeacherSize();
+	shared_ptr<Teacher>GetTeacherByIndex(int i);
 
 	void AddSubject(shared_ptr<Subject> aSubject);
 	void RemoveSubject(shared_ptr<Subject> aSubject);

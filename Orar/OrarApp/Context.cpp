@@ -19,18 +19,11 @@ void Context::AddTeacher(shared_ptr<Teacher> aTeacher)
 
 void Context::RemoveTeacher(shared_ptr<Teacher>aTeacher)
 {
-	auto i = begin(mTeachers);
+	mTeachers.erase(remove_if(mTeachers.begin(), mTeachers.end(), [&](auto const& teacher) {
+		return *teacher == *aTeacher;
+		}), mTeachers.end());
 
-	while (i != end(mTeachers))
-	{
-		if ((*i)==aTeacher)
-		{
-			i = mTeachers.erase(i);
-			break;
-		}
-		else
-			i++;
-	}
+	//erase_if(mTeachers, [&](auto const& teacher) {return *teacher == *aTeacher; });
 
 }
 
@@ -48,6 +41,16 @@ void Context::EditTeacher(shared_ptr<Teacher> aOldTeacher,shared_ptr<Teacher> aN
 vector<shared_ptr<Teacher>>& Context::GetTeachers()
 {
 	return mTeachers;
+}
+
+int Context::GetTeacherSize()
+{
+	return mTeachers.size();
+}
+
+shared_ptr<Teacher> Context::GetTeacherByIndex(int i)
+{
+	return mTeachers[i];
 }
 
 void Context::AddSubject(shared_ptr<Subject> aSubject)

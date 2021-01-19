@@ -99,7 +99,10 @@
       <Filter>Source Files\views</Filter>
     </ClCompile>
     <ClCompile Include="Room.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\data</Filter>
+    </ClCompile>
+    <ClCompile Include="TableModel.cpp">
+      <Filter>Source Files\views</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -137,6 +140,9 @@
       <Filter>Source Files\views</Filter>
     </QtMoc>
     <QtMoc Include="RoomView.h">
+      <Filter>Source Files\views</Filter>
+    </QtMoc>
+    <QtMoc Include="TableModel.h">
       <Filter>Source Files\views</Filter>
     </QtMoc>
   </ItemGroup>

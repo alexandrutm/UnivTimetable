@@ -4,38 +4,23 @@
 #include "Context.h"
 #include "TeacherDialog.h"
 #include "Teacher.h"
+#include "TableModel.h"
 
-TeacherView::TeacherView(INavigator* aNavigator, Context& aContext,QWidget *parent)
-	: QWidget(parent),mNavigator(aNavigator),mContext(aContext)
+TeacherView::TeacherView(INavigator* aNavigator, Context& aContext, QWidget* parent)
+	: QWidget(parent), mNavigator(aNavigator), mContext(aContext)
 {
 	ui.setupUi(this);
+	tableModel = new TableModel(mContext, this);
+
+	ui.mTable->setModel(tableModel);
+
+	QHeaderView* header = ui.mTable->horizontalHeader();
+	header->setSectionResizeMode(QHeaderView::Stretch);
+
 }
 
 TeacherView::~TeacherView()
 {
-}
-
-void TeacherView::ClearData()
-{
-	ui.mList->clear();
-}
-
-void TeacherView::UpdateList()
-{
-	this->ClearData();
-
-	auto mTeachers = mContext.GetTeachers();
-
-	for (auto i : mTeachers)
-	{
-		QVariant teacher;
-		teacher.setValue(i);
-
-		QListWidgetItem* item = new QListWidgetItem(QString::fromStdString((*i).GetFirstName()), ui.mList);
-		item->setData(Qt::UserRole,teacher);
-		ui.mList->setCurrentItem(item);
-	}
-
 }
 
 void TeacherView::on_mAdd_clicked()
@@ -44,17 +29,13 @@ void TeacherView::on_mAdd_clicked()
 
 	if (Add.exec())
 	{
-		
+
 		QString firstName = Add.mFirstName->text();
 		QString lastName = Add.mLastName->text();
 		if (!firstName.isEmpty())
 		{
-			//first store data in context and after that load data from context in ui
-			shared_ptr<Teacher> newTeacher = make_shared<Teacher>(firstName.toStdString(), lastName.toStdString());
-			mContext.AddTeacher(newTeacher);
+			tableModel->PopulateModel(firstName, lastName);
 
-			//update ui
-			this->UpdateList();
 		}
 		else
 		{
@@ -68,42 +49,36 @@ void TeacherView::on_mAdd_clicked()
 void TeacherView::on_mEdit_clicked()
 {
 	TeacherDialog Edit(this);
+	auto selectedRow = ui.mTable->selectionModel()->currentIndex().row();
 
-	QListWidgetItem* item = ui.mList->currentItem();
-
-	if (item)
+	if (!selectedRow)
 	{
-
+		QMessageBox::about(this, "No item selected", "Pleasea chose an item to edit");
+	}
+	else
 		if (Edit.exec())
 		{
 			QString firstName = Edit.mFirstName->text();
 			QString lastName = Edit.mLastName->text();
 
-			shared_ptr<Teacher> oldTeacher = qvariant_cast<shared_ptr<Teacher>>(item->data(Qt::UserRole));
-			shared_ptr<Teacher>newTeacher = make_shared<Teacher>(firstName.toStdString(), lastName.toStdString());
+			tableModel->EditModel(selectedRow, firstName, lastName);
 
-			mContext.EditTeacher(oldTeacher, newTeacher);
-
-			this->UpdateList();
 		}
-	}
 }
 
 void TeacherView::on_mDelete_clicked()
 {
-	QListWidgetItem* item = ui.mList->currentItem();
 
-	if (item)
-	{
-		mContext.RemoveTeacher(qvariant_cast<shared_ptr<Teacher>>(item->data(Qt::UserRole)));
-		delete item;
+	auto selectedRow = ui.mTable->selectionModel()->currentIndex().row();
 
-		this->UpdateList();
-	}
-	else
-	{
-		QMessageBox::about(this, "Delete", "Please choose what you want to delete");
-	}
+	//if (!selectedRow)
+	//{
+		//QMessageBox::about(this, "No item selected", "Pleasea chose an item to delete");
+	//}
+	//else
+	//{
+		tableModel->RemoveItemFromModel(selectedRow);
+	//}
 }
 
 void TeacherView::on_mConstraints_clicked()

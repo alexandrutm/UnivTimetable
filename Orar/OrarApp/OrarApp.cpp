@@ -128,7 +128,6 @@ void OrarApp::on_mNew_triggered()
         mBasicInfoView.ClearData();
         mSubjectView.ClearData();
         mClassView.ClearData();
-        mTeacherView.ClearData();
         mRoomView.ClearData();
         mLessonView.ClearData();
     }

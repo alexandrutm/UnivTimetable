@@ -114,6 +114,7 @@
     <ClCompile Include="Subject.cpp" />
     <ClCompile Include="SubjectDialog.cpp" />
     <ClCompile Include="SubjectView.cpp" />
+    <ClCompile Include="TableModel.cpp" />
     <ClCompile Include="Teacher.cpp" />
     <ClCompile Include="BasicInfoView.cpp" />
     <ClCompile Include="TeacherDialog.cpp" />
@@ -131,6 +132,7 @@
     <ClInclude Include="Room.h" />
     <ClInclude Include="Subject.h" />
     <QtMoc Include="SubjectView.h" />
+    <QtMoc Include="TableModel.h" />
     <ClInclude Include="Teacher.h" />
     <QtMoc Include="SubjectDialog.h" />
     <QtMoc Include="BasicInfoView.h" />

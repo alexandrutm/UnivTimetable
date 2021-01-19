@@ -5,6 +5,7 @@
 
 class INavigator;
 class Context;
+class TableModel;
 
 class TeacherView : public QWidget
 {
@@ -13,8 +14,7 @@ class TeacherView : public QWidget
 public:
 	TeacherView(INavigator* aNavigator, Context& aContext,QWidget *parent = Q_NULLPTR);
 	~TeacherView();
-	void ClearData();
-	void UpdateList();
+
 
 private slots:
 	void on_mAdd_clicked();
@@ -27,5 +27,6 @@ private slots:
 private:
 	Ui::TeacherView ui;
 	INavigator* mNavigator;
+	TableModel* tableModel;
 	Context& mContext;
 };

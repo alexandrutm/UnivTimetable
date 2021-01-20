@@ -3,6 +3,7 @@
 class Room
 {
 public:
+	Room(string aName);
 	bool operator==(const Room& aRoom);
 	Room& operator=(const Room& aRoom);
 
@@ -10,5 +11,5 @@ public:
 	string GetNume();
 
 private:
-	string mNume;
+	string mName;
 };

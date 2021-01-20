@@ -125,11 +125,7 @@ void OrarApp::on_mNew_triggered()
         mContext.DeleteData();
         ui.centralStackWidget->setCurrentIndex(1);
         ui.viewStackedWidget->setCurrentIndex(0);
-        mBasicInfoView.ClearData();
-        mSubjectView.ClearData();
-        mClassView.ClearData();
-        mRoomView.ClearData();
-        mLessonView.ClearData();
+
     }
     else
     {

@@ -37,6 +37,9 @@
      <layout class="QHBoxLayout" name="horizontalLayout">
       <item>
        <widget class="QTableView" name="mTable">
+        <property name="frameShape">
+         <enum>QFrame::NoFrame</enum>
+        </property>
         <property name="selectionMode">
          <enum>QAbstractItemView::ExtendedSelection</enum>
         </property>

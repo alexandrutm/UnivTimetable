@@ -24,21 +24,29 @@ public:
 	void RemoveSubject(shared_ptr<Subject> aSubject);
 	void EditSubject(shared_ptr<Subject> aSubject, shared_ptr<Subject> aNewSubject);
 	vector<shared_ptr<Subject>>& GetSubjects();
+	int GetSubjectSize();
+	shared_ptr<Subject>GetSubjectByIndex(int i);
 	
 	void AddClass(shared_ptr<Classes> aClass);
 	void RemoveClass(shared_ptr<Classes> aClass);
 	void EditClasses(shared_ptr<Classes> aClass, shared_ptr<Classes> aNewClass);
 	vector<shared_ptr<Classes>>& GetClasses();
+	int GetClassSize();
+	shared_ptr<Classes> GetClassByIndex(int i);
 
 	void AddLesson(shared_ptr<Lesson> aLesson);
 	void RemoveLesson(shared_ptr<Lesson> aLesson);
 	void EditLesson(shared_ptr<Lesson> aLesson, shared_ptr<Lesson> aNewLesson);
 	vector<shared_ptr<Lesson>>& GetLessons();
+	int GetLessonSize();
+	shared_ptr<Lesson>GetLessonByIndex(int i);
 
 	void AddRoom(shared_ptr<Room> aRoom);
 	void RemoveRoom(shared_ptr<Room> aRoom);
 	void EditRoom(shared_ptr<Room> aRoom, shared_ptr<Room> aNewRoom);
 	vector<shared_ptr<Room>>& GetRooms();
+	int GetRoomSize();
+	shared_ptr<Room> GetRoomByIndex(int i);
 
 	void AddBasicInfo(shared_ptr<BasicInfo> aBasicInfo);
 

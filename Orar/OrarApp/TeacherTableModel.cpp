@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "TableModel.h"
+#include "TeacherTableModel.h"
 #include"Context.h"
 #include"Teacher.h"
 
@@ -13,6 +13,7 @@ TableModel::TableModel(Context &aContext,QObject* parent)
 int TableModel::rowCount(const QModelIndex& parent) const
 {
     return mContext.GetTeacherSize();
+
 }
 
 int TableModel::columnCount(const QModelIndex& parent) const

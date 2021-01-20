@@ -28,6 +28,9 @@
     <Filter Include="Source Files\data">
       <UniqueIdentifier>{cb323945-3724-4ae1-be06-df0fc7086790}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Models">
+      <UniqueIdentifier>{9f1588d3-452e-4781-9428-e2a1aa5cf897}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <QtRcc Include="OrarApp.qrc">
@@ -101,7 +104,19 @@
     <ClCompile Include="Room.cpp">
       <Filter>Source Files\data</Filter>
     </ClCompile>
-    <ClCompile Include="TableModel.cpp">
+    <ClCompile Include="TeacherTableModel.cpp">
+      <Filter>Source Files\Models</Filter>
+    </ClCompile>
+    <ClCompile Include="SubjectTableModel.cpp">
+      <Filter>Source Files\Models</Filter>
+    </ClCompile>
+    <ClCompile Include="ClassTableModel.cpp">
+      <Filter>Source Files\Models</Filter>
+    </ClCompile>
+    <ClCompile Include="RoomTableModel.cpp">
+      <Filter>Source Files\Models</Filter>
+    </ClCompile>
+    <ClCompile Include="RoomDialog.cpp">
       <Filter>Source Files\views</Filter>
     </ClCompile>
   </ItemGroup>
@@ -142,7 +157,19 @@
     <QtMoc Include="RoomView.h">
       <Filter>Source Files\views</Filter>
     </QtMoc>
-    <QtMoc Include="TableModel.h">
+    <QtMoc Include="TeacherTableModel.h">
+      <Filter>Source Files\Models</Filter>
+    </QtMoc>
+    <QtMoc Include="SubjectTableModel.h">
+      <Filter>Source Files\Models</Filter>
+    </QtMoc>
+    <QtMoc Include="ClassTableModel.h">
+      <Filter>Source Files\Models</Filter>
+    </QtMoc>
+    <QtMoc Include="RoomTableModel.h">
+      <Filter>Source Files\Models</Filter>
+    </QtMoc>
+    <QtMoc Include="RoomDialog.h">
       <Filter>Source Files\views</Filter>
     </QtMoc>
   </ItemGroup>
@@ -178,6 +205,9 @@
       <Filter>Resource Files</Filter>
     </QtUic>
     <QtUic Include="RoomView.ui">
+      <Filter>Resource Files</Filter>
+    </QtUic>
+    <QtUic Include="RoomDialog.ui">
       <Filter>Resource Files</Filter>
     </QtUic>
   </ItemGroup>

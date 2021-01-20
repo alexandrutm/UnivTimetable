@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>535</width>
-    <height>318</height>
+    <width>634</width>
+    <height>413</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -252,9 +252,12 @@ QPushButton:hover {
          </layout>
         </item>
         <item row="0" column="0">
-         <widget class="QListWidget" name="mList">
+         <widget class="QTableView" name="mTable">
           <property name="frameShape">
            <enum>QFrame::NoFrame</enum>
+          </property>
+          <property name="selectionBehavior">
+           <enum>QAbstractItemView::SelectRows</enum>
           </property>
          </widget>
         </item>

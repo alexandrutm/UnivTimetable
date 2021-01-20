@@ -105,16 +105,20 @@
     <ClCompile Include="Classes.cpp" />
     <ClCompile Include="ClassesDialog.cpp" />
     <ClCompile Include="ClassesView.cpp" />
+    <ClCompile Include="ClassTableModel.cpp" />
     <ClCompile Include="Context.cpp" />
     <ClCompile Include="Lesson.cpp" />
     <ClCompile Include="LessonDialog.cpp" />
     <ClCompile Include="LessonView.cpp" />
     <ClCompile Include="Room.cpp" />
+    <ClCompile Include="RoomDialog.cpp" />
+    <ClCompile Include="RoomTableModel.cpp" />
     <ClCompile Include="RoomView.cpp" />
     <ClCompile Include="Subject.cpp" />
     <ClCompile Include="SubjectDialog.cpp" />
+    <ClCompile Include="SubjectTableModel.cpp" />
     <ClCompile Include="SubjectView.cpp" />
-    <ClCompile Include="TableModel.cpp" />
+    <ClCompile Include="TeacherTableModel.cpp" />
     <ClCompile Include="Teacher.cpp" />
     <ClCompile Include="BasicInfoView.cpp" />
     <ClCompile Include="TeacherDialog.cpp" />
@@ -126,13 +130,17 @@
     <ClInclude Include="BasicInfo.h" />
     <ClInclude Include="Classes.h" />
     <QtMoc Include="LessonView.h" />
+    <QtMoc Include="ClassTableModel.h" />
     <ClInclude Include="Lesson.h" />
     <QtMoc Include="LessonDialog.h" />
     <QtMoc Include="RoomView.h" />
     <ClInclude Include="Room.h" />
+    <QtMoc Include="RoomTableModel.h" />
+    <QtMoc Include="RoomDialog.h" />
     <ClInclude Include="Subject.h" />
     <QtMoc Include="SubjectView.h" />
-    <QtMoc Include="TableModel.h" />
+    <QtMoc Include="TeacherTableModel.h" />
+    <QtMoc Include="SubjectTableModel.h" />
     <ClInclude Include="Teacher.h" />
     <QtMoc Include="SubjectDialog.h" />
     <QtMoc Include="BasicInfoView.h" />
@@ -155,6 +163,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <QtUic Include="RoomDialog.ui" />
     <QtUic Include="RoomView.ui" />
     <QtUic Include="SubjectDialog.ui" />
     <QtUic Include="SubjectView.ui" />

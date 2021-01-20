@@ -3,7 +3,9 @@
 #include "INavigator.h"
 #include "Context.h"
 #include "ClassesDialog.h"
-#include"Classes.h"
+#include "Classes.h"
+#include "ClassTableModel.h"
+
 
 
 
@@ -11,33 +13,18 @@ ClassesView::ClassesView(INavigator* aNavigator,Context & aContext,QWidget *pare
 	: QWidget(parent),mContext(aContext),mNavigator(aNavigator)
 {
 	ui.setupUi(this);
+	tableModel = new ClassTableModel(mContext, this);
+
+	ui.mTable->setModel(tableModel);
+
+	QHeaderView* header = ui.mTable->horizontalHeader();
+	header->setSectionResizeMode(QHeaderView::Stretch);
 }
 
 ClassesView::~ClassesView()
 {
 }
 
-void ClassesView::ClearData()
-{
-	ui.mList->clear();
-}
-
-void ClassesView::UpdateList()
-{
-	this->ClearData();
-
-	auto mClasses = mContext.GetClasses();
-
-	for (auto i : mClasses)
-	{
-		QVariant classes;
-		classes.setValue(i);
-
-		QListWidgetItem* item = new QListWidgetItem(QString::fromStdString((*i).GetName()), ui.mList);
-		item->setData(Qt::UserRole, classes);
-		ui.mList->setCurrentItem(item);
-	}
-}
 
 void ClassesView::on_mAdd_clicked()
 {
@@ -50,10 +37,7 @@ void ClassesView::on_mAdd_clicked()
 
 		if (!name.isEmpty())
 		{
-			shared_ptr<Classes> newClass = make_shared<Classes>(name.toStdString(), numberOfStudents);
-			mContext.AddClass(newClass);
-
-			this->UpdateList();
+			tableModel->PopulateModel(name, numberOfStudents);
 		}
 		else
 			QMessageBox::about(this, "Name error", "You need to insert a class name");
@@ -64,36 +48,33 @@ void ClassesView::on_mAdd_clicked()
 void ClassesView::on_mEdit_clicked()
 {
 	ClassesDialog EditDialog(this);
-	QListWidgetItem* item = ui.mList->currentItem();
+	auto selectedRow = ui.mTable->selectionModel()->currentIndex().row();
 
-	if (item)
+	if (selectedRow < 0)
 	{
-		if (EditDialog.exec()) {
-			
-			QString name = EditDialog.Name->text();
-			int numberOfStudents = EditDialog.NumberOfStudents->value();
-
-			shared_ptr<Classes> oldClass=qvariant_cast<shared_ptr<Classes>>(item->data(Qt::UserRole));
-
-			mContext.EditClasses(oldClass,make_shared<Classes>(name.toStdString(),numberOfStudents));
-
-			this->UpdateList();
-		}
+		QMessageBox::about(this, "No Class Selected", "Please choose a class");
 	}
+	else
+		if (EditDialog.exec())
+		{
+			QString aName = EditDialog.Name->text();
+			int aNumberOfStudents = EditDialog.NumberOfStudents->value();
+
+			tableModel->EditModel(selectedRow, aName, aNumberOfStudents);
+		}
 
 }
 
 void ClassesView::on_mDelete_clicked()
 {
-	QListWidgetItem* item = ui.mList->currentItem();
+	auto selectedRow = ui.mTable->selectionModel()->currentIndex().row();
 
-	if (item)
+	if (selectedRow < 0)
 	{
-		mContext.RemoveClass(qvariant_cast<shared_ptr<Classes>>(item->data(Qt::UserRole)));
-		delete item;
-
-		this->UpdateList();
+		QMessageBox::about(this, "No Class Selected", "Please choose class you want to delete");
 	}
+	else
+		tableModel->RemoveItemFromModel(selectedRow);
 }
 
 void ClassesView::on_mConstraints_clicked()

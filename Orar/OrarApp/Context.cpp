@@ -92,6 +92,16 @@ vector<shared_ptr<Subject>>& Context::GetSubjects()
 	return mSubjects;
 }
 
+int Context::GetSubjectSize()
+{
+	return mSubjects.size();
+}
+
+shared_ptr<Subject> Context::GetSubjectByIndex(int i)
+{
+	return mSubjects[i];
+}
+
 void Context::AddClass(shared_ptr<Classes> aClass)
 {
 	mClasses.push_back(aClass);
@@ -118,7 +128,7 @@ void Context::EditClasses(shared_ptr<Classes> aClass, shared_ptr<Classes> aNewCl
 {
 	auto it = find_if(mClasses.begin(), mClasses.end(), [&](shared_ptr<Classes>const& c)
 		{
-			return *c == *aNewClass;
+			return *c == *aClass;
 		});
 
 	if (it != mClasses.end())
@@ -130,6 +140,16 @@ void Context::EditClasses(shared_ptr<Classes> aClass, shared_ptr<Classes> aNewCl
 vector<shared_ptr<Classes>>& Context::GetClasses()
 {
 	return mClasses;
+}
+
+int Context::GetClassSize()
+{
+	return mClasses.size();
+}
+
+shared_ptr<Classes> Context::GetClassByIndex(int i)
+{
+	return mClasses[i];
 }
 
 void Context::AddLesson(shared_ptr<Lesson> aLesson)
@@ -173,6 +193,16 @@ vector<shared_ptr<Lesson>>& Context::GetLessons()
 	return mLessons;
 }
 
+int Context::GetLessonSize()
+{
+	return mLessons.size();
+}
+
+shared_ptr<Lesson> Context::GetLessonByIndex(int i)
+{
+	return mLessons[i];
+}
+
 void Context::AddRoom(shared_ptr<Room> aRoom)
 {
 	mRooms.push_back(aRoom);
@@ -210,6 +240,16 @@ void Context::EditRoom(shared_ptr<Room> aRoom, shared_ptr<Room> aNewRoom)
 vector<shared_ptr<Room>>& Context::GetRooms()
 {
 	return mRooms;
+}
+
+int Context::GetRoomSize()
+{
+	return mRooms.size();
+}
+
+shared_ptr<Room> Context::GetRoomByIndex(int i)
+{
+	return mRooms[i];
 }
 
 void Context::AddBasicInfo(shared_ptr<BasicInfo> aBasicInfo)

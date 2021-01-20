@@ -5,6 +5,7 @@
 
 class Context;
 class INavigator;
+class ClassTableModel;
 
 class ClassesView : public QWidget
 {
@@ -26,6 +27,7 @@ private slots:
 private:
 	Ui::ClassesView ui;
 
+	ClassTableModel* tableModel;
 	Context& mContext;
 	INavigator* mNavigator;
 };

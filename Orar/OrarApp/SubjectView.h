@@ -5,6 +5,7 @@
 
 class INavigator;
 class Context;
+class SubjectTableModel;
 
 class SubjectView : public QWidget
 {
@@ -13,8 +14,7 @@ class SubjectView : public QWidget
 public:
 	SubjectView(INavigator* aNavigator,Context& aContext,QWidget *parent = Q_NULLPTR);
 	~SubjectView();
-	void ClearData();
-	void UpdateList();
+
 
 private slots:
 	void on_mAdd_clicked();
@@ -27,6 +27,7 @@ private slots:
 private:
 	Ui::SubjectView ui;
 	INavigator *mNavigator;
+	SubjectTableModel* tableModel;
 	Context& mContext;
 	
 };

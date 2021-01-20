@@ -1,9 +1,14 @@
 #include"stdafx.h"
 #include "Room.h"
 
+Room::Room(string aName)
+	:mName(aName)
+{
+}
+
 bool Room::operator==(const Room& aRoom)
 {
-	if (this->mNume == aRoom.mNume)
+	if (this->mName == aRoom.mName)
 		return true;
 
 	return false;
@@ -13,17 +18,17 @@ Room& Room::operator=(const Room& aRoom)
 {
 	if (this != &aRoom)
 	{
-		this->mNume = aRoom.mNume;
+		this->mName = aRoom.mName;
 	}
 	return *this;
 }
 
 void Room::SetNume(string aNume)
 {
-	mNume = aNume;
+	mName = aNume;
 }
 
 string Room::GetNume()
 {
-	return mNume;
+	return mName;
 }

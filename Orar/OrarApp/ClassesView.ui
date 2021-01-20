@@ -252,9 +252,12 @@ QPushButton:hover {
          </layout>
         </item>
         <item row="0" column="0">
-         <widget class="QListWidget" name="mList">
+         <widget class="QTableView" name="mTable">
           <property name="frameShape">
            <enum>QFrame::NoFrame</enum>
+          </property>
+          <property name="selectionBehavior">
+           <enum>QAbstractItemView::SelectRows</enum>
           </property>
          </widget>
         </item>

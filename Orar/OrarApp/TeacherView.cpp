@@ -4,7 +4,7 @@
 #include "Context.h"
 #include "TeacherDialog.h"
 #include "Teacher.h"
-#include "TableModel.h"
+#include "TeacherTableModel.h"
 
 TeacherView::TeacherView(INavigator* aNavigator, Context& aContext, QWidget* parent)
 	: QWidget(parent), mNavigator(aNavigator), mContext(aContext)
@@ -29,21 +29,17 @@ void TeacherView::on_mAdd_clicked()
 
 	if (Add.exec())
 	{
-
 		QString firstName = Add.mFirstName->text();
 		QString lastName = Add.mLastName->text();
 		if (!firstName.isEmpty())
 		{
 			tableModel->PopulateModel(firstName, lastName);
-
 		}
 		else
 		{
 			QMessageBox::about(this, "Name eror", "You need to fill all fields with *");
 		}
-
 	}
-
 }
 
 void TeacherView::on_mEdit_clicked()
@@ -51,9 +47,9 @@ void TeacherView::on_mEdit_clicked()
 	TeacherDialog Edit(this);
 	auto selectedRow = ui.mTable->selectionModel()->currentIndex().row();
 
-	if (!selectedRow)
+	if (selectedRow<0)
 	{
-		QMessageBox::about(this, "No item selected", "Pleasea chose an item to edit");
+		QMessageBox::about(this, "No item selected", "Please choose an item to edit");
 	}
 	else
 		if (Edit.exec())
@@ -68,17 +64,16 @@ void TeacherView::on_mEdit_clicked()
 
 void TeacherView::on_mDelete_clicked()
 {
-
 	auto selectedRow = ui.mTable->selectionModel()->currentIndex().row();
 
-	//if (!selectedRow)
-	//{
-		//QMessageBox::about(this, "No item selected", "Pleasea chose an item to delete");
-	//}
-	//else
-	//{
+	if (selectedRow<0)
+	{
+		QMessageBox::about(this, "No item selected", "Please choose an item to delete");
+	}
+	else
+	{
 		tableModel->RemoveItemFromModel(selectedRow);
-	//}
+	}
 }
 
 void TeacherView::on_mConstraints_clicked()

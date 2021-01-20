@@ -4,41 +4,23 @@
 #include "Context.h"
 #include "SubjectDialog.h"
 #include "Subject.h"
+#include "SubjectTableModel.h"
 
 SubjectView::SubjectView(INavigator* aNavigator,Context& aContext,QWidget *parent)
 	: QWidget(parent),mNavigator(aNavigator),mContext(aContext)
 {
 	ui.setupUi(this);
+	tableModel = new SubjectTableModel(mContext, this);
 
+	ui.mTable->setModel(tableModel);
+
+	QHeaderView* header = ui.mTable->horizontalHeader();
+	header->setSectionResizeMode(QHeaderView::Stretch);
 }
 
 SubjectView::~SubjectView()
 {
 }
-
-void SubjectView::ClearData()
-{
-	ui.mList->clear();
-}
-
-void SubjectView::UpdateList()
-{
-	this->ClearData();
-
-	auto mSubject = mContext.GetSubjects();
-
-	for (auto i : mSubject)
-	{
-		QVariant subject;
-		subject.setValue(i);
-
-		QListWidgetItem* item = new QListWidgetItem(QString::fromStdString((*i).GetName()), ui.mList);
-		item->setData(Qt::UserRole, subject);
-		ui.mList->setCurrentItem(item);
-	}
-
-}
-
 
 void SubjectView::on_mAdd_clicked()
 {
@@ -50,12 +32,10 @@ void SubjectView::on_mAdd_clicked()
 
 		if (!subjectName.isEmpty())
 		{
-			shared_ptr<Subject> buildSubject = make_shared<Subject>(subjectName.toStdString());
-			mContext.AddSubject(buildSubject);
-
-			this->UpdateList();
-			mNavigator->ChangeStatus("A new subject was added");
+			tableModel->PopulateModel(subjectName);
 		}
+		else
+			QMessageBox::about(this, "Name eror", "You need to fill all fields with *");
 
 	}
 
@@ -63,39 +43,34 @@ void SubjectView::on_mAdd_clicked()
 
 void SubjectView::on_mEdit_clicked()
 {
-	SubjectDialog EditSubject(this);
-	QListWidgetItem* item = ui.mList->currentItem();
+	SubjectDialog Edit(this);
+	auto selectedRow = ui.mTable->selectionModel()->currentIndex().row();
 
-
-	if (item)
+	if (selectedRow < 0)
 	{
-		if (EditSubject.exec())
-		{
-			QString subjectName = EditSubject.Name->text();
-
-			if (item->text().toStdString() != subjectName.toStdString())
-			{
-				shared_ptr<Subject> oldSubject = qvariant_cast<shared_ptr<Subject>>(item->data(Qt::UserRole));
-				shared_ptr<Subject> newsubject = make_shared<Subject>(subjectName.toStdString());
-				mContext.EditSubject(oldSubject,newsubject);
-
-				this->UpdateList();
-			}
-		}
+		QMessageBox::about(this, "No item selected", "Please choose an item to edit");
 	}
+	else
+		if (Edit.exec())
+		{
+			QString aName = Edit.Name->text();
+
+			tableModel->EditModel(selectedRow, aName);
+
+		}
 }
 
 void SubjectView::on_mDelete_clicked()
 {
-	QListWidgetItem* currentItem = ui.mList->currentItem();
-	
-	if (currentItem)
+	auto selectedRow = ui.mTable->selectionModel()->currentIndex().row();
+
+	if (selectedRow < 0)
 	{
-		mContext.RemoveSubject(qvariant_cast<shared_ptr<Subject>>(currentItem->data(Qt::UserRole)));
-		delete currentItem;
-
-		this->UpdateList();
-
+		QMessageBox::about(this, "No item selected", "Please choose an item to delete");
+	}
+	else
+	{
+		tableModel->RemoveItemFromModel(selectedRow);
 	}
 }
 

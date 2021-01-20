@@ -109,7 +109,6 @@
     <ClCompile Include="Context.cpp" />
     <ClCompile Include="Lesson.cpp" />
     <ClCompile Include="LessonDialog.cpp" />
-    <ClCompile Include="LessonTableModel.cpp" />
     <ClCompile Include="LessonView.cpp" />
     <ClCompile Include="Room.cpp" />
     <ClCompile Include="RoomDialog.cpp" />
@@ -135,7 +134,6 @@
     <ClInclude Include="Lesson.h" />
     <QtMoc Include="LessonDialog.h" />
     <QtMoc Include="RoomView.h" />
-    <QtMoc Include="LessonTableModel.h" />
     <ClInclude Include="Room.h" />
     <QtMoc Include="RoomTableModel.h" />
     <QtMoc Include="RoomDialog.h" />

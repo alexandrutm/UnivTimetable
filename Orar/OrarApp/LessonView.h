@@ -6,12 +6,6 @@
 class INavigator;
 class Context;
 
-class TableModel;
-class SubjectTableModel;
-class ClassTableModel;
-class RoomTableModel;
-class LessonTableModel;
-
 class LessonView : public QWidget
 {
 	Q_OBJECT
@@ -19,6 +13,9 @@ class LessonView : public QWidget
 public:
 	LessonView(INavigator* aNavigator, Context& aContext,QWidget *parent = Q_NULLPTR);
 	~LessonView();
+	void ClearData();
+	void UpdateTable();
+	void PopulateDialog(QString instuction);
 
 private slots:
 
@@ -32,12 +29,5 @@ private slots:
 private:
 	Ui::LessonView ui;
 	INavigator* mNavigator;
-
-	TableModel* mTeacherModel;
-	SubjectTableModel* mSubjectModel;
-	ClassTableModel* mClassModel;
-	RoomTableModel* mRoomTableModel;
-	LessonTableModel* tableModel;
-
 	Context& mContext;
 };

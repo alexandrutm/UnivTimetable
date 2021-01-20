@@ -119,9 +119,6 @@
     <ClCompile Include="RoomDialog.cpp">
       <Filter>Source Files\views</Filter>
     </ClCompile>
-    <ClCompile Include="LessonTableModel.cpp">
-      <Filter>Source Files\Models</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="BasicInfoView.h">
@@ -174,9 +171,6 @@
     </QtMoc>
     <QtMoc Include="RoomDialog.h">
       <Filter>Source Files\views</Filter>
-    </QtMoc>
-    <QtMoc Include="LessonTableModel.h">
-      <Filter>Source Files\Models</Filter>
     </QtMoc>
   </ItemGroup>
   <ItemGroup>

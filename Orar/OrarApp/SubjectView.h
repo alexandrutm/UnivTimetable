@@ -14,7 +14,7 @@ class SubjectView : public QWidget
 public:
 	SubjectView(INavigator* aNavigator,Context& aContext,QWidget *parent = Q_NULLPTR);
 	~SubjectView();
-
+	void ClearData();
 
 private slots:
 	void on_mAdd_clicked();

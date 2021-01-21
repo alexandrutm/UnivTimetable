@@ -12,13 +12,13 @@ TableModel::TableModel(Context &aContext,QObject* parent)
 
 int TableModel::rowCount(const QModelIndex& parent) const
 {
-    return mContext.GetTeacherSize();
+    return parent.isValid()? 0:mContext.GetTeacherSize();
 
 }
 
 int TableModel::columnCount(const QModelIndex& parent) const
 {
-    return 2;
+    return parent.isValid() ? 0 : 2;
 }
 
 QVariant TableModel::data(const QModelIndex& index, int role) const
@@ -86,4 +86,12 @@ void TableModel::PopulateModel(QString aFirstName, QString aLastName)
 
     endInsertRows();
 }
+
+void TableModel::ClearContent()
+{
+    beginRemoveRows(QModelIndex(), 0,mContext.GetTeacherSize()-1);//emit signal to notify view that a new row is removed
+    mContext.DeleteTeachers();
+    endRemoveRows();
+}
+
 

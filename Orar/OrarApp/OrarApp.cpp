@@ -122,10 +122,13 @@ void OrarApp::on_mNew_triggered()
     if (replay == QMessageBox::Yes)
     {
         //delete data from context and from all forms
-        mContext.DeleteData();
         ui.centralStackWidget->setCurrentIndex(1);
         ui.viewStackedWidget->setCurrentIndex(0);
-
+        mTeacherView.ClearData();
+        mSubjectView.ClearData();
+        mLessonView.ClearData();
+        mClassView.ClearData();
+        mRoomView.ClearData();
     }
     else
     {

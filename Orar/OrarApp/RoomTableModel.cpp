@@ -79,3 +79,10 @@ void RoomTableModel::PopulateModel(QString aName)
     endInsertRows();
 }
 
+void RoomTableModel::ClearData()
+{
+    beginRemoveRows(QModelIndex(), 0, mContext.GetRoomSize() - 1);
+    mContext.DeleteRooms();
+    endRemoveRows();
+}
+

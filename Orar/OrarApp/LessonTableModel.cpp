@@ -89,7 +89,7 @@ void LessonTableModel::EditModel(int rowSelected, shared_ptr<Lesson> aLesson)
 
 void LessonTableModel::RemoveItemFromModel(int aRowSelected)
 {
-    beginRemoveRows(QModelIndex(), aRowSelected, aRowSelected);//emit signal to notify view that a new row is removed
+    beginRemoveRows(QModelIndex(), aRowSelected, aRowSelected);//emit signal to notify view that a row is removed
 
     shared_ptr<Lesson> aLesson = mContext.GetLessonByIndex(aRowSelected);
     mContext.RemoveLesson(aLesson);
@@ -106,5 +106,12 @@ void LessonTableModel::PopulateModel(shared_ptr<Lesson> aLesson)
     mContext.AddLesson(aLesson);
 
     endInsertRows();
+}
+
+void LessonTableModel::ClearContent()
+{
+    beginRemoveRows(QModelIndex(), 0, mContext.GetLessonSize() - 1);
+    mContext.DeleteLessons();
+    endRemoveRows();
 }
 

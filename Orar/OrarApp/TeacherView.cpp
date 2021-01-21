@@ -23,6 +23,11 @@ TeacherView::~TeacherView()
 {
 }
 
+void TeacherView::ClearData()
+{
+	tableModel->ClearContent();
+}
+
 void TeacherView::on_mAdd_clicked()
 {
 	TeacherDialog Add(this);

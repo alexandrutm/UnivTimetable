@@ -22,6 +22,11 @@ RoomView::~RoomView()
 
 }
 
+void RoomView::ClearData()
+{
+	tableModel->ClearData();
+}
+
 
 void RoomView::on_mAdd_clicked()
 {

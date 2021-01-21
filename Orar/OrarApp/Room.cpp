@@ -8,10 +8,7 @@ Room::Room(string aName)
 
 bool Room::operator==(const Room& aRoom)
 {
-	if (this->mName == aRoom.mName)
-		return true;
-
-	return false;
+	return mName == aRoom.mName;
 }
 
 Room& Room::operator=(const Room& aRoom)

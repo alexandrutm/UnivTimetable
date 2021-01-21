@@ -36,6 +36,11 @@ LessonView::~LessonView()
 {
 }
 
+void LessonView::ClearData()
+{
+	tableModel->ClearContent();
+}
+
 void LessonView::on_mAdd_clicked()
 {
 	LessonDialog aDialog(this);
@@ -47,19 +52,24 @@ void LessonView::on_mAdd_clicked()
 	if (aDialog.exec())
 	{
 		auto selectedTeacher = aDialog.mTeacher->currentIndex();
-		auto teacher = mContext.GetTeacherByIndex(selectedTeacher);
-
 		auto selectedSubject = aDialog.mSubject->currentIndex();
-		auto subject = mContext.GetSubjectByIndex(selectedSubject);
-
 		auto selectedClass = aDialog.mClasses->currentIndex();
-		auto classes = mContext.GetClassByIndex(selectedClass);
 
-		auto hoursPerWeek = aDialog.mHoursPerWeek->value();
+		if (selectedTeacher >= 0 && selectedClass >= 0 && selectedSubject >= 0) {
+			auto classes = mContext.GetClassByIndex(selectedClass);
+			auto subject = mContext.GetSubjectByIndex(selectedSubject);
+			auto teacher = mContext.GetTeacherByIndex(selectedTeacher);
+			auto hoursPerWeek = aDialog.mHoursPerWeek->value();
 
-		shared_ptr<Lesson> newLesson = make_shared<Lesson>(teacher, subject, classes, hoursPerWeek);
+			shared_ptr<Lesson> newLesson = make_shared<Lesson>(teacher, subject, classes, hoursPerWeek);
 
-		tableModel->PopulateModel(newLesson);
+			tableModel->PopulateModel(newLesson);
+		}
+		else
+		{
+			QMessageBox::about(this, "Error", "Please complete all fields");
+		}
+
 	}
 }
 

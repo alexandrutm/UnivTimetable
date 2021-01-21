@@ -19,6 +19,7 @@ public:
 	void RemoveItemFromModel(int aRowSelected);
 	void PopulateModel(shared_ptr<Lesson> aLesson); 
 
+	void ClearContent();
 private:
 
 	Context& mContext;

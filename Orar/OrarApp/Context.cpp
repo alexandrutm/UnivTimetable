@@ -53,6 +53,11 @@ shared_ptr<Teacher> Context::GetTeacherByIndex(int i)
 	return mTeachers[i];
 }
 
+void Context::DeleteTeachers()
+{
+	mTeachers.clear();
+}
+
 void Context::AddSubject(shared_ptr<Subject> aSubject)
 {
 	mSubjects.push_back(aSubject);
@@ -60,18 +65,9 @@ void Context::AddSubject(shared_ptr<Subject> aSubject)
 
 void Context::RemoveSubject(shared_ptr<Subject> aSubject)
 {
-	auto i = begin(mSubjects);
-
-	while (i != end(mSubjects))
-	{
-		if ((*i) == aSubject)
-		{
-			i = mSubjects.erase(i);
-			break;
-		}
-		else
-			i++;
-	}
+	mSubjects.erase(remove_if(mSubjects.begin(), mSubjects.end(), [&](auto const& subject) {
+		return *subject == *aSubject;
+		}), mSubjects.end());
 }
 
 void Context::EditSubject(shared_ptr<Subject> aSubject, shared_ptr<Subject> aNewSubject)
@@ -102,6 +98,11 @@ shared_ptr<Subject> Context::GetSubjectByIndex(int i)
 	return mSubjects[i];
 }
 
+void Context::DeleteSubjects()
+{
+	mClasses.clear();
+}
+
 void Context::AddClass(shared_ptr<Classes> aClass)
 {
 	mClasses.push_back(aClass);
@@ -109,19 +110,10 @@ void Context::AddClass(shared_ptr<Classes> aClass)
 
 void Context::RemoveClass(shared_ptr<Classes> aClass)
 {
-	auto i = begin(mClasses);
+	mClasses.erase(remove_if(mClasses.begin(), mClasses.end(), [&](auto const& classes) {
+		return *aClass == *classes;
+		}), mClasses.end());
 
-	while (i != end(mClasses))
-	{
-		if ((*i) == aClass)
-		{
-			i = mClasses.erase(i);
-			break;
-		}
-		else
-			i++;
-		
-	}
 }
 
 void Context::EditClasses(shared_ptr<Classes> aClass, shared_ptr<Classes> aNewClass)
@@ -152,6 +144,11 @@ shared_ptr<Classes> Context::GetClassByIndex(int i)
 	return mClasses[i];
 }
 
+void Context::DeleteClasses()
+{
+	mClasses.clear();
+}
+
 void Context::AddLesson(shared_ptr<Lesson> aLesson)
 {
 	mLessons.push_back(aLesson);
@@ -159,19 +156,9 @@ void Context::AddLesson(shared_ptr<Lesson> aLesson)
 
 void Context::RemoveLesson(shared_ptr<Lesson> aLesson)
 {
-	auto i = begin(mLessons);
-
-	while (i != end(mLessons))
-	{
-		if ((*i) == aLesson)
-		{
-			i = mLessons.erase(i);
-			break;
-		}
-		else
-			i++;
-
-	}
+	mLessons.erase(remove_if(mLessons.begin(), mLessons.end(), [&](auto const& lesson) {
+		return *aLesson == *lesson;
+		}), mLessons.end());
 }
 
 void Context::EditLesson(shared_ptr<Lesson> aLesson, shared_ptr<Lesson> aNewLesson)
@@ -203,6 +190,11 @@ shared_ptr<Lesson> Context::GetLessonByIndex(int i)
 	return mLessons[i];
 }
 
+void Context::DeleteLessons()
+{
+	mLessons.clear();
+}
+
 void Context::AddRoom(shared_ptr<Room> aRoom)
 {
 	mRooms.push_back(aRoom);
@@ -210,18 +202,9 @@ void Context::AddRoom(shared_ptr<Room> aRoom)
 
 void Context::RemoveRoom(shared_ptr<Room> aRoom)
 {
-	auto it = begin(mRooms);
-
-	while (it != end(mRooms))
-	{
-		if (*it == aRoom)
-		{
-			it = mRooms.erase(it);
-			break;
-		}
-		else
-			it++;
-	}
+	mRooms.erase(remove_if(mRooms.begin(), mRooms.end(), [&](auto const& room) {
+		return *aRoom == *room;
+		}),mRooms.end());
 }
 
 void Context::EditRoom(shared_ptr<Room> aRoom, shared_ptr<Room> aNewRoom)
@@ -252,17 +235,13 @@ shared_ptr<Room> Context::GetRoomByIndex(int i)
 	return mRooms[i];
 }
 
+void Context::DeleteRooms()
+{
+	mRooms.clear();
+}
+
 void Context::AddBasicInfo(shared_ptr<BasicInfo> aBasicInfo)
 {
 	mBasicInfo = aBasicInfo;
 }
 
-void Context::DeleteData()
-{
-	mTeachers.clear();
-	mSubjects.clear();
-	mClasses.clear();
-	mLessons.clear();
-	mRooms.clear();
-	mBasicInfo.reset();
-}

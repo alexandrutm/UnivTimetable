@@ -71,3 +71,10 @@ void SubjectTableModel::PopulateModel(QString aName)
 
     endInsertRows();
 }
+
+void SubjectTableModel::ClearContent()
+{
+    beginRemoveRows(QModelIndex(), 0, mContext.GetSubjectSize() - 1);//emit signal to notify view that a new row is removed
+    mContext.DeleteSubjects();
+    endRemoveRows();
+}

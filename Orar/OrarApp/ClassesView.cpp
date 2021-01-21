@@ -25,6 +25,11 @@ ClassesView::~ClassesView()
 {
 }
 
+void ClassesView::ClearData()
+{
+	tableModel->ClearData();
+}
+
 
 void ClassesView::on_mAdd_clicked()
 {

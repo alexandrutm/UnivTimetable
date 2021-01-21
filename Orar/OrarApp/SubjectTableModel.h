@@ -19,6 +19,7 @@ public:
 	void RemoveItemFromModel(int aRowSelected);
 	void PopulateModel(QString aFirstName);
 
+	void ClearContent();
 private:
 
 	Context& mContext;

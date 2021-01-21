@@ -22,6 +22,11 @@ SubjectView::~SubjectView()
 {
 }
 
+void SubjectView::ClearData()
+{
+	tableModel->ClearContent();
+}
+
 void SubjectView::on_mAdd_clicked()
 {
 	SubjectDialog AddSubject(this);

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>625</width>
-    <height>427</height>
+    <width>822</width>
+    <height>509</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -247,7 +247,7 @@ QPushButton:hover {
             <widget class="QFrame" name="mLeftMenu">
              <property name="minimumSize">
               <size>
-               <width>10</width>
+               <width>100</width>
                <height>0</height>
               </size>
              </property>
@@ -491,7 +491,7 @@ QPushButton:hover {
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>625</width>
+     <width>822</width>
      <height>21</height>
     </rect>
    </property>

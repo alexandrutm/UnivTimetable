@@ -96,16 +96,11 @@ void OrarApp::on_btnLesson_clicked()
 void OrarApp::on_mToggle_clicked()
 {
     auto width = ui.mLeftMenu->width();
-    int maxWidth = 150;
+    int maxWidth = 100;
     int minWidth = 10;
     int widthExtended = 0;
 
-    if (width == minWidth)
-    {
-        widthExtended = maxWidth;
-    }
-    else
-        widthExtended = minWidth;
+    width == minWidth ? widthExtended = maxWidth : widthExtended = minWidth;
 
     QPropertyAnimation* animation = new QPropertyAnimation(ui.mLeftMenu, "minimumWidth");
     animation->setDuration(200);

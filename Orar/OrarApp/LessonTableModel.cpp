@@ -110,8 +110,10 @@ void LessonTableModel::PopulateModel(shared_ptr<Lesson> aLesson)
 
 void LessonTableModel::ClearContent()
 {
-    beginRemoveRows(QModelIndex(), 0, mContext.GetLessonSize() - 1);
-    mContext.DeleteLessons();
-    endRemoveRows();
+    if (mContext.GetLessonSize() > 0) {
+        beginRemoveRows(QModelIndex(), 0, mContext.GetLessonSize()-1);
+        mContext.DeleteLessons();
+        endRemoveRows();
+    }
 }
 

@@ -89,9 +89,11 @@ void TableModel::PopulateModel(QString aFirstName, QString aLastName)
 
 void TableModel::ClearContent()
 {
-    beginRemoveRows(QModelIndex(), 0,mContext.GetTeacherSize()-1);//emit signal to notify view that a new row is removed
-    mContext.DeleteTeachers();
-    endRemoveRows();
+    if (mContext.GetTeacherSize() > 0) {
+        beginRemoveRows(QModelIndex(), 0, mContext.GetTeacherSize()-1);//emit signal to notify view that a new row is removed
+        mContext.DeleteTeachers();
+        endRemoveRows();
+    }
 }
 
 

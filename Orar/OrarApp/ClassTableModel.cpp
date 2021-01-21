@@ -89,8 +89,10 @@ void ClassTableModel::PopulateModel(QString aName, int aNrOfStudents)
 
 void ClassTableModel::ClearData()
 {
-    beginRemoveRows(QModelIndex(), 0, mContext.GetClassSize()-1);
-    mContext.DeleteClasses();
-    endRemoveRows();
+    if (mContext.GetClassSize()>0) {
+        beginRemoveRows(QModelIndex(), 0, mContext.GetClassSize()-1);
+        mContext.DeleteClasses();
+        endRemoveRows();
+    }
 }
 

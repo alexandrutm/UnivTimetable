@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>599</width>
-    <height>347</height>
+    <width>642</width>
+    <height>360</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -31,11 +31,14 @@
    </property>
    <item>
     <layout class="QVBoxLayout" name="verticalLayout_2">
+     <property name="spacing">
+      <number>10</number>
+     </property>
      <item>
       <widget class="QLabel" name="label_3">
        <property name="maximumSize">
         <size>
-         <width>16777215</width>
+         <width>16777146</width>
          <height>40</height>
         </size>
        </property>
@@ -52,12 +55,12 @@ color: rgb(70, 70, 70);</string>
       <widget class="QLabel" name="label">
        <property name="maximumSize">
         <size>
-         <width>16777215</width>
+         <width>16777135</width>
          <height>20</height>
         </size>
        </property>
        <property name="styleSheet">
-        <string notr="true">font: 75 12pt &quot;Times New Roman&quot;;
+        <string notr="true">font: 75 14pt &quot;Times New Roman&quot;;
 color: rgb(70, 70, 70);</string>
        </property>
        <property name="text">
@@ -67,6 +70,12 @@ color: rgb(70, 70, 70);</string>
      </item>
      <item>
       <widget class="QTreeWidget" name="treeWidget">
+       <property name="maximumSize">
+        <size>
+         <width>16777153</width>
+         <height>16777215</height>
+        </size>
+       </property>
        <property name="frameShape">
         <enum>QFrame::NoFrame</enum>
        </property>
@@ -81,9 +90,15 @@ color: rgb(70, 70, 70);</string>
    </item>
    <item>
     <widget class="QFrame" name="frame_3">
-     <property name="maximumSize">
+     <property name="minimumSize">
       <size>
        <width>200</width>
+       <height>0</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>500</width>
        <height>150</height>
       </size>
      </property>
@@ -118,7 +133,7 @@ color: rgb(70, 70, 70);</string>
          </size>
         </property>
         <property name="styleSheet">
-         <string notr="true">font: 75 12pt &quot;Times New Roman&quot;;
+         <string notr="true">font: 75 14pt &quot;Times New Roman&quot;;
 color: rgb(70, 70, 70);</string>
         </property>
         <property name="text">

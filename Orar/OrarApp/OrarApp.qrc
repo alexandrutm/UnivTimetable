@@ -7,5 +7,12 @@
         <file>img/new.png</file>
         <file>img/Generate2.png</file>
         <file>img/import4.png</file>
+        <file>img/data.png</file>
+    </qresource>
+    <qresource prefix="/Buttons">
+        <file>img/addBtn.png</file>
+        <file>img/constr.png</file>
+        <file>img/deleteBtn.png</file>
+        <file>img/editBtn3.png</file>
     </qresource>
 </RCC>

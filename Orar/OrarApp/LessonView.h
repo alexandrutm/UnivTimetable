@@ -3,7 +3,6 @@
 #include <QWidget>
 #include "ui_LessonView.h"
 
-class INavigator;
 class Context;
 
 class TableModel;
@@ -17,7 +16,7 @@ class LessonView : public QWidget
 	Q_OBJECT
 
 public:
-	LessonView(INavigator* aNavigator, Context& aContext,QWidget *parent = Q_NULLPTR);
+	LessonView(Context& aContext,QWidget *parent = Q_NULLPTR);
 	~LessonView();
 	void ClearData();
 
@@ -27,12 +26,10 @@ private slots:
 	void on_mEdit_clicked();
 	void on_mDelete_clicked();
 	void on_mConstraints_clicked();
-	void on_mBack_clicked();
 
 
 private:
 	Ui::LessonView ui;
-	INavigator* mNavigator;
 
 	TableModel* mTeacherModel;
 	SubjectTableModel* mSubjectModel;

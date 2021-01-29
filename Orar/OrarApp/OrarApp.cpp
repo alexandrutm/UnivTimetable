@@ -1,28 +1,37 @@
 #include "stdafx.h"
 #include "OrarApp.h"
+#include "AddDataDialog.h"
+#include"TimeTableView.h"
 
 
-
-OrarApp::OrarApp(QWidget *parent)
-    : QMainWindow(parent), mHomeView(this,this),mBasicInfoView(this,mContext,this),
-    mClassView(this,mContext,this),mSubjectView(this,mContext,this),mRoomView(this,mContext,this),
-    mTeacherView(this,mContext,this),mLessonView(this,mContext,this)
+OrarApp::OrarApp(QWidget* parent)
+    : QMainWindow(parent), mDataDialog(this), mHomeView(this, this), mClassView(mContext, this), mSubjectView(mContext, this),
+    mRoomView(mContext, this), mTeacherView(mContext, this), mLessonView(mContext, this), 
+    mBasicView(mContext, this)
 
 {
     ui.setupUi(this);
+
+
+    modelTimeTable = new TimeTableView(mContext, this);
+
+    ui.mTimeTableView->setModel(modelTimeTable);
+
+    QHeaderView* header = ui.mTimeTableView->horizontalHeader();
+    header->setSectionResizeMode(QHeaderView::Stretch);
+ 
+    mDataDialog.mData->addTab(&mBasicView, "School");
+    mDataDialog.mData->addTab(&mSubjectView, "Subjects");
+    mDataDialog.mData->addTab(&mClassView, "Classes");
+    mDataDialog.mData->addTab(&mRoomView, "Rooms");
+    mDataDialog.mData->addTab(&mTeacherView, "Teachers");
+    mDataDialog.mData->addTab(&mLessonView, "Lessons");
+
     setCentralWidget(ui.centralStackWidget);
     
     ui.centralStackWidget->addWidget(&mHomeView);
     ui.centralStackWidget->setCurrentIndex(1);
 
-    //////////// VIEW 
-    ui.viewStackedWidget->addWidget(&mBasicInfoView);
-    ui.viewStackedWidget->addWidget(&mSubjectView);
-    ui.viewStackedWidget->addWidget(&mClassView);
-    ui.viewStackedWidget->addWidget(&mRoomView);
-    ui.viewStackedWidget->addWidget(&mTeacherView);
-    ui.viewStackedWidget->addWidget(&mLessonView);
-    ui.viewStackedWidget->setCurrentIndex(0);
 }
 
 void OrarApp::ChangeView(INavigator::viewId theView)
@@ -35,26 +44,7 @@ void OrarApp::ChangeView(INavigator::viewId theView)
     {
         ui.centralStackWidget->setCurrentIndex(0);
     }
-    else if (theView == INavigator::viewId::subjectView)
-    {
-        ui.viewStackedWidget->setCurrentIndex(1);
-    }
-    else if (theView == INavigator::viewId::classesView)
-    {
-        ui.viewStackedWidget->setCurrentIndex(2);
-    }
-    else if (theView == INavigator::viewId::roomView)
-    {
-        ui.viewStackedWidget->setCurrentIndex(3);
-    }
-    else if (theView == INavigator::viewId::teacherView)
-    {
-        ui.viewStackedWidget->setCurrentIndex(4);
-    }
-    else if (theView == INavigator::viewId::lessonView)
-    {
-        ui.viewStackedWidget->setCurrentIndex(5);
-    }
+
 
 }
 
@@ -63,52 +53,17 @@ void OrarApp::ChangeStatus(string aStatus)
     ui.statusBar->showMessage(QString::fromStdString(aStatus),5000);
 }
 
-void OrarApp::on_btnBasicInfo_clicked()
+void OrarApp::on_mData_triggered()
 {
-    ui.viewStackedWidget->setCurrentIndex(0);
+
+    if(mDataDialog.exec())
+    {
+
+    }
+    
+ 
 }
 
-void OrarApp::on_btnSubject_clicked()
-{
-    ui.viewStackedWidget->setCurrentIndex(1);
-}
-
-void OrarApp::on_btnClass_clicked()
-{
-    ui.viewStackedWidget->setCurrentIndex(2);
-}
-
-void OrarApp::on_btnRoom_clicked()
-{
-    ui.viewStackedWidget->setCurrentIndex(3);
-}
-
-void OrarApp::on_btnTeacher_clicked()
-{
-    ui.viewStackedWidget->setCurrentIndex(4);
-}
-
-void OrarApp::on_btnLesson_clicked()
-{
-    ui.viewStackedWidget->setCurrentIndex(5);
-}
-
-void OrarApp::on_mToggle_clicked()
-{
-    auto width = ui.mLeftMenu->width();
-    int maxWidth = 100;
-    int minWidth = 10;
-    int widthExtended = 0;
-
-    width == minWidth ? widthExtended = maxWidth : widthExtended = minWidth;
-
-    QPropertyAnimation* animation = new QPropertyAnimation(ui.mLeftMenu, "minimumWidth");
-    animation->setDuration(200);
-    animation->setStartValue(width);
-    animation->setEndValue(widthExtended);
-    animation->start();
-
-}
 
 void OrarApp::on_mNew_triggered()
 {
@@ -118,7 +73,6 @@ void OrarApp::on_mNew_triggered()
     {
         //delete data from context and from all forms
         ui.centralStackWidget->setCurrentIndex(1);
-        ui.viewStackedWidget->setCurrentIndex(0);
         mTeacherView.ClearData();
         mSubjectView.ClearData();
         mLessonView.ClearData();

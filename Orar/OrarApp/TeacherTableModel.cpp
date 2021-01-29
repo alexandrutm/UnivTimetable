@@ -39,7 +39,6 @@ QVariant TableModel::data(const QModelIndex& index, int role) const
         lastName = QString::fromStdString((mContext.GetTeacherByIndex(index.row()))->GetLastName());
         return lastName;
     }
-    return QVariant();
 }
 
 QVariant TableModel::headerData(int section, Qt::Orientation orientation, int role) const
@@ -58,10 +57,10 @@ QVariant TableModel::headerData(int section, Qt::Orientation orientation, int ro
 void TableModel::EditModel(int rowSelected, QString aFirstName, QString aLastName)
 {
 
-    shared_ptr<Teacher> oldTeacher = mContext.GetTeacherByIndex(rowSelected);
-    shared_ptr<Teacher>newTeacher = make_shared<Teacher>(aFirstName.toStdString(), aLastName.toStdString());
+   // shared_ptr<Teacher> oldTeacher = mContext.GetTeacherByIndex(rowSelected);
+    //shared_ptr<Teacher>newTeacher = make_shared<Teacher>(aFirstName.toStdString(), aLastName.toStdString(),);
 
-    mContext.EditTeacher(oldTeacher, newTeacher);
+   // mContext.EditTeacher(oldTeacher, newTeacher);
 
 }
 
@@ -81,7 +80,7 @@ void TableModel::PopulateModel(QString aFirstName, QString aLastName)
 
     beginInsertRows(QModelIndex(), newRow, newRow);//emit signal to notify view that a new row is inserted
 
-    shared_ptr<Teacher> newTeacher = make_shared<Teacher>(aFirstName.toStdString(), aLastName.toStdString());
+    shared_ptr<Teacher> newTeacher = make_shared<Teacher>(aFirstName.toStdString(), aLastName.toStdString(),mContext.GenerateTeacherId());
     mContext.AddTeacher(newTeacher);
 
     endInsertRows();

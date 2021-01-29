@@ -21,7 +21,8 @@ Teacher& Teacher::operator=(const Teacher& aTeacher)
 	return *this;
 }
 
-Teacher::Teacher(string aFirstName, string aLastName):mFirstName(aFirstName),mLastName(aLastName)
+Teacher::Teacher(string aFirstName, string aLastName, int aTeacherId):mFirstName(aFirstName),mLastName(aLastName),
+mTeacherId(aTeacherId)
 {
 }
 
@@ -43,4 +44,9 @@ void Teacher::SetFirstName(string aName)
 void Teacher::SetLastName(string aName)
 {
 	mLastName = aName;
+}
+
+int Teacher::GetId()
+{
+	return mTeacherId;
 }

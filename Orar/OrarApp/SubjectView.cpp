@@ -1,13 +1,12 @@
 #include"stdafx.h"
 #include "SubjectView.h"
-#include "INavigator.h"
 #include "Context.h"
 #include "SubjectDialog.h"
 #include "Subject.h"
 #include "SubjectTableModel.h"
 
-SubjectView::SubjectView(INavigator* aNavigator,Context& aContext,QWidget *parent)
-	: QWidget(parent),mNavigator(aNavigator),mContext(aContext)
+SubjectView::SubjectView(Context& aContext,QWidget *parent)
+	: QWidget(parent),mContext(aContext)
 {
 	ui.setupUi(this);
 	tableModel = new SubjectTableModel(mContext, this);
@@ -81,15 +80,5 @@ void SubjectView::on_mDelete_clicked()
 
 void SubjectView::on_mConstraints_clicked()
 {
-}
-
-void SubjectView::on_mNext_clicked()
-{
-	mNavigator->ChangeView(INavigator::viewId::classesView);
-}
-
-void SubjectView::on_mBack_clicked()
-{
-	mNavigator->ChangeView(INavigator::viewId::basicInfoView);
 }
 

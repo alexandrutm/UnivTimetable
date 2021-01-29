@@ -5,8 +5,8 @@
 #include"BasicInfo.h"
 
 
-BasicInfoView::BasicInfoView(INavigator *navigator, Context& aContext,QWidget *parent)
-	: QWidget(parent),mNavigator(navigator),mContext(aContext)
+BasicInfoView::BasicInfoView( Context& aContext,QWidget *parent)
+	: QWidget(parent),mContext(aContext)
 {
 	ui.setupUi(this);
 }
@@ -23,15 +23,9 @@ void BasicInfoView::ClearData()
 	ui.DaysPerWeek->clear();
 }
 
-void BasicInfoView::on_Next_clicked()
+void BasicInfoView::on_Save_clicked()
 {
 	shared_ptr<BasicInfo> newBasicInfo = make_shared<BasicInfo>(ui.SchoolName->text().toStdString(), ui.AcademicYear->text().toInt(), ui.HoursPerDay->value(), ui.DaysPerWeek->value());
 	mContext.AddBasicInfo(newBasicInfo);
-
-	mNavigator->ChangeView(INavigator::viewId::subjectView);
 }
 
-void BasicInfoView::on_Back_clicked()
-{
-	mNavigator->ChangeView(INavigator::viewId::homepage);
-}

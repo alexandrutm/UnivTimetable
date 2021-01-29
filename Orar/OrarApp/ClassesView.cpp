@@ -9,8 +9,8 @@
 
 
 
-ClassesView::ClassesView(INavigator* aNavigator,Context & aContext,QWidget *parent)
-	: QWidget(parent),mContext(aContext),mNavigator(aNavigator)
+ClassesView::ClassesView(Context & aContext,QWidget *parent)
+	: QWidget(parent),mContext(aContext)
 {
 	ui.setupUi(this);
 	tableModel = new ClassTableModel(mContext, this);
@@ -85,14 +85,4 @@ void ClassesView::on_mDelete_clicked()
 void ClassesView::on_mConstraints_clicked()
 {
 
-}
-
-void ClassesView::on_mNext_clicked()
-{
-	mNavigator->ChangeView(INavigator::viewId::roomView);
-}
-
-void ClassesView::on_mBack_clicked()
-{
-	mNavigator->ChangeView(INavigator::viewId::subjectView);
 }

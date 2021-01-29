@@ -3,7 +3,6 @@
 #include <QWidget>
 #include "ui_RoomView.h"
 
-class INavigator;
 class Context;
 class RoomTableModel;
 
@@ -12,7 +11,7 @@ class RoomView : public QWidget
 	Q_OBJECT
 
 public:
-	RoomView(INavigator* , Context&,QWidget *parent = Q_NULLPTR);
+	RoomView(Context&,QWidget *parent = Q_NULLPTR);
 	~RoomView();
 	void ClearData();
 
@@ -21,13 +20,10 @@ private slots:
 	void on_mEdit_clicked();
 	void on_mDelete_clicked();
 	void on_mConstraints_clicked();
-	void on_mNext_clicked();
-	void on_mBack_clicked();
 
 private:
 	Ui::RoomView ui;
 
 	RoomTableModel* tableModel;
-	INavigator *mNavigator;
 	Context& mContext;
 };

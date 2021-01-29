@@ -4,6 +4,7 @@
 Lesson::Lesson(shared_ptr<Teacher> aTeacher,  shared_ptr<Subject>aSubject, shared_ptr<Classes> aClass, int aHoursPerWeek):
 	mSubject(aSubject),mTeacher(aTeacher),mClass(aClass),mHoursPerWeek(aHoursPerWeek)
 {
+	//generate unique id
 }
 
 void Lesson::SetTeacher(shared_ptr<Teacher> aTeacher)

@@ -58,6 +58,18 @@ void Context::DeleteTeachers()
 	mTeachers.clear();
 }
 
+int Context::GenerateTeacherId()
+{
+	auto maxIdIt = max_element(mTeachers.begin(), mTeachers.end(), [](shared_ptr<Teacher>& first, shared_ptr<Teacher>& second) {
+		return first->GetId() < second->GetId();
+		});
+
+	if (maxIdIt == mTeachers.end())
+		return 1;
+	
+	return (*maxIdIt)->GetId() + 1;
+}
+
 void Context::AddSubject(shared_ptr<Subject> aSubject)
 {
 	mSubjects.push_back(aSubject);

@@ -49,6 +49,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <WarningLevel>Level4</WarningLevel>
     </ClCompile>
   </ItemDefinitionGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="QtSettings">
@@ -101,6 +102,7 @@
     </QtMoc>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AddDataDialog.cpp" />
     <ClCompile Include="BasicInfo.cpp" />
     <ClCompile Include="Classes.cpp" />
     <ClCompile Include="ClassesDialog.cpp" />
@@ -124,14 +126,18 @@
     <ClCompile Include="BasicInfoView.cpp" />
     <ClCompile Include="TeacherDialog.cpp" />
     <ClCompile Include="TeacherView.cpp" />
+    <ClCompile Include="TimeTableView.cpp" />
+    <QtMoc Include="TimeTableView.h" />
     <QtMoc Include="TeacherDialog.h" />
     <QtMoc Include="TeacherView.h" />
     <QtMoc Include="ClassesView.h" />
     <QtMoc Include="ClassesDialog.h" />
+    <QtMoc Include="AddDataDialog.h" />
     <ClInclude Include="BasicInfo.h" />
     <ClInclude Include="Classes.h" />
     <QtMoc Include="LessonView.h" />
     <QtMoc Include="ClassTableModel.h" />
+    <ClInclude Include="IObserver.h" />
     <ClInclude Include="Lesson.h" />
     <QtMoc Include="LessonDialog.h" />
     <QtMoc Include="RoomView.h" />
@@ -147,6 +153,7 @@
     <QtMoc Include="SubjectDialog.h" />
     <QtMoc Include="BasicInfoView.h" />
     <QtRcc Include="OrarApp.qrc" />
+    <QtUic Include="AddDataDialog.ui" />
     <QtUic Include="ClassesDialog.ui" />
     <QtUic Include="ClassesView.ui" />
     <QtUic Include="HomeView.ui" />

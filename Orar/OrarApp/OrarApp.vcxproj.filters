@@ -122,6 +122,12 @@
     <ClCompile Include="LessonTableModel.cpp">
       <Filter>Source Files\Models</Filter>
     </ClCompile>
+    <ClCompile Include="AddDataDialog.cpp">
+      <Filter>Source Files\views</Filter>
+    </ClCompile>
+    <ClCompile Include="TimeTableView.cpp">
+      <Filter>Source Files\Models</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="BasicInfoView.h">
@@ -178,6 +184,12 @@
     <QtMoc Include="LessonTableModel.h">
       <Filter>Source Files\Models</Filter>
     </QtMoc>
+    <QtMoc Include="AddDataDialog.h">
+      <Filter>Source Files\views</Filter>
+    </QtMoc>
+    <QtMoc Include="TimeTableView.h">
+      <Filter>Source Files\Models</Filter>
+    </QtMoc>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="SubjectDialog.ui">
@@ -216,6 +228,9 @@
     <QtUic Include="RoomDialog.ui">
       <Filter>Resource Files</Filter>
     </QtUic>
+    <QtUic Include="AddDataDialog.ui">
+      <Filter>Resource Files</Filter>
+    </QtUic>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -244,6 +259,9 @@
     </ClInclude>
     <ClInclude Include="Room.h">
       <Filter>Source Files\data</Filter>
+    </ClInclude>
+    <ClInclude Include="IObserver.h">
+      <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

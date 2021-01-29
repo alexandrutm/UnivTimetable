@@ -1,6 +1,5 @@
 #include"stdafx.h"
 #include "LessonView.h"
-#include "INavigator.h"
 #include "LessonDialog.h"
 #include "Context.h"
 #include "Teacher.h"
@@ -14,8 +13,8 @@
 #include "LessonTableModel.h"
 
 
-LessonView::LessonView(INavigator* aNavigator, Context& aContext, QWidget* parent)
-	: QWidget(parent), mNavigator(aNavigator), mContext(aContext)
+LessonView::LessonView(Context& aContext, QWidget* parent)
+	: QWidget(parent), mContext(aContext)
 {
 	ui.setupUi(this);
 
@@ -128,8 +127,4 @@ void LessonView::on_mConstraints_clicked()
 
 }
 
-void LessonView::on_mBack_clicked()
-{
-	mNavigator->ChangeView(INavigator::viewId::teacherView);
-}
 

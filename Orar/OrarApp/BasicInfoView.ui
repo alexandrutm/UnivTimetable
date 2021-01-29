@@ -37,33 +37,6 @@
      <layout class="QHBoxLayout" name="horizontalLayout_5">
       <item>
        <layout class="QGridLayout" name="gridLayout">
-        <item row="0" column="0">
-         <layout class="QHBoxLayout" name="horizontalLayout_2">
-          <item>
-           <widget class="QLabel" name="ShoolNameLabel">
-            <property name="text">
-             <string>School name</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <spacer name="horizontalSpacer_5">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>40</width>
-              <height>20</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-          <item>
-           <widget class="QLineEdit" name="SchoolName"/>
-          </item>
-         </layout>
-        </item>
         <item row="1" column="0">
          <layout class="QHBoxLayout" name="horizontalLayout">
           <item>
@@ -74,22 +47,49 @@
            </widget>
           </item>
           <item>
-           <spacer name="horizontalSpacer">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>40</width>
-              <height>20</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-          <item>
            <widget class="QLineEdit" name="AcademicYear"/>
           </item>
          </layout>
+        </item>
+        <item row="0" column="0">
+         <layout class="QHBoxLayout" name="horizontalLayout_2">
+          <item>
+           <widget class="QLabel" name="ShoolNameLabel">
+            <property name="text">
+             <string>School name</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="SchoolName"/>
+          </item>
+         </layout>
+        </item>
+        <item row="0" column="1">
+         <spacer name="horizontalSpacer_5">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item row="1" column="1">
+         <spacer name="horizontalSpacer">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
         </item>
        </layout>
       </item>
@@ -114,6 +114,9 @@
            </widget>
           </item>
           <item>
+           <widget class="QSpinBox" name="HoursPerDay"/>
+          </item>
+          <item>
            <spacer name="horizontalSpacer_2">
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
@@ -126,9 +129,6 @@
             </property>
            </spacer>
           </item>
-          <item>
-           <widget class="QSpinBox" name="HoursPerDay"/>
-          </item>
          </layout>
         </item>
         <item row="1" column="0">
@@ -139,19 +139,6 @@
              <string>Number of days</string>
             </property>
            </widget>
-          </item>
-          <item>
-           <spacer name="horizontalSpacer_3">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>40</width>
-              <height>20</height>
-             </size>
-            </property>
-           </spacer>
           </item>
           <item>
            <widget class="QSpinBox" name="DaysPerWeek"/>
@@ -175,6 +162,19 @@
             </item>
            </widget>
           </item>
+          <item>
+           <spacer name="horizontalSpacer_3">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
          </layout>
         </item>
        </layout>
@@ -197,38 +197,6 @@
       <number>9</number>
      </property>
      <item>
-      <widget class="QPushButton" name="Back">
-       <property name="styleSheet">
-        <string notr="true">QPushButton{
-	font: 75 11pt &quot;Times New Roman&quot;;
-	color: rgb(70, 70, 70);
-	background-color: rgb(200, 200, 200);
-	border: 0px solid;
-}
-
-QPushButton:hover {
-	background-color: rgb(231, 231, 231);
-}</string>
-       </property>
-       <property name="text">
-        <string>Back</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <spacer name="horizontalSpacer_4">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>40</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item>
       <widget class="QPushButton" name="Next">
        <property name="styleSheet">
         <string notr="true">QPushButton{
@@ -243,7 +211,7 @@ QPushButton:hover {
 }</string>
        </property>
        <property name="text">
-        <string>Next</string>
+        <string>Save</string>
        </property>
       </widget>
      </item>

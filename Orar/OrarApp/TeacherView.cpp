@@ -1,13 +1,12 @@
 #include "stdafx.h"
 #include "TeacherView.h"
-#include "INavigator.h"
 #include "Context.h"
 #include "TeacherDialog.h"
 #include "Teacher.h"
 #include "TeacherTableModel.h"
 
-TeacherView::TeacherView(INavigator* aNavigator, Context& aContext, QWidget* parent)
-	: QWidget(parent), mNavigator(aNavigator), mContext(aContext)
+TeacherView::TeacherView(Context& aContext, QWidget* parent)
+	: QWidget(parent), mContext(aContext)
 {
 	ui.setupUi(this);
 	tableModel = new TableModel(mContext, this);
@@ -83,16 +82,6 @@ void TeacherView::on_mDelete_clicked()
 
 void TeacherView::on_mConstraints_clicked()
 {
-}
-
-void TeacherView::on_mNext_clicked()
-{
-	mNavigator->ChangeView(INavigator::viewId::lessonView);
-}
-
-void TeacherView::on_mBack_clicked()
-{
-	mNavigator->ChangeView(INavigator::viewId::roomView);
 }
 
 

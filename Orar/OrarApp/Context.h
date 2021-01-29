@@ -20,6 +20,7 @@ public:
 	int GetTeacherSize();
 	shared_ptr<Teacher>GetTeacherByIndex(int i);
 	void DeleteTeachers();
+	int GenerateTeacherId();
 
 	void AddSubject(shared_ptr<Subject> aSubject);
 	void RemoveSubject(shared_ptr<Subject> aSubject);

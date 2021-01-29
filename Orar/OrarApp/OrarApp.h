@@ -4,6 +4,11 @@
 #include "ui_OrarApp.h"
 
 #include "HomeView.h"
+#include "INavigator.h"
+
+#include "Context.h"
+
+#include"AddDataDialog.h"
 #include "BasicInfoView.h"
 #include "SubjectView.h"
 #include "ClassesView.h"
@@ -11,10 +16,7 @@
 #include "TeacherView.h"
 #include "LessonView.h"
 
-
-#include "INavigator.h"
-#include "Context.h"
-
+class TimeTableView;
 
 class OrarApp : public QMainWindow, public INavigator
 {
@@ -27,26 +29,23 @@ public:
 
 private slots:
 
-    void on_btnBasicInfo_clicked();
-    void on_btnSubject_clicked();
-    void on_btnClass_clicked();
-    void on_btnRoom_clicked();
-    void on_btnTeacher_clicked();
-    void on_btnLesson_clicked();
-    void on_mToggle_clicked();
-
     void on_mNew_triggered();
+    void on_mData_triggered();
 
 private:
     Ui::OrarAppClass ui;
 
     Context mContext;
-    
+
+    TimeTableView* modelTimeTable;
+
+    AddDataDialog mDataDialog;
     HomeView mHomeView;
-    BasicInfoView mBasicInfoView;
     SubjectView mSubjectView;
     ClassesView mClassView;
     RoomView mRoomView;
     TeacherView mTeacherView;
     LessonView mLessonView;
+    BasicInfoView mBasicView;
+
 };

@@ -17,17 +17,20 @@
    <string notr="true">background-color: rgb(240, 240, 240);</string>
   </property>
   <layout class="QHBoxLayout" name="horizontalLayout">
+   <property name="spacing">
+    <number>6</number>
+   </property>
    <property name="leftMargin">
-    <number>30</number>
+    <number>40</number>
    </property>
    <property name="topMargin">
-    <number>30</number>
+    <number>40</number>
    </property>
    <property name="rightMargin">
-    <number>30</number>
+    <number>40</number>
    </property>
    <property name="bottomMargin">
-    <number>30</number>
+    <number>40</number>
    </property>
    <item>
     <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -92,13 +95,13 @@ color: rgb(70, 70, 70);</string>
     <widget class="QFrame" name="frame_3">
      <property name="minimumSize">
       <size>
-       <width>200</width>
+       <width>300</width>
        <height>0</height>
       </size>
      </property>
      <property name="maximumSize">
       <size>
-       <width>500</width>
+       <width>800</width>
        <height>150</height>
       </size>
      </property>

@@ -2,13 +2,6 @@
 #include <QStringListModel>
 
 
-LessonDialog::LessonDialog(QWidget *parent)
-	: QDialog(parent)
-{
-	setupUi(this);
+LessonDialog::LessonDialog(QWidget *parent): QDialog(parent) { setupUi(this); }
 
-}
-
-LessonDialog::~LessonDialog()
-{
-}
+LessonDialog::~LessonDialog() { }

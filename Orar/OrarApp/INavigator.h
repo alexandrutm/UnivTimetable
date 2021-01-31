@@ -3,14 +3,9 @@
 
 class INavigator
 {
-public:
+  public:
+  enum class viewId { homepage, basicInfoView, basicData };
 
-	enum class viewId {
-		homepage,
-		basicInfoView,
-		basicData
-	};
-
-	virtual void ChangeView(viewId theView) = 0;
-	virtual void ChangeStatus(string) = 0;
+  virtual void ChangeView(viewId theView) = 0;
+  virtual void ChangeStatus(string) = 0;
 };

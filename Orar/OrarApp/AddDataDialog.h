@@ -6,13 +6,12 @@
 
 class AddDataDialog : public QDialog, public Ui::AddDataDialog
 {
-	Q_OBJECT
+  Q_OBJECT
 
-public:
-	AddDataDialog(QWidget *parent = Q_NULLPTR);
-	~AddDataDialog();
+  public:
+  AddDataDialog(QWidget *parent = Q_NULLPTR);
+  ~AddDataDialog();
 
 
-private:
-
+  private:
 };

@@ -49,7 +49,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <WarningLevel>Level4</WarningLevel>
+      <WarningLevel>TurnOffAllWarnings</WarningLevel>
     </ClCompile>
   </ItemDefinitionGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="QtSettings">
@@ -103,7 +103,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AddDataDialog.cpp" />
-    <ClCompile Include="BasicInfo.cpp" />
+    <ClCompile Include="InstituteData.cpp" />
     <ClCompile Include="Classes.cpp" />
     <ClCompile Include="ClassesDialog.cpp" />
     <ClCompile Include="ClassesView.cpp" />
@@ -123,7 +123,7 @@
     <ClCompile Include="SubjectView.cpp" />
     <ClCompile Include="TeacherTableModel.cpp" />
     <ClCompile Include="Teacher.cpp" />
-    <ClCompile Include="BasicInfoView.cpp" />
+    <ClCompile Include="InstituteDataView.cpp" />
     <ClCompile Include="TeacherDialog.cpp" />
     <ClCompile Include="TeacherView.cpp" />
     <ClCompile Include="TimeTableView.cpp" />
@@ -133,11 +133,10 @@
     <QtMoc Include="ClassesView.h" />
     <QtMoc Include="ClassesDialog.h" />
     <QtMoc Include="AddDataDialog.h" />
-    <ClInclude Include="BasicInfo.h" />
+    <ClInclude Include="InstituteData.h" />
     <ClInclude Include="Classes.h" />
     <QtMoc Include="LessonView.h" />
     <QtMoc Include="ClassTableModel.h" />
-    <ClInclude Include="IObserver.h" />
     <ClInclude Include="Lesson.h" />
     <QtMoc Include="LessonDialog.h" />
     <QtMoc Include="RoomView.h" />
@@ -151,7 +150,7 @@
     <QtMoc Include="SubjectTableModel.h" />
     <ClInclude Include="Teacher.h" />
     <QtMoc Include="SubjectDialog.h" />
-    <QtMoc Include="BasicInfoView.h" />
+    <QtMoc Include="InstituteDataView.h" />
     <QtRcc Include="OrarApp.qrc" />
     <QtUic Include="AddDataDialog.ui" />
     <QtUic Include="ClassesDialog.ui" />
@@ -176,7 +175,7 @@
     <QtUic Include="RoomView.ui" />
     <QtUic Include="SubjectDialog.ui" />
     <QtUic Include="SubjectView.ui" />
-    <QtUic Include="BasicInfoView.ui" />
+    <QtUic Include="InstituteDataView.ui" />
     <QtUic Include="TeacherDialog.ui" />
     <QtUic Include="TeacherView.ui" />
   </ItemGroup>

@@ -7,16 +7,16 @@ class INavigator;
 
 class HomeView : public QWidget
 {
-	Q_OBJECT
+  Q_OBJECT
 
-public:
-	HomeView(INavigator* navigator, QWidget *parent = Q_NULLPTR);
-	~HomeView();
+  public:
+  HomeView(INavigator *navigator, QWidget *parent = Q_NULLPTR);
+  ~HomeView();
 
-private slots:
-	void on_mCreateNewTimetable_clicked();
+  private slots:
+  void on_mCreateNewTimetable_clicked();
 
-private:
-	Ui::HomeView ui;
-	INavigator *mNavigator;
+  private:
+  Ui::HomeView ui;
+  INavigator *mNavigator;
 };

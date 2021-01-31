@@ -1,52 +1,29 @@
-#include"stdafx.h"
-#include"Teacher.h"
+#include "stdafx.h"
+#include "Teacher.h"
 
-bool Teacher::operator==(const Teacher& aTeacher)
+Teacher::Teacher(string aFirstName, string aLastName, int aTeacherId):
+  mFirstName(aFirstName), mLastName(aLastName), mId(aTeacherId)
 {
-	if (mLastName == aTeacher.mLastName && 
-		mFirstName ==aTeacher.mFirstName)
-	{
-		return true;
-	}
-	return false;
 }
+
+bool Teacher::operator==(const Teacher& aTeacher) { return mId == aTeacher.mId; }
 
 Teacher& Teacher::operator=(const Teacher& aTeacher)
 {
-	if (this != &aTeacher)
-	{
-		this->mFirstName = aTeacher.mFirstName;
-		this->mLastName = aTeacher.mLastName;
-	}
-	return *this;
+  if (this != &aTeacher) {
+    this->mFirstName = aTeacher.mFirstName;
+    this->mLastName = aTeacher.mLastName;
+    this->mId == aTeacher.mId;
+  }
+  return *this;
 }
 
-Teacher::Teacher(string aFirstName, string aLastName, int aTeacherId):mFirstName(aFirstName),mLastName(aLastName),
-mTeacherId(aTeacherId)
-{
-}
+string Teacher::GetLastName() { return mLastName; }
 
-string Teacher::GetLastName()
-{
-	return mLastName;
-}
+string Teacher::GetFirstName() { return mFirstName; }
 
-string Teacher::GetFirstName()
-{
-	return mFirstName;
-}
+void Teacher::SetFirstName(string aName) { mFirstName = aName; }
 
-void Teacher::SetFirstName(string aName)
-{
-	mFirstName = aName;
-}
+void Teacher::SetLastName(string aName) { mLastName = aName; }
 
-void Teacher::SetLastName(string aName)
-{
-	mLastName = aName;
-}
-
-int Teacher::GetId()
-{
-	return mTeacherId;
-}
+int Teacher::GetId() { return mId; }

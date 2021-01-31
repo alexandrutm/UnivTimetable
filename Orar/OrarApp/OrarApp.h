@@ -8,8 +8,8 @@
 
 #include "Context.h"
 
-#include"AddDataDialog.h"
-#include "BasicInfoView.h"
+#include "AddDataDialog.h"
+#include "InstituteDataView.h"
 #include "SubjectView.h"
 #include "ClassesView.h"
 #include "RoomView.h"
@@ -20,32 +20,31 @@ class TimeTableView;
 
 class OrarApp : public QMainWindow, public INavigator
 {
-    Q_OBJECT
+  Q_OBJECT
 
-public:
-    OrarApp(QWidget *parent = Q_NULLPTR);
-    void ChangeView(INavigator::viewId theView);
-    void ChangeStatus(string);
+  public:
+  OrarApp(QWidget* parent = Q_NULLPTR);
+  void ChangeView(INavigator::viewId theView);
+  void ChangeStatus(string);
 
-private slots:
+  private slots:
 
-    void on_mNew_triggered();
-    void on_mData_triggered();
+  void on_mNew_triggered();
+  void on_mData_triggered();
 
-private:
-    Ui::OrarAppClass ui;
+  private:
+  Ui::OrarAppClass ui;
 
-    Context mContext;
+  Context mContext;
 
-    TimeTableView* modelTimeTable;
+  TimeTableView* modelTimeTable;
 
-    AddDataDialog mDataDialog;
-    HomeView mHomeView;
-    SubjectView mSubjectView;
-    ClassesView mClassView;
-    RoomView mRoomView;
-    TeacherView mTeacherView;
-    LessonView mLessonView;
-    BasicInfoView mBasicView;
-
+  AddDataDialog mDataDialog;
+  HomeView mHomeView;
+  SubjectView mSubjectView;
+  ClassesView mClassView;
+  RoomView mRoomView;
+  TeacherView mTeacherView;
+  LessonView mLessonView;
+  InstituteDataView mInstituteDataView;
 };

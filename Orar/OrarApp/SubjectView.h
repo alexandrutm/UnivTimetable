@@ -9,22 +9,21 @@ class SubjectTableModel;
 
 class SubjectView : public QWidget
 {
-	Q_OBJECT
+  Q_OBJECT
 
-public:
-	SubjectView(Context& aContext,QWidget *parent = Q_NULLPTR);
-	~SubjectView();
-	void ClearData();
+  public:
+  SubjectView(Context& aContext, QWidget* parent = Q_NULLPTR);
+  ~SubjectView();
+  void ClearData();
 
-private slots:
-	void on_mAdd_clicked();
-	void on_mEdit_clicked();
-	void on_mDelete_clicked();
-	void on_mConstraints_clicked();
+  private slots:
+  void on_mAdd_clicked();
+  void on_mEdit_clicked();
+  void on_mDelete_clicked();
+  void on_mConstraints_clicked();
 
-private:
-	Ui::SubjectView ui;
-	SubjectTableModel* tableModel;
-	Context& mContext;
-	
+  private:
+  Ui::SubjectView ui;
+  SubjectTableModel* tableModel;
+  Context& mContext;
 };

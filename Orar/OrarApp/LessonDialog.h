@@ -6,10 +6,9 @@
 
 class LessonDialog : public QDialog, public Ui::LessonDialog
 {
-	Q_OBJECT
+  Q_OBJECT
 
-public:
-	LessonDialog(QWidget *parent = Q_NULLPTR);
-	~LessonDialog();
-
+  public:
+  LessonDialog(QWidget *parent = Q_NULLPTR);
+  ~LessonDialog();
 };

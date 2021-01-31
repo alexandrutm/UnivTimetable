@@ -50,9 +50,6 @@
     <ClCompile Include="OrarApp.cpp">
       <Filter>Source Files\views</Filter>
     </ClCompile>
-    <ClCompile Include="BasicInfoView.cpp">
-      <Filter>Source Files\views</Filter>
-    </ClCompile>
     <ClCompile Include="ClassesDialog.cpp">
       <Filter>Source Files\views</Filter>
     </ClCompile>
@@ -92,9 +89,6 @@
     <ClCompile Include="Classes.cpp">
       <Filter>Source Files\data</Filter>
     </ClCompile>
-    <ClCompile Include="BasicInfo.cpp">
-      <Filter>Source Files\data</Filter>
-    </ClCompile>
     <ClCompile Include="Lesson.cpp">
       <Filter>Source Files\data</Filter>
     </ClCompile>
@@ -128,11 +122,14 @@
     <ClCompile Include="TimeTableView.cpp">
       <Filter>Source Files\Models</Filter>
     </ClCompile>
+    <ClCompile Include="InstituteData.cpp">
+      <Filter>Source Files\data</Filter>
+    </ClCompile>
+    <ClCompile Include="InstituteDataView.cpp">
+      <Filter>Source Files\views</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <QtMoc Include="BasicInfoView.h">
-      <Filter>Source Files\views</Filter>
-    </QtMoc>
     <QtMoc Include="ClassesDialog.h">
       <Filter>Source Files\views</Filter>
     </QtMoc>
@@ -190,6 +187,9 @@
     <QtMoc Include="TimeTableView.h">
       <Filter>Source Files\Models</Filter>
     </QtMoc>
+    <QtMoc Include="InstituteDataView.h">
+      <Filter>Source Files\views</Filter>
+    </QtMoc>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="SubjectDialog.ui">
@@ -199,9 +199,6 @@
       <Filter>Resource Files</Filter>
     </QtUic>
     <QtUic Include="SubjectView.ui">
-      <Filter>Resource Files</Filter>
-    </QtUic>
-    <QtUic Include="BasicInfoView.ui">
       <Filter>Resource Files</Filter>
     </QtUic>
     <QtUic Include="HomeView.ui">
@@ -231,6 +228,9 @@
     <QtUic Include="AddDataDialog.ui">
       <Filter>Resource Files</Filter>
     </QtUic>
+    <QtUic Include="InstituteDataView.ui">
+      <Filter>Resource Files</Filter>
+    </QtUic>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -245,9 +245,6 @@
     <ClInclude Include="Context.h">
       <Filter>Source Files\data</Filter>
     </ClInclude>
-    <ClInclude Include="BasicInfo.h">
-      <Filter>Source Files\data</Filter>
-    </ClInclude>
     <ClInclude Include="Lesson.h">
       <Filter>Source Files\data</Filter>
     </ClInclude>
@@ -260,8 +257,8 @@
     <ClInclude Include="Room.h">
       <Filter>Source Files\data</Filter>
     </ClInclude>
-    <ClInclude Include="IObserver.h">
-      <Filter>Source Files</Filter>
+    <ClInclude Include="InstituteData.h">
+      <Filter>Source Files\data</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

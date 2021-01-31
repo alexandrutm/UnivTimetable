@@ -5,9 +5,9 @@
 
 class RoomDialog : public QDialog, public Ui::RoomDialog
 {
-	Q_OBJECT
+  Q_OBJECT
 
-public:
-	RoomDialog(QWidget *parent = Q_NULLPTR);
-	~RoomDialog();
+  public:
+  RoomDialog(QWidget *parent = Q_NULLPTR);
+  ~RoomDialog();
 };

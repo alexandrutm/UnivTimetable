@@ -33,10 +33,8 @@ QVariant SubjectTableModel::headerData(int section, Qt::Orientation orientation,
 
 void SubjectTableModel::EditModel(int aRowSelected, QString aName)
 {
-  //shared_ptr<Subject> oldSubject = mContext.GetSubjectByIndex(aRowSelected);
-  //shared_ptr<Subject> newSubject = make_shared<Subject>(aName.toStdString());
+  mContext.GetSubjectByIndex(aRowSelected)->SetName(aName.toStdString());
 
-  // mContext.EditSubject(oldSubject,newSubject);
 }
 
 void SubjectTableModel::RemoveItemFromModel(int aRowSelected)

@@ -24,4 +24,3 @@ class Teacher
 };
 
 
-Q_DECLARE_METATYPE(Teacher);

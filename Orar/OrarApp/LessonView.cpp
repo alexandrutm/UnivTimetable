@@ -49,9 +49,9 @@ void LessonView::on_mAdd_clicked()
     auto selectedClass = aDialog.mClasses->currentIndex();
 
     if (selectedTeacher >= 0 && selectedClass >= 0 && selectedSubject >= 0) {
-      auto classes = mContext.GetClassByIndex(selectedClass);
-      auto subject = mContext.GetSubjectByIndex(selectedSubject);
-      auto teacher = mContext.GetTeacherByIndex(selectedTeacher);
+      auto& classes = mContext.GetClassByIndex(selectedClass);
+      auto& subject = mContext.GetSubjectByIndex(selectedSubject);
+      auto& teacher = mContext.GetTeacherByIndex(selectedTeacher);
       auto hoursPerWeek = aDialog.mHoursPerWeek->value();
 
       shared_ptr<Lesson> newLesson = make_shared<Lesson>(teacher, subject, classes, hoursPerWeek, mContext.GenerateLessonId());
@@ -77,13 +77,13 @@ void LessonView::on_mEdit_clicked()
     QMessageBox::about(this, "No item selected", "Please choose an item to edit");
   } else if (aDialog.exec()) {
     auto selectedTeacher = aDialog.mTeacher->currentIndex();
-    auto teacher = mContext.GetTeacherByIndex(selectedTeacher);
+    auto& teacher = mContext.GetTeacherByIndex(selectedTeacher);
 
     auto selectedSubject = aDialog.mSubject->currentIndex();
-    auto subject = mContext.GetSubjectByIndex(selectedSubject);
+    auto& subject = mContext.GetSubjectByIndex(selectedSubject);
 
     auto selectedClass = aDialog.mClasses->currentIndex();
-    auto classes = mContext.GetClassByIndex(selectedClass);
+    auto& classes = mContext.GetClassByIndex(selectedClass);
 
     auto hoursPerWeek = aDialog.mHoursPerWeek->value();
 

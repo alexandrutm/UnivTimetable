@@ -14,7 +14,7 @@ Room& Room::operator=(const Room& aRoom)
   return *this;
 }
 
-void Room::SetNume(string aNume) { mName = aNume; }
+void Room::SetName(string aNume) { mName = aNume; }
 
 string Room::GetNume() { return mName; }
 

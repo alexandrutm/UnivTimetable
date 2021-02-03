@@ -37,11 +37,7 @@ QVariant RoomTableModel::headerData(int section, Qt::Orientation orientation, in
 
 void RoomTableModel::EditModel(int rowSelected, QString aName)
 {
-
-  // shared_ptr<Room> oldRoom = mContext.GetRoomByIndex(rowSelected);
-  // shared_ptr<Room>newRoom = make_shared<Room>(aName.toStdString());
-
-  // mContext.EditRoom(oldRoom, newRoom);
+  mContext.GetRoomByIndex(rowSelected)->SetName(aName.toStdString());
 }
 
 void RoomTableModel::RemoveItemFromModel(int aRowSelected)

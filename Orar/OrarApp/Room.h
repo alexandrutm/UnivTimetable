@@ -7,7 +7,7 @@ class Room
   bool operator==(const Room& aRoom);
   Room& operator=(const Room& aRoom);
 
-  void SetNume(string);
+  void SetName(string);
   string GetNume();
   int GetId();
 

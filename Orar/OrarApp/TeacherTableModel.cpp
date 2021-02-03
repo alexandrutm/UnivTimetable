@@ -16,14 +16,15 @@ QVariant TableModel::data(const QModelIndex& index, int role) const
     return QVariant();
   }
 
-  if (index.column() == 0) {
-    QString firstName;
-    firstName = QString::fromStdString((mContext.GetTeacherByIndex(index.row()))->GetFirstName());
-    return firstName;
-  } else {
-    QString lastName;
-    lastName = QString::fromStdString((mContext.GetTeacherByIndex(index.row()))->GetLastName());
-    return lastName;
+  const auto& teacher = mContext.GetTeacherByIndex(index.row());
+
+  switch (index.column()) {
+  case 0:
+    return QString::fromStdString((teacher->GetFirstName()));
+  case 1:
+    return QString::fromStdString((teacher->GetLastName()));
+  default:
+    break;
   }
 }
 
@@ -42,10 +43,8 @@ QVariant TableModel::headerData(int section, Qt::Orientation orientation, int ro
 void TableModel::EditModel(int rowSelected, QString aFirstName, QString aLastName)
 {
 
-  // shared_ptr<Teacher> oldTeacher = mContext.GetTeacherByIndex(rowSelected);
-  //shared_ptr<Teacher>newTeacher = make_shared<Teacher>(aFirstName.toStdString(), aLastName.toStdString(),);
-
-  // mContext.EditTeacher(oldTeacher, newTeacher);
+  mContext.GetTeacherByIndex(rowSelected)->SetFirstName(aFirstName.toStdString());
+  mContext.GetTeacherByIndex(rowSelected)->SetLastName(aLastName.toStdString());
 }
 
 void TableModel::RemoveItemFromModel(int aRowSelected)

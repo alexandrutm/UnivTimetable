@@ -59,10 +59,9 @@ QVariant LessonTableModel::headerData(int section, Qt::Orientation orientation, 
 
 void LessonTableModel::EditModel(int rowSelected, shared_ptr<Lesson> aLesson)
 {
+  auto& lesson = mContext.GetLessonByIndex(rowSelected);
+  lesson = aLesson;
 
-  // shared_ptr<Lesson> oldLesson = mContext.GetLessonByIndex(rowSelected);
-
-  // mContext.EditLesson(oldLesson,aLesson);
 }
 
 void LessonTableModel::RemoveItemFromModel(int aRowSelected)

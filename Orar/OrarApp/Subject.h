@@ -20,4 +20,3 @@ class Subject
   int mId;
 };
 
-Q_DECLARE_METATYPE(Subject);

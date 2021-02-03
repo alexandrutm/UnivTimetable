@@ -43,10 +43,8 @@ QVariant ClassTableModel::headerData(int section, Qt::Orientation orientation, i
 void ClassTableModel::EditModel(int rowSelected, QString aName, int aNumberOfStudents)
 {
 
-  //shared_ptr<Classes> oldClass = mContext.GetClassByIndex(rowSelected);
-  //shared_ptr<Classes> newClass = make_shared<Classes>(aName.toStdString(), aNumberOfStudents,);
-
-  // mContext.EditClasses(oldClass,newClass);
+  mContext.GetClassByIndex(rowSelected)->SetName(aName.toStdString());
+  mContext.GetClassByIndex(rowSelected)->SetNumberOfStudents(aNumberOfStudents);
 }
 
 void ClassTableModel::RemoveItemFromModel(int aRowSelected)

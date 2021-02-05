@@ -6,12 +6,15 @@ class TableModel : public QAbstractTableModel
 {
   Q_OBJECT
 
-  public:
-  TableModel(Context& aContext, QObject* parent = nullptr);
-  int rowCount(const QModelIndex& parent = QModelIndex()) const Q_DECL_OVERRIDE;
-  int columnCount(const QModelIndex& parent = QModelIndex()) const Q_DECL_OVERRIDE;
-  QVariant data(const QModelIndex& index, int role = Qt::DisplayRole) const Q_DECL_OVERRIDE;
-  QVariant headerData(int section, Qt::Orientation orientation, int role = Qt::DisplayRole) const Q_DECL_OVERRIDE;
+public:
+  TableModel(Context & aContext, QObject * parent = nullptr);
+  int      rowCount(const QModelIndex & parent = QModelIndex()) const Q_DECL_OVERRIDE;
+  int      columnCount(const QModelIndex & parent = QModelIndex()) const Q_DECL_OVERRIDE;
+  QVariant data(const QModelIndex & index, int role = Qt::DisplayRole) const Q_DECL_OVERRIDE;
+  QVariant headerData(int             section,
+                      Qt::Orientation orientation,
+                      int             role = Qt::DisplayRole) const Q_DECL_OVERRIDE;
+  bool TableModel::setData(const QModelIndex & index, const QVariant & value, int role) override;
 
   void EditModel(int aRowSelected, QString aFirstName, QString aLastName);
   void RemoveItemFromModel(int aRowSelected);
@@ -19,6 +22,6 @@ class TableModel : public QAbstractTableModel
 
   void ClearContent();
 
-  private:
-  Context& mContext;
+private:
+  Context & mContext;
 };

@@ -2,16 +2,16 @@
 
 class Room
 {
-  public:
+public:
   Room(string aName, int aId);
-  bool operator==(const Room& aRoom);
-  Room& operator=(const Room& aRoom);
+  bool   operator==(const Room & aRoom);
+  Room & operator=(const Room & aRoom);
 
-  void SetName(string);
+  void   SetName(string);
   string GetNume();
-  int GetId();
+  int    GetId();
 
-  private:
+private:
   string mName;
-  int mId;
+  int    mId;
 };

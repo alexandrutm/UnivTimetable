@@ -1,18 +1,17 @@
 #pragma once
 
-
 class Subject;
 class Teacher;
 class Classes;
 
 class Lesson
 {
-  public:
-  Lesson() = default;
-  ~Lesson() = default;
-  Lesson(const Lesson&) = default;
-  bool operator==(const Lesson& aLesson);
-  Lesson& operator=(const Lesson& l);
+public:
+  Lesson()               = default;
+  ~Lesson()              = default;
+  Lesson(const Lesson &) = default;
+  bool     operator==(const Lesson & aLesson);
+  Lesson & operator=(const Lesson & l);
 
   Lesson(shared_ptr<Teacher>, shared_ptr<Subject>, shared_ptr<Classes>, int, int);
 
@@ -24,15 +23,13 @@ class Lesson
   shared_ptr<Teacher> GetTeacher();
   shared_ptr<Classes> GetClass();
   shared_ptr<Subject> GetSubject();
-  int GetNumberOfHours();
-  int GetId();
+  int                 GetNumberOfHours();
+  int                 GetId();
 
-
-  private:
+private:
   shared_ptr<Subject> mSubject;
   shared_ptr<Teacher> mTeacher;
   shared_ptr<Classes> mClass;
-  int mHoursPerWeek;
-  int mId;
+  int                 mHoursPerWeek;
+  int                 mId;
 };
-

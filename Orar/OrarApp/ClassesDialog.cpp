@@ -1,7 +1,16 @@
 #include "ClassesDialog.h"
 
-ClassesDialog::ClassesDialog(QWidget *parent): QDialog(parent) { setupUi(this); }
+ClassesDialog::ClassesDialog(QWidget * parent)
+  : QDialog(parent)
+{
+  setupUi(this);
+}
 
-void ClassesDialog::on_Name_textChanged() { Abbreviation->setText(Name->text().left(2)); }
+void ClassesDialog::on_Name_textChanged()
+{
+  Abbreviation->setText(Name->text().left(2));
+}
 
-ClassesDialog::~ClassesDialog() { }
+ClassesDialog::~ClassesDialog()
+{
+}

@@ -1,13 +1,15 @@
 #pragma once
 
-#include <QDialog>
 #include "ui_RoomDialog.h"
+#include <QDialog>
 
-class RoomDialog : public QDialog, public Ui::RoomDialog
+class RoomDialog
+  : public QDialog
+  , public Ui::RoomDialog
 {
   Q_OBJECT
 
-  public:
-  RoomDialog(QWidget *parent = Q_NULLPTR);
+public:
+  RoomDialog(QWidget * parent = Q_NULLPTR);
   ~RoomDialog();
 };

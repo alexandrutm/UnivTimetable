@@ -1,16 +1,19 @@
 #include "stdafx.h"
 #include "InstituteDataView.h"
-#include "INavigator.h"
 #include "Context.h"
+#include "INavigator.h"
 #include "InstituteData.h"
 
-
-InstituteDataView::InstituteDataView(Context& aContext, QWidget* parent): QWidget(parent), mContext(aContext)
+InstituteDataView::InstituteDataView(Context & aContext, QWidget * parent)
+  : QWidget(parent)
+  , mContext(aContext)
 {
   ui.setupUi(this);
 }
 
-InstituteDataView::~InstituteDataView() { }
+InstituteDataView::~InstituteDataView()
+{
+}
 
 void InstituteDataView::ClearData()
 {
@@ -22,7 +25,8 @@ void InstituteDataView::ClearData()
 
 void InstituteDataView::on_Save_clicked()
 {
-  shared_ptr<InstituteData> newInstituteData = make_shared<InstituteData>(ui.SchoolName->text().toStdString(),
-    ui.AcademicYear->text().toInt(), ui.HoursPerDay->value(), ui.DaysPerWeek->value(), mContext.GenerateInstituteDataId());
+  shared_ptr<InstituteData> newInstituteData = make_shared<InstituteData>(
+    ui.SchoolName->text().toStdString(), ui.AcademicYear->text().toInt(), ui.HoursPerDay->value(),
+    ui.DaysPerWeek->value(), mContext.GenerateInstituteDataId());
   mContext.AddInstituteData(newInstituteData);
 }

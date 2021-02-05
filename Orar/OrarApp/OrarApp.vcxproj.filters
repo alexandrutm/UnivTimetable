@@ -128,6 +128,9 @@
     <ClCompile Include="InstituteDataView.cpp">
       <Filter>Source Files\views</Filter>
     </ClCompile>
+    <ClCompile Include="SortFilterProxyModel.cpp">
+      <Filter>Source Files\Models</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="ClassesDialog.h">
@@ -189,6 +192,9 @@
     </QtMoc>
     <QtMoc Include="InstituteDataView.h">
       <Filter>Source Files\views</Filter>
+    </QtMoc>
+    <QtMoc Include="SortFilterProxyModel.h">
+      <Filter>Source Files\Models</Filter>
     </QtMoc>
   </ItemGroup>
   <ItemGroup>

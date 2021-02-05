@@ -1,7 +1,7 @@
 #pragma once
 
-#include <QWidget>
 #include "ui_InstituteDataView.h"
+#include <QWidget>
 
 class Context;
 
@@ -9,15 +9,15 @@ class InstituteDataView : public QWidget
 {
   Q_OBJECT
 
-  public:
-  InstituteDataView(Context &aContext, QWidget *parent = Q_NULLPTR);
+public:
+  InstituteDataView(Context & aContext, QWidget * parent = Q_NULLPTR);
   ~InstituteDataView();
   void ClearData();
 
-  private slots:
+private slots:
   void on_Save_clicked();
 
-  private:
+private:
   Ui::InstituteDataView ui;
-  Context &mContext;
+  Context &             mContext;
 };

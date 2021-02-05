@@ -1,14 +1,15 @@
 #pragma once
 
-#include <QDialog>
 #include "ui_LessonDialog.h"
+#include <QDialog>
 
-
-class LessonDialog : public QDialog, public Ui::LessonDialog
+class LessonDialog
+  : public QDialog
+  , public Ui::LessonDialog
 {
   Q_OBJECT
 
-  public:
-  LessonDialog(QWidget *parent = Q_NULLPTR);
+public:
+  LessonDialog(QWidget * parent = Q_NULLPTR);
   ~LessonDialog();
 };

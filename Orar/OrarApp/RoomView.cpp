@@ -4,32 +4,42 @@
 #include "RoomDialog.h"
 #include "RoomTableModel.h"
 
-RoomView::RoomView(Context& aContext, QWidget* parent): QWidget(parent), mContext(aContext)
+RoomView::RoomView(Context & aContext, QWidget * parent)
+  : QWidget(parent)
+  , mContext(aContext)
 {
   ui.setupUi(this);
   tableModel = new RoomTableModel(mContext, this);
 
   ui.mTable->setModel(tableModel);
 
-  QHeaderView* header = ui.mTable->horizontalHeader();
+  QHeaderView * header = ui.mTable->horizontalHeader();
   header->setSectionResizeMode(QHeaderView::Stretch);
 }
 
-RoomView::~RoomView() { }
+RoomView::~RoomView()
+{
+}
 
-void RoomView::ClearData() { tableModel->ClearData(); }
-
+void RoomView::ClearData()
+{
+  tableModel->ClearData();
+}
 
 void RoomView::on_mAdd_clicked()
 {
   RoomDialog Add(this);
 
-  if (Add.exec()) {
+  if (Add.exec())
+  {
     QString aName = Add.Name->text();
 
-    if (!aName.isEmpty()) {
+    if (!aName.isEmpty())
+    {
       tableModel->PopulateModel(aName);
-    } else {
+    }
+    else
+    {
       QMessageBox::about(this, "Name eror", "You need to fill all fields with *");
     }
   }
@@ -37,11 +47,14 @@ void RoomView::on_mAdd_clicked()
 void RoomView::on_mEdit_clicked()
 {
   RoomDialog Edit(this);
-  auto selectedRow = ui.mTable->selectionModel()->currentIndex().row();
+  auto       selectedRow = ui.mTable->selectionModel()->currentIndex().row();
 
-  if (selectedRow < 0) {
+  if (selectedRow < 0)
+  {
     QMessageBox::about(this, "No item selected", "Please choose an item to edit");
-  } else if (Edit.exec()) {
+  }
+  else if (Edit.exec())
+  {
     QString aName = Edit.Name->text();
 
     tableModel->EditModel(selectedRow, aName);
@@ -52,11 +65,16 @@ void RoomView::on_mDelete_clicked()
 {
   auto selectedRow = ui.mTable->selectionModel()->currentIndex().row();
 
-  if (selectedRow < 0) {
+  if (selectedRow < 0)
+  {
     QMessageBox::about(this, "No item selected", "Please choose an item to delete");
-  } else {
+  }
+  else
+  {
     tableModel->RemoveItemFromModel(selectedRow);
   }
 }
 
-void RoomView::on_mConstraints_clicked() { }
+void RoomView::on_mConstraints_clicked()
+{
+}

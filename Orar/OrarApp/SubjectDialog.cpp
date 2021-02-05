@@ -1,7 +1,16 @@
 #include "SubjectDialog.h"
 
-SubjectDialog::SubjectDialog(QWidget *parent): QDialog(parent) { setupUi(this); }
+SubjectDialog::SubjectDialog(QWidget * parent)
+  : QDialog(parent)
+{
+  setupUi(this);
+}
 
-SubjectDialog::~SubjectDialog() { }
+SubjectDialog::~SubjectDialog()
+{
+}
 
-void SubjectDialog::on_Name_textChanged() { Abbreviation->setText(Name->text().left(2)); }
+void SubjectDialog::on_Name_textChanged()
+{
+  Abbreviation->setText(Name->text().left(2));
+}

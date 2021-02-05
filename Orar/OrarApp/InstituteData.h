@@ -1,20 +1,19 @@
 #pragma once
 
-
 class InstituteData
 {
-  public:
-  InstituteData() = default;
-  ~InstituteData() = default;
-  InstituteData(const InstituteData&) = default;
-  bool operator==(const InstituteData& aInfo);
+public:
+  InstituteData()                      = default;
+  ~InstituteData()                     = default;
+  InstituteData(const InstituteData &) = default;
+  bool operator==(const InstituteData & aInfo);
 
   InstituteData(string, int, int, int, int);
 
   string GetSchoolName();
-  int GetAcademicYear();
-  int GetHoursPerDay();
-  int GetDayPerWeek();
+  int    GetAcademicYear();
+  int    GetHoursPerDay();
+  int    GetDayPerWeek();
 
   void SetSchoolName(string aSchoolName);
   void SetAcademicYear(int aAcademicYear);
@@ -23,14 +22,12 @@ class InstituteData
 
   int GetId();
 
+  InstituteData & operator=(const InstituteData &);
 
-  InstituteData& operator=(const InstituteData&);
-
-  private:
+private:
   string mSchoolName;
-  int mAcademicYear;
-  int mHoursPerDay;
-  int mDayPerWeek;
-  int mId;
+  int    mAcademicYear;
+  int    mHoursPerDay;
+  int    mDayPerWeek;
+  int    mId;
 };
-

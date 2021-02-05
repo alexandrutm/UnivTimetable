@@ -1,7 +1,7 @@
 #pragma once
 
-#include <QWidget>
 #include "ui_LessonView.h"
+#include <QWidget>
 
 class Context;
 
@@ -15,27 +15,26 @@ class LessonView : public QWidget
 {
   Q_OBJECT
 
-  public:
-  LessonView(Context& aContext, QWidget* parent = Q_NULLPTR);
+public:
+  LessonView(Context & aContext, QWidget * parent = Q_NULLPTR);
   ~LessonView();
   void ClearData();
 
-  private slots:
+private slots:
 
   void on_mAdd_clicked();
   void on_mEdit_clicked();
   void on_mDelete_clicked();
   void on_mConstraints_clicked();
 
-
-  private:
+private:
   Ui::LessonView ui;
 
-  TableModel* mTeacherModel;
-  SubjectTableModel* mSubjectModel;
-  ClassTableModel* mClassModel;
-  RoomTableModel* mRoomTableModel;
-  LessonTableModel* tableModel;
+  TableModel *        mTeacherModel;
+  SubjectTableModel * mSubjectModel;
+  ClassTableModel *   mClassModel;
+  RoomTableModel *    mRoomTableModel;
+  LessonTableModel *  tableModel;
 
-  Context& mContext;
+  Context & mContext;
 };

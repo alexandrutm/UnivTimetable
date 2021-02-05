@@ -117,6 +117,7 @@
     <ClCompile Include="RoomDialog.cpp" />
     <ClCompile Include="RoomTableModel.cpp" />
     <ClCompile Include="RoomView.cpp" />
+    <ClCompile Include="SortFilterProxyModel.cpp" />
     <ClCompile Include="Subject.cpp" />
     <ClCompile Include="SubjectDialog.cpp" />
     <ClCompile Include="SubjectTableModel.cpp" />
@@ -144,6 +145,7 @@
     <ClInclude Include="Room.h" />
     <QtMoc Include="RoomTableModel.h" />
     <QtMoc Include="RoomDialog.h" />
+    <QtMoc Include="SortFilterProxyModel.h" />
     <ClInclude Include="Subject.h" />
     <QtMoc Include="SubjectView.h" />
     <QtMoc Include="TeacherTableModel.h" />

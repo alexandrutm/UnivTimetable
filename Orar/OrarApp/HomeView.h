@@ -1,7 +1,6 @@
 #pragma once
 
 #include "ui_HomeView.h"
-#include <QWidget>
 
 class INavigator;
 

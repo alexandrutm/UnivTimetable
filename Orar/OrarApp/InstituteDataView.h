@@ -1,7 +1,6 @@
 #pragma once
 
 #include "ui_InstituteDataView.h"
-#include <QWidget>
 
 class Context;
 

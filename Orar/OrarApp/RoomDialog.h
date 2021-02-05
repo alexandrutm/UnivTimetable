@@ -1,7 +1,6 @@
 #pragma once
 
 #include "ui_RoomDialog.h"
-#include <QDialog>
 
 class RoomDialog
   : public QDialog

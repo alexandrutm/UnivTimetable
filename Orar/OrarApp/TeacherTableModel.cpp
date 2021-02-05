@@ -37,6 +37,7 @@ QVariant TableModel::data(const QModelIndex & index, int role) const
   default:
     break;
   }
+  return QVariant();
 }
 
 bool TableModel::setData(const QModelIndex & index, const QVariant & value, int role)
@@ -54,6 +55,9 @@ bool TableModel::setData(const QModelIndex & index, const QVariant & value, int 
       break;
     case 1:
       teacher->SetLastName((value.toString()).toStdString());
+      break;
+    case 2:
+      // teacher->Set((value.toString()).toStdString());
       break;
     default:
       return false;

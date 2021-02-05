@@ -1,7 +1,6 @@
 #pragma once
 
 #include "ui_RoomView.h"
-#include <QWidget>
 
 class Context;
 class RoomTableModel;

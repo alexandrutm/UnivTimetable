@@ -1,7 +1,6 @@
 #pragma once
 
 #include "ui_SubjectView.h"
-#include <QWidget>
 
 class INavigator;
 class Context;

@@ -1,7 +1,6 @@
 #pragma once
 
 #include "ui_ClassesView.h"
-#include <QWidget>
 
 class Context;
 class ClassTableModel;

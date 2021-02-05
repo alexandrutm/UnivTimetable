@@ -1,7 +1,6 @@
 #pragma once
 
 #include "ui_LessonView.h"
-#include <QWidget>
 
 class Context;
 

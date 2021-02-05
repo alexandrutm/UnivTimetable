@@ -11,7 +11,6 @@
 #include "SubjectView.h"
 #include "TeacherView.h"
 #include "ui_OrarApp.h"
-#include <QtWidgets/QMainWindow>
 
 class TimeTableView;
 

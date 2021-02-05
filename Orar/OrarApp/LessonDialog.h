@@ -1,7 +1,6 @@
 #pragma once
 
 #include "ui_LessonDialog.h"
-#include <QDialog>
 
 class LessonDialog
   : public QDialog

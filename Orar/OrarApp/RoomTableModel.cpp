@@ -9,12 +9,12 @@ RoomTableModel::RoomTableModel(Context & aContext, QObject * parent)
 {
 }
 
-int RoomTableModel::rowCount(const QModelIndex & parent) const
+int RoomTableModel::rowCount(const QModelIndex & /*parent*/) const
 {
   return mContext.GetRoomSize();
 }
 
-int RoomTableModel::columnCount(const QModelIndex & parent) const
+int RoomTableModel::columnCount(const QModelIndex & /*parent*/) const
 {
   return 1;
 }

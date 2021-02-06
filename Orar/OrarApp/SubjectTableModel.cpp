@@ -8,12 +8,12 @@ SubjectTableModel::SubjectTableModel(Context & aContext, QObject * parent)
   , mContext(aContext)
 {
 }
-int SubjectTableModel::rowCount(const QModelIndex & parent) const
+int SubjectTableModel::rowCount(const QModelIndex & /*parent*/) const
 {
   return mContext.GetSubjectSize();
 }
 
-int SubjectTableModel::columnCount(const QModelIndex & parent) const
+int SubjectTableModel::columnCount(const QModelIndex & /*parent*/) const
 {
   return 1;
 }

@@ -18,7 +18,7 @@ int LessonTableModel::rowCount(const QModelIndex & /*parent*/) const
   return mContext.GetLessonSize();
 }
 
-int LessonTableModel::columnCount(const QModelIndex & parent) const
+int LessonTableModel::columnCount(const QModelIndex & /*parent*/) const
 {
   return 4;
 }

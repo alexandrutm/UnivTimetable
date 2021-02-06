@@ -9,12 +9,12 @@ ClassTableModel::ClassTableModel(Context & aContext, QObject * parent)
 {
 }
 
-int ClassTableModel::rowCount(const QModelIndex & parent) const
+int ClassTableModel::rowCount(const QModelIndex & /*parent*/) const
 {
   return mContext.GetClassSize();
 }
 
-int ClassTableModel::columnCount(const QModelIndex & parent) const
+int ClassTableModel::columnCount(const QModelIndex & /*parent*/) const
 {
   return 2;
 }
@@ -38,7 +38,6 @@ QVariant ClassTableModel::data(const QModelIndex & index, int role) const
     nrOfStudents = (mContext.GetClassByIndex(index.row()))->GetNumberOfStudents();
     return nrOfStudents;
   }
-  return QVariant();
 }
 
 QVariant ClassTableModel::headerData(int section, Qt::Orientation orientation, int role) const

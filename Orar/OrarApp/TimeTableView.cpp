@@ -9,12 +9,12 @@ TimeTableView::TimeTableView(Context & aContext, QObject * parent)
 {
 }
 
-int TimeTableView::rowCount(const QModelIndex & parent) const
+int TimeTableView::rowCount(const QModelIndex & /*parent*/) const
 {
   return mContext.GetClassSize();
 }
 
-int TimeTableView::columnCount(const QModelIndex & parent) const
+int TimeTableView::columnCount(const QModelIndex & /*parent*/) const
 {
   return 6;
 }

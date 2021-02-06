@@ -40,30 +40,24 @@ QVariant TableModel::data(const QModelIndex & index, int role) const
   return QVariant();
 }
 
-bool TableModel::setData(const QModelIndex & index, const QVariant & value, int role)
+bool TableModel::setData(const QModelIndex & index, const QVariant & aName, int role)
 {
   if (index.isValid() && role == Qt::EditRole)
   {
-    const int row = index.row();
-
-    auto teacher = mContext.GetTeacherByIndex(row);
+    auto & teacher = mContext.GetTeacherByIndex(index.row());
 
     switch (index.column())
     {
     case 0:
-      teacher->SetFirstName((value.toString()).toStdString());
+      teacher->SetFirstName((aName.toString()).toStdString());
       break;
     case 1:
-      teacher->SetLastName((value.toString()).toStdString());
-      break;
-    case 2:
-      // teacher->Set((value.toString()).toStdString());
+      teacher->SetLastName((aName.toString()).toStdString());
       break;
     default:
       return false;
     }
 
-    // contacts.replace(row, teacher);
     emit dataChanged(index, index, { Qt::DisplayRole, Qt::EditRole });
 
     return true;
@@ -88,10 +82,16 @@ QVariant TableModel::headerData(int section, Qt::Orientation orientation, int ro
   return QVariant();
 }
 
-void TableModel::EditModel(int rowSelected, QString aFirstName, QString aLastName)
+void TableModel::EditModel(
+  QModelIndex index, int role, int rowSelected, QString aFirstName, QString aLastName)
 {
-  mContext.GetTeacherByIndex(rowSelected)->SetFirstName(aFirstName.toStdString());
-  mContext.GetTeacherByIndex(rowSelected)->SetLastName(aLastName.toStdString());
+  if (index.isValid() && role == Qt::EditRole)
+  {
+    mContext.GetTeacherByIndex(rowSelected)->SetFirstName(aFirstName.toStdString());
+    mContext.GetTeacherByIndex(rowSelected)->SetLastName(aLastName.toStdString());
+
+    emit dataChanged(index, index, { Qt::DisplayRole, Qt::EditRole });
+  }
 }
 
 void TableModel::RemoveItemFromModel(int aRowSelected)

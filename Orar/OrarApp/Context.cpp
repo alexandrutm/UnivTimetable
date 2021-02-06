@@ -216,7 +216,17 @@ vector<shared_ptr<Room>> & Context::GetRooms()
 
 int Context::GetRoomSize()
 {
-  return mRooms.size();
+  // cast to int
+  // stiind ca o sa fie maxim 10 000 de sali intr-o institutie
+
+  size_t data = mRooms.size();
+
+  if (data > INT_MAX)
+  {
+    throw std::overflow_error("data is larger than INT_MAX");
+  }
+
+  return static_cast<int>(data);
 }
 
 shared_ptr<Room> Context::GetRoomByIndex(int i)

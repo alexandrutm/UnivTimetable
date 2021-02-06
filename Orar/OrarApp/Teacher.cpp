@@ -19,7 +19,7 @@ Teacher & Teacher::operator=(const Teacher & aTeacher)
   {
     this->mFirstName = aTeacher.mFirstName;
     this->mLastName  = aTeacher.mLastName;
-    this->mId == aTeacher.mId;
+    this->mId        = aTeacher.mId;
   }
   return *this;
 }

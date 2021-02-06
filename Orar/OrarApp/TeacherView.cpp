@@ -41,13 +41,7 @@ void TeacherView::on_mAdd_clicked()
     QString lastName  = Add.mLastName->text();
     if (!firstName.isEmpty())
     {
-      QModelIndex index = tableModel->index(0, 0, QModelIndex());
-      tableModel->setData(index, firstName, Qt::EditRole);
-      index = tableModel->index(0, 1, QModelIndex());
-      tableModel->setData(index, lastName, Qt::EditRole);
-      index = tableModel->index(0, 2, QModelIndex());
-      tableModel->setData(index, mContext.GenerateTeacherId(), Qt::EditRole);
-      index = tableModel->index(0, 3, QModelIndex());
+      tableModel->PopulateModel(firstName, lastName);
     }
     else
     {
@@ -58,23 +52,42 @@ void TeacherView::on_mAdd_clicked()
 
 void TeacherView::on_mEdit_clicked()
 {
-  QModelIndex   index;
   TeacherDialog Dialog(this);
-  auto          selectedRow = ui.mTable->selectionModel()->currentIndex().row();
 
-  index = tableModel->index(selectedRow, 3, QModelIndex());
-  // index.data()
+  int row = proxyModel->mapToSource(ui.mTable->selectionModel()->currentIndex()).row();
 
-  if (selectedRow < 0)
+  if (row < 0)
   {
     QMessageBox::about(this, "No item selected", "Please choose an item to edit");
   }
   else if (Dialog.exec())
   {
+    QString firstOldName;
+    QString lastOldName;
+
+    QModelIndex nameIndex = tableModel->index(row, 0, QModelIndex());
+    QVariant    varName   = tableModel->data(nameIndex, Qt::DisplayRole);
+    firstOldName          = varName.toString();
+
+    QModelIndex addressIndex = tableModel->index(row, 1, QModelIndex());
+    QVariant    varAddr      = tableModel->data(addressIndex, Qt::DisplayRole);
+    lastOldName              = varAddr.toString();
+
+    // new teacher name
     QString firstName = Dialog.mFirstName->text();
     QString lastName  = Dialog.mLastName->text();
 
-    tableModel->EditModel(selectedRow, firstName, lastName);
+    if (firstName != firstOldName && lastName != lastOldName)
+    {
+      QModelIndex index = tableModel->index(row, 0, QModelIndex());
+      tableModel->setData(index, firstName, Qt::EditRole);
+
+      index = tableModel->index(row, 1, QModelIndex());
+      tableModel->setData(index, lastName, Qt::EditRole);
+
+      // tableModel->EditModel(ui.mTable->selectionModel()->currentIndex(), Qt::EditRole, row,
+      //                      firstName, lastName);
+    }
   }
 }
 

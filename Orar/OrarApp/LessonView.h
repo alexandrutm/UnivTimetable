@@ -5,6 +5,7 @@
 class Context;
 
 class TableModel;
+class SortFilterProxyModel;
 class SubjectTableModel;
 class ClassTableModel;
 class RoomTableModel;
@@ -29,11 +30,12 @@ private slots:
 private:
   Ui::LessonView ui;
 
-  TableModel *        mTeacherModel;
-  SubjectTableModel * mSubjectModel;
-  ClassTableModel *   mClassModel;
-  RoomTableModel *    mRoomTableModel;
-  LessonTableModel *  tableModel;
+  SortFilterProxyModel * proxyModel;
+  TableModel *           mTeacherModel;
+  SubjectTableModel *    mSubjectModel;
+  ClassTableModel *      mClassModel;
+  RoomTableModel *       mRoomTableModel;
+  LessonTableModel *     tableModel;
 
   Context & mContext;
 };

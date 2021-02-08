@@ -4,6 +4,7 @@
 
 class Context;
 class RoomTableModel;
+class SortFilterProxyModel;
 
 class RoomView : public QWidget
 {
@@ -21,8 +22,8 @@ private slots:
   void on_mConstraints_clicked();
 
 private:
-  Ui::RoomView ui;
-
-  RoomTableModel * tableModel;
-  Context &        mContext;
+  Ui::RoomView           ui;
+  SortFilterProxyModel * proxyModel;
+  RoomTableModel *       tableModel;
+  Context &              mContext;
 };

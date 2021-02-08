@@ -7,6 +7,7 @@
 #include "LessonDialog.h"
 #include "LessonTableModel.h"
 #include "RoomTableModel.h"
+#include "SortFilterProxyModel.h"
 #include "Subject.h"
 #include "SubjectTableModel.h"
 #include "Teacher.h"
@@ -24,12 +25,13 @@ LessonView::LessonView(Context & aContext, QWidget * parent)
   mRoomTableModel = new RoomTableModel(mContext, this);
 
   tableModel = new LessonTableModel(mContext, this);
+  proxyModel = new SortFilterProxyModel();
 
-  ui.mTable->setModel(tableModel);
-
-  QHeaderView * header = ui.mTable->horizontalHeader();
-  header->setSectionResizeMode(QHeaderView::Stretch);
-  ;
+  proxyModel->setSourceModel(tableModel);
+  proxyModel->sort(0, Qt::AscendingOrder);
+  ui.mTable->setModel(proxyModel);
+  ui.mTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+  ui.mTable->setSortingEnabled(true);
 }
 
 LessonView::~LessonView()
@@ -57,10 +59,10 @@ void LessonView::on_mAdd_clicked()
 
     if (selectedTeacher >= 0 && selectedClass >= 0 && selectedSubject >= 0)
     {
-      auto & classes      = mContext.GetClassByIndex(selectedClass);
-      auto & subject      = mContext.GetSubjectByIndex(selectedSubject);
-      auto & teacher      = mContext.GetTeacherByIndex(selectedTeacher);
-      auto   hoursPerWeek = aDialog.mHoursPerWeek->value();
+      auto classes      = mContext.GetClassByIndex(selectedClass);
+      auto subject      = mContext.GetSubjectByIndex(selectedSubject);
+      auto teacher      = mContext.GetTeacherByIndex(selectedTeacher);
+      auto hoursPerWeek = aDialog.mHoursPerWeek->value();
 
       shared_ptr<Lesson> newLesson =
         make_shared<Lesson>(teacher, subject, classes, hoursPerWeek, mContext.GenerateLessonId());
@@ -77,48 +79,52 @@ void LessonView::on_mAdd_clicked()
 void LessonView::on_mEdit_clicked()
 {
   LessonDialog aDialog(this);
+  QModelIndex  index;
 
   aDialog.mTeacher->setModel(mTeacherModel);
   aDialog.mSubject->setModel(mSubjectModel);
   aDialog.mClasses->setModel(mClassModel);
 
-  auto selectedRow = ui.mTable->selectionModel()->currentIndex().row();
+  int currentSelectedRowMapped =
+    proxyModel->mapToSource(ui.mTable->selectionModel()->currentIndex()).row();
 
-  if (selectedRow < 0)
+  if (currentSelectedRowMapped < 0)
   {
     QMessageBox::about(this, "No item selected", "Please choose an item to edit");
   }
   else if (aDialog.exec())
   {
-    auto   selectedTeacher = aDialog.mTeacher->currentIndex();
-    auto & teacher         = mContext.GetTeacherByIndex(selectedTeacher);
+    auto selectedTeacher = aDialog.mTeacher->currentIndex();
+    auto teacher         = mContext.GetTeacherByIndex(selectedTeacher);
 
-    auto   selectedSubject = aDialog.mSubject->currentIndex();
-    auto & subject         = mContext.GetSubjectByIndex(selectedSubject);
+    auto selectedSubject = aDialog.mSubject->currentIndex();
+    auto subject         = mContext.GetSubjectByIndex(selectedSubject);
 
-    auto   selectedClass = aDialog.mClasses->currentIndex();
-    auto & classes       = mContext.GetClassByIndex(selectedClass);
+    auto selectedClass = aDialog.mClasses->currentIndex();
+    auto classes       = mContext.GetClassByIndex(selectedClass);
 
     auto hoursPerWeek = aDialog.mHoursPerWeek->value();
 
     shared_ptr<Lesson> newLesson =
       make_shared<Lesson>(teacher, subject, classes, hoursPerWeek, mContext.GenerateLessonId());
 
-    tableModel->EditModel(selectedRow, newLesson);
+    index = tableModel->index(currentSelectedRowMapped, 0, QModelIndex());
+    tableModel->setData(index, newLesson, Qt::EditRole);
   }
 }
 
 void LessonView::on_mDelete_clicked()
 {
-  auto selectedRow = ui.mTable->selectionModel()->currentIndex().row();
+  int currentSelectedRowMapped =
+    proxyModel->mapToSource(ui.mTable->selectionModel()->currentIndex()).row();
 
-  if (selectedRow < 0)
+  if (currentSelectedRowMapped < 0)
   {
     QMessageBox::about(this, "No item selected", "Please choose an item to delete");
   }
   else
   {
-    tableModel->RemoveItemFromModel(selectedRow);
+    tableModel->RemoveItemFromModel(currentSelectedRowMapped);
   }
 }
 

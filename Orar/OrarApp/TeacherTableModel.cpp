@@ -82,25 +82,12 @@ QVariant TableModel::headerData(int section, Qt::Orientation orientation, int ro
   return QVariant();
 }
 
-void TableModel::EditModel(
-  QModelIndex index, int role, int rowSelected, QString aFirstName, QString aLastName)
-{
-  if (index.isValid() && role == Qt::EditRole)
-  {
-    mContext.GetTeacherByIndex(rowSelected)->SetFirstName(aFirstName.toStdString());
-    mContext.GetTeacherByIndex(rowSelected)->SetLastName(aLastName.toStdString());
-
-    emit dataChanged(index, index, { Qt::DisplayRole, Qt::EditRole });
-  }
-}
-
 void TableModel::RemoveItemFromModel(int aRowSelected)
 {
-  beginRemoveRows(QModelIndex(), aRowSelected,
-                  aRowSelected);  // emit signal to notify view that a new row is removed
+  beginRemoveRows(QModelIndex(), aRowSelected, aRowSelected);
+  // emit signal to notify view that a new row is removed
 
-  shared_ptr<Teacher> oldTeacher = mContext.GetTeacherByIndex(aRowSelected);
-  mContext.RemoveTeacher(oldTeacher);
+  mContext.RemoveTeacher(aRowSelected);
 
   endRemoveRows();
 }
@@ -109,8 +96,8 @@ void TableModel::PopulateModel(QString aFirstName, QString aLastName)
 {
   int newRow = mContext.GetTeacherSize();
 
-  beginInsertRows(QModelIndex(), newRow,
-                  newRow);  // emit signal to notify view that a new row is inserted
+  beginInsertRows(QModelIndex(), newRow, newRow);
+  // emit signal to notify view that a new row is inserted
 
   shared_ptr<Teacher> newTeacher = make_shared<Teacher>(
     aFirstName.toStdString(), aLastName.toStdString(), mContext.GenerateTeacherId());
@@ -123,9 +110,9 @@ void TableModel::ClearContent()
 {
   if (mContext.GetTeacherSize() > 0)
   {
-    beginRemoveRows(QModelIndex(), 0,
-                    mContext.GetTeacherSize() -
-                      1);  // emit signal to notify view that a new row is removed
+    beginRemoveRows(QModelIndex(), 0, mContext.GetTeacherSize() - 1);
+    // emit signal to notify view that a new row is removed
+
     mContext.DeleteTeachers();
     endRemoveRows();
   }

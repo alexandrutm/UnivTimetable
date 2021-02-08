@@ -13,10 +13,8 @@ public:
   QVariant headerData(int             section,
                       Qt::Orientation orientation,
                       int             role = Qt::DisplayRole) const Q_DECL_OVERRIDE;
-  bool TableModel::setData(const QModelIndex & index, const QVariant & aName, int role) override;
+  bool     setData(const QModelIndex & index, const QVariant & aName, int role) override;
 
-  void EditModel(
-    QModelIndex index, int role, int aRowSelected, QString aFirstName, QString aLastName);
   void RemoveItemFromModel(int aRowSelected);
   void PopulateModel(QString aFirstName, QString aLastName);
 

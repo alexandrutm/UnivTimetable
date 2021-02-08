@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "SubjectView.h"
 #include "Context.h"
+#include "SortFilterProxyModel.h"
 #include "Subject.h"
 #include "SubjectDialog.h"
 #include "SubjectTableModel.h"
@@ -10,12 +11,17 @@ SubjectView::SubjectView(Context & aContext, QWidget * parent)
   , mContext(aContext)
 {
   ui.setupUi(this);
+
   tableModel = new SubjectTableModel(mContext, this);
+  proxyModel = new SortFilterProxyModel();
 
   ui.mTable->setModel(tableModel);
 
-  QHeaderView * header = ui.mTable->horizontalHeader();
-  header->setSectionResizeMode(QHeaderView::Stretch);
+  proxyModel->setSourceModel(tableModel);
+  proxyModel->sort(0, Qt::AscendingOrder);
+  ui.mTable->setModel(proxyModel);
+  ui.mTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+  ui.mTable->setSortingEnabled(true);
 }
 
 SubjectView::~SubjectView()
@@ -47,31 +53,46 @@ void SubjectView::on_mAdd_clicked()
 void SubjectView::on_mEdit_clicked()
 {
   SubjectDialog Edit(this);
-  auto          selectedRow = ui.mTable->selectionModel()->currentIndex().row();
+  QModelIndex   index;
 
-  if (selectedRow < 0)
+  // map the current selected row value
+  int currentSelectedRowMapped =
+    proxyModel->mapToSource(ui.mTable->selectionModel()->currentIndex()).row();
+
+  if (currentSelectedRowMapped < 0)
   {
     QMessageBox::about(this, "No item selected", "Please choose an item to edit");
   }
   else if (Edit.exec())
   {
-    QString aName = Edit.Name->text();
+    QString oldName;
 
-    tableModel->EditModel(selectedRow, aName);
+    QModelIndex nameIndex = tableModel->index(currentSelectedRowMapped, 0, QModelIndex());
+    QVariant    varName   = tableModel->data(nameIndex, Qt::DisplayRole);
+    oldName               = varName.toString();
+
+    QString newName = Edit.Name->text();
+
+    if (newName != oldName)
+    {
+      index = tableModel->index(currentSelectedRowMapped, 0, QModelIndex());
+      tableModel->setData(index, newName, Qt::EditRole);
+    }
   }
 }
 
 void SubjectView::on_mDelete_clicked()
 {
-  auto selectedRow = ui.mTable->selectionModel()->currentIndex().row();
+  int currentSelectedRowMapped =
+    proxyModel->mapToSource(ui.mTable->selectionModel()->currentIndex()).row();
 
-  if (selectedRow < 0)
+  if (currentSelectedRowMapped < 0)
   {
     QMessageBox::about(this, "No item selected", "Please choose an item to delete");
   }
   else
   {
-    tableModel->RemoveItemFromModel(selectedRow);
+    tableModel->RemoveItemFromModel(currentSelectedRowMapped);
   }
 }
 

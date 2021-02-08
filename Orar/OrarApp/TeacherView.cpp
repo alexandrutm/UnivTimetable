@@ -53,10 +53,13 @@ void TeacherView::on_mAdd_clicked()
 void TeacherView::on_mEdit_clicked()
 {
   TeacherDialog Dialog(this);
+  QModelIndex   index;
 
-  int row = proxyModel->mapToSource(ui.mTable->selectionModel()->currentIndex()).row();
+  // map the current selected row value
+  int currentSelectedRowMapped =
+    proxyModel->mapToSource(ui.mTable->selectionModel()->currentIndex()).row();
 
-  if (row < 0)
+  if (currentSelectedRowMapped < 0)
   {
     QMessageBox::about(this, "No item selected", "Please choose an item to edit");
   }
@@ -65,43 +68,39 @@ void TeacherView::on_mEdit_clicked()
     QString firstOldName;
     QString lastOldName;
 
-    QModelIndex nameIndex = tableModel->index(row, 0, QModelIndex());
-    QVariant    varName   = tableModel->data(nameIndex, Qt::DisplayRole);
-    firstOldName          = varName.toString();
+    QModelIndex nameIndex = tableModel->index(currentSelectedRowMapped, 0, QModelIndex());
+    firstOldName          = (tableModel->data(nameIndex, Qt::DisplayRole)).toString();
 
-    QModelIndex addressIndex = tableModel->index(row, 1, QModelIndex());
-    QVariant    varAddr      = tableModel->data(addressIndex, Qt::DisplayRole);
-    lastOldName              = varAddr.toString();
+    QModelIndex addressIndex = tableModel->index(currentSelectedRowMapped, 1, QModelIndex());
+    lastOldName              = (tableModel->data(addressIndex, Qt::DisplayRole)).toString();
 
     // new teacher name
     QString firstName = Dialog.mFirstName->text();
     QString lastName  = Dialog.mLastName->text();
 
-    if (firstName != firstOldName && lastName != lastOldName)
+    if (!(firstName.isEmpty()) && !(lastName.isEmpty()))
     {
-      QModelIndex index = tableModel->index(row, 0, QModelIndex());
+      index = tableModel->index(currentSelectedRowMapped, 0, QModelIndex());
       tableModel->setData(index, firstName, Qt::EditRole);
 
-      index = tableModel->index(row, 1, QModelIndex());
+      index = tableModel->index(currentSelectedRowMapped, 1, QModelIndex());
       tableModel->setData(index, lastName, Qt::EditRole);
-
-      // tableModel->EditModel(ui.mTable->selectionModel()->currentIndex(), Qt::EditRole, row,
-      //                      firstName, lastName);
     }
   }
 }
 
 void TeacherView::on_mDelete_clicked()
 {
-  auto selectedRow = ui.mTable->selectionModel()->currentIndex().row();
+  int currentSelectedRowMapped =
+    proxyModel->mapToSource(ui.mTable->selectionModel()->currentIndex()).row();
 
-  if (selectedRow < 0)
+  if (currentSelectedRowMapped < 0)
   {
     QMessageBox::about(this, "No item selected", "Please choose an item to delete");
   }
   else
   {
-    tableModel->RemoveItemFromModel(selectedRow);
+    tableModel->RemoveItemFromModel(currentSelectedRowMapped);
   }
 }
 

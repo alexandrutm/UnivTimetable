@@ -5,6 +5,7 @@
 #include "ClassesDialog.h"
 #include "Context.h"
 #include "INavigator.h"
+#include "SortFilterProxyModel.h"
 
 ClassesView::ClassesView(Context & aContext, QWidget * parent)
   : QWidget(parent)
@@ -12,11 +13,13 @@ ClassesView::ClassesView(Context & aContext, QWidget * parent)
 {
   ui.setupUi(this);
   tableModel = new ClassTableModel(mContext, this);
+  proxyModel = new SortFilterProxyModel();
 
-  ui.mTable->setModel(tableModel);
-
-  QHeaderView * header = ui.mTable->horizontalHeader();
-  header->setSectionResizeMode(QHeaderView::Stretch);
+  proxyModel->setSourceModel(tableModel);
+  proxyModel->sort(0, Qt::AscendingOrder);
+  ui.mTable->setModel(proxyModel);
+  ui.mTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+  ui.mTable->setSortingEnabled(true);
 }
 
 ClassesView::~ClassesView()
@@ -49,31 +52,53 @@ void ClassesView::on_mAdd_clicked()
 void ClassesView::on_mEdit_clicked()
 {
   ClassesDialog EditDialog(this);
-  auto          selectedRow = ui.mTable->selectionModel()->currentIndex().row();
+  QModelIndex   index;
 
-  if (selectedRow < 0)
+  // map the current selected row value
+  int currentSelectedRowMapped =
+    proxyModel->mapToSource(ui.mTable->selectionModel()->currentIndex()).row();
+
+  if (currentSelectedRowMapped < 0)
   {
     QMessageBox::about(this, "No Class Selected", "Please choose a class");
   }
   else if (EditDialog.exec())
   {
-    QString aName             = EditDialog.Name->text();
-    int     aNumberOfStudents = EditDialog.NumberOfStudents->value();
+    QString oldName;
+    int     oldNumberOfStudents;
+    QString newName;
+    int     newNumberOfStudents;
 
-    tableModel->EditModel(selectedRow, aName, aNumberOfStudents);
+    QModelIndex nameIndex = tableModel->index(currentSelectedRowMapped, 0, QModelIndex());
+    oldName               = (tableModel->data(nameIndex, Qt::DisplayRole)).toString();
+
+    QModelIndex addressIndex = tableModel->index(currentSelectedRowMapped, 1, QModelIndex());
+    oldNumberOfStudents      = (tableModel->data(addressIndex, Qt::DisplayRole)).toInt();
+
+    newName             = EditDialog.Name->text();
+    newNumberOfStudents = EditDialog.NumberOfStudents->value();
+
+    if (!newName.isEmpty())
+    {
+      index = tableModel->index(currentSelectedRowMapped, 0, QModelIndex());
+      tableModel->setData(index, newName, Qt::EditRole);
+      index = tableModel->index(currentSelectedRowMapped, 1, QModelIndex());
+      tableModel->setData(index, newNumberOfStudents, Qt::EditRole);
+    }
   }
 }
 
 void ClassesView::on_mDelete_clicked()
 {
-  auto selectedRow = ui.mTable->selectionModel()->currentIndex().row();
+  int currentSelectedRowMapped =
+    proxyModel->mapToSource(ui.mTable->selectionModel()->currentIndex()).row();
 
-  if (selectedRow < 0)
+  if (currentSelectedRowMapped < 0)
   {
     QMessageBox::about(this, "No Class Selected", "Please choose class you want to delete");
   }
   else
-    tableModel->RemoveItemFromModel(selectedRow);
+    tableModel->RemoveItemFromModel(currentSelectedRowMapped);
 }
 
 void ClassesView::on_mConstraints_clicked()

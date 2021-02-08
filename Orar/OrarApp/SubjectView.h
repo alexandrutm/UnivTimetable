@@ -2,9 +2,9 @@
 
 #include "ui_SubjectView.h"
 
-class INavigator;
 class Context;
 class SubjectTableModel;
+class SortFilterProxyModel;
 
 class SubjectView : public QWidget
 {
@@ -22,7 +22,8 @@ private slots:
   void on_mConstraints_clicked();
 
 private:
-  Ui::SubjectView     ui;
-  SubjectTableModel * tableModel;
-  Context &           mContext;
+  Ui::SubjectView        ui;
+  SortFilterProxyModel * proxyModel;
+  SubjectTableModel *    tableModel;
+  Context &              mContext;
 };

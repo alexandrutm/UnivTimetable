@@ -56,10 +56,30 @@ QVariant ClassTableModel::headerData(int section, Qt::Orientation orientation, i
   return QVariant();
 }
 
-void ClassTableModel::EditModel(int rowSelected, QString aName, int aNumberOfStudents)
+bool ClassTableModel::setData(const QModelIndex & index, const QVariant & aClassData, int role)
 {
-  mContext.GetClassByIndex(rowSelected)->SetName(aName.toStdString());
-  mContext.GetClassByIndex(rowSelected)->SetNumberOfStudents(aNumberOfStudents);
+  if (index.isValid() && role == Qt::EditRole)
+  {
+    auto & aClass = mContext.GetClassByIndex(index.row());
+
+    switch (index.column())
+    {
+    case 0:
+      aClass->SetName((aClassData.toString()).toStdString());
+      break;
+    case 1:
+      aClass->SetNumberOfStudents(aClassData.toInt());
+      break;
+    default:
+      return false;
+    }
+
+    emit dataChanged(index, index, { Qt::DisplayRole, Qt::EditRole });
+
+    return true;
+  }
+
+  return false;
 }
 
 void ClassTableModel::RemoveItemFromModel(int aRowSelected)
@@ -67,8 +87,7 @@ void ClassTableModel::RemoveItemFromModel(int aRowSelected)
   beginRemoveRows(QModelIndex(), aRowSelected,
                   aRowSelected);  // emit signal to notify view that a new row is removed
 
-  shared_ptr<Classes> oldClass = mContext.GetClassByIndex(aRowSelected);
-  mContext.RemoveClass(oldClass);
+  mContext.RemoveClass(aRowSelected);
 
   endRemoveRows();
 }

@@ -32,24 +32,18 @@ QVariant LessonTableModel::data(const QModelIndex & index, int role) const
 
   if (index.column() == 0)
   {
-    auto    teacher = mContext.GetLessonByIndex(index.row())->GetTeacher();
-    QString aName;
-    aName = QString::fromStdString(teacher->GetFirstName());
-    return aName;
+    auto teacher = mContext.GetLessonByIndex(index.row())->GetTeacher();
+    return QString::fromStdString(teacher->GetFirstName());
   }
   else if (index.column() == 1)
   {
-    auto    subject = mContext.GetLessonByIndex(index.row())->GetSubject();
-    QString aName;
-    aName = QString::fromStdString(subject->GetName());
-    return aName;
+    auto subject = mContext.GetLessonByIndex(index.row())->GetSubject();
+    return QString::fromStdString(subject->GetName());
   }
   else if (index.column() == 2)
   {
-    auto    className = mContext.GetLessonByIndex(index.row())->GetClass();
-    QString aName;
-    aName = QString::fromStdString(className->GetName());
-    return aName;
+    auto className = mContext.GetLessonByIndex(index.row())->GetClass();
+    return QString::fromStdString(className->GetName());
   }
   else if (index.column() == 3)
   {
@@ -82,19 +76,32 @@ QVariant LessonTableModel::headerData(int section, Qt::Orientation orientation, 
   return QVariant();
 }
 
-void LessonTableModel::EditModel(int rowSelected, shared_ptr<Lesson> aLesson)
+bool LessonTableModel::setData(const QModelIndex & index, shared_ptr<Lesson> aLesson, int role)
 {
-  auto & lesson = mContext.GetLessonByIndex(rowSelected);
-  lesson        = aLesson;
-}
+  if (index.isValid() && role == Qt::EditRole)
+  {
+    auto & oldLesson = mContext.GetLessonByIndex(index.row());
 
+    oldLesson->SetTeacher(aLesson->GetTeacher());
+
+    oldLesson->SetSubject(aLesson->GetSubject());
+
+    oldLesson->SetClass(aLesson->GetClass());
+
+    oldLesson->SetNumberOfHours(aLesson->GetNumberOfHours());
+
+    emit dataChanged(index, index, { Qt::DisplayRole, Qt::EditRole });
+
+    return true;
+  }
+
+  return false;
+}
 void LessonTableModel::RemoveItemFromModel(int aRowSelected)
 {
-  beginRemoveRows(QModelIndex(), aRowSelected,
-                  aRowSelected);  // emit signal to notify view that a row is removed
+  beginRemoveRows(QModelIndex(), aRowSelected, aRowSelected);
 
-  shared_ptr<Lesson> aLesson = mContext.GetLessonByIndex(aRowSelected);
-  mContext.RemoveLesson(aLesson);
+  mContext.RemoveLesson(aRowSelected);
 
   endRemoveRows();
 }
@@ -103,9 +110,7 @@ void LessonTableModel::PopulateModel(shared_ptr<Lesson> aLesson)
 {
   int newRow = mContext.GetLessonSize();
 
-  beginInsertRows(QModelIndex(), newRow,
-                  newRow);  // emit signal to notify view that a new row is inserted
-
+  beginInsertRows(QModelIndex(), newRow, newRow);
   mContext.AddLesson(aLesson);
 
   endInsertRows();

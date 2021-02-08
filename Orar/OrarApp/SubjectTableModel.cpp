@@ -33,6 +33,7 @@ QVariant SubjectTableModel::data(const QModelIndex & index, int role) const
   }
   return QVariant();
 }
+
 QVariant SubjectTableModel::headerData(int section, Qt::Orientation orientation, int role) const
 {
   if (role == Qt::DisplayRole && orientation == Qt::Horizontal)
@@ -45,18 +46,34 @@ QVariant SubjectTableModel::headerData(int section, Qt::Orientation orientation,
   return QVariant();
 }
 
-void SubjectTableModel::EditModel(int aRowSelected, QString aName)
+bool SubjectTableModel::setData(const QModelIndex & index, const QVariant & aName, int role)
 {
-  mContext.GetSubjectByIndex(aRowSelected)->SetName(aName.toStdString());
+  if (index.isValid() && role == Qt::EditRole)
+  {
+    auto & subject = mContext.GetSubjectByIndex(index.row());
+
+    switch (index.column())
+    {
+    case 0:
+      subject->SetName((aName.toString()).toStdString());
+      break;
+    default:
+      return false;
+    }
+
+    emit dataChanged(index, index, { Qt::DisplayRole, Qt::EditRole });
+
+    return true;
+  }
+
+  return false;
 }
 
 void SubjectTableModel::RemoveItemFromModel(int aRowSelected)
 {
-  beginRemoveRows(QModelIndex(), aRowSelected,
-                  aRowSelected);  // emit signal to notify view that a new row is removed
+  beginRemoveRows(QModelIndex(), aRowSelected, aRowSelected);
 
-  shared_ptr<Subject> oldSubject = mContext.GetSubjectByIndex(aRowSelected);
-  mContext.RemoveSubject(oldSubject);
+  mContext.RemoveSubject(aRowSelected);
 
   endRemoveRows();
 }
@@ -65,8 +82,7 @@ void SubjectTableModel::PopulateModel(QString aName)
 {
   int newRow = mContext.GetSubjectSize();
 
-  beginInsertRows(QModelIndex(), newRow,
-                  newRow);  // emit signal to notify view that a new row is inserted
+  beginInsertRows(QModelIndex(), newRow, newRow);
 
   shared_ptr<Subject> newSubject =
     make_shared<Subject>(aName.toStdString(), mContext.GenerateSubjectId());
@@ -79,10 +95,10 @@ void SubjectTableModel::ClearContent()
 {
   if (mContext.GetSubjectSize() > 0)
   {
-    beginRemoveRows(QModelIndex(), 0,
-                    mContext.GetSubjectSize() -
-                      1);  // emit signal to notify view that a new row is removed
+    beginRemoveRows(QModelIndex(), 0, mContext.GetSubjectSize() - 1);
+
     mContext.DeleteSubjects();
+
     endRemoveRows();
   }
 }

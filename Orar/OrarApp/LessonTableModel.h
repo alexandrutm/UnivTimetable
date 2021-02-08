@@ -16,10 +16,9 @@ public:
   QVariant headerData(int             section,
                       Qt::Orientation orientation,
                       int             role = Qt::DisplayRole) const Q_DECL_OVERRIDE;
-
-  void EditModel(int aRowSelected, shared_ptr<Lesson> aLesson);
-  void RemoveItemFromModel(int aRowSelected);
-  void PopulateModel(shared_ptr<Lesson> aLesson);
+  bool     setData(const QModelIndex & index, shared_ptr<Lesson> aLesson, int role);
+  void     RemoveItemFromModel(int aRowSelected);
+  void     PopulateModel(shared_ptr<Lesson> aLesson);
 
   void ClearContent();
 

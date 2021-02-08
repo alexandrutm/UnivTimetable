@@ -16,11 +16,11 @@ void Context::AddTeacher(shared_ptr<Teacher> aTeacher)
   mTeachers.push_back(aTeacher);
 }
 
-void Context::RemoveTeacher(shared_ptr<Teacher> aTeacher)
+void Context::RemoveTeacher(int i)
 {
   mTeachers.erase(remove_if(mTeachers.begin(), mTeachers.end(),
                             [&](auto const & teacher) {
-                              return teacher->GetId() == aTeacher->GetId();
+                              return mTeachers[i]->GetId() == teacher->GetId();
                             }),
                   mTeachers.end());
 
@@ -64,11 +64,11 @@ void Context::AddSubject(shared_ptr<Subject> aSubject)
   mSubjects.push_back(aSubject);
 }
 
-void Context::RemoveSubject(shared_ptr<Subject> aSubject)
+void Context::RemoveSubject(int i)
 {
   mSubjects.erase(remove_if(mSubjects.begin(), mSubjects.end(),
                             [&](auto const & subject) {
-                              return subject->GetId() == aSubject->GetId();
+                              return mSubjects[i]->GetId() == subject->GetId();
                             }),
                   mSubjects.end());
 }
@@ -109,11 +109,11 @@ void Context::AddClass(shared_ptr<Classes> aClass)
   mClasses.push_back(aClass);
 }
 
-void Context::RemoveClass(shared_ptr<Classes> aClass)
+void Context::RemoveClass(int i)
 {
   mClasses.erase(remove_if(mClasses.begin(), mClasses.end(),
                            [&](auto const & classes) {
-                             return aClass->GetId() == classes->GetId();
+                             return mClasses[i]->GetId() == classes->GetId();
                            }),
                  mClasses.end());
 }
@@ -154,11 +154,11 @@ void Context::AddLesson(shared_ptr<Lesson> aLesson)
   mLessons.push_back(aLesson);
 }
 
-void Context::RemoveLesson(shared_ptr<Lesson> aLesson)
+void Context::RemoveLesson(int i)
 {
   mLessons.erase(remove_if(mLessons.begin(), mLessons.end(),
                            [&](auto const & lesson) {
-                             return aLesson->GetId() == lesson->GetId();
+                             return mLessons[i]->GetId() == lesson->GetId();
                            }),
                  mLessons.end());
 }
@@ -200,8 +200,10 @@ void Context::AddRoom(shared_ptr<Room> aRoom)
   mRooms.push_back(aRoom);
 }
 
-void Context::RemoveRoom(shared_ptr<Room> aRoom)
+void Context::RemoveRoom(int i)
 {
+  auto aRoom = mRooms[i];
+
   mRooms.erase(remove_if(mRooms.begin(), mRooms.end(),
                          [&](auto const & room) {
                            return aRoom->GetId() == room->GetId();

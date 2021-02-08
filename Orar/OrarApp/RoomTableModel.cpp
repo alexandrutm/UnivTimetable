@@ -48,9 +48,27 @@ QVariant RoomTableModel::headerData(int section, Qt::Orientation orientation, in
   return QVariant();
 }
 
-void RoomTableModel::EditModel(int rowSelected, QString aName)
+bool RoomTableModel::setData(const QModelIndex & index, const QVariant & aName, int role)
 {
-  mContext.GetRoomByIndex(rowSelected)->SetName(aName.toStdString());
+  if (index.isValid() && role == Qt::EditRole)
+  {
+    auto & room = mContext.GetRoomByIndex(index.row());
+
+    switch (index.column())
+    {
+    case 0:
+      room->SetName((aName.toString()).toStdString());
+      break;
+    default:
+      return false;
+    }
+
+    emit dataChanged(index, index, { Qt::DisplayRole, Qt::EditRole });
+
+    return true;
+  }
+
+  return false;
 }
 
 void RoomTableModel::RemoveItemFromModel(int aRowSelected)
@@ -58,8 +76,7 @@ void RoomTableModel::RemoveItemFromModel(int aRowSelected)
   beginRemoveRows(QModelIndex(), aRowSelected,
                   aRowSelected);  // emit signal to notify view that a new row is removed
 
-  shared_ptr<Room> oldRoom = mContext.GetRoomByIndex(aRowSelected);
-  mContext.RemoveRoom(oldRoom);
+  mContext.RemoveRoom(aRowSelected);
 
   endRemoveRows();
 }

@@ -4,6 +4,7 @@
 
 class Context;
 class ClassTableModel;
+class SortFilterProxyModel;
 
 class ClassesView : public QWidget
 {
@@ -23,6 +24,7 @@ private slots:
 private:
   Ui::ClassesView ui;
 
-  ClassTableModel * tableModel;
-  Context &         mContext;
+  SortFilterProxyModel * proxyModel;
+  ClassTableModel *      tableModel;
+  Context &              mContext;
 };

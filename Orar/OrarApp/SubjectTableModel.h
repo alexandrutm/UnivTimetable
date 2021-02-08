@@ -15,8 +15,10 @@ public:
   QVariant headerData(int             section,
                       Qt::Orientation orientation,
                       int             role = Qt::DisplayRole) const Q_DECL_OVERRIDE;
+  bool     SubjectTableModel::setData(const QModelIndex & index,
+                                  const QVariant &    aName,
+                                  int                 role) override;
 
-  void EditModel(int aRowSelected, QString aName);
   void RemoveItemFromModel(int aRowSelected);
   void PopulateModel(QString aFirstName);
 

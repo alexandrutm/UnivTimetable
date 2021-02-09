@@ -18,6 +18,8 @@ OrarApp::OrarApp(QWidget * parent)
   ui.setupUi(this);
 
   modelTimeTable = new TimeTableView(mContext, this);
+  ui.toolBar->hide();
+  ui.menuBar->hide();
 
   ui.mTimeTableView->setModel(modelTimeTable);
 
@@ -33,19 +35,21 @@ OrarApp::OrarApp(QWidget * parent)
 
   setCentralWidget(ui.centralStackWidget);
 
-  ui.centralStackWidget->addWidget(&mHomeView);
-  ui.centralStackWidget->setCurrentIndex(1);
+  ui.centralStackWidget->insertWidget(0, &mHomeView);
+  ui.centralStackWidget->setCurrentIndex(0);
 }
 
 void OrarApp::ChangeView(INavigator::viewId theView)
 {
   if (theView == INavigator::viewId::homepage)
   {
-    ui.centralStackWidget->setCurrentIndex(1);
-  }
-  else if (theView == INavigator::viewId::basicInfoView)
-  {
     ui.centralStackWidget->setCurrentIndex(0);
+  }
+  else if (theView == INavigator::viewId::mainPage)
+  {
+    ui.centralStackWidget->setCurrentIndex(1);
+    ui.toolBar->show();
+    ui.menuBar->show();
   }
 }
 
@@ -68,13 +72,15 @@ void OrarApp::on_mNew_triggered()
 
   if (replay == QMessageBox::Yes)
   {
-    // delete data from context and from all forms
-    ui.centralStackWidget->setCurrentIndex(1);
+    // delete data from context and from all models
+    ui.centralStackWidget->setCurrentIndex(0);
     mTeacherView.ClearData();
     mSubjectView.ClearData();
     mLessonView.ClearData();
     mClassView.ClearData();
     mRoomView.ClearData();
+    ui.toolBar->hide();
+    ui.menuBar->hide();
   }
   else
   {

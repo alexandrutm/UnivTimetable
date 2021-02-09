@@ -52,7 +52,7 @@ bool RoomTableModel::setData(const QModelIndex & index, const QVariant & aName, 
 {
   if (index.isValid() && role == Qt::EditRole)
   {
-    auto & room = mContext.GetRoomByIndex(index.row());
+    auto room = mContext.GetRoomByIndex(index.row());
 
     switch (index.column())
     {

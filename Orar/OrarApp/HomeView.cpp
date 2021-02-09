@@ -15,5 +15,5 @@ HomeView::~HomeView()
 
 void HomeView::on_mCreateNewTimetable_clicked()
 {
-  mNavigator->ChangeView(INavigator::viewId::basicInfoView);
+  mNavigator->ChangeView(INavigator::viewId::mainPage);
 }

@@ -6,8 +6,8 @@ public:
   enum class viewId
   {
     homepage,
-    basicInfoView,
-    basicData
+    mainPage
+
   };
 
   virtual void ChangeView(viewId theView) = 0;

@@ -44,7 +44,7 @@ bool TableModel::setData(const QModelIndex & index, const QVariant & aName, int 
 {
   if (index.isValid() && role == Qt::EditRole)
   {
-    auto & teacher = mContext.GetTeacherByIndex(index.row());
+    auto teacher = mContext.GetTeacherByIndex(index.row());
 
     switch (index.column())
     {

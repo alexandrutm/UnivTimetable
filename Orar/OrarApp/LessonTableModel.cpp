@@ -80,7 +80,7 @@ bool LessonTableModel::setData(const QModelIndex & index, shared_ptr<Lesson> aLe
 {
   if (index.isValid() && role == Qt::EditRole)
   {
-    auto & oldLesson = mContext.GetLessonByIndex(index.row());
+    auto oldLesson = mContext.GetLessonByIndex(index.row());
 
     oldLesson->SetTeacher(aLesson->GetTeacher());
 

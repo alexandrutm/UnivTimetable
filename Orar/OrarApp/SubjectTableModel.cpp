@@ -50,7 +50,7 @@ bool SubjectTableModel::setData(const QModelIndex & index, const QVariant & aNam
 {
   if (index.isValid() && role == Qt::EditRole)
   {
-    auto & subject = mContext.GetSubjectByIndex(index.row());
+    auto subject = mContext.GetSubjectByIndex(index.row());
 
     switch (index.column())
     {

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>642</width>
-    <height>360</height>
+    <width>759</width>
+    <height>396</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,92 +17,190 @@
    <string notr="true">background-color: rgb(240, 240, 240);</string>
   </property>
   <layout class="QHBoxLayout" name="horizontalLayout">
-   <property name="spacing">
-    <number>6</number>
-   </property>
-   <property name="leftMargin">
-    <number>40</number>
-   </property>
-   <property name="topMargin">
-    <number>40</number>
-   </property>
-   <property name="rightMargin">
-    <number>40</number>
-   </property>
-   <property name="bottomMargin">
-    <number>40</number>
-   </property>
    <item>
-    <layout class="QVBoxLayout" name="verticalLayout_2">
-     <property name="spacing">
-      <number>10</number>
+    <widget class="QFrame" name="frame">
+     <property name="minimumSize">
+      <size>
+       <width>300</width>
+       <height>250</height>
+      </size>
      </property>
-     <item>
-      <widget class="QLabel" name="label_3">
-       <property name="maximumSize">
-        <size>
-         <width>16777146</width>
-         <height>40</height>
-        </size>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">font: 75 24pt &quot;Times New Roman&quot;;
-color: rgb(70, 70, 70);</string>
-       </property>
-       <property name="text">
-        <string>Timetable</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLabel" name="label">
-       <property name="maximumSize">
-        <size>
-         <width>16777135</width>
-         <height>20</height>
-        </size>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">font: 75 14pt &quot;Times New Roman&quot;;
-color: rgb(70, 70, 70);</string>
-       </property>
-       <property name="text">
-        <string>Open recent</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QTreeWidget" name="treeWidget">
-       <property name="maximumSize">
-        <size>
-         <width>16777153</width>
-         <height>16777215</height>
-        </size>
-       </property>
-       <property name="frameShape">
-        <enum>QFrame::NoFrame</enum>
-       </property>
-       <column>
-        <property name="text">
-         <string notr="true">1</string>
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_3">
+      <item>
+       <layout class="QVBoxLayout" name="verticalLayout_2">
+        <property name="spacing">
+         <number>10</number>
         </property>
-       </column>
-      </widget>
-     </item>
-    </layout>
+        <item>
+         <widget class="QLabel" name="label_3">
+          <property name="maximumSize">
+           <size>
+            <width>16777146</width>
+            <height>40</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">font: 75 24pt &quot;Times New Roman&quot;;
+color: rgb(70, 70, 70);</string>
+          </property>
+          <property name="text">
+           <string>Timetable</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label">
+          <property name="maximumSize">
+           <size>
+            <width>16777135</width>
+            <height>20</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">font: 75 14pt &quot;Times New Roman&quot;;
+color: rgb(70, 70, 70);</string>
+          </property>
+          <property name="text">
+           <string>Open recent</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QTreeWidget" name="treeWidget">
+          <property name="maximumSize">
+           <size>
+            <width>16777153</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <property name="frameShape">
+           <enum>QFrame::NoFrame</enum>
+          </property>
+          <column>
+           <property name="text">
+            <string notr="true">1</string>
+           </property>
+          </column>
+          <item>
+           <property name="text">
+            <string>New Subitem</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>New Subitem</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string/>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>2</string>
+           </property>
+           <item>
+            <property name="text">
+             <string>New Subitem</string>
+            </property>
+            <item>
+             <property name="text">
+              <string>New Subitem</string>
+             </property>
+             <item>
+              <property name="text">
+               <string>New Subitem</string>
+              </property>
+              <item>
+               <property name="text">
+                <string>New Subitem</string>
+               </property>
+              </item>
+             </item>
+            </item>
+           </item>
+          </item>
+          <item>
+           <property name="text">
+            <string>New Item</string>
+           </property>
+           <item>
+            <property name="text">
+             <string/>
+            </property>
+           </item>
+          </item>
+          <item>
+           <property name="text">
+            <string>3</string>
+           </property>
+           <item>
+            <property name="text">
+             <string>New Item</string>
+            </property>
+            <item>
+             <property name="text">
+              <string>New Subitem</string>
+             </property>
+             <item>
+              <property name="text">
+               <string>New Subitem</string>
+              </property>
+             </item>
+            </item>
+           </item>
+          </item>
+          <item>
+           <property name="text">
+            <string>New Item</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>New Item</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>New Item</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>New Item</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>New Item</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </widget>
    </item>
    <item>
     <widget class="QFrame" name="frame_3">
      <property name="minimumSize">
       <size>
        <width>300</width>
-       <height>0</height>
+       <height>250</height>
       </size>
      </property>
      <property name="maximumSize">
       <size>
-       <width>800</width>
-       <height>150</height>
+       <width>400</width>
+       <height>300</height>
       </size>
      </property>
      <property name="frameShape">
@@ -152,6 +250,12 @@ color: rgb(70, 70, 70);</string>
           <verstretch>0</verstretch>
          </sizepolicy>
         </property>
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>50</height>
+         </size>
+        </property>
         <property name="maximumSize">
          <size>
           <width>16777215</width>
@@ -177,6 +281,12 @@ QPushButton:hover {
       </item>
       <item>
        <widget class="QPushButton" name="mOpenTimetable">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>50</height>
+         </size>
+        </property>
         <property name="maximumSize">
          <size>
           <width>16777215</width>
@@ -208,6 +318,12 @@ QPushButton:hover {
           <verstretch>0</verstretch>
          </sizepolicy>
         </property>
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>50</height>
+         </size>
+        </property>
         <property name="maximumSize">
          <size>
           <width>16777215</width>
@@ -230,6 +346,19 @@ QPushButton:hover {
          <string>Create new timetable</string>
         </property>
        </widget>
+      </item>
+      <item>
+       <spacer name="verticalSpacer">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>20</width>
+          <height>40</height>
+         </size>
+        </property>
+       </spacer>
       </item>
      </layout>
     </widget>

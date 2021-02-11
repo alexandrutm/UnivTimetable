@@ -11,12 +11,10 @@ public:
   InstituteData(string, int, int, int, int);
 
   string GetSchoolName();
-  int    GetAcademicYear();
   int    GetHoursPerDay();
   int    GetDayPerWeek();
 
   void SetSchoolName(string aSchoolName);
-  void SetAcademicYear(int aAcademicYear);
   void SetHoursPerDay(int aHoursPerDay);
   void SetDayPerWeek(int aDayPerWeek);
 
@@ -26,8 +24,8 @@ public:
 
 private:
   string mSchoolName;
-  int    mAcademicYear;
   int    mHoursPerDay;
-  int    mDayPerWeek;
+  int    mStartHour;
+  int    mFinishHour;
   int    mId;
 };

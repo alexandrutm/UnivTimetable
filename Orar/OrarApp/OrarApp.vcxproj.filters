@@ -119,9 +119,6 @@
     <ClCompile Include="AddDataDialog.cpp">
       <Filter>Source Files\views</Filter>
     </ClCompile>
-    <ClCompile Include="TimeTableView.cpp">
-      <Filter>Source Files\Models</Filter>
-    </ClCompile>
     <ClCompile Include="InstituteData.cpp">
       <Filter>Source Files\data</Filter>
     </ClCompile>
@@ -129,6 +126,12 @@
       <Filter>Source Files\views</Filter>
     </ClCompile>
     <ClCompile Include="SortFilterProxyModel.cpp">
+      <Filter>Source Files\Models</Filter>
+    </ClCompile>
+    <ClCompile Include="DisplayTimetableView.cpp">
+      <Filter>Source Files\views</Filter>
+    </ClCompile>
+    <ClCompile Include="TimeTableViewModel.cpp">
       <Filter>Source Files\Models</Filter>
     </ClCompile>
   </ItemGroup>
@@ -187,13 +190,16 @@
     <QtMoc Include="AddDataDialog.h">
       <Filter>Source Files\views</Filter>
     </QtMoc>
-    <QtMoc Include="TimeTableView.h">
-      <Filter>Source Files\Models</Filter>
-    </QtMoc>
     <QtMoc Include="InstituteDataView.h">
       <Filter>Source Files\views</Filter>
     </QtMoc>
     <QtMoc Include="SortFilterProxyModel.h">
+      <Filter>Source Files\Models</Filter>
+    </QtMoc>
+    <QtMoc Include="DisplayTimetableView.h">
+      <Filter>Source Files\views</Filter>
+    </QtMoc>
+    <QtMoc Include="TimeTableViewModel.h">
       <Filter>Source Files\Models</Filter>
     </QtMoc>
   </ItemGroup>
@@ -235,6 +241,9 @@
       <Filter>Resource Files</Filter>
     </QtUic>
     <QtUic Include="InstituteDataView.ui">
+      <Filter>Resource Files</Filter>
+    </QtUic>
+    <QtUic Include="DisplayTimetableView.ui">
       <Filter>Resource Files</Filter>
     </QtUic>
   </ItemGroup>

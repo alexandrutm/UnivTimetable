@@ -14,5 +14,10 @@
         <file>img/constr.png</file>
         <file>img/deleteBtn.png</file>
         <file>img/editBtn3.png</file>
+        <file>img/arrow-left.png</file>
+        <file>img/arrow-down.png</file>
+        <file>img/arrow-right.png</file>
+        <file>img/arrow-rightOrange.png</file>
+        <file>img/arrow-up.png</file>
     </qresource>
 </RCC>

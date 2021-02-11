@@ -1,7 +1,6 @@
 #include "stdafx.h"
 #include "OrarApp.h"
 #include "AddDataDialog.h"
-#include "TimeTableView.h"
 
 OrarApp::OrarApp(QWidget * parent)
   : QMainWindow(parent)
@@ -12,21 +11,17 @@ OrarApp::OrarApp(QWidget * parent)
   , mRoomView(mContext, this)
   , mTeacherView(mContext, this)
   , mLessonView(mContext, this)
-  , mInstituteDataView(mContext, this)
+  , mInstituteDataView(mContext, this, this)
+  , mDisplayTimeTableView(mContext, this)
 
 {
   ui.setupUi(this);
 
-  modelTimeTable = new TimeTableView(mContext, this);
+  // hide toolBar and menuBar on first page
   ui.toolBar->hide();
   ui.menuBar->hide();
 
-  ui.mTimeTableView->setModel(modelTimeTable);
-
-  QHeaderView * header = ui.mTimeTableView->horizontalHeader();
-  header->setSectionResizeMode(QHeaderView::Stretch);
-
-  mDataDialog.mData->addTab(&mInstituteDataView, "School");
+  // Basic data Dialog
   mDataDialog.mData->addTab(&mSubjectView, "Subjects");
   mDataDialog.mData->addTab(&mClassView, "Classes");
   mDataDialog.mData->addTab(&mRoomView, "Rooms");
@@ -34,8 +29,8 @@ OrarApp::OrarApp(QWidget * parent)
   mDataDialog.mData->addTab(&mLessonView, "Lessons");
 
   setCentralWidget(ui.centralStackWidget);
-
   ui.centralStackWidget->insertWidget(0, &mHomeView);
+  ui.centralStackWidget->insertWidget(1, &mDisplayTimeTableView);
   ui.centralStackWidget->setCurrentIndex(0);
 }
 
@@ -76,9 +71,10 @@ void OrarApp::on_mNew_triggered()
     ui.centralStackWidget->setCurrentIndex(0);
     mTeacherView.ClearData();
     mSubjectView.ClearData();
-    mLessonView.ClearData();
     mClassView.ClearData();
     mRoomView.ClearData();
+    mLessonView.ClearData();
+
     ui.toolBar->hide();
     ui.menuBar->hide();
   }

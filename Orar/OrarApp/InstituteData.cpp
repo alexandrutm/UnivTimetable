@@ -7,11 +7,11 @@ bool InstituteData::operator==(const InstituteData & aInfo)
 }
 
 InstituteData::InstituteData(
-  string aName, int aAcademicYear, int aHoursPerDay, int aDaysPerWeek, int aId)
+  string aName, int aHoursPerDay, int aStartHour, int aFinishHour, int aId)
   : mSchoolName(aName)
-  , mAcademicYear(aAcademicYear)
   , mHoursPerDay(aHoursPerDay)
-  , mDayPerWeek(aDaysPerWeek)
+  , mStartHour(aStartHour)
+  , mFinishHour(aFinishHour)
   , mId(aId)
 {
 }
@@ -21,11 +21,6 @@ string InstituteData::GetSchoolName()
   return mSchoolName;
 }
 
-int InstituteData::GetAcademicYear()
-{
-  return mAcademicYear;
-}
-
 int InstituteData::GetHoursPerDay()
 {
   return mHoursPerDay;
@@ -33,17 +28,12 @@ int InstituteData::GetHoursPerDay()
 
 int InstituteData::GetDayPerWeek()
 {
-  return mDayPerWeek;
+  return mStartHour;
 }
 
 void InstituteData::SetSchoolName(string aSchoolName)
 {
   mSchoolName = aSchoolName;
-}
-
-void InstituteData::SetAcademicYear(int aAcademicYear)
-{
-  mAcademicYear = aAcademicYear;
 }
 
 void InstituteData::SetHoursPerDay(int aHoursPerDay)
@@ -53,7 +43,7 @@ void InstituteData::SetHoursPerDay(int aHoursPerDay)
 
 void InstituteData::SetDayPerWeek(int aDayPerWeek)
 {
-  mDayPerWeek = aDayPerWeek;
+  mStartHour = aDayPerWeek;
 }
 
 int InstituteData::GetId()
@@ -65,11 +55,12 @@ InstituteData & InstituteData::operator=(const InstituteData & aBasicInfo)
 {
   if (this != &aBasicInfo)
   {
-    mSchoolName   = aBasicInfo.mSchoolName;
-    mDayPerWeek   = aBasicInfo.mDayPerWeek;
-    mHoursPerDay  = aBasicInfo.mHoursPerDay;
-    mAcademicYear = aBasicInfo.mAcademicYear;
-    mId           = aBasicInfo.mId;
+    mSchoolName  = aBasicInfo.mSchoolName;
+    mStartHour   = aBasicInfo.mStartHour;
+    mHoursPerDay = aBasicInfo.mHoursPerDay;
+    mStartHour   = aBasicInfo.mStartHour;
+    mFinishHour  = aBasicInfo.mFinishHour;
+    mId          = aBasicInfo.mId;
   }
 
   return *this;

@@ -3,6 +3,7 @@
 #include "AddDataDialog.h"
 #include "ClassesView.h"
 #include "Context.h"
+#include "DisplayTimetableView.h"
 #include "HomeView.h"
 #include "INavigator.h"
 #include "InstituteDataView.h"
@@ -11,8 +12,6 @@
 #include "SubjectView.h"
 #include "TeacherView.h"
 #include "ui_OrarApp.h"
-
-class TimeTableView;
 
 class OrarApp
   : public QMainWindow
@@ -26,7 +25,7 @@ public:
   void ChangeStatus(string);
 
 private slots:
-
+  // toolbar actions
   void on_mNew_triggered();
   void on_mData_triggered();
 
@@ -35,14 +34,13 @@ private:
 
   Context mContext;
 
-  TimeTableView * modelTimeTable;
-
-  AddDataDialog     mDataDialog;
-  HomeView          mHomeView;
-  SubjectView       mSubjectView;
-  ClassesView       mClassView;
-  RoomView          mRoomView;
-  TeacherView       mTeacherView;
-  LessonView        mLessonView;
-  InstituteDataView mInstituteDataView;
+  AddDataDialog        mDataDialog;
+  HomeView             mHomeView;
+  SubjectView          mSubjectView;
+  ClassesView          mClassView;
+  RoomView             mRoomView;
+  TeacherView          mTeacherView;
+  LessonView           mLessonView;
+  InstituteDataView    mInstituteDataView;
+  DisplayTimetableView mDisplayTimeTableView;
 };

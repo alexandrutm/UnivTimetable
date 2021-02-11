@@ -90,7 +90,7 @@ shared_ptr<Subject> Context::GetSubjectByIndex(int i)
 
 void Context::DeleteSubjects()
 {
-  mClasses.clear();
+  mSubjects.clear();
 }
 
 int Context::GenerateSubjectId()

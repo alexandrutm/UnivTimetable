@@ -6,6 +6,7 @@ public:
   enum class viewId
   {
     homepage,
+    instituteInfo,
     mainPage
 
   };

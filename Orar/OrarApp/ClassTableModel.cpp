@@ -60,7 +60,7 @@ bool ClassTableModel::setData(const QModelIndex & index, const QVariant & aClass
 {
   if (index.isValid() && role == Qt::EditRole)
   {
-    auto & aClass = mContext.GetClassByIndex(index.row());
+    auto aClass = mContext.GetClassByIndex(index.row());
 
     switch (index.column())
     {
@@ -84,8 +84,7 @@ bool ClassTableModel::setData(const QModelIndex & index, const QVariant & aClass
 
 void ClassTableModel::RemoveItemFromModel(int aRowSelected)
 {
-  beginRemoveRows(QModelIndex(), aRowSelected,
-                  aRowSelected);  // emit signal to notify view that a new row is removed
+  beginRemoveRows(QModelIndex(), aRowSelected, aRowSelected);
 
   mContext.RemoveClass(aRowSelected);
 
@@ -96,8 +95,7 @@ void ClassTableModel::PopulateModel(QString aName, int aNrOfStudents)
 {
   int newRow = mContext.GetClassSize();
 
-  beginInsertRows(QModelIndex(), newRow,
-                  newRow);  // emit signal to notify view that a new row is inserted
+  beginInsertRows(QModelIndex(), newRow, newRow);
 
   shared_ptr<Classes> newClass =
     make_shared<Classes>(aName.toStdString(), aNrOfStudents, mContext.GenerateClassId());

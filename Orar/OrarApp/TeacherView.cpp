@@ -100,7 +100,14 @@ void TeacherView::on_mDelete_clicked()
   }
   else
   {
-    tableModel->RemoveItemFromModel(currentSelectedRowMapped);
+    if (mContext.GetTeacherByIndex(currentSelectedRowMapped).use_count() > 1)
+    {
+      QMessageBox::about(this, "About", "Please remove all lesson that hold this teacher first");
+    }
+    else
+    {
+      tableModel->RemoveItemFromModel(currentSelectedRowMapped);
+    }
   }
 }
 

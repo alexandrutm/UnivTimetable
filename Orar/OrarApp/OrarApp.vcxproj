@@ -110,6 +110,7 @@
     <ClCompile Include="ClassesView.cpp" />
     <ClCompile Include="ClassTableModel.cpp" />
     <ClCompile Include="Context.cpp" />
+    <ClCompile Include="InstitutionDetailsDialog.cpp" />
     <ClCompile Include="Lesson.cpp" />
     <ClCompile Include="LessonDialog.cpp" />
     <ClCompile Include="LessonTableModel.cpp" />
@@ -125,7 +126,6 @@
     <ClCompile Include="SubjectView.cpp" />
     <ClCompile Include="TeacherTableModel.cpp" />
     <ClCompile Include="Teacher.cpp" />
-    <ClCompile Include="InstituteDataView.cpp" />
     <ClCompile Include="TeacherDialog.cpp" />
     <ClCompile Include="TeacherView.cpp" />
     <ClCompile Include="TimeTableViewModel.cpp" />
@@ -140,6 +140,7 @@
     <ClInclude Include="Classes.h" />
     <QtMoc Include="LessonView.h" />
     <QtMoc Include="ClassTableModel.h" />
+    <QtMoc Include="InstitutionDetailsDialog.h" />
     <ClInclude Include="Lesson.h" />
     <QtMoc Include="LessonDialog.h" />
     <QtMoc Include="RoomView.h" />
@@ -154,13 +155,13 @@
     <QtMoc Include="SubjectTableModel.h" />
     <ClInclude Include="Teacher.h" />
     <QtMoc Include="SubjectDialog.h" />
-    <QtMoc Include="InstituteDataView.h" />
     <QtRcc Include="OrarApp.qrc" />
     <QtUic Include="AddDataDialog.ui" />
     <QtUic Include="ClassesDialog.ui" />
     <QtUic Include="ClassesView.ui" />
     <QtUic Include="DisplayTimetableView.ui" />
     <QtUic Include="HomeView.ui" />
+    <QtUic Include="InstitutionDetailsDialog.ui" />
     <QtUic Include="LessonDialog.ui" />
     <QtUic Include="LessonView.ui" />
     <QtUic Include="OrarApp.ui" />
@@ -180,7 +181,6 @@
     <QtUic Include="RoomView.ui" />
     <QtUic Include="SubjectDialog.ui" />
     <QtUic Include="SubjectView.ui" />
-    <QtUic Include="InstituteDataView.ui" />
     <QtUic Include="TeacherDialog.ui" />
     <QtUic Include="TeacherView.ui" />
   </ItemGroup>

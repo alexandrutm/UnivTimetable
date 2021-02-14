@@ -89,7 +89,14 @@ void RoomView::on_mDelete_clicked()
   }
   else
   {
+    // if (mContext.GetRoomByIndex(currentSelectedRowMapped).use_count() > 1)
+    //{
+    //  QMessageBox::about(this, "About", "Please remove all lesson that hold this room first");
+    //}
+    // else
+    //{
     tableModel->RemoveItemFromModel(currentSelectedRowMapped);
+    // }
   }
 }
 

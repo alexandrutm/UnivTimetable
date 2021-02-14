@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "OrarApp.h"
 #include "AddDataDialog.h"
+#include "InstitutionDetailsDialog.h"
 
 OrarApp::OrarApp(QWidget * parent)
   : QMainWindow(parent)
@@ -11,7 +12,6 @@ OrarApp::OrarApp(QWidget * parent)
   , mRoomView(mContext, this)
   , mTeacherView(mContext, this)
   , mLessonView(mContext, this)
-  , mInstituteDataView(mContext, this, this)
   , mDisplayTimeTableView(mContext, this)
 
 {
@@ -42,9 +42,25 @@ void OrarApp::ChangeView(INavigator::viewId theView)
   }
   else if (theView == INavigator::viewId::mainPage)
   {
-    ui.centralStackWidget->setCurrentIndex(1);
-    ui.toolBar->show();
-    ui.menuBar->show();
+    InstitutionDetailsDialog institutionDialog = new InstitutionDetailsDialog(this);
+
+    if (institutionDialog.exec())
+    {
+      QString name = institutionDialog.SchoolName->text();
+
+      int hoursPerDay = institutionDialog.HoursPerDay->value();
+      int startHour   = institutionDialog.mStartHour->value();
+      int finishHour  = institutionDialog.mFinishHour->value();
+      int uniqueId    = mContext.GenerateInstituteDataId();
+
+      shared_ptr<InstituteData> InstitutionData = make_shared<InstituteData>(
+        name.toStdString(), hoursPerDay, startHour, finishHour, uniqueId);
+      mContext.AddInstituteData(InstitutionData);
+
+      ui.centralStackWidget->setCurrentIndex(1);
+      ui.toolBar->show();
+      ui.menuBar->show();
+    }
   }
 }
 

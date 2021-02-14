@@ -23,8 +23,6 @@ void Context::RemoveTeacher(int i)
                               return mTeachers[i]->GetId() == teacher->GetId();
                             }),
                   mTeachers.end());
-
-  // erase_if(mTeachers, [&](auto const& teacher) {return *teacher == *aTeacher; });
 }
 
 vector<shared_ptr<Teacher>> & Context::GetTeachers()
@@ -219,7 +217,7 @@ vector<shared_ptr<Room>> & Context::GetRooms()
 int Context::GetRoomSize()
 {
   // cast to int
-  // stiind ca o sa fie maxim 10 000 de sali intr-o institutie
+  // presupunand ca o sa fie maxim 1000 de sali intr-o institutie
 
   size_t data = mRooms.size();
 

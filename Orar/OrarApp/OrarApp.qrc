@@ -1,7 +1,6 @@
 <RCC>
     <qresource prefix="/OrarApp">
         <file>img/FolderAdd.png</file>
-        <file>img/arrow.png</file>
         <file>img/open.png</file>
         <file>img/save1.png</file>
         <file>img/new.png</file>
@@ -14,10 +13,6 @@
         <file>img/constr.png</file>
         <file>img/deleteBtn.png</file>
         <file>img/editBtn3.png</file>
-        <file>img/arrow-left.png</file>
-        <file>img/arrow-down.png</file>
-        <file>img/arrow-right.png</file>
         <file>img/arrow-rightOrange.png</file>
-        <file>img/arrow-up.png</file>
     </qresource>
 </RCC>

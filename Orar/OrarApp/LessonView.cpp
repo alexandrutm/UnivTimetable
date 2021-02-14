@@ -53,15 +53,15 @@ void LessonView::on_mAdd_clicked()
 
   if (aDialog.exec())
   {
-    auto selectedTeacher = aDialog.mTeacher->currentIndex();
-    auto selectedSubject = aDialog.mSubject->currentIndex();
-    auto selectedClass   = aDialog.mClasses->currentIndex();
+    int selectedRowTeacher = aDialog.mTeacher->currentIndex();
+    int selectedRowSubject = aDialog.mSubject->currentIndex();
+    int selectedRowClass   = aDialog.mClasses->currentIndex();
 
-    if (selectedTeacher >= 0 && selectedClass >= 0 && selectedSubject >= 0)
+    if (selectedRowTeacher >= 0 && selectedRowClass >= 0 && selectedRowSubject >= 0)
     {
-      auto classes      = mContext.GetClassByIndex(selectedClass);
-      auto subject      = mContext.GetSubjectByIndex(selectedSubject);
-      auto teacher      = mContext.GetTeacherByIndex(selectedTeacher);
+      auto classes      = mContext.GetClassByIndex(selectedRowClass);
+      auto subject      = mContext.GetSubjectByIndex(selectedRowSubject);
+      auto teacher      = mContext.GetTeacherByIndex(selectedRowTeacher);
       auto hoursPerWeek = aDialog.mHoursPerWeek->value();
 
       shared_ptr<Lesson> newLesson =

@@ -98,7 +98,16 @@ void ClassesView::on_mDelete_clicked()
     QMessageBox::about(this, "No Class Selected", "Please choose class you want to delete");
   }
   else
-    tableModel->RemoveItemFromModel(currentSelectedRowMapped);
+  {
+    if (mContext.GetClassByIndex(currentSelectedRowMapped).use_count() > 1)
+    {
+      QMessageBox::about(this, "About", "Please remove all lesson that hold this class first");
+    }
+    else
+    {
+      tableModel->RemoveItemFromModel(currentSelectedRowMapped);
+    }
+  }
 }
 
 void ClassesView::on_mConstraints_clicked()

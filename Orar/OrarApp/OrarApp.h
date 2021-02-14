@@ -6,7 +6,7 @@
 #include "DisplayTimetableView.h"
 #include "HomeView.h"
 #include "INavigator.h"
-#include "InstituteDataView.h"
+#include "InstituteData.h"
 #include "LessonView.h"
 #include "RoomView.h"
 #include "SubjectView.h"
@@ -41,6 +41,5 @@ private:
   RoomView             mRoomView;
   TeacherView          mTeacherView;
   LessonView           mLessonView;
-  InstituteDataView    mInstituteDataView;
   DisplayTimetableView mDisplayTimeTableView;
 };

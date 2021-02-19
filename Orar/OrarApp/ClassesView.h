@@ -3,8 +3,7 @@
 #include "ui_ClassesView.h"
 
 class Context;
-class ClassTableModel;
-class SortFilterProxyModel;
+class TreeModel;
 
 class ClassesView : public QWidget
 {
@@ -16,7 +15,7 @@ public:
   void ClearData();
 
 private slots:
-  void on_mAdd_clicked();
+  void on_mAddClass_clicked();
   void on_mEdit_clicked();
   void on_mDelete_clicked();
   void on_mConstraints_clicked();
@@ -24,7 +23,6 @@ private slots:
 private:
   Ui::ClassesView ui;
 
-  SortFilterProxyModel * proxyModel;
-  ClassTableModel *      tableModel;
-  Context &              mContext;
+  TreeModel * treeModel;
+  Context &   mContext;
 };

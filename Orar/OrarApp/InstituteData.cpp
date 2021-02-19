@@ -1,18 +1,15 @@
 #include "stdafx.h"
 #include "InstituteData.h"
 
-bool InstituteData::operator==(const InstituteData & aInfo)
-{
-  return mId == aInfo.mId;
-}
+// bool InstituteData::operator==(const InstituteData & aInfo)
+//{
+//   return
+//}
 
-InstituteData::InstituteData(
-  string aName, int aHoursPerDay, int aStartHour, int aFinishHour, int aId)
+InstituteData::InstituteData(string aName, string aStartHour = "08:00", int aHoursPerDay = 12)
   : mSchoolName(aName)
-  , mHoursPerDay(aHoursPerDay)
   , mStartHour(aStartHour)
-  , mFinishHour(aFinishHour)
-  , mId(aId)
+  , mHoursPerDay(aHoursPerDay)
 {
 }
 
@@ -21,14 +18,14 @@ string InstituteData::GetSchoolName()
   return mSchoolName;
 }
 
+string InstituteData::GetStartHour()
+{
+  return mStartHour;
+}
+
 int InstituteData::GetHoursPerDay()
 {
   return mHoursPerDay;
-}
-
-int InstituteData::GetDayPerWeek()
-{
-  return mStartHour;
 }
 
 void InstituteData::SetSchoolName(string aSchoolName)
@@ -36,19 +33,14 @@ void InstituteData::SetSchoolName(string aSchoolName)
   mSchoolName = aSchoolName;
 }
 
+void InstituteData::SetStartHour(string aStartHour)
+{
+  mStartHour = aStartHour;
+}
+
 void InstituteData::SetHoursPerDay(int aHoursPerDay)
 {
   mHoursPerDay = aHoursPerDay;
-}
-
-void InstituteData::SetDayPerWeek(int aDayPerWeek)
-{
-  mStartHour = aDayPerWeek;
-}
-
-int InstituteData::GetId()
-{
-  return mId;
 }
 
 InstituteData & InstituteData::operator=(const InstituteData & aBasicInfo)
@@ -58,9 +50,6 @@ InstituteData & InstituteData::operator=(const InstituteData & aBasicInfo)
     mSchoolName  = aBasicInfo.mSchoolName;
     mStartHour   = aBasicInfo.mStartHour;
     mHoursPerDay = aBasicInfo.mHoursPerDay;
-    mStartHour   = aBasicInfo.mStartHour;
-    mFinishHour  = aBasicInfo.mFinishHour;
-    mId          = aBasicInfo.mId;
   }
 
   return *this;

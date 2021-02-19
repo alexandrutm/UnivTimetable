@@ -11,12 +11,12 @@ TimeTableViewModel::TimeTableViewModel(Context & aContext, QObject * parent)
 
 int TimeTableViewModel::rowCount(const QModelIndex & /*parent*/) const
 {
-  return 4;
+  return HoursPerDay;
 }
 
 int TimeTableViewModel::columnCount(const QModelIndex & /*parent*/) const
 {
-  return 30;
+  return 3;
 }
 
 QVariant TimeTableViewModel::data(const QModelIndex & index, int role) const
@@ -33,52 +33,43 @@ QVariant TimeTableViewModel::headerData(int section, Qt::Orientation orientation
 {
   if (role == Qt::DisplayRole && orientation == Qt::Horizontal)
   {
-    if (section == 0)
+  }
+  else if (role == Qt::DisplayRole && orientation == Qt::Vertical)
+  {
+    switch (section)
     {
-      return QString("Class");
-    }
-    else if (section == 1)
-    {
-      return QString("Monday");
-    }
-    else if (section == 2)
-    {
-      return QString("Tuesday");
-    }
-    else if (section == 3)
-    {
-      return QString("Wednesday");
-    }
-    else if (section == 4)
-    {
-      return QString("Thursday");
-    }
-    else if (section == 5)
-    {
-      return QString("Friday");
+    case 0:
+      return QString("08:00");
+    case 1:
+      return QString("09:00");
+    case 2:
+      return QString("10:00");
+    case 3:
+      return QString("11:00");
+    case 4:
+      return QString("12:00");
+    case 5:
+      return QString("13:00");
+    case 6:
+      return QString("14:00");
+    case 7:
+      return QString("15:00");
+    case 8:
+      return QString("16:00");
+    case 9:
+      return QString("17:00");
+    case 10:
+      return QString("18:00");
+    case 11:
+      return QString("19:00");
+    case 12:
+      return QString("20:00");
+    default:
+      break;
     }
   }
   return QVariant();
 }
-
-// void TimeTableViewModel::EditModel(int rowSelected, QString aName, int aNumberOfStudents)
-//{
-//}
-//
-// void TimeTableViewModel::RemoveItemFromModel(int aRowSelected)
-//{
-//  beginRemoveRows(QModelIndex(), aRowSelected,
-//                  aRowSelected);  // emit signal to notify view that a new row is removed
-//
-//  endRemoveRows();
-//}
-//
-// void TimeTableViewModel::PopulateModel(QString aName, int aNrOfStudents)
-//{
-//  int newRow = mContext.GetClassSize();
-//
-//  endInsertRows();
-//}
 
 void TimeTableViewModel::ClearData()
 {

@@ -17,6 +17,7 @@ TeacherView::TeacherView(Context & aContext, QWidget * parent)
 
   proxyModel->setSourceModel(tableModel);
   proxyModel->sort(0, Qt::AscendingOrder);
+
   ui.mTable->setModel(proxyModel);
   ui.mTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
   ui.mTable->setSortingEnabled(true);

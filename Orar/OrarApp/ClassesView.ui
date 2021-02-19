@@ -33,21 +33,7 @@
     <number>10</number>
    </property>
    <item>
-    <widget class="QTableView" name="mTable">
-     <property name="styleSheet">
-      <string notr="true">background-color: rgb(153, 253, 255);
-border: 1px solid;</string>
-     </property>
-     <property name="frameShape">
-      <enum>QFrame::NoFrame</enum>
-     </property>
-     <property name="selectionBehavior">
-      <enum>QAbstractItemView::SelectRows</enum>
-     </property>
-     <attribute name="verticalHeaderVisible">
-      <bool>false</bool>
-     </attribute>
-    </widget>
+    <widget class="QTreeView" name="mTree"/>
    </item>
    <item>
     <widget class="QFrame" name="frame">
@@ -63,43 +49,23 @@ border: 1px solid;</string>
      <property name="frameShadow">
       <enum>QFrame::Raised</enum>
      </property>
-     <layout class="QHBoxLayout" name="horizontalLayout">
-      <property name="spacing">
-       <number>0</number>
-      </property>
-      <property name="leftMargin">
-       <number>0</number>
-      </property>
-      <property name="topMargin">
-       <number>0</number>
-      </property>
-      <property name="rightMargin">
-       <number>0</number>
-      </property>
-      <property name="bottomMargin">
-       <number>0</number>
-      </property>
+     <layout class="QVBoxLayout" name="verticalLayout">
       <item>
-       <layout class="QVBoxLayout" name="verticalLayout_5">
-        <property name="spacing">
-         <number>9</number>
+       <widget class="QPushButton" name="mAddClass">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>40</height>
+         </size>
         </property>
-        <item>
-         <widget class="QPushButton" name="mAdd">
-          <property name="minimumSize">
-           <size>
-            <width>0</width>
-            <height>40</height>
-           </size>
-          </property>
-          <property name="layoutDirection">
-           <enum>Qt::RightToLeft</enum>
-          </property>
-          <property name="autoFillBackground">
-           <bool>false</bool>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">QPushButton{
+        <property name="layoutDirection">
+         <enum>Qt::RightToLeft</enum>
+        </property>
+        <property name="autoFillBackground">
+         <bool>false</bool>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton{
 	font: 75 14pt &quot;Times New Roman&quot;;
 	color: rgb(70, 70, 70);
 	background-color: rgb(200, 200, 200);
@@ -109,41 +75,44 @@ border: 1px solid;</string>
 QPushButton:hover {
 	background-color: rgb(231, 231, 231);
 }</string>
-          </property>
-          <property name="text">
-           <string>Add   </string>
-          </property>
-          <property name="icon">
-           <iconset resource="OrarApp.qrc">
-            <normaloff>:/Buttons/img/addBtn.png</normaloff>:/Buttons/img/addBtn.png</iconset>
-          </property>
-          <property name="iconSize">
-           <size>
-            <width>18</width>
-            <height>18</height>
-           </size>
-          </property>
-          <property name="default">
-           <bool>false</bool>
-          </property>
-          <property name="flat">
-           <bool>false</bool>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPushButton" name="mEdit">
-          <property name="minimumSize">
-           <size>
-            <width>0</width>
-            <height>40</height>
-           </size>
-          </property>
-          <property name="layoutDirection">
-           <enum>Qt::RightToLeft</enum>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">QPushButton{
+        </property>
+        <property name="text">
+         <string>Add  Class </string>
+        </property>
+        <property name="icon">
+         <iconset resource="OrarApp.qrc">
+          <normaloff>:/Buttons/img/addBtn.png</normaloff>:/Buttons/img/addBtn.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>18</width>
+          <height>18</height>
+         </size>
+        </property>
+        <property name="default">
+         <bool>false</bool>
+        </property>
+        <property name="flat">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="mAddGroup">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>40</height>
+         </size>
+        </property>
+        <property name="layoutDirection">
+         <enum>Qt::RightToLeft</enum>
+        </property>
+        <property name="autoFillBackground">
+         <bool>false</bool>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton{
 	font: 75 14pt &quot;Times New Roman&quot;;
 	color: rgb(70, 70, 70);
 	background-color: rgb(200, 200, 200);
@@ -153,35 +122,41 @@ QPushButton:hover {
 QPushButton:hover {
 	background-color: rgb(231, 231, 231);
 }</string>
-          </property>
-          <property name="text">
-           <string>Edit   </string>
-          </property>
-          <property name="icon">
-           <iconset resource="OrarApp.qrc">
-            <normaloff>:/Buttons/img/editBtn3.png</normaloff>:/Buttons/img/editBtn3.png</iconset>
-          </property>
-          <property name="iconSize">
-           <size>
-            <width>18</width>
-            <height>18</height>
-           </size>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPushButton" name="mDelete">
-          <property name="minimumSize">
-           <size>
-            <width>0</width>
-            <height>40</height>
-           </size>
-          </property>
-          <property name="layoutDirection">
-           <enum>Qt::RightToLeft</enum>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">QPushButton{
+        </property>
+        <property name="text">
+         <string>Add Group</string>
+        </property>
+        <property name="icon">
+         <iconset resource="OrarApp.qrc">
+          <normaloff>:/Buttons/img/addBtn.png</normaloff>:/Buttons/img/addBtn.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>18</width>
+          <height>18</height>
+         </size>
+        </property>
+        <property name="default">
+         <bool>false</bool>
+        </property>
+        <property name="flat">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="mEdit">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>40</height>
+         </size>
+        </property>
+        <property name="layoutDirection">
+         <enum>Qt::RightToLeft</enum>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton{
 	font: 75 14pt &quot;Times New Roman&quot;;
 	color: rgb(70, 70, 70);
 	background-color: rgb(200, 200, 200);
@@ -191,35 +166,35 @@ QPushButton:hover {
 QPushButton:hover {
 	background-color: rgb(231, 231, 231);
 }</string>
-          </property>
-          <property name="text">
-           <string>Delete </string>
-          </property>
-          <property name="icon">
-           <iconset resource="OrarApp.qrc">
-            <normaloff>:/Buttons/img/deleteBtn.png</normaloff>:/Buttons/img/deleteBtn.png</iconset>
-          </property>
-          <property name="iconSize">
-           <size>
-            <width>18</width>
-            <height>18</height>
-           </size>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPushButton" name="mConstraints">
-          <property name="minimumSize">
-           <size>
-            <width>0</width>
-            <height>40</height>
-           </size>
-          </property>
-          <property name="layoutDirection">
-           <enum>Qt::RightToLeft</enum>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">QPushButton{
+        </property>
+        <property name="text">
+         <string>Edit   </string>
+        </property>
+        <property name="icon">
+         <iconset resource="OrarApp.qrc">
+          <normaloff>:/Buttons/img/editBtn3.png</normaloff>:/Buttons/img/editBtn3.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>18</width>
+          <height>18</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="mDelete">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>40</height>
+         </size>
+        </property>
+        <property name="layoutDirection">
+         <enum>Qt::RightToLeft</enum>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton{
 	font: 75 14pt &quot;Times New Roman&quot;;
 	color: rgb(70, 70, 70);
 	background-color: rgb(200, 200, 200);
@@ -229,36 +204,72 @@ QPushButton:hover {
 QPushButton:hover {
 	background-color: rgb(231, 231, 231);
 }</string>
-          </property>
-          <property name="text">
-           <string>Constraints  </string>
-          </property>
-          <property name="icon">
-           <iconset resource="OrarApp.qrc">
-            <normaloff>:/Buttons/img/constr.png</normaloff>:/Buttons/img/constr.png</iconset>
-          </property>
-          <property name="iconSize">
-           <size>
-            <width>18</width>
-            <height>18</height>
-           </size>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <spacer name="verticalSpacer_3">
-          <property name="orientation">
-           <enum>Qt::Vertical</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>20</width>
-            <height>40</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-       </layout>
+        </property>
+        <property name="text">
+         <string>Delete </string>
+        </property>
+        <property name="icon">
+         <iconset resource="OrarApp.qrc">
+          <normaloff>:/Buttons/img/deleteBtn.png</normaloff>:/Buttons/img/deleteBtn.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>18</width>
+          <height>18</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="mConstraints">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>40</height>
+         </size>
+        </property>
+        <property name="layoutDirection">
+         <enum>Qt::RightToLeft</enum>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton{
+	font: 75 14pt &quot;Times New Roman&quot;;
+	color: rgb(70, 70, 70);
+	background-color: rgb(200, 200, 200);
+	border: 0px solid;
+}
+
+QPushButton:hover {
+	background-color: rgb(231, 231, 231);
+}</string>
+        </property>
+        <property name="text">
+         <string>Constraints  </string>
+        </property>
+        <property name="icon">
+         <iconset resource="OrarApp.qrc">
+          <normaloff>:/Buttons/img/constr.png</normaloff>:/Buttons/img/constr.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>18</width>
+          <height>18</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="verticalSpacer_3">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>20</width>
+          <height>122</height>
+         </size>
+        </property>
+       </spacer>
       </item>
      </layout>
     </widget>

@@ -104,9 +104,6 @@
     <ClCompile Include="SubjectTableModel.cpp">
       <Filter>Source Files\Models</Filter>
     </ClCompile>
-    <ClCompile Include="ClassTableModel.cpp">
-      <Filter>Source Files\Models</Filter>
-    </ClCompile>
     <ClCompile Include="RoomTableModel.cpp">
       <Filter>Source Files\Models</Filter>
     </ClCompile>
@@ -133,9 +130,6 @@
     </ClCompile>
     <ClCompile Include="InstitutionDetailsDialog.cpp">
       <Filter>Source Files\views</Filter>
-    </ClCompile>
-    <ClCompile Include="TreeItem.cpp">
-      <Filter>Source Files\Models</Filter>
     </ClCompile>
     <ClCompile Include="TreeModel.cpp">
       <Filter>Source Files\Models</Filter>
@@ -179,9 +173,6 @@
       <Filter>Source Files\Models</Filter>
     </QtMoc>
     <QtMoc Include="SubjectTableModel.h">
-      <Filter>Source Files\Models</Filter>
-    </QtMoc>
-    <QtMoc Include="ClassTableModel.h">
       <Filter>Source Files\Models</Filter>
     </QtMoc>
     <QtMoc Include="RoomTableModel.h">
@@ -283,9 +274,6 @@
     </ClInclude>
     <ClInclude Include="InstituteData.h">
       <Filter>Source Files\data</Filter>
-    </ClInclude>
-    <ClInclude Include="TreeItem.h">
-      <Filter>Source Files\Models</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

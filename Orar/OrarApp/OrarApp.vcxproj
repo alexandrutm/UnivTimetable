@@ -108,6 +108,7 @@
     <ClCompile Include="Classes.cpp" />
     <ClCompile Include="ClassesDialog.cpp" />
     <ClCompile Include="ClassesView.cpp" />
+    <ClCompile Include="ClassTableModel.cpp" />
     <ClCompile Include="Context.cpp" />
     <ClCompile Include="InstitutionDetailsDialog.cpp" />
     <ClCompile Include="Lesson.cpp" />
@@ -128,7 +129,9 @@
     <ClCompile Include="TeacherDialog.cpp" />
     <ClCompile Include="TeacherView.cpp" />
     <ClCompile Include="TimeTableViewModel.cpp" />
+    <ClCompile Include="TreeItem.cpp" />
     <ClCompile Include="TreeModel.cpp" />
+    <ClInclude Include="TreeItem.h" />
     <QtMoc Include="TreeModel.h" />
     <QtMoc Include="TimeTableViewModel.h" />
     <QtMoc Include="TeacherDialog.h" />
@@ -140,6 +143,7 @@
     <ClInclude Include="InstituteData.h" />
     <ClInclude Include="Classes.h" />
     <QtMoc Include="LessonView.h" />
+    <QtMoc Include="ClassTableModel.h" />
     <QtMoc Include="InstitutionDetailsDialog.h" />
     <ClInclude Include="Lesson.h" />
     <QtMoc Include="LessonDialog.h" />

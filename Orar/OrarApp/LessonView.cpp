@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "LessonView.h"
+#include "ClassTableModel.h"
 #include "Classes.h"
 #include "Context.h"
 #include "Lesson.h"
@@ -11,7 +12,6 @@
 #include "SubjectTableModel.h"
 #include "Teacher.h"
 #include "TeacherTableModel.h"
-#include "TreeModel.h"
 
 LessonView::LessonView(Context & aContext, QWidget * parent)
   : QWidget(parent)
@@ -21,7 +21,7 @@ LessonView::LessonView(Context & aContext, QWidget * parent)
 
   mTeacherModel   = new TableModel(mContext, this);
   mSubjectModel   = new SubjectTableModel(mContext, this);
-  mClassModel     = new TreeModel(mContext, this);
+  mClassModel     = new ClassTableModel(mContext, this);
   mRoomTableModel = new RoomTableModel(mContext, this);
 
   tableModel = new LessonTableModel(mContext, this);

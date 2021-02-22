@@ -37,9 +37,28 @@ void ClassesView::on_mAddClass_clicked()
 
     if (!name.isEmpty())
     {
-      const QModelIndex index = ui.mTree->selectionModel()->currentIndex();
+      const QModelIndex    index = ui.mTree->selectionModel()->currentIndex();
+      QAbstractItemModel * model = ui.mTree->model();
 
-      treeModel->PopulateModel(name, numberOfStudents, index);
+      if (model->columnCount(index) == 0)
+      {
+        if (!model->insertColumn(0, index))
+          return;
+      }
+
+      if (!model->insertRow(0, index))
+        return;
+
+      int column = 0;
+
+      const QModelIndex indexName = model->index(0, column, index);
+      model->setData(indexName, name, Qt::EditRole);
+
+      const QModelIndex indexStudents = model->index(0, ++column, index);
+      model->setData(indexStudents, numberOfStudents, Qt::EditRole);
+
+      ui.mTree->selectionModel()->setCurrentIndex(model->index(0, 0, index),
+                                                  QItemSelectionModel::ClearAndSelect);
     }
     else
       QMessageBox::about(this, "Name error", "You need to insert a class name");

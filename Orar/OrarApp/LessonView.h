@@ -7,7 +7,7 @@ class Context;
 class TableModel;
 class SortFilterProxyModel;
 class SubjectTableModel;
-class ClassTableModel;
+class TreeModel;
 class RoomTableModel;
 class LessonTableModel;
 
@@ -33,7 +33,7 @@ private:
   SortFilterProxyModel * proxyModel;
   TableModel *           mTeacherModel;
   SubjectTableModel *    mSubjectModel;
-  ClassTableModel *      mClassModel;
+  TreeModel *            mClassModel;
   RoomTableModel *       mRoomTableModel;
   LessonTableModel *     tableModel;
 

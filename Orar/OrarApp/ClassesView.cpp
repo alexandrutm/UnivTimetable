@@ -17,9 +17,9 @@ ClassesView::ClassesView(Context & aContext, QWidget * parent)
 
   proxyModel->setSourceModel(tableModel);
   proxyModel->sort(0, Qt::AscendingOrder);
-  ui.mTable->setModel(proxyModel);
-  ui.mTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
-  ui.mTable->setSortingEnabled(true);
+  ui.mTree->setModel(proxyModel);
+  // ui.mTree->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+  ui.mTree->setSortingEnabled(true);
 }
 
 ClassesView::~ClassesView()
@@ -56,7 +56,7 @@ void ClassesView::on_mEdit_clicked()
 
   // map the current selected row value
   int currentSelectedRowMapped =
-    proxyModel->mapToSource(ui.mTable->selectionModel()->currentIndex()).row();
+    proxyModel->mapToSource(ui.mTree->selectionModel()->currentIndex()).row();
 
   if (currentSelectedRowMapped < 0)
   {
@@ -91,7 +91,7 @@ void ClassesView::on_mEdit_clicked()
 void ClassesView::on_mDelete_clicked()
 {
   int currentSelectedRowMapped =
-    proxyModel->mapToSource(ui.mTable->selectionModel()->currentIndex()).row();
+    proxyModel->mapToSource(ui.mTree->selectionModel()->currentIndex()).row();
 
   if (currentSelectedRowMapped < 0)
   {

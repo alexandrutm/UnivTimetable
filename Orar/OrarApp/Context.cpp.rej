@@ -1,0 +1,16 @@
+diff a/Orar/OrarApp/Context.cpp b/Orar/OrarApp/Context.cpp	(rejected hunks)
+@@ -76,12 +76,12 @@
+   return mSubjects;
+ }
+ 
+-size_t Context::GetSubjectSize()
++int Context::GetSubjectSize()
+ {
+   return mSubjects.size();
+ }
+ 
+-shared_ptr<Subject> & Context::GetSubjectByIndex(int i)
++shared_ptr<Subject> Context::GetSubjectByIndex(int i)
+ {
+   return mSubjects[i];
+ }

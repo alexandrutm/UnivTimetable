@@ -23,8 +23,4 @@
 
 #pragma warning(pop)
 
-#define DaysOfTheWeek 5
-#define StartTime     08 : 00
-#define HoursPerDay   12
-
 using namespace std;

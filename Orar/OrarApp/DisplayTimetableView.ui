@@ -6,39 +6,14 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>819</width>
-    <height>451</height>
+    <width>694</width>
+    <height>442</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>DisplayTimetableView</string>
   </property>
   <layout class="QHBoxLayout" name="horizontalLayout">
-   <property name="spacing">
-    <number>0</number>
-   </property>
-   <property name="leftMargin">
-    <number>0</number>
-   </property>
-   <property name="topMargin">
-    <number>0</number>
-   </property>
-   <property name="rightMargin">
-    <number>0</number>
-   </property>
-   <property name="bottomMargin">
-    <number>0</number>
-   </property>
-   <item>
-    <widget class="QTableView" name="mClassTableView">
-     <property name="maximumSize">
-      <size>
-       <width>100</width>
-       <height>16777215</height>
-      </size>
-     </property>
-    </widget>
-   </item>
    <item>
     <widget class="QTableView" name="mTimeTableView">
      <property name="horizontalScrollBarPolicy">
@@ -65,7 +40,7 @@
      </property>
      <property name="maximumSize">
       <size>
-       <width>250</width>
+       <width>300</width>
        <height>16777215</height>
       </size>
      </property>
@@ -94,9 +69,6 @@
       <property name="bottomMargin">
        <number>0</number>
       </property>
-      <item>
-       <widget class="QTableView" name="mLessonTableView"/>
-      </item>
      </layout>
     </widget>
    </item>

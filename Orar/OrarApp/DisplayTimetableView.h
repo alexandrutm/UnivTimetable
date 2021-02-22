@@ -3,8 +3,6 @@
 #include "ui_DisplayTimetableView.h"
 
 class TimeTableViewModel;
-class LessonTableModel;
-class ClassTableModel;
 class Context;
 
 class DisplayTimetableView : public QWidget
@@ -18,8 +16,6 @@ public:
 private:
   Ui::DisplayTimetableView ui;
 
-  TimeTableViewModel * timetableModel;
-  //  ClassTableModel *    classTableModel;
-  // LessonTableModel *   lessonTableModel;
-  Context & mContext;
+  TimeTableViewModel * tableModel;
+  Context &            mContext;
 };

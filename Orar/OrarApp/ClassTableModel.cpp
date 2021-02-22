@@ -11,7 +11,7 @@ ClassTableModel::ClassTableModel(Context & aContext, QObject * parent)
 
 int ClassTableModel::rowCount(const QModelIndex & /*parent*/) const
 {
-  return static_cast<int>(mContext.GetClassSize());
+  return mContext.GetClassSize();
 }
 
 int ClassTableModel::columnCount(const QModelIndex & /*parent*/) const
@@ -28,11 +28,15 @@ QVariant ClassTableModel::data(const QModelIndex & index, int role) const
 
   if (index.column() == 0)
   {
-    return QString::fromStdString((mContext.GetClassByIndex(index.row()))->GetName());
+    QString aName;
+    aName = QString::fromStdString((mContext.GetClassByIndex(index.row()))->GetName());
+    return aName;
   }
   else
   {
-    return (mContext.GetClassByIndex(index.row()))->GetNumberOfStudents();
+    int nrOfStudents;
+    nrOfStudents = (mContext.GetClassByIndex(index.row()))->GetNumberOfStudents();
+    return nrOfStudents;
   }
 }
 
@@ -56,13 +60,15 @@ bool ClassTableModel::setData(const QModelIndex & index, const QVariant & aClass
 {
   if (index.isValid() && role == Qt::EditRole)
   {
+    auto aClass = mContext.GetClassByIndex(index.row());
+
     switch (index.column())
     {
     case 0:
-      mContext.GetClassByIndex(index.row())->SetName((aClassData.toString()).toStdString());
+      aClass->SetName((aClassData.toString()).toStdString());
       break;
     case 1:
-      mContext.GetClassByIndex(index.row())->SetNumberOfStudents(aClassData.toInt());
+      aClass->SetNumberOfStudents(aClassData.toInt());
       break;
     default:
       return false;
@@ -87,13 +93,12 @@ void ClassTableModel::RemoveItemFromModel(int aRowSelected)
 
 void ClassTableModel::PopulateModel(QString aName, int aNrOfStudents)
 {
-  int newRow = static_cast<int>(mContext.GetClassSize());
+  int newRow = mContext.GetClassSize();
 
   beginInsertRows(QModelIndex(), newRow, newRow);
 
   shared_ptr<Classes> newClass =
     make_shared<Classes>(aName.toStdString(), aNrOfStudents, mContext.GenerateClassId());
-
   mContext.AddClass(newClass);
 
   endInsertRows();
@@ -101,11 +106,9 @@ void ClassTableModel::PopulateModel(QString aName, int aNrOfStudents)
 
 void ClassTableModel::ClearData()
 {
-  int classSize = static_cast<int>(mContext.GetClassSize());
-
-  if (classSize > 0)
+  if (mContext.GetClassSize() > 0)
   {
-    beginRemoveRows(QModelIndex(), 0, classSize - 1);
+    beginRemoveRows(QModelIndex(), 0, mContext.GetClassSize() - 1);
     mContext.DeleteClasses();
     endRemoveRows();
   }

@@ -15,7 +15,7 @@ LessonTableModel::LessonTableModel(Context & aContext, QObject * parent)
 
 int LessonTableModel::rowCount(const QModelIndex & /*parent*/) const
 {
-  return static_cast<int>(mContext.GetLessonSize());
+  return mContext.GetLessonSize();
 }
 
 int LessonTableModel::columnCount(const QModelIndex & /*parent*/) const
@@ -108,7 +108,7 @@ void LessonTableModel::RemoveItemFromModel(int aRowSelected)
 
 void LessonTableModel::PopulateModel(shared_ptr<Lesson> aLesson)
 {
-  int newRow = static_cast<int>(mContext.GetLessonSize());
+  int newRow = mContext.GetLessonSize();
 
   beginInsertRows(QModelIndex(), newRow, newRow);
   mContext.AddLesson(aLesson);
@@ -118,10 +118,9 @@ void LessonTableModel::PopulateModel(shared_ptr<Lesson> aLesson)
 
 void LessonTableModel::ClearContent()
 {
-  int lessonSize = static_cast<int>(mContext.GetLessonSize());
-  if (lessonSize > 0)
+  if (mContext.GetLessonSize() > 0)
   {
-    beginRemoveRows(QModelIndex(), 0, lessonSize - 1);
+    beginRemoveRows(QModelIndex(), 0, mContext.GetLessonSize() - 1);
     mContext.DeleteLessons();
     endRemoveRows();
   }

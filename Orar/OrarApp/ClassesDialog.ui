@@ -206,6 +206,9 @@ QSpinBox:hover {
 	background-color: rgb(231, 231, 231);
 }</string>
               </property>
+              <property name="maximum">
+               <number>100000</number>
+              </property>
              </widget>
             </item>
            </layout>

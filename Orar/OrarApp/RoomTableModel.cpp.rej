@@ -1,0 +1,10 @@
+diff a/Orar/OrarApp/RoomTableModel.cpp b/Orar/OrarApp/RoomTableModel.cpp	(rejected hunks)
+@@ -11,7 +11,7 @@
+ 
+ int RoomTableModel::rowCount(const QModelIndex & /*parent*/) const
+ {
+-  return static_cast<int>(mContext.GetRoomSize());
++  return mContext.GetRoomSize();
+ }
+ 
+ int RoomTableModel::columnCount(const QModelIndex & /*parent*/) const

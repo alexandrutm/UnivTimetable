@@ -30,12 +30,12 @@ vector<shared_ptr<Teacher>> & Context::GetTeachers()
   return mTeachers;
 }
 
-int Context::GetTeacherSize()
+size_t Context::GetTeacherSize()
 {
   return mTeachers.size();
 }
 
-shared_ptr<Teacher> Context::GetTeacherByIndex(int i)
+shared_ptr<Teacher> & Context::GetTeacherByIndex(int i)
 {
   return mTeachers[i];
 }
@@ -76,12 +76,12 @@ vector<shared_ptr<Subject>> & Context::GetSubjects()
   return mSubjects;
 }
 
-int Context::GetSubjectSize()
+size_t Context::GetSubjectSize()
 {
   return mSubjects.size();
 }
 
-shared_ptr<Subject> Context::GetSubjectByIndex(int i)
+shared_ptr<Subject> & Context::GetSubjectByIndex(int i)
 {
   return mSubjects[i];
 }
@@ -121,12 +121,12 @@ vector<shared_ptr<Classes>> & Context::GetClasses()
   return mClasses;
 }
 
-int Context::GetClassSize()
+size_t Context::GetClassSize()
 {
   return mClasses.size();
 }
 
-shared_ptr<Classes> Context::GetClassByIndex(int i)
+shared_ptr<Classes> & Context::GetClassByIndex(int i)
 {
   return mClasses[i];
 }
@@ -166,12 +166,12 @@ vector<shared_ptr<Lesson>> & Context::GetLessons()
   return mLessons;
 }
 
-int Context::GetLessonSize()
+size_t Context::GetLessonSize()
 {
   return mLessons.size();
 }
 
-shared_ptr<Lesson> Context::GetLessonByIndex(int i)
+shared_ptr<Lesson> & Context::GetLessonByIndex(int i)
 {
   return mLessons[i];
 }
@@ -214,22 +214,12 @@ vector<shared_ptr<Room>> & Context::GetRooms()
   return mRooms;
 }
 
-int Context::GetRoomSize()
+size_t Context::GetRoomSize()
 {
-  // cast to int
-  // presupunand ca o sa fie maxim 1000 de sali intr-o institutie
-
-  size_t data = mRooms.size();
-
-  if (data > INT_MAX)
-  {
-    throw std::overflow_error("data is larger than INT_MAX");
-  }
-
-  return static_cast<int>(data);
+  return mRooms.size();
 }
 
-shared_ptr<Room> Context::GetRoomByIndex(int i)
+shared_ptr<Room> & Context::GetRoomByIndex(int i)
 {
   return mRooms[i];
 }
@@ -253,18 +243,15 @@ int Context::GenerateRoomId()
 
 void Context::AddInstituteData(shared_ptr<InstituteData> aInstituteData)
 {
-  mInstituteData.push_back(aInstituteData);
+  mInstituteData = aInstituteData;
 }
 
-int Context::GenerateInstituteDataId()
+int Context::GetInstituteNumberOfHours()
 {
-  auto maxIdIt =
-    max_element(mInstituteData.begin(), mInstituteData.end(), [](auto & first, auto & second) {
-      return first->GetId() < second->GetId();
-    });
+  return mInstituteData->GetHoursPerDay();
+}
 
-  if (maxIdIt == mInstituteData.end())
-    return 1;
-
-  return (*maxIdIt)->GetId() + 1;
+string Context::GetInstitutionStartHour()
+{
+  return mInstituteData->GetStartHour();
 }

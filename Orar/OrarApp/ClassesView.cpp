@@ -42,7 +42,13 @@ void ClassesView::on_mAdd_clicked()
 
     if (!name.isEmpty())
     {
+<<<<<<< HEAD
       tableModel->PopulateModel(name, numberOfStudents);
+=======
+      const QModelIndex index = ui.mTree->selectionModel()->currentIndex();
+
+      treeModel->PopulateModel(name, numberOfStudents, index);
+>>>>>>> parent of 659c701... Revert "implement a tree model for class split"
     }
     else
       QMessageBox::about(this, "Name error", "You need to insert a class name");

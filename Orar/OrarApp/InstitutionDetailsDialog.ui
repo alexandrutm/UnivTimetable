@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>341</width>
-    <height>342</height>
+    <width>328</width>
+    <height>328</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -49,7 +49,11 @@
               <item row="0" column="0">
                <layout class="QHBoxLayout" name="horizontalLayout_2">
                 <item>
-                 <widget class="QLineEdit" name="SchoolName"/>
+                 <widget class="QLineEdit" name="SchoolName">
+                  <property name="text">
+                   <string>Institution name</string>
+                  </property>
+                 </widget>
                 </item>
                </layout>
               </item>
@@ -75,8 +79,8 @@
            <property name="title">
             <string>Institution  program</string>
            </property>
-           <layout class="QGridLayout" name="gridLayout_2">
-            <item row="0" column="0">
+           <layout class="QVBoxLayout" name="verticalLayout_2">
+            <item>
              <layout class="QHBoxLayout" name="horizontalLayout_3">
               <item>
                <widget class="QLabel" name="label">
@@ -86,12 +90,16 @@
                </widget>
               </item>
               <item>
-               <widget class="QSpinBox" name="HoursPerDay"/>
+               <widget class="QSpinBox" name="HoursPerDay">
+                <property name="specialValueText">
+                 <string>12</string>
+                </property>
+               </widget>
               </item>
              </layout>
             </item>
-            <item row="3" column="0">
-             <layout class="QHBoxLayout" name="horizontalLayout_6">
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_4">
               <item>
                <widget class="QLabel" name="label_3">
                 <property name="text">
@@ -100,21 +108,37 @@
                </widget>
               </item>
               <item>
-               <widget class="QSpinBox" name="mStartHour"/>
+               <widget class="QSpinBox" name="mStartHour">
+                <property name="specialValueText">
+                 <string>08:00</string>
+                </property>
+                <property name="maximum">
+                 <number>24</number>
+                </property>
+               </widget>
               </item>
               <item>
-               <layout class="QHBoxLayout" name="horizontalLayout_10">
-                <item>
-                 <widget class="QLabel" name="label_4">
-                  <property name="text">
-                   <string>Finish hour</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QSpinBox" name="mFinishHour"/>
-                </item>
-               </layout>
+               <widget class="QLabel" name="label_4">
+                <property name="text">
+                 <string>Finish hour</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QSpinBox" name="mFinishHour">
+                <property name="minimumSize">
+                 <size>
+                  <width>40</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="specialValueText">
+                 <string>20:00</string>
+                </property>
+                <property name="maximum">
+                 <number>24</number>
+                </property>
+               </widget>
               </item>
              </layout>
             </item>

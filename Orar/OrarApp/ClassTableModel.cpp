@@ -11,7 +11,7 @@ ClassTableModel::ClassTableModel(Context & aContext, QObject * parent)
 
 int ClassTableModel::rowCount(const QModelIndex & /*parent*/) const
 {
-  return mContext.GetClassSize();
+  return static_cast<int>(mContext.GetClassSize());
 }
 
 int ClassTableModel::columnCount(const QModelIndex & /*parent*/) const
@@ -93,7 +93,7 @@ void ClassTableModel::RemoveItemFromModel(int aRowSelected)
 
 void ClassTableModel::PopulateModel(QString aName, int aNrOfStudents)
 {
-  int newRow = mContext.GetClassSize();
+  int newRow = static_cast<int>(mContext.GetClassSize());
 
   beginInsertRows(QModelIndex(), newRow, newRow);
 
@@ -108,7 +108,7 @@ void ClassTableModel::ClearData()
 {
   if (mContext.GetClassSize() > 0)
   {
-    beginRemoveRows(QModelIndex(), 0, mContext.GetClassSize() - 1);
+    beginRemoveRows(QModelIndex(), 0, static_cast<int>(mContext.GetClassSize()) - 1);
     mContext.DeleteClasses();
     endRemoveRows();
   }

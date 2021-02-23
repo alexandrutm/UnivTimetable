@@ -52,13 +52,12 @@ public:
   int                        GenerateRoomId();
 
   void AddInstituteData(shared_ptr<InstituteData> aInstituteData);
-  int  GenerateInstituteDataId();
 
 private:
-  vector<shared_ptr<Subject>>       mSubjects;
-  vector<shared_ptr<Teacher>>       mTeachers;
-  vector<shared_ptr<Classes>>       mClasses;
-  vector<shared_ptr<Lesson>>        mLessons;
-  vector<shared_ptr<Room>>          mRooms;
-  vector<shared_ptr<InstituteData>> mInstituteData;
+  vector<shared_ptr<Subject>> mSubjects;
+  vector<shared_ptr<Teacher>> mTeachers;
+  vector<shared_ptr<Classes>> mClasses;
+  vector<shared_ptr<Lesson>>  mLessons;
+  vector<shared_ptr<Room>>    mRooms;
+  shared_ptr<InstituteData>   mInstituteData;
 };

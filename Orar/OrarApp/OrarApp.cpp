@@ -32,6 +32,11 @@ OrarApp::OrarApp(QWidget * parent)
   ui.centralStackWidget->insertWidget(0, &mHomeView);
   ui.centralStackWidget->insertWidget(1, &mDisplayTimeTableView);
   ui.centralStackWidget->setCurrentIndex(0);
+
+  // create institution
+  shared_ptr<InstituteData> InstitutionData =
+    make_shared<InstituteData>("Institution name", 12, 8, 20);
+  mContext.AddInstituteData(InstitutionData);
 }
 
 void OrarApp::ChangeView(INavigator::viewId theView)
@@ -42,25 +47,9 @@ void OrarApp::ChangeView(INavigator::viewId theView)
   }
   else if (theView == INavigator::viewId::mainPage)
   {
-    InstitutionDetailsDialog institutionDialog = new InstitutionDetailsDialog(this);
-
-    if (institutionDialog.exec())
-    {
-      QString name = institutionDialog.SchoolName->text();
-
-      int hoursPerDay = institutionDialog.HoursPerDay->value();
-      int startHour   = institutionDialog.mStartHour->value();
-      int finishHour  = institutionDialog.mFinishHour->value();
-      int uniqueId    = mContext.GenerateInstituteDataId();
-
-      shared_ptr<InstituteData> InstitutionData = make_shared<InstituteData>(
-        name.toStdString(), hoursPerDay, startHour, finishHour, uniqueId);
-      mContext.AddInstituteData(InstitutionData);
-
-      ui.centralStackWidget->setCurrentIndex(1);
-      ui.toolBar->show();
-      ui.menuBar->show();
-    }
+    ui.centralStackWidget->setCurrentIndex(1);
+    ui.toolBar->show();
+    ui.menuBar->show();
   }
 }
 
@@ -73,6 +62,24 @@ void OrarApp::on_mData_triggered()
 {
   if (mDataDialog.exec())
   {
+  }
+}
+
+void OrarApp::on_mInstitutionData_triggered()
+{
+  InstitutionDetailsDialog institutionDialog = new InstitutionDetailsDialog(this);
+
+  if (institutionDialog.exec())
+  {
+    QString name = institutionDialog.SchoolName->text();
+
+    int hoursPerDay = institutionDialog.HoursPerDay->value();
+    int startHour   = institutionDialog.mStartHour->value();
+    int finishHour  = institutionDialog.mFinishHour->value();
+
+    shared_ptr<InstituteData> InstitutionData =
+      make_shared<InstituteData>(name.toStdString(), hoursPerDay, startHour, finishHour);
+    mContext.AddInstituteData(InstitutionData);
   }
 }
 

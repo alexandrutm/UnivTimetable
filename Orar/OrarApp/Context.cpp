@@ -243,18 +243,5 @@ int Context::GenerateRoomId()
 
 void Context::AddInstituteData(shared_ptr<InstituteData> aInstituteData)
 {
-  mInstituteData.push_back(aInstituteData);
-}
-
-int Context::GenerateInstituteDataId()
-{
-  auto maxIdIt =
-    max_element(mInstituteData.begin(), mInstituteData.end(), [](auto & first, auto & second) {
-      return first->GetId() < second->GetId();
-    });
-
-  if (maxIdIt == mInstituteData.end())
-    return 1;
-
-  return (*maxIdIt)->GetId() + 1;
+  mInstituteData = aInstituteData;
 }

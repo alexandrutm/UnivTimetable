@@ -8,7 +8,7 @@ public:
   InstituteData(const InstituteData &) = default;
   bool operator==(const InstituteData & aInfo);
 
-  InstituteData(string, int, int, int, int);
+  InstituteData(string, int, int, int);
 
   string GetSchoolName();
   int    GetHoursPerDay();
@@ -18,8 +18,6 @@ public:
   void SetHoursPerDay(int aHoursPerDay);
   void SetDayPerWeek(int aDayPerWeek);
 
-  int GetId();
-
   InstituteData & operator=(const InstituteData &);
 
 private:
@@ -27,5 +25,4 @@ private:
   int    mHoursPerDay;
   int    mStartHour;
   int    mFinishHour;
-  int    mId;
 };

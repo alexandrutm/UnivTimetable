@@ -11,7 +11,7 @@ TableModel::TableModel(Context & aContext, QObject * parent)
 
 int TableModel::rowCount(const QModelIndex & parent) const
 {
-  return parent.isValid() ? 0 : mContext.GetTeacherSize();
+  return parent.isValid() ? 0 : static_cast<int>(mContext.GetTeacherSize());
 }
 
 int TableModel::columnCount(const QModelIndex & parent) const
@@ -94,7 +94,7 @@ void TableModel::RemoveItemFromModel(int aRowSelected)
 
 void TableModel::PopulateModel(QString aFirstName, QString aLastName)
 {
-  int newRow = mContext.GetTeacherSize();
+  int newRow = static_cast<int>(mContext.GetTeacherSize());
 
   beginInsertRows(QModelIndex(), newRow, newRow);
   // emit signal to notify view that a new row is inserted
@@ -110,7 +110,7 @@ void TableModel::ClearContent()
 {
   if (mContext.GetTeacherSize() > 0)
   {
-    beginRemoveRows(QModelIndex(), 0, mContext.GetTeacherSize() - 1);
+    beginRemoveRows(QModelIndex(), 0, static_cast<int>(mContext.GetTeacherSize()) - 1);
     // emit signal to notify view that a new row is removed
 
     mContext.DeleteTeachers();

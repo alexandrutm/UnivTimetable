@@ -121,6 +121,7 @@
    <addaction name="mGenerate"/>
    <addaction name="separator"/>
    <addaction name="mData"/>
+   <addaction name="mInstitutionData"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <action name="mNew">
@@ -180,6 +181,11 @@
    </property>
    <property name="text">
     <string>Add Data</string>
+   </property>
+  </action>
+  <action name="mInstitutionData">
+   <property name="text">
+    <string>Institution data</string>
    </property>
   </action>
  </widget>

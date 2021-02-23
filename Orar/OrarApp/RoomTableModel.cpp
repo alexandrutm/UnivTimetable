@@ -11,7 +11,7 @@ RoomTableModel::RoomTableModel(Context & aContext, QObject * parent)
 
 int RoomTableModel::rowCount(const QModelIndex & /*parent*/) const
 {
-  return mContext.GetRoomSize();
+  return static_cast<int>(mContext.GetRoomSize());
 }
 
 int RoomTableModel::columnCount(const QModelIndex & /*parent*/) const
@@ -83,7 +83,7 @@ void RoomTableModel::RemoveItemFromModel(int aRowSelected)
 
 void RoomTableModel::PopulateModel(QString aName)
 {
-  int newRow = mContext.GetRoomSize();
+  int newRow = static_cast<int>(mContext.GetRoomSize());
 
   beginInsertRows(QModelIndex(), newRow,
                   newRow);  // emit signal to notify view that a new row is inserted
@@ -98,7 +98,7 @@ void RoomTableModel::ClearData()
 {
   if (mContext.GetRoomSize() > 0)
   {
-    beginRemoveRows(QModelIndex(), 0, mContext.GetRoomSize() - 1);
+    beginRemoveRows(QModelIndex(), 0, static_cast<int>(mContext.GetRoomSize()) - 1);
     mContext.DeleteRooms();
     endRemoveRows();
   }

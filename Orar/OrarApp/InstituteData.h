@@ -3,25 +3,23 @@
 class InstituteData
 {
 public:
-  InstituteData()                      = default;
-  ~InstituteData()                     = default;
-  InstituteData(const InstituteData &) = default;
-  // bool operator==(const InstituteData & aInfo);
+  bool operator==(const InstituteData & aInfo);
 
-  InstituteData(string, string, int);
+  InstituteData(string, int, int, int);
 
   string GetSchoolName();
-  string GetStartHour();
   int    GetHoursPerDay();
+  int    GetDayPerWeek();
 
   void SetSchoolName(string aSchoolName);
-  void SetStartHour(string aStartHour);
   void SetHoursPerDay(int aHoursPerDay);
+  void SetDayPerWeek(int aDayPerWeek);
 
   InstituteData & operator=(const InstituteData &);
 
 private:
   string mSchoolName;
-  string mStartHour;
   int    mHoursPerDay;
+  int    mStartHour;
+  int    mFinishHour;
 };

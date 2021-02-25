@@ -121,6 +121,7 @@
    <addaction name="mGenerate"/>
    <addaction name="separator"/>
    <addaction name="mData"/>
+   <addaction name="mInstitutionData"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <action name="mNew">
@@ -180,6 +181,15 @@
    </property>
    <property name="text">
     <string>Add Data</string>
+   </property>
+  </action>
+  <action name="mInstitutionData">
+   <property name="icon">
+    <iconset resource="OrarApp.qrc">
+     <normaloff>:/OrarApp/img/institute6.png</normaloff>:/OrarApp/img/institute6.png</iconset>
+   </property>
+   <property name="text">
+    <string>Institution data</string>
    </property>
   </action>
  </widget>

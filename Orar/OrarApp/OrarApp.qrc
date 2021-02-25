@@ -7,6 +7,7 @@
         <file>img/Generate2.png</file>
         <file>img/import4.png</file>
         <file>img/data.png</file>
+        <file>img/institute6.png</file>
     </qresource>
     <qresource prefix="/Buttons">
         <file>img/addBtn.png</file>

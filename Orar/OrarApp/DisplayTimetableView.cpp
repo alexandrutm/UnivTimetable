@@ -12,8 +12,8 @@ DisplayTimetableView::DisplayTimetableView(Context & aContext, QWidget * parent)
   tableModel = new TimeTableViewModel(mContext, this);
   ui.mTimeTableView->setModel(tableModel);
 
-  QHeaderView * header = ui.mTimeTableView->horizontalHeader();
-  header->setSectionResizeMode(QHeaderView::Stretch);
+  ui.mTimeTableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+  ui.mTimeTableView->verticalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 }
 
 DisplayTimetableView::~DisplayTimetableView()

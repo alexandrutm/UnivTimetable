@@ -105,9 +105,11 @@
     <ClCompile Include="AddDataDialog.cpp" />
     <ClCompile Include="DisplayTimetableView.cpp" />
     <ClCompile Include="InstituteData.cpp" />
-    <ClCompile Include="Classes.cpp" />
+    <ClCompile Include="StudentGroup.cpp" />
+    <ClCompile Include="Students.cpp" />
     <ClCompile Include="ClassesDialog.cpp" />
     <ClCompile Include="ClassesView.cpp" />
+    <ClCompile Include="ClassTableModel.cpp" />
     <ClCompile Include="Context.cpp" />
     <ClCompile Include="InstitutionDetailsDialog.cpp" />
     <ClCompile Include="Lesson.cpp" />
@@ -136,8 +138,10 @@
     <QtMoc Include="AddDataDialog.h" />
     <QtMoc Include="DisplayTimetableView.h" />
     <ClInclude Include="InstituteData.h" />
-    <ClInclude Include="Classes.h" />
+    <ClInclude Include="StudentGroup.h" />
+    <ClInclude Include="Students.h" />
     <QtMoc Include="LessonView.h" />
+    <QtMoc Include="ClassTableModel.h" />
     <QtMoc Include="InstitutionDetailsDialog.h" />
     <ClInclude Include="Lesson.h" />
     <QtMoc Include="LessonDialog.h" />

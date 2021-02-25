@@ -1,11 +1,12 @@
 #include "stdafx.h"
 #include "OrarApp.h"
 #include "AddDataDialog.h"
+#include "InstitutionDetailsDialog.h"
 
 OrarApp::OrarApp(QWidget * parent)
   : QMainWindow(parent)
   , mDataDialog(this)
-  , mHomeView(mContext, this, this)
+  , mHomeView(this, this)
   , mClassView(mContext, this)
   , mSubjectView(mContext, this)
   , mRoomView(mContext, this)
@@ -31,6 +32,11 @@ OrarApp::OrarApp(QWidget * parent)
   ui.centralStackWidget->insertWidget(0, &mHomeView);
   ui.centralStackWidget->insertWidget(1, &mDisplayTimeTableView);
   ui.centralStackWidget->setCurrentIndex(0);
+
+  // create institution
+  shared_ptr<InstituteData> InstitutionData =
+    make_shared<InstituteData>("Institution name", 12, 8, 20);
+  mContext.AddInstituteData(InstitutionData);
 }
 
 void OrarApp::ChangeView(INavigator::viewId theView)
@@ -59,6 +65,24 @@ void OrarApp::on_mData_triggered()
   }
 }
 
+void OrarApp::on_mInstitutionData_triggered()
+{
+  InstitutionDetailsDialog institutionDialog = new InstitutionDetailsDialog(this);
+
+  if (institutionDialog.exec())
+  {
+    QString name = institutionDialog.SchoolName->text();
+
+    int hoursPerDay = institutionDialog.HoursPerDay->value();
+    int startHour   = institutionDialog.mStartHour->value();
+    int finishHour  = institutionDialog.mFinishHour->value();
+
+    shared_ptr<InstituteData> InstitutionData =
+      make_shared<InstituteData>(name.toStdString(), hoursPerDay, startHour, finishHour);
+    mContext.AddInstituteData(InstitutionData);
+  }
+}
+
 void OrarApp::on_mNew_triggered()
 {
   QMessageBox::StandardButton replay = QMessageBox::question(
@@ -76,5 +100,8 @@ void OrarApp::on_mNew_triggered()
 
     ui.toolBar->hide();
     ui.menuBar->hide();
+  }
+  else
+  {
   }
 }

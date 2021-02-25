@@ -3,9 +3,6 @@
 class Subject
 {
 public:
-  Subject()                = default;
-  ~Subject()               = default;
-  Subject(const Subject &) = default;
   bool      operator==(const Subject &);
   Subject & operator=(const Subject & aSubject);
 

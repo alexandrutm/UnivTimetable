@@ -1,9 +1,9 @@
 #include "stdafx.h"
 #include "LessonTableModel.h"
-#include "Classes.h"
 #include "Context.h"
 #include "Lesson.h"
 #include "Room.h"
+#include "StudentGroup.h"
 #include "Subject.h"
 #include "Teacher.h"
 
@@ -42,7 +42,7 @@ QVariant LessonTableModel::data(const QModelIndex & index, int role) const
   }
   else if (index.column() == 2)
   {
-    auto className = mContext.GetLessonByIndex(index.row())->GetClass();
+    auto className = mContext.GetLessonByIndex(index.row())->GetGroup();
     return QString::fromStdString(className->GetName());
   }
   else if (index.column() == 3)
@@ -86,7 +86,7 @@ bool LessonTableModel::setData(const QModelIndex & index, shared_ptr<Lesson> aLe
 
     oldLesson->SetSubject(aLesson->GetSubject());
 
-    oldLesson->SetClass(aLesson->GetClass());
+    oldLesson->SetClass(aLesson->GetGroup());
 
     oldLesson->SetNumberOfHours(aLesson->GetNumberOfHours());
 
@@ -118,10 +118,9 @@ void LessonTableModel::PopulateModel(shared_ptr<Lesson> aLesson)
 
 void LessonTableModel::ClearContent()
 {
-  int lessonSize = static_cast<int>(mContext.GetLessonSize());
-  if (lessonSize > 0)
+  if (mContext.GetLessonSize() > 0)
   {
-    beginRemoveRows(QModelIndex(), 0, lessonSize - 1);
+    beginRemoveRows(QModelIndex(), 0, static_cast<int>(mContext.GetLessonSize()) - 1);
     mContext.DeleteLessons();
     endRemoveRows();
   }

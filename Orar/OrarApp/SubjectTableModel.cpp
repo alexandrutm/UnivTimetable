@@ -10,7 +10,7 @@ SubjectTableModel::SubjectTableModel(Context & aContext, QObject * parent)
 }
 int SubjectTableModel::rowCount(const QModelIndex & /*parent*/) const
 {
-  return mContext.GetSubjectSize();
+  return static_cast<int>(mContext.GetSubjectSize());
 }
 
 int SubjectTableModel::columnCount(const QModelIndex & /*parent*/) const
@@ -80,7 +80,7 @@ void SubjectTableModel::RemoveItemFromModel(int aRowSelected)
 
 void SubjectTableModel::PopulateModel(QString aName)
 {
-  int newRow = mContext.GetSubjectSize();
+  int newRow = static_cast<int>(mContext.GetSubjectSize());
 
   beginInsertRows(QModelIndex(), newRow, newRow);
 
@@ -95,7 +95,7 @@ void SubjectTableModel::ClearContent()
 {
   if (mContext.GetSubjectSize() > 0)
   {
-    beginRemoveRows(QModelIndex(), 0, mContext.GetSubjectSize() - 1);
+    beginRemoveRows(QModelIndex(), 0, static_cast<int>(mContext.GetSubjectSize()) - 1);
 
     mContext.DeleteSubjects();
 

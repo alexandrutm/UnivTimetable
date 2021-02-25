@@ -1,7 +1,6 @@
 #pragma once
 class Teacher;
 class Subject;
-class StudentYear;
 class StudentGroup;
 class Lesson;
 class InstituteData;
@@ -28,14 +27,13 @@ public:
   void                          DeleteSubjects();
   int                           GenerateSubjectId();
 
-  void                              AddClass(shared_ptr<StudentYear> aClass);
-  void                              AddGroup(shared_ptr<StudentGroup> aGroup, int index);
-  void                              RemoveClass(int i);
-  vector<shared_ptr<StudentYear>> & GetClasses();
-  size_t                            GetClassSize();
-  shared_ptr<StudentYear> &         GetClassByIndex(int i);
-  void                              DeleteClasses();
-  int                               GenerateClassId();
+  void                               AddGroup(shared_ptr<StudentGroup> aClass);
+  void                               RemoveClass(int i);
+  vector<shared_ptr<StudentGroup>> & GetGroups();
+  size_t                             GetGroupSize();
+  shared_ptr<StudentGroup> &         GetGroupByIndex(int i);
+  void                               DeleteClasses();
+  int                                GenerateClassId();
 
   void                         AddLesson(shared_ptr<Lesson> aLesson);
   void                         RemoveLesson(int i);
@@ -56,10 +54,10 @@ public:
   void AddInstituteData(shared_ptr<InstituteData> aInstituteData);
 
 private:
-  vector<shared_ptr<Subject>>     mSubjects;
-  vector<shared_ptr<Teacher>>     mTeachers;
-  vector<shared_ptr<StudentYear>> mClasses;
-  vector<shared_ptr<Lesson>>      mLessons;
-  vector<shared_ptr<Room>>        mRooms;
-  shared_ptr<InstituteData>       mInstituteData;
+  vector<shared_ptr<Subject>>      mSubjects;
+  vector<shared_ptr<Teacher>>      mTeachers;
+  vector<shared_ptr<StudentGroup>> mGroup;
+  vector<shared_ptr<Lesson>>       mLessons;
+  vector<shared_ptr<Room>>         mRooms;
+  shared_ptr<InstituteData>        mInstituteData;
 };

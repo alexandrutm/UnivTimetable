@@ -5,28 +5,20 @@
 #include "Context.h"
 #include "INavigator.h"
 #include "SortFilterProxyModel.h"
-#include "Students.h"
-
-//
-#include "StudentGroupModel.h"
 
 ClassesView::ClassesView(Context & aContext, QWidget * parent)
   : QWidget(parent)
   , mContext(aContext)
 {
   ui.setupUi(this);
-  mStudentYearModel = new ClassTableModel(mContext, this);
-  mProxyModel       = new SortFilterProxyModel();
+  mStudentGroupModel = new ClassTableModel(mContext, this);
+  mProxyModel        = new SortFilterProxyModel();
 
-  mStudentGroupModel = new StudentGroupModel(mContext, this);
-
-  mProxyModel->setSourceModel(mStudentYearModel);
+  mProxyModel->setSourceModel(mStudentGroupModel);
   mProxyModel->sort(0, Qt::AscendingOrder);
-  ui.mYearTable->setModel(mProxyModel);
-  ui.mYearTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
-  ui.mYearTable->setSortingEnabled(true);
-
-  ui.mGroupTable->setModel(mStudentGroupModel);
+  ui.mGroupTable->setModel(mProxyModel);
+  ui.mGroupTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+  ui.mGroupTable->setSortingEnabled(true);
 }
 
 ClassesView::~ClassesView()
@@ -35,10 +27,10 @@ ClassesView::~ClassesView()
 
 void ClassesView::ClearData()
 {
-  mStudentYearModel->ClearData();
+  mStudentGroupModel->ClearData();
 }
 
-void ClassesView::on_mAdd_clicked()
+void ClassesView::on_mAddGroup_clicked()
 {
   ClassesDialog AddDialog(this);
 
@@ -49,39 +41,11 @@ void ClassesView::on_mAdd_clicked()
 
     if (!name.isEmpty())
     {
-      mStudentYearModel->PopulateModel(name, numberOfStudents);
+      mStudentGroupModel->PopulateModel(name, numberOfStudents);
     }
     else
       QMessageBox::about(this, "Name error", "You need to insert a class name");
   }
-}
-
-void ClassesView::on_mAddGroup_clicked()
-{
-  ClassesDialog AddDialog(this);
-  QString       name;
-  int           numberOfStudents;
-
-  int currentSelectedRowMapped =
-    mProxyModel->mapToSource(ui.mYearTable->selectionModel()->currentIndex()).row();
-  if (currentSelectedRowMapped < 0)
-  {
-    QMessageBox::about(this, "No Class Selected", "Please choose a Year");
-  }
-  else if (AddDialog.exec())
-  {
-    name             = AddDialog.Name->text();
-    numberOfStudents = AddDialog.NumberOfStudents->value();
-
-    if (!name.isEmpty())
-    {
-      mStudentGroupModel->PopulateModel(name, numberOfStudents, currentSelectedRowMapped);
-    }
-  }
-}
-
-void ClassesView::on_mAddSubgroup_clicked()
-{
 }
 
 void ClassesView::on_mEdit_clicked()
@@ -93,7 +57,7 @@ void ClassesView::on_mEdit_clicked()
 
   // map the current selected row value
   int currentSelectedRowMapped =
-    mProxyModel->mapToSource(ui.mYearTable->selectionModel()->currentIndex()).row();
+    mProxyModel->mapToSource(ui.mGroupTable->selectionModel()->currentIndex()).row();
 
   if (currentSelectedRowMapped < 0)
   {
@@ -115,10 +79,10 @@ void ClassesView::on_mEdit_clicked()
 
     if (!newName.isEmpty())
     {
-      index = mStudentYearModel->index(currentSelectedRowMapped, 0, QModelIndex());
-      mStudentYearModel->setData(index, newName, Qt::EditRole);
-      index = mStudentYearModel->index(currentSelectedRowMapped, 1, QModelIndex());
-      mStudentYearModel->setData(index, newNumberOfStudents, Qt::EditRole);
+      index = mStudentGroupModel->index(currentSelectedRowMapped, 0, QModelIndex());
+      mStudentGroupModel->setData(index, newName, Qt::EditRole);
+      index = mStudentGroupModel->index(currentSelectedRowMapped, 1, QModelIndex());
+      mStudentGroupModel->setData(index, newNumberOfStudents, Qt::EditRole);
     }
   }
 }
@@ -126,7 +90,7 @@ void ClassesView::on_mEdit_clicked()
 void ClassesView::on_mDelete_clicked()
 {
   int currentSelectedRowMapped =
-    mProxyModel->mapToSource(ui.mYearTable->selectionModel()->currentIndex()).row();
+    mProxyModel->mapToSource(ui.mGroupTable->selectionModel()->currentIndex()).row();
 
   if (currentSelectedRowMapped < 0)
   {
@@ -134,13 +98,13 @@ void ClassesView::on_mDelete_clicked()
   }
   else
   {
-    if (mContext.GetClassByIndex(currentSelectedRowMapped).use_count() > 1)
+    if (mContext.GetGroupByIndex(currentSelectedRowMapped).use_count() > 1)
     {
       QMessageBox::about(this, "About", "Please remove all lesson that hold this class first");
     }
     else
     {
-      mStudentYearModel->RemoveItemFromModel(currentSelectedRowMapped);
+      mStudentGroupModel->RemoveItemFromModel(currentSelectedRowMapped);
     }
   }
 }

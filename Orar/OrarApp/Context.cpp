@@ -4,7 +4,6 @@
 #include "Lesson.h"
 #include "Room.h"
 #include "StudentGroup.h"
-#include "StudentYear.h"
 #include "Subject.h"
 #include "Teacher.h"
 
@@ -103,52 +102,47 @@ int Context::GenerateSubjectId()
   return (*maxIdIt)->GetId() + 1;
 }
 
-void Context::AddClass(shared_ptr<StudentYear> aClass)
+void Context::AddGroup(shared_ptr<StudentGroup> aGroup)
 {
-  mClasses.push_back(aClass);
-}
-
-void Context::AddGroup(shared_ptr<StudentGroup> aGroup, int index)
-{
-  mClasses[index]->AddGroup(aGroup);
+  mGroup.push_back(aGroup);
 }
 
 void Context::RemoveClass(int i)
 {
-  mClasses.erase(remove_if(mClasses.begin(), mClasses.end(),
-                           [&](auto const & classes) {
-                             return mClasses[i]->GetId() == classes->GetId();
-                           }),
-                 mClasses.end());
+  mGroup.erase(remove_if(mGroup.begin(), mGroup.end(),
+                         [&](auto const & classes) {
+                           return mGroup[i]->GetId() == classes->GetId();
+                         }),
+               mGroup.end());
 }
 
-vector<shared_ptr<StudentYear>> & Context::GetClasses()
+vector<shared_ptr<StudentGroup>> & Context::GetGroups()
 {
-  return mClasses;
+  return mGroup;
 }
 
-size_t Context::GetClassSize()
+size_t Context::GetGroupSize()
 {
-  return mClasses.size();
+  return mGroup.size();
 }
 
-shared_ptr<StudentYear> & Context::GetClassByIndex(int i)
+shared_ptr<StudentGroup> & Context::GetGroupByIndex(int i)
 {
-  return mClasses[i];
+  return mGroup[i];
 }
 
 void Context::DeleteClasses()
 {
-  mClasses.clear();
+  mGroup.clear();
 }
 
 int Context::GenerateClassId()
 {
-  auto maxIdIt = max_element(mClasses.begin(), mClasses.end(), [](auto & first, auto & second) {
+  auto maxIdIt = max_element(mGroup.begin(), mGroup.end(), [](auto & first, auto & second) {
     return first->GetId() < second->GetId();
   });
 
-  if (maxIdIt == mClasses.end())
+  if (maxIdIt == mGroup.end())
     return 1;
   return (*maxIdIt)->GetId() + 1;
 }

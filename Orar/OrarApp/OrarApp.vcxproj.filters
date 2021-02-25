@@ -116,16 +116,10 @@
     <ClCompile Include="Students.cpp">
       <Filter>Source Files\data</Filter>
     </ClCompile>
-    <ClCompile Include="StudentYear.cpp">
-      <Filter>Source Files\data</Filter>
-    </ClCompile>
     <ClCompile Include="Context.cpp">
       <Filter>Source Files\data</Filter>
     </ClCompile>
     <ClCompile Include="StudentGroup.cpp">
-      <Filter>Source Files\data</Filter>
-    </ClCompile>
-    <ClCompile Include="StudentSubGroup.cpp">
       <Filter>Source Files\data</Filter>
     </ClCompile>
     <ClCompile Include="AddDataDialog.cpp">
@@ -148,9 +142,6 @@
     </ClCompile>
     <ClCompile Include="TeacherDialog.cpp">
       <Filter>Source Files\Dialogs</Filter>
-    </ClCompile>
-    <ClCompile Include="StudentGroupModel.cpp">
-      <Filter>Source Files\Models</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -220,9 +211,6 @@
     <QtMoc Include="TeacherDialog.h">
       <Filter>Source Files\Dialogs</Filter>
     </QtMoc>
-    <QtMoc Include="StudentGroupModel.h">
-      <Filter>Source Files\Models</Filter>
-    </QtMoc>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="AddDataDialog.ui">
@@ -258,9 +246,6 @@
     <QtUic Include="OrarApp.ui">
       <Filter>Resource Files\Views</Filter>
     </QtUic>
-    <QtUic Include="RoomDialog.ui">
-      <Filter>Resource Files\Views</Filter>
-    </QtUic>
     <QtUic Include="RoomView.ui">
       <Filter>Resource Files\Views</Filter>
     </QtUic>
@@ -269,6 +254,9 @@
     </QtUic>
     <QtUic Include="TeacherView.ui">
       <Filter>Resource Files\Views</Filter>
+    </QtUic>
+    <QtUic Include="RoomDialog.ui">
+      <Filter>Resource Files\Dialog</Filter>
     </QtUic>
   </ItemGroup>
   <ItemGroup>
@@ -299,13 +287,7 @@
     <ClInclude Include="Students.h">
       <Filter>Source Files\data</Filter>
     </ClInclude>
-    <ClInclude Include="StudentYear.h">
-      <Filter>Source Files\data</Filter>
-    </ClInclude>
     <ClInclude Include="StudentGroup.h">
-      <Filter>Source Files\data</Filter>
-    </ClInclude>
-    <ClInclude Include="StudentSubGroup.h">
       <Filter>Source Files\data</Filter>
     </ClInclude>
   </ItemGroup>

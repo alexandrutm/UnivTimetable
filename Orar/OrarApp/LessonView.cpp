@@ -7,7 +7,6 @@
 #include "LessonTableModel.h"
 #include "RoomTableModel.h"
 #include "SortFilterProxyModel.h"
-#include "Students.h"
 #include "Subject.h"
 #include "SubjectTableModel.h"
 #include "Teacher.h"
@@ -19,6 +18,7 @@ LessonView::LessonView(Context & aContext, QWidget * parent)
 {
   ui.setupUi(this);
 
+  // models for qcombobox
   mTeacherModel   = new TableModel(mContext, this);
   mSubjectModel   = new SubjectTableModel(mContext, this);
   mClassModel     = new ClassTableModel(mContext, this);
@@ -59,7 +59,7 @@ void LessonView::on_mAdd_clicked()
 
     if (selectedRowTeacher >= 0 && selectedRowClass >= 0 && selectedRowSubject >= 0)
     {
-      auto classes      = mContext.GetClassByIndex(selectedRowClass);
+      auto classes      = mContext.GetGroupByIndex(selectedRowClass);
       auto subject      = mContext.GetSubjectByIndex(selectedRowSubject);
       auto teacher      = mContext.GetTeacherByIndex(selectedRowTeacher);
       auto hoursPerWeek = aDialog.mHoursPerWeek->value();
@@ -101,7 +101,7 @@ void LessonView::on_mEdit_clicked()
     auto subject         = mContext.GetSubjectByIndex(selectedSubject);
 
     auto selectedClass = aDialog.mClasses->currentIndex();
-    auto classes       = mContext.GetClassByIndex(selectedClass);
+    auto classes       = mContext.GetGroupByIndex(selectedClass);
 
     auto hoursPerWeek = aDialog.mHoursPerWeek->value();
 

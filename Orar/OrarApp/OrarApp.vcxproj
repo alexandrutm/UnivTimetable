@@ -106,7 +106,6 @@
     <ClCompile Include="DisplayTimetableView.cpp" />
     <ClCompile Include="InstituteData.cpp" />
     <ClCompile Include="StudentGroup.cpp" />
-    <ClCompile Include="StudentGroupModel.cpp" />
     <ClCompile Include="Students.cpp" />
     <ClCompile Include="ClassesDialog.cpp" />
     <ClCompile Include="ClassesView.cpp" />
@@ -122,8 +121,6 @@
     <ClCompile Include="RoomTableModel.cpp" />
     <ClCompile Include="RoomView.cpp" />
     <ClCompile Include="SortFilterProxyModel.cpp" />
-    <ClCompile Include="StudentSubGroup.cpp" />
-    <ClCompile Include="StudentYear.cpp" />
     <ClCompile Include="Subject.cpp" />
     <ClCompile Include="SubjectDialog.cpp" />
     <ClCompile Include="SubjectTableModel.cpp" />
@@ -142,7 +139,6 @@
     <QtMoc Include="DisplayTimetableView.h" />
     <ClInclude Include="InstituteData.h" />
     <ClInclude Include="StudentGroup.h" />
-    <QtMoc Include="StudentGroupModel.h" />
     <ClInclude Include="Students.h" />
     <QtMoc Include="LessonView.h" />
     <QtMoc Include="ClassTableModel.h" />
@@ -155,8 +151,6 @@
     <QtMoc Include="RoomTableModel.h" />
     <QtMoc Include="RoomDialog.h" />
     <QtMoc Include="SortFilterProxyModel.h" />
-    <ClInclude Include="StudentSubGroup.h" />
-    <ClInclude Include="StudentYear.h" />
     <ClInclude Include="Subject.h" />
     <QtMoc Include="SubjectView.h" />
     <QtMoc Include="TeacherTableModel.h" />

@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "ClassTableModel.h"
 #include "Context.h"
-#include "StudentYear.h"
+#include "StudentGroup.h"
 
 ClassTableModel::ClassTableModel(Context & aContext, QObject * parent)
   : QAbstractTableModel(parent)
@@ -11,7 +11,7 @@ ClassTableModel::ClassTableModel(Context & aContext, QObject * parent)
 
 int ClassTableModel::rowCount(const QModelIndex & /*parent*/) const
 {
-  return static_cast<int>(mContext.GetClassSize());
+  return static_cast<int>(mContext.GetGroupSize());
 }
 
 int ClassTableModel::columnCount(const QModelIndex & /*parent*/) const
@@ -29,13 +29,13 @@ QVariant ClassTableModel::data(const QModelIndex & index, int role) const
   if (index.column() == 0)
   {
     QString aName;
-    aName = QString::fromStdString((mContext.GetClassByIndex(index.row()))->GetName());
+    aName = QString::fromStdString((mContext.GetGroupByIndex(index.row()))->GetName());
     return aName;
   }
   else
   {
     int nrOfStudents;
-    nrOfStudents = (mContext.GetClassByIndex(index.row()))->GetNumberOfStudents();
+    nrOfStudents = (mContext.GetGroupByIndex(index.row()))->GetNumberOfStudents();
     return nrOfStudents;
   }
 }
@@ -60,7 +60,7 @@ bool ClassTableModel::setData(const QModelIndex & index, const QVariant & aClass
 {
   if (index.isValid() && role == Qt::EditRole)
   {
-    auto aClass = mContext.GetClassByIndex(index.row());
+    auto aClass = mContext.GetGroupByIndex(index.row());
 
     switch (index.column())
     {
@@ -93,22 +93,22 @@ void ClassTableModel::RemoveItemFromModel(int aRowSelected)
 
 void ClassTableModel::PopulateModel(QString aName, int aNrOfStudents)
 {
-  int newRow = static_cast<int>(mContext.GetClassSize());
+  int newRow = static_cast<int>(mContext.GetGroupSize());
 
   beginInsertRows(QModelIndex(), newRow, newRow);
 
-  shared_ptr<StudentYear> newYear =
-    make_shared<StudentYear>(aName.toStdString(), aNrOfStudents, mContext.GenerateClassId());
-  mContext.AddClass(newYear);
+  shared_ptr<StudentGroup> newGroup =
+    make_shared<StudentGroup>(aName.toStdString(), aNrOfStudents, mContext.GenerateClassId());
+  mContext.AddGroup(newGroup);
 
   endInsertRows();
 }
 
 void ClassTableModel::ClearData()
 {
-  if (mContext.GetClassSize() > 0)
+  if (mContext.GetGroupSize() > 0)
   {
-    beginRemoveRows(QModelIndex(), 0, static_cast<int>(mContext.GetClassSize()) - 1);
+    beginRemoveRows(QModelIndex(), 0, static_cast<int>(mContext.GetGroupSize()) - 1);
     mContext.DeleteClasses();
     endRemoveRows();
   }

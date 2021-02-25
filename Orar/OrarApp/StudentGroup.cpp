@@ -1,13 +1,8 @@
 #include "stdafx.h"
 #include "StudentGroup.h"
-#include "StudentYear.h"
 
-StudentGroup::StudentGroup(string                  aName,
-                           int                     aNumberOfStudents,
-                           int                     aId,
-                           shared_ptr<StudentYear> aParent)
+StudentGroup::StudentGroup(string aName, int aNumberOfStudents, int aId)
   : Students(aName, aNumberOfStudents, aId)
-  , mParentYear(aParent)
 {
 }
 

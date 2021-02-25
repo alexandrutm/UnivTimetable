@@ -34,6 +34,9 @@
      <property name="showGrid">
       <bool>true</bool>
      </property>
+     <attribute name="verticalHeaderVisible">
+      <bool>false</bool>
+     </attribute>
      <attribute name="verticalHeaderStretchLastSection">
       <bool>true</bool>
      </attribute>

@@ -3,7 +3,7 @@
 #include "Context.h"
 #include "Lesson.h"
 #include "Room.h"
-#include "StudentYear.h"
+#include "StudentGroup.h"
 #include "Subject.h"
 #include "Teacher.h"
 
@@ -42,7 +42,7 @@ QVariant LessonTableModel::data(const QModelIndex & index, int role) const
   }
   else if (index.column() == 2)
   {
-    auto className = mContext.GetLessonByIndex(index.row())->GetClass();
+    auto className = mContext.GetLessonByIndex(index.row())->GetGroup();
     return QString::fromStdString(className->GetName());
   }
   else if (index.column() == 3)
@@ -86,7 +86,7 @@ bool LessonTableModel::setData(const QModelIndex & index, shared_ptr<Lesson> aLe
 
     oldLesson->SetSubject(aLesson->GetSubject());
 
-    oldLesson->SetClass(aLesson->GetClass());
+    oldLesson->SetClass(aLesson->GetGroup());
 
     oldLesson->SetNumberOfHours(aLesson->GetNumberOfHours());
 

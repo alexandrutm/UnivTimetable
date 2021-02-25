@@ -5,6 +5,7 @@
 class Context;
 class ClassTableModel;
 class SortFilterProxyModel;
+class StudentGroupModel;
 
 class ClassesView : public QWidget
 {
@@ -17,6 +18,8 @@ public:
 
 private slots:
   void on_mAdd_clicked();
+  void on_mAddGroup_clicked();
+  void on_mAddSubgroup_clicked();
   void on_mEdit_clicked();
   void on_mDelete_clicked();
   void on_mConstraints_clicked();
@@ -24,7 +27,8 @@ private slots:
 private:
   Ui::ClassesView ui;
 
-  SortFilterProxyModel * proxyModel;
-  ClassTableModel *      tableModel;
+  SortFilterProxyModel * mProxyModel;
+  ClassTableModel *      mStudentYearModel;
+  StudentGroupModel *    mStudentGroupModel;
   Context &              mContext;
 };

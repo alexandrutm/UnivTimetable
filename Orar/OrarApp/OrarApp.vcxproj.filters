@@ -31,14 +31,20 @@
     <Filter Include="Source Files\Models">
       <UniqueIdentifier>{9f1588d3-452e-4781-9428-e2a1aa5cf897}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files\Dialog">
+      <UniqueIdentifier>{d03d9442-c6fd-4419-8df2-e2003b2c2706}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Views">
+      <UniqueIdentifier>{ebb89f94-df72-44f0-88c2-0f14b7360e48}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Dialogs">
+      <UniqueIdentifier>{7ca0aa05-1237-469e-9820-9a0b7953ac0b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <QtRcc Include="OrarApp.qrc">
       <Filter>Resource Files</Filter>
     </QtRcc>
-    <QtUic Include="OrarApp.ui">
-      <Filter>Resource Files</Filter>
-    </QtUic>
     <ClCompile Include="stdafx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -50,28 +56,16 @@
     <ClCompile Include="OrarApp.cpp">
       <Filter>Source Files\views</Filter>
     </ClCompile>
-    <ClCompile Include="ClassesDialog.cpp">
-      <Filter>Source Files\views</Filter>
-    </ClCompile>
     <ClCompile Include="ClassesView.cpp">
       <Filter>Source Files\views</Filter>
     </ClCompile>
     <ClCompile Include="HomeView.cpp">
       <Filter>Source Files\views</Filter>
     </ClCompile>
-    <ClCompile Include="LessonDialog.cpp">
-      <Filter>Source Files\views</Filter>
-    </ClCompile>
     <ClCompile Include="LessonView.cpp">
       <Filter>Source Files\views</Filter>
     </ClCompile>
-    <ClCompile Include="SubjectDialog.cpp">
-      <Filter>Source Files\views</Filter>
-    </ClCompile>
     <ClCompile Include="SubjectView.cpp">
-      <Filter>Source Files\views</Filter>
-    </ClCompile>
-    <ClCompile Include="TeacherDialog.cpp">
       <Filter>Source Files\views</Filter>
     </ClCompile>
     <ClCompile Include="TeacherView.cpp">
@@ -81,12 +75,6 @@
       <Filter>Source Files\data</Filter>
     </ClCompile>
     <ClCompile Include="Subject.cpp">
-      <Filter>Source Files\data</Filter>
-    </ClCompile>
-    <ClCompile Include="Context.cpp">
-      <Filter>Source Files\data</Filter>
-    </ClCompile>
-    <ClCompile Include="Classes.cpp">
       <Filter>Source Files\data</Filter>
     </ClCompile>
     <ClCompile Include="Lesson.cpp">
@@ -110,14 +98,8 @@
     <ClCompile Include="RoomTableModel.cpp">
       <Filter>Source Files\Models</Filter>
     </ClCompile>
-    <ClCompile Include="RoomDialog.cpp">
-      <Filter>Source Files\views</Filter>
-    </ClCompile>
     <ClCompile Include="LessonTableModel.cpp">
       <Filter>Source Files\Models</Filter>
-    </ClCompile>
-    <ClCompile Include="AddDataDialog.cpp">
-      <Filter>Source Files\views</Filter>
     </ClCompile>
     <ClCompile Include="InstituteData.cpp">
       <Filter>Source Files\data</Filter>
@@ -131,33 +113,57 @@
     <ClCompile Include="TimeTableViewModel.cpp">
       <Filter>Source Files\Models</Filter>
     </ClCompile>
+    <ClCompile Include="Students.cpp">
+      <Filter>Source Files\data</Filter>
+    </ClCompile>
+    <ClCompile Include="StudentYear.cpp">
+      <Filter>Source Files\data</Filter>
+    </ClCompile>
+    <ClCompile Include="Context.cpp">
+      <Filter>Source Files\data</Filter>
+    </ClCompile>
+    <ClCompile Include="StudentGroup.cpp">
+      <Filter>Source Files\data</Filter>
+    </ClCompile>
+    <ClCompile Include="StudentSubGroup.cpp">
+      <Filter>Source Files\data</Filter>
+    </ClCompile>
+    <ClCompile Include="AddDataDialog.cpp">
+      <Filter>Source Files\Dialogs</Filter>
+    </ClCompile>
+    <ClCompile Include="ClassesDialog.cpp">
+      <Filter>Source Files\Dialogs</Filter>
+    </ClCompile>
     <ClCompile Include="InstitutionDetailsDialog.cpp">
-      <Filter>Source Files\views</Filter>
+      <Filter>Source Files\Dialogs</Filter>
+    </ClCompile>
+    <ClCompile Include="LessonDialog.cpp">
+      <Filter>Source Files\Dialogs</Filter>
+    </ClCompile>
+    <ClCompile Include="RoomDialog.cpp">
+      <Filter>Source Files\Dialogs</Filter>
+    </ClCompile>
+    <ClCompile Include="SubjectDialog.cpp">
+      <Filter>Source Files\Dialogs</Filter>
+    </ClCompile>
+    <ClCompile Include="TeacherDialog.cpp">
+      <Filter>Source Files\Dialogs</Filter>
+    </ClCompile>
+    <ClCompile Include="StudentGroupModel.cpp">
+      <Filter>Source Files\Models</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <QtMoc Include="ClassesDialog.h">
-      <Filter>Source Files\views</Filter>
-    </QtMoc>
     <QtMoc Include="ClassesView.h">
       <Filter>Source Files\views</Filter>
     </QtMoc>
     <QtMoc Include="HomeView.h">
       <Filter>Source Files\views</Filter>
     </QtMoc>
-    <QtMoc Include="LessonDialog.h">
-      <Filter>Source Files\views</Filter>
-    </QtMoc>
     <QtMoc Include="LessonView.h">
       <Filter>Source Files\views</Filter>
     </QtMoc>
-    <QtMoc Include="SubjectDialog.h">
-      <Filter>Source Files\views</Filter>
-    </QtMoc>
     <QtMoc Include="SubjectView.h">
-      <Filter>Source Files\views</Filter>
-    </QtMoc>
-    <QtMoc Include="TeacherDialog.h">
       <Filter>Source Files\views</Filter>
     </QtMoc>
     <QtMoc Include="TeacherView.h">
@@ -181,14 +187,8 @@
     <QtMoc Include="RoomTableModel.h">
       <Filter>Source Files\Models</Filter>
     </QtMoc>
-    <QtMoc Include="RoomDialog.h">
-      <Filter>Source Files\views</Filter>
-    </QtMoc>
     <QtMoc Include="LessonTableModel.h">
       <Filter>Source Files\Models</Filter>
-    </QtMoc>
-    <QtMoc Include="AddDataDialog.h">
-      <Filter>Source Files\views</Filter>
     </QtMoc>
     <QtMoc Include="SortFilterProxyModel.h">
       <Filter>Source Files\Models</Filter>
@@ -199,52 +199,76 @@
     <QtMoc Include="TimeTableViewModel.h">
       <Filter>Source Files\Models</Filter>
     </QtMoc>
+    <QtMoc Include="AddDataDialog.h">
+      <Filter>Source Files\Dialogs</Filter>
+    </QtMoc>
+    <QtMoc Include="ClassesDialog.h">
+      <Filter>Source Files\Dialogs</Filter>
+    </QtMoc>
     <QtMoc Include="InstitutionDetailsDialog.h">
-      <Filter>Source Files\views</Filter>
+      <Filter>Source Files\Dialogs</Filter>
+    </QtMoc>
+    <QtMoc Include="LessonDialog.h">
+      <Filter>Source Files\Dialogs</Filter>
+    </QtMoc>
+    <QtMoc Include="RoomDialog.h">
+      <Filter>Source Files\Dialogs</Filter>
+    </QtMoc>
+    <QtMoc Include="SubjectDialog.h">
+      <Filter>Source Files\Dialogs</Filter>
+    </QtMoc>
+    <QtMoc Include="TeacherDialog.h">
+      <Filter>Source Files\Dialogs</Filter>
+    </QtMoc>
+    <QtMoc Include="StudentGroupModel.h">
+      <Filter>Source Files\Models</Filter>
     </QtMoc>
   </ItemGroup>
   <ItemGroup>
-    <QtUic Include="SubjectDialog.ui">
-      <Filter>Resource Files</Filter>
-    </QtUic>
-    <QtUic Include="ClassesView.ui">
-      <Filter>Resource Files</Filter>
-    </QtUic>
-    <QtUic Include="SubjectView.ui">
-      <Filter>Resource Files</Filter>
-    </QtUic>
-    <QtUic Include="HomeView.ui">
-      <Filter>Resource Files</Filter>
+    <QtUic Include="AddDataDialog.ui">
+      <Filter>Resource Files\Dialog</Filter>
     </QtUic>
     <QtUic Include="ClassesDialog.ui">
-      <Filter>Resource Files</Filter>
-    </QtUic>
-    <QtUic Include="TeacherView.ui">
-      <Filter>Resource Files</Filter>
-    </QtUic>
-    <QtUic Include="TeacherDialog.ui">
-      <Filter>Resource Files</Filter>
-    </QtUic>
-    <QtUic Include="LessonView.ui">
-      <Filter>Resource Files</Filter>
-    </QtUic>
-    <QtUic Include="LessonDialog.ui">
-      <Filter>Resource Files</Filter>
-    </QtUic>
-    <QtUic Include="RoomView.ui">
-      <Filter>Resource Files</Filter>
-    </QtUic>
-    <QtUic Include="RoomDialog.ui">
-      <Filter>Resource Files</Filter>
-    </QtUic>
-    <QtUic Include="AddDataDialog.ui">
-      <Filter>Resource Files</Filter>
-    </QtUic>
-    <QtUic Include="DisplayTimetableView.ui">
-      <Filter>Resource Files</Filter>
+      <Filter>Resource Files\Dialog</Filter>
     </QtUic>
     <QtUic Include="InstitutionDetailsDialog.ui">
-      <Filter>Resource Files</Filter>
+      <Filter>Resource Files\Dialog</Filter>
+    </QtUic>
+    <QtUic Include="LessonDialog.ui">
+      <Filter>Resource Files\Dialog</Filter>
+    </QtUic>
+    <QtUic Include="TeacherDialog.ui">
+      <Filter>Resource Files\Dialog</Filter>
+    </QtUic>
+    <QtUic Include="SubjectDialog.ui">
+      <Filter>Resource Files\Dialog</Filter>
+    </QtUic>
+    <QtUic Include="ClassesView.ui">
+      <Filter>Resource Files\Views</Filter>
+    </QtUic>
+    <QtUic Include="DisplayTimetableView.ui">
+      <Filter>Resource Files\Views</Filter>
+    </QtUic>
+    <QtUic Include="HomeView.ui">
+      <Filter>Resource Files\Views</Filter>
+    </QtUic>
+    <QtUic Include="LessonView.ui">
+      <Filter>Resource Files\Views</Filter>
+    </QtUic>
+    <QtUic Include="OrarApp.ui">
+      <Filter>Resource Files\Views</Filter>
+    </QtUic>
+    <QtUic Include="RoomDialog.ui">
+      <Filter>Resource Files\Views</Filter>
+    </QtUic>
+    <QtUic Include="RoomView.ui">
+      <Filter>Resource Files\Views</Filter>
+    </QtUic>
+    <QtUic Include="SubjectView.ui">
+      <Filter>Resource Files\Views</Filter>
+    </QtUic>
+    <QtUic Include="TeacherView.ui">
+      <Filter>Resource Files\Views</Filter>
     </QtUic>
   </ItemGroup>
   <ItemGroup>
@@ -253,9 +277,6 @@
     </ClInclude>
     <ClInclude Include="INavigator.h">
       <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Classes.h">
-      <Filter>Source Files\data</Filter>
     </ClInclude>
     <ClInclude Include="Context.h">
       <Filter>Source Files\data</Filter>
@@ -273,6 +294,18 @@
       <Filter>Source Files\data</Filter>
     </ClInclude>
     <ClInclude Include="InstituteData.h">
+      <Filter>Source Files\data</Filter>
+    </ClInclude>
+    <ClInclude Include="Students.h">
+      <Filter>Source Files\data</Filter>
+    </ClInclude>
+    <ClInclude Include="StudentYear.h">
+      <Filter>Source Files\data</Filter>
+    </ClInclude>
+    <ClInclude Include="StudentGroup.h">
+      <Filter>Source Files\data</Filter>
+    </ClInclude>
+    <ClInclude Include="StudentSubGroup.h">
       <Filter>Source Files\data</Filter>
     </ClInclude>
   </ItemGroup>

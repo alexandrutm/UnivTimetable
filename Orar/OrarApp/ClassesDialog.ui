@@ -44,7 +44,7 @@
             <item>
              <widget class="QLineEdit" name="Name">
               <property name="text">
-               <string>Class name</string>
+               <string>Year name</string>
               </property>
              </widget>
             </item>
@@ -175,7 +175,7 @@ QComboBox:hover {
             <item>
              <widget class="QLabel" name="label_2">
               <property name="text">
-               <string>Maximum number of students</string>
+               <string>Number of students</string>
               </property>
              </widget>
             </item>

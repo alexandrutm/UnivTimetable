@@ -1,44 +1,44 @@
 #include "stdafx.h"
-#include "Classes.h"
+#include "Students.h"
 
-Classes::Classes(string aName, int aNumber, int aId)
+Students::Students(string aName, int aNumber, int aId)
   : mName(aName)
   , mNumberOfStudents(aNumber)
   , mId(aId)
 {
 }
 
-void Classes::SetNumberOfStudents(int aNrOfStudent)
+void Students::SetNumberOfStudents(int aNrOfStudent)
 {
   mNumberOfStudents = aNrOfStudent;
 }
 
-int Classes::GetNumberOfStudents()
+int Students::GetNumberOfStudents()
 {
   return mNumberOfStudents;
 }
 
-void Classes::SetName(string aName)
+void Students::SetName(string aName)
 {
   mName = aName;
 }
 
-string Classes::GetName()
+string Students::GetName()
 {
   return mName;
 }
 
-int Classes::GetId()
+int Students::GetId()
 {
   return mId;
 }
 
-bool Classes::operator==(const Classes & aClass)
+bool Students::operator==(const Students & aClass)
 {
   return mId == aClass.mId;
 }
 
-Classes & Classes::operator=(const Classes & aClass)
+Students & Students::operator=(const Students & aClass)
 {
   if (this != &aClass)
   {

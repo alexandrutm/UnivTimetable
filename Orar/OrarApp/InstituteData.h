@@ -3,9 +3,6 @@
 class InstituteData
 {
 public:
-  InstituteData()                      = default;
-  ~InstituteData()                     = default;
-  InstituteData(const InstituteData &) = default;
   bool operator==(const InstituteData & aInfo);
 
   InstituteData(string, int, int, int);

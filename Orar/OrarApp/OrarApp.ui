@@ -184,6 +184,10 @@
    </property>
   </action>
   <action name="mInstitutionData">
+   <property name="icon">
+    <iconset resource="OrarApp.qrc">
+     <normaloff>:/OrarApp/img/institute6.png</normaloff>:/OrarApp/img/institute6.png</iconset>
+   </property>
    <property name="text">
     <string>Institution data</string>
    </property>

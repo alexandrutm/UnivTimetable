@@ -1,25 +1,32 @@
 #include "stdafx.h"
 #include "ClassesView.h"
 #include "ClassTableModel.h"
-#include "Classes.h"
 #include "ClassesDialog.h"
 #include "Context.h"
 #include "INavigator.h"
 #include "SortFilterProxyModel.h"
+#include "Students.h"
+
+//
+#include "StudentGroupModel.h"
 
 ClassesView::ClassesView(Context & aContext, QWidget * parent)
   : QWidget(parent)
   , mContext(aContext)
 {
   ui.setupUi(this);
-  tableModel = new ClassTableModel(mContext, this);
-  proxyModel = new SortFilterProxyModel();
+  mStudentYearModel = new ClassTableModel(mContext, this);
+  mProxyModel       = new SortFilterProxyModel();
 
-  proxyModel->setSourceModel(tableModel);
-  proxyModel->sort(0, Qt::AscendingOrder);
-  ui.mTable->setModel(proxyModel);
-  ui.mTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
-  ui.mTable->setSortingEnabled(true);
+  mStudentGroupModel = new StudentGroupModel(mContext, this);
+
+  mProxyModel->setSourceModel(mStudentYearModel);
+  mProxyModel->sort(0, Qt::AscendingOrder);
+  ui.mYearTable->setModel(mProxyModel);
+  ui.mYearTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+  ui.mYearTable->setSortingEnabled(true);
+
+  ui.mGroupTable->setModel(mStudentGroupModel);
 }
 
 ClassesView::~ClassesView()
@@ -28,7 +35,7 @@ ClassesView::~ClassesView()
 
 void ClassesView::ClearData()
 {
-  tableModel->ClearData();
+  mStudentYearModel->ClearData();
 }
 
 void ClassesView::on_mAdd_clicked()
@@ -42,21 +49,51 @@ void ClassesView::on_mAdd_clicked()
 
     if (!name.isEmpty())
     {
-      tableModel->PopulateModel(name, numberOfStudents);
+      mStudentYearModel->PopulateModel(name, numberOfStudents);
     }
     else
       QMessageBox::about(this, "Name error", "You need to insert a class name");
   }
 }
 
+void ClassesView::on_mAddGroup_clicked()
+{
+  ClassesDialog AddDialog(this);
+  QString       name;
+  int           numberOfStudents;
+
+  int currentSelectedRowMapped =
+    mProxyModel->mapToSource(ui.mYearTable->selectionModel()->currentIndex()).row();
+  if (currentSelectedRowMapped < 0)
+  {
+    QMessageBox::about(this, "No Class Selected", "Please choose a Year");
+  }
+  else if (AddDialog.exec())
+  {
+    name             = AddDialog.Name->text();
+    numberOfStudents = AddDialog.NumberOfStudents->value();
+
+    if (!name.isEmpty())
+    {
+      mStudentGroupModel->PopulateModel(name, numberOfStudents, currentSelectedRowMapped);
+    }
+  }
+}
+
+void ClassesView::on_mAddSubgroup_clicked()
+{
+}
+
 void ClassesView::on_mEdit_clicked()
 {
   ClassesDialog EditDialog(this);
   QModelIndex   index;
+  QString       newName;
+  int           newNumberOfStudents;
 
   // map the current selected row value
   int currentSelectedRowMapped =
-    proxyModel->mapToSource(ui.mTable->selectionModel()->currentIndex()).row();
+    mProxyModel->mapToSource(ui.mYearTable->selectionModel()->currentIndex()).row();
 
   if (currentSelectedRowMapped < 0)
   {
@@ -64,26 +101,24 @@ void ClassesView::on_mEdit_clicked()
   }
   else if (EditDialog.exec())
   {
-    QString oldName;
-    int     oldNumberOfStudents;
-    QString newName;
-    int     newNumberOfStudents;
+    // QString oldName;
+    // int     oldNumberOfStudents;
 
-    QModelIndex nameIndex = tableModel->index(currentSelectedRowMapped, 0, QModelIndex());
-    oldName               = (tableModel->data(nameIndex, Qt::DisplayRole)).toString();
+    // QModelIndex nameIndex = tableModel->index(currentSelectedRowMapped, 0, QModelIndex());
+    // oldName               = (tableModel->data(nameIndex, Qt::DisplayRole)).toString();
 
-    QModelIndex addressIndex = tableModel->index(currentSelectedRowMapped, 1, QModelIndex());
-    oldNumberOfStudents      = (tableModel->data(addressIndex, Qt::DisplayRole)).toInt();
+    // QModelIndex addressIndex = tableModel->index(currentSelectedRowMapped, 1, QModelIndex());
+    // oldNumberOfStudents      = (tableModel->data(addressIndex, Qt::DisplayRole)).toInt();
 
     newName             = EditDialog.Name->text();
     newNumberOfStudents = EditDialog.NumberOfStudents->value();
 
     if (!newName.isEmpty())
     {
-      index = tableModel->index(currentSelectedRowMapped, 0, QModelIndex());
-      tableModel->setData(index, newName, Qt::EditRole);
-      index = tableModel->index(currentSelectedRowMapped, 1, QModelIndex());
-      tableModel->setData(index, newNumberOfStudents, Qt::EditRole);
+      index = mStudentYearModel->index(currentSelectedRowMapped, 0, QModelIndex());
+      mStudentYearModel->setData(index, newName, Qt::EditRole);
+      index = mStudentYearModel->index(currentSelectedRowMapped, 1, QModelIndex());
+      mStudentYearModel->setData(index, newNumberOfStudents, Qt::EditRole);
     }
   }
 }
@@ -91,7 +126,7 @@ void ClassesView::on_mEdit_clicked()
 void ClassesView::on_mDelete_clicked()
 {
   int currentSelectedRowMapped =
-    proxyModel->mapToSource(ui.mTable->selectionModel()->currentIndex()).row();
+    mProxyModel->mapToSource(ui.mYearTable->selectionModel()->currentIndex()).row();
 
   if (currentSelectedRowMapped < 0)
   {
@@ -105,7 +140,7 @@ void ClassesView::on_mDelete_clicked()
     }
     else
     {
-      tableModel->RemoveItemFromModel(currentSelectedRowMapped);
+      mStudentYearModel->RemoveItemFromModel(currentSelectedRowMapped);
     }
   }
 }

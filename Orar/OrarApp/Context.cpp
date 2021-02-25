@@ -1,9 +1,10 @@
 #include "stdafx.h"
 #include "Context.h"
-#include "Classes.h"
 #include "InstituteData.h"
 #include "Lesson.h"
 #include "Room.h"
+#include "StudentGroup.h"
+#include "StudentYear.h"
 #include "Subject.h"
 #include "Teacher.h"
 
@@ -102,9 +103,14 @@ int Context::GenerateSubjectId()
   return (*maxIdIt)->GetId() + 1;
 }
 
-void Context::AddClass(shared_ptr<Classes> aClass)
+void Context::AddClass(shared_ptr<StudentYear> aClass)
 {
   mClasses.push_back(aClass);
+}
+
+void Context::AddGroup(shared_ptr<StudentGroup> aGroup, int index)
+{
+  mClasses[index]->AddGroup(aGroup);
 }
 
 void Context::RemoveClass(int i)
@@ -116,7 +122,7 @@ void Context::RemoveClass(int i)
                  mClasses.end());
 }
 
-vector<shared_ptr<Classes>> & Context::GetClasses()
+vector<shared_ptr<StudentYear>> & Context::GetClasses()
 {
   return mClasses;
 }
@@ -126,7 +132,7 @@ size_t Context::GetClassSize()
   return mClasses.size();
 }
 
-shared_ptr<Classes> & Context::GetClassByIndex(int i)
+shared_ptr<StudentYear> & Context::GetClassByIndex(int i)
 {
   return mClasses[i];
 }

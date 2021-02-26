@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>694</width>
-    <height>442</height>
+    <width>669</width>
+    <height>413</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -52,12 +52,12 @@
      </property>
      <property name="maximumSize">
       <size>
-       <width>300</width>
+       <width>200</width>
        <height>16777215</height>
       </size>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-color: rgb(197, 227, 255);</string>
+      <string notr="true">background-color: rgb(186, 194, 193);</string>
      </property>
      <property name="frameShape">
       <enum>QFrame::NoFrame</enum>
@@ -81,6 +81,9 @@
       <property name="bottomMargin">
        <number>0</number>
       </property>
+      <item>
+       <widget class="QListView" name="mGroupList"/>
+      </item>
      </layout>
     </widget>
    </item>

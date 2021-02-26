@@ -1,18 +1,20 @@
 #include "stdafx.h"
 #include "OrarApp.h"
 #include "AddDataDialog.h"
+#include "ClassTableModel.h"
 #include "InstitutionDetailsDialog.h"
 
 OrarApp::OrarApp(QWidget * parent)
   : QMainWindow(parent)
+  , mStudentGroupModel(new ClassTableModel(mContext, this))
   , mDataDialog(this)
   , mHomeView(this, this)
-  , mClassView(mContext, this)
+  , mClassView(mStudentGroupModel, mContext, this)
   , mSubjectView(mContext, this)
   , mRoomView(mContext, this)
   , mTeacherView(mContext, this)
   , mLessonView(mContext, this)
-  , mDisplayTimeTableView(mContext, this)
+  , mDisplayTimeTableView(mStudentGroupModel, mContext, this)
 
 {
   ui.setupUi(this);
@@ -20,7 +22,6 @@ OrarApp::OrarApp(QWidget * parent)
   // hide toolBar and menuBar on first page
   ui.toolBar->hide();
   ui.menuBar->hide();
-
   // Basic data Dialog
   mDataDialog.mData->addTab(&mSubjectView, "Subjects");
   mDataDialog.mData->addTab(&mClassView, "Classes");

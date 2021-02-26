@@ -9,3 +9,9 @@ TeacherDialog::TeacherDialog(QWidget * parent)
 TeacherDialog::~TeacherDialog()
 {
 }
+
+void TeacherDialog::EditEntry(QString fName, QString lName)
+{
+  this->mFirstName->setText(fName);
+  this->mLastName->setText(lName);
+}

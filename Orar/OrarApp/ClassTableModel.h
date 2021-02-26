@@ -16,6 +16,8 @@ public:
                       Qt::Orientation orientation,
                       int             role = Qt::DisplayRole) const Q_DECL_OVERRIDE;
   bool     setData(const QModelIndex & index, const QVariant & aName, int role) override;
+  bool     insertRows(int position, int rows, const QModelIndex & index = QModelIndex()) override;
+  bool     removeRows(int position, int rows, const QModelIndex & index = QModelIndex()) override;
 
   void RemoveItemFromModel(int aRowSelected);
   void PopulateModel(QString aName, int aNrOfStudents);

@@ -15,7 +15,7 @@ int SubjectTableModel::rowCount(const QModelIndex & /*parent*/) const
 
 int SubjectTableModel::columnCount(const QModelIndex & /*parent*/) const
 {
-  return 1;
+  return 2;
 }
 
 QVariant SubjectTableModel::data(const QModelIndex & index, int role) const
@@ -41,6 +41,10 @@ QVariant SubjectTableModel::headerData(int section, Qt::Orientation orientation,
     if (section == 0)
     {
       return QString("Subject Name");
+    }
+    else if (section == 1)
+    {
+      return QString("Duration");
     }
   }
   return QVariant();

@@ -11,4 +11,6 @@ class TeacherDialog
 public:
   TeacherDialog(QWidget * parent = Q_NULLPTR);
   ~TeacherDialog();
+
+  void EditEntry(QString fName, QString lName);
 };

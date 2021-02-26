@@ -54,10 +54,21 @@ void TeacherView::on_mEdit_clicked()
 {
   TeacherDialog Dialog(this);
   QModelIndex   index;
-
+  QString       firstOldName;
+  QString       lastOldName;
   // map the current selected row value
   int currentSelectedRowMapped =
     proxyModel->mapToSource(ui.mTable->selectionModel()->currentIndex()).row();
+
+  Dialog.setWindowTitle(tr("Edit Teacher"));
+
+  QModelIndex nameIndex = tableModel->index(currentSelectedRowMapped, 0, QModelIndex());
+  firstOldName          = (tableModel->data(nameIndex, Qt::DisplayRole)).toString();
+
+  QModelIndex addressIndex = tableModel->index(currentSelectedRowMapped, 1, QModelIndex());
+  lastOldName              = (tableModel->data(addressIndex, Qt::DisplayRole)).toString();
+
+  Dialog.EditEntry(firstOldName, lastOldName);
 
   if (currentSelectedRowMapped < 0)
   {
@@ -65,15 +76,6 @@ void TeacherView::on_mEdit_clicked()
   }
   else if (Dialog.exec())
   {
-    QString firstOldName;
-    QString lastOldName;
-
-    QModelIndex nameIndex = tableModel->index(currentSelectedRowMapped, 0, QModelIndex());
-    firstOldName          = (tableModel->data(nameIndex, Qt::DisplayRole)).toString();
-
-    QModelIndex addressIndex = tableModel->index(currentSelectedRowMapped, 1, QModelIndex());
-    lastOldName              = (tableModel->data(addressIndex, Qt::DisplayRole)).toString();
-
     // new teacher name
     QString firstName = Dialog.mFirstName->text();
     QString lastName  = Dialog.mLastName->text();

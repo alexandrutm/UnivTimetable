@@ -6,13 +6,13 @@
 #include "INavigator.h"
 #include "SortFilterProxyModel.h"
 
-ClassesView::ClassesView(Context & aContext, QWidget * parent)
+ClassesView::ClassesView(ClassTableModel * aStudentGroupModel, Context & aContext, QWidget * parent)
   : QWidget(parent)
   , mContext(aContext)
+  , mStudentGroupModel(aStudentGroupModel)
 {
   ui.setupUi(this);
-  mStudentGroupModel = new ClassTableModel(mContext, this);
-  mProxyModel        = new SortFilterProxyModel();
+  mProxyModel = new SortFilterProxyModel();
 
   mProxyModel->setSourceModel(mStudentGroupModel);
   mProxyModel->sort(0, Qt::AscendingOrder);
@@ -41,7 +41,13 @@ void ClassesView::on_mAddGroup_clicked()
 
     if (!name.isEmpty())
     {
-      mStudentGroupModel->PopulateModel(name, numberOfStudents);
+      int newRow = static_cast<int>(mContext.GetGroupSize());
+      mStudentGroupModel->insertRows(newRow, newRow, QModelIndex());
+
+      QModelIndex index = mStudentGroupModel->index(newRow, 0, QModelIndex());
+      mStudentGroupModel->setData(index, name, Qt::EditRole);
+      index = mStudentGroupModel->index(newRow, 1, QModelIndex());
+      mStudentGroupModel->setData(index, numberOfStudents, Qt::EditRole);
     }
     else
       QMessageBox::about(this, "Name error", "You need to insert a class name");

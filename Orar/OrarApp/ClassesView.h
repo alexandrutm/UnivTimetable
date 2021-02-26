@@ -11,7 +11,9 @@ class ClassesView : public QWidget
   Q_OBJECT
 
 public:
-  ClassesView(Context & aContext, QWidget * parent = Q_NULLPTR);
+  ClassesView(ClassTableModel * aStudentGroupModel,
+              Context &         aContext,
+              QWidget *         parent = Q_NULLPTR);
   ~ClassesView();
   void ClearData();
 

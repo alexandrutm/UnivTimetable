@@ -16,7 +16,7 @@ int RoomTableModel::rowCount(const QModelIndex & /*parent*/) const
 
 int RoomTableModel::columnCount(const QModelIndex & /*parent*/) const
 {
-  return 1;
+  return 2;
 }
 
 QVariant RoomTableModel::data(const QModelIndex & index, int role) const
@@ -43,6 +43,10 @@ QVariant RoomTableModel::headerData(int section, Qt::Orientation orientation, in
     if (section == 0)
     {
       return QString("Room Name");
+    }
+    else if (section == 1)
+    {
+      return QString("Capacity");
     }
   }
   return QVariant();

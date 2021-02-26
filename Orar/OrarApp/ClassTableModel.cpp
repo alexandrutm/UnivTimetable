@@ -82,6 +82,29 @@ bool ClassTableModel::setData(const QModelIndex & index, const QVariant & aClass
   return false;
 }
 
+bool ClassTableModel::insertRows(int position, int rows, const QModelIndex & index)
+{
+  Q_UNUSED(index);
+  beginInsertRows(QModelIndex(), position, rows);
+
+  mContext.AddGroup(make_shared<StudentGroup>("aName", 0, mContext.GenerateClassId()));
+
+  endInsertRows();
+  return true;
+}
+
+bool ClassTableModel::removeRows(int position, int rows, const QModelIndex & index)
+{
+  Q_UNUSED(index);
+  beginRemoveRows(QModelIndex(), position, position + rows - 1);
+
+  for (int row = 0; row < rows; ++row)
+    mContext.RemoveClass(position);
+
+  endRemoveRows();
+  return true;
+}
+
 void ClassTableModel::RemoveItemFromModel(int aRowSelected)
 {
   beginRemoveRows(QModelIndex(), aRowSelected, aRowSelected);

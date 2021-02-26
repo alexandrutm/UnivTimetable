@@ -7,11 +7,11 @@ public:
   Students & operator=(const Students & aClass);
 
   Students(string, int, int);
-  virtual void   SetNumberOfStudents(int aNrOfStudent);
-  virtual int    GetNumberOfStudents();
-  virtual void   SetName(string aName);
-  virtual string GetName();
-  virtual int    GetId();
+  void   SetNumberOfStudents(int aNrOfStudent);
+  int    GetNumberOfStudents();
+  void   SetName(string aName);
+  string GetName();
+  int    GetId();
 
 protected:
   string mName;

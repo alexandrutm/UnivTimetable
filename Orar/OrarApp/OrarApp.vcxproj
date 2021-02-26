@@ -130,6 +130,10 @@
     <ClCompile Include="TeacherDialog.cpp" />
     <ClCompile Include="TeacherView.cpp" />
     <ClCompile Include="TimeTableViewModel.cpp" />
+    <ClCompile Include="TreeItem.cpp" />
+    <ClCompile Include="TreeModel.cpp" />
+    <ClInclude Include="TreeItem.h" />
+    <QtMoc Include="TreeModel.h" />
     <QtMoc Include="TimeTableViewModel.h" />
     <QtMoc Include="TeacherDialog.h" />
     <QtMoc Include="TeacherView.h" />

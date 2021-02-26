@@ -143,6 +143,12 @@
     <ClCompile Include="TeacherDialog.cpp">
       <Filter>Source Files\Dialogs</Filter>
     </ClCompile>
+    <ClCompile Include="TreeModel.cpp">
+      <Filter>Source Files\Models</Filter>
+    </ClCompile>
+    <ClCompile Include="TreeItem.cpp">
+      <Filter>Source Files\Models</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="ClassesView.h">
@@ -210,6 +216,9 @@
     </QtMoc>
     <QtMoc Include="TeacherDialog.h">
       <Filter>Source Files\Dialogs</Filter>
+    </QtMoc>
+    <QtMoc Include="TreeModel.h">
+      <Filter>Source Files\Models</Filter>
     </QtMoc>
   </ItemGroup>
   <ItemGroup>
@@ -289,6 +298,9 @@
     </ClInclude>
     <ClInclude Include="StudentGroup.h">
       <Filter>Source Files\data</Filter>
+    </ClInclude>
+    <ClInclude Include="TreeItem.h">
+      <Filter>Source Files\Models</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

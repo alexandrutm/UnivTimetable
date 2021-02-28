@@ -3,23 +3,23 @@
 #include "Context.h"
 #include "Teacher.h"
 
-TableModel::TableModel(Context & aContext, QObject * parent)
+TeacherTableModel::TeacherTableModel(Context & aContext, QObject * parent)
   : QAbstractTableModel(parent)
   , mContext(aContext)
 {
 }
 
-int TableModel::rowCount(const QModelIndex & parent) const
+int TeacherTableModel::rowCount(const QModelIndex & parent) const
 {
   return parent.isValid() ? 0 : static_cast<int>(mContext.GetTeacherSize());
 }
 
-int TableModel::columnCount(const QModelIndex & parent) const
+int TeacherTableModel::columnCount(const QModelIndex & parent) const
 {
   return parent.isValid() ? 0 : 2;
 }
 
-QVariant TableModel::data(const QModelIndex & index, int role) const
+QVariant TeacherTableModel::data(const QModelIndex & index, int role) const
 {
   if (!index.isValid() || role != Qt::DisplayRole)
   {
@@ -40,7 +40,7 @@ QVariant TableModel::data(const QModelIndex & index, int role) const
   return QVariant();
 }
 
-bool TableModel::setData(const QModelIndex & index, const QVariant & aName, int role)
+bool TeacherTableModel::setData(const QModelIndex & index, const QVariant & aName, int role)
 {
   if (index.isValid() && role == Qt::EditRole)
   {
@@ -66,7 +66,7 @@ bool TableModel::setData(const QModelIndex & index, const QVariant & aName, int 
   return false;
 }
 
-QVariant TableModel::headerData(int section, Qt::Orientation orientation, int role) const
+QVariant TeacherTableModel::headerData(int section, Qt::Orientation orientation, int role) const
 {
   if (role == Qt::DisplayRole && orientation == Qt::Horizontal)
   {
@@ -82,31 +82,29 @@ QVariant TableModel::headerData(int section, Qt::Orientation orientation, int ro
   return QVariant();
 }
 
-void TableModel::RemoveItemFromModel(int aRowSelected)
+bool TeacherTableModel::insertRows(int first, int last, const QModelIndex & index)
 {
-  beginRemoveRows(QModelIndex(), aRowSelected, aRowSelected);
-  // emit signal to notify view that a new row is removed
+  Q_UNUSED(index);
+  beginInsertRows(QModelIndex(), first, last);
 
-  mContext.RemoveTeacher(aRowSelected);
-
-  endRemoveRows();
-}
-
-void TableModel::PopulateModel(QString aFirstName, QString aLastName)
-{
-  int newRow = static_cast<int>(mContext.GetTeacherSize());
-
-  beginInsertRows(QModelIndex(), newRow, newRow);
-  // emit signal to notify view that a new row is inserted
-
-  shared_ptr<Teacher> newTeacher = make_shared<Teacher>(
-    aFirstName.toStdString(), aLastName.toStdString(), mContext.GenerateTeacherId());
-  mContext.AddTeacher(newTeacher);
+  mContext.AddTeacher(make_shared<Teacher>("fName", "lName", mContext.GenerateTeacherId()));
 
   endInsertRows();
+  return true;
 }
 
-void TableModel::ClearContent()
+bool TeacherTableModel::removeRows(int first, int last, const QModelIndex & index)
+{
+  Q_UNUSED(index);
+  beginRemoveRows(QModelIndex(), first, last);
+
+  mContext.RemoveTeacher(first);
+
+  endRemoveRows();
+  return true;
+}
+
+void TeacherTableModel::ClearContent()
 {
   if (mContext.GetTeacherSize() > 0)
   {

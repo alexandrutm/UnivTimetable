@@ -3,7 +3,7 @@
 #include "ui_TeacherView.h"
 
 class Context;
-class TableModel;
+class TeacherTableModel;
 class SortFilterProxyModel;
 
 class TeacherView : public QWidget
@@ -22,8 +22,10 @@ private slots:
   void on_mConstraints_clicked();
 
 private:
-  Ui::TeacherView        ui;
-  SortFilterProxyModel * proxyModel;
-  TableModel *           tableModel;
-  Context &              mContext;
+  Ui::TeacherView ui;
+
+  SortFilterProxyModel * mTeacherProxyModel;
+  TeacherTableModel *    mTeacherTableModel;
+
+  Context & mContext;
 };

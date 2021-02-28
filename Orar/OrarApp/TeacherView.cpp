@@ -12,12 +12,13 @@ TeacherView::TeacherView(Context & aContext, QWidget * parent)
 {
   ui.setupUi(this);
 
-  tableModel = new TableModel(mContext, this);
-  proxyModel = new SortFilterProxyModel();
+  mTeacherTableModel = new TeacherTableModel(mContext, this);
+  mTeacherProxyModel = new SortFilterProxyModel();
 
-  proxyModel->setSourceModel(tableModel);
-  proxyModel->sort(0, Qt::AscendingOrder);
-  ui.mTable->setModel(proxyModel);
+  mTeacherProxyModel->setSourceModel(mTeacherTableModel);
+  mTeacherProxyModel->sort(0, Qt::AscendingOrder);
+
+  ui.mTable->setModel(mTeacherProxyModel);
   ui.mTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
   ui.mTable->setSortingEnabled(true);
 }
@@ -28,7 +29,7 @@ TeacherView::~TeacherView()
 
 void TeacherView::ClearData()
 {
-  tableModel->ClearContent();
+  mTeacherTableModel->ClearContent();
 }
 
 void TeacherView::on_mAdd_clicked()
@@ -41,7 +42,13 @@ void TeacherView::on_mAdd_clicked()
     QString lastName  = Add.mLastName->text();
     if (!firstName.isEmpty())
     {
-      tableModel->PopulateModel(firstName, lastName);
+      int newRow = static_cast<int>(mContext.GetGroupSize());
+      mTeacherTableModel->insertRows(newRow, newRow, QModelIndex());
+
+      QModelIndex index = mTeacherTableModel->index(newRow, 0, QModelIndex());
+      mTeacherTableModel->setData(index, firstName, Qt::EditRole);
+      index = mTeacherTableModel->index(newRow, 1, QModelIndex());
+      mTeacherTableModel->setData(index, lastName, Qt::EditRole);
     }
     else
     {
@@ -58,15 +65,15 @@ void TeacherView::on_mEdit_clicked()
   QString       lastOldName;
   // map the current selected row value
   int currentSelectedRowMapped =
-    proxyModel->mapToSource(ui.mTable->selectionModel()->currentIndex()).row();
+    mTeacherProxyModel->mapToSource(ui.mTable->selectionModel()->currentIndex()).row();
 
   Dialog.setWindowTitle(tr("Edit Teacher"));
 
-  QModelIndex nameIndex = tableModel->index(currentSelectedRowMapped, 0, QModelIndex());
-  firstOldName          = (tableModel->data(nameIndex, Qt::DisplayRole)).toString();
+  QModelIndex nameIndex = mTeacherTableModel->index(currentSelectedRowMapped, 0, QModelIndex());
+  firstOldName          = (mTeacherTableModel->data(nameIndex, Qt::DisplayRole)).toString();
 
-  QModelIndex addressIndex = tableModel->index(currentSelectedRowMapped, 1, QModelIndex());
-  lastOldName              = (tableModel->data(addressIndex, Qt::DisplayRole)).toString();
+  QModelIndex addressIndex = mTeacherTableModel->index(currentSelectedRowMapped, 1, QModelIndex());
+  lastOldName              = (mTeacherTableModel->data(addressIndex, Qt::DisplayRole)).toString();
 
   Dialog.EditEntry(firstOldName, lastOldName);
 
@@ -82,11 +89,11 @@ void TeacherView::on_mEdit_clicked()
 
     if (!(firstName.isEmpty()) && !(lastName.isEmpty()))
     {
-      index = tableModel->index(currentSelectedRowMapped, 0, QModelIndex());
-      tableModel->setData(index, firstName, Qt::EditRole);
+      index = mTeacherTableModel->index(currentSelectedRowMapped, 0, QModelIndex());
+      mTeacherTableModel->setData(index, firstName, Qt::EditRole);
 
-      index = tableModel->index(currentSelectedRowMapped, 1, QModelIndex());
-      tableModel->setData(index, lastName, Qt::EditRole);
+      index = mTeacherTableModel->index(currentSelectedRowMapped, 1, QModelIndex());
+      mTeacherTableModel->setData(index, lastName, Qt::EditRole);
     }
   }
 }
@@ -94,7 +101,7 @@ void TeacherView::on_mEdit_clicked()
 void TeacherView::on_mDelete_clicked()
 {
   int currentSelectedRowMapped =
-    proxyModel->mapToSource(ui.mTable->selectionModel()->currentIndex()).row();
+    mTeacherProxyModel->mapToSource(ui.mTable->selectionModel()->currentIndex()).row();
 
   if (currentSelectedRowMapped < 0)
   {
@@ -108,7 +115,8 @@ void TeacherView::on_mDelete_clicked()
     }
     else
     {
-      tableModel->RemoveItemFromModel(currentSelectedRowMapped);
+      mTeacherTableModel->removeRows(currentSelectedRowMapped, currentSelectedRowMapped,
+                                     QModelIndex());
     }
   }
 }

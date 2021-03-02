@@ -1,9 +1,9 @@
 #include "stdafx.h"
 #include "Context.h"
+#include "Classes.h"
 #include "InstituteData.h"
 #include "Lesson.h"
 #include "Room.h"
-#include "StudentGroup.h"
 #include "Subject.h"
 #include "Teacher.h"
 
@@ -102,49 +102,35 @@ int Context::GenerateSubjectId()
   return (*maxIdIt)->GetId() + 1;
 }
 
-void Context::AddGroup(shared_ptr<StudentGroup> aGroup)
-{
-  mGroup.push_back(aGroup);
-}
-
-void Context::RemoveClass(int i)
-{
-  mGroup.erase(remove_if(mGroup.begin(), mGroup.end(),
-                         [&](auto const & classes) {
-                           return mGroup[i]->GetId() == classes->GetId();
-                         }),
-               mGroup.end());
-}
-
-vector<shared_ptr<StudentGroup>> & Context::GetGroups()
-{
-  return mGroup;
-}
-
-size_t Context::GetGroupSize()
-{
-  return mGroup.size();
-}
-
-shared_ptr<StudentGroup> & Context::GetGroupByIndex(int i)
-{
-  return mGroup[i];
-}
-
-void Context::DeleteClasses()
-{
-  mGroup.clear();
-}
-
 int Context::GenerateClassId()
 {
-  auto maxIdIt = max_element(mGroup.begin(), mGroup.end(), [](auto & first, auto & second) {
-    return first->GetId() < second->GetId();
-  });
+  queue<Classes *> treeNodes;
+  int              max = 0;
 
-  if (maxIdIt == mGroup.end())
-    return 1;
-  return (*maxIdIt)->GetId() + 1;
+  treeNodes.push(mRootClass);
+
+  while (!treeNodes.empty())
+  {
+    int queueSize = static_cast<int>(treeNodes.size());
+    while (queueSize > 0)
+    {
+      Classes * frontNode = treeNodes.front();
+      treeNodes.pop();
+
+      if (max < frontNode->GetId())
+        max = frontNode->GetId();
+
+      for (int i = 0; i < frontNode->GetChildrenSize(); i++)
+        treeNodes.push(frontNode->GetChild(i));
+      queueSize--;
+    }
+  }
+  return max + 1;
+}
+
+void Context::SetRootClass(Classes * aClass)
+{
+  mRootClass = aClass;
 }
 
 void Context::AddLesson(shared_ptr<Lesson> aLesson)

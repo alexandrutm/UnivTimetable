@@ -14,3 +14,9 @@ void ClassesDialog::on_Name_textChanged()
 ClassesDialog::~ClassesDialog()
 {
 }
+
+void ClassesDialog::EditEntry(QString aName, int aNumberOfStudent)
+{
+  this->Name->setText(aName);
+  this->NumberOfStudents->setValue(aNumberOfStudent);
+}

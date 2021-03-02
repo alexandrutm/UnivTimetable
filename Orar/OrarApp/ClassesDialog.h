@@ -12,6 +12,7 @@ private slots:
   void on_Name_textChanged();
 
 public:
-  ClassesDialog(QWidget * parent = Q_NULLPTR);
+  ClassesDialog(QWidget * aParent = Q_NULLPTR);
   ~ClassesDialog();
+  void EditEntry(QString aName, int aNumberOfStudent);
 };

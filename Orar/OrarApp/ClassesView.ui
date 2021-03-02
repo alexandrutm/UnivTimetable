@@ -39,33 +39,7 @@
     <number>10</number>
    </property>
    <item>
-    <widget class="QTableView" name="mGroupTable">
-     <property name="styleSheet">
-      <string notr="true">	background-color: rgb(200, 200, 200);
-border: 1px solid;</string>
-     </property>
-     <property name="frameShape">
-      <enum>QFrame::NoFrame</enum>
-     </property>
-     <property name="selectionMode">
-      <enum>QAbstractItemView::ExtendedSelection</enum>
-     </property>
-     <property name="selectionBehavior">
-      <enum>QAbstractItemView::SelectRows</enum>
-     </property>
-     <property name="sortingEnabled">
-      <bool>true</bool>
-     </property>
-     <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
-      <bool>true</bool>
-     </attribute>
-     <attribute name="verticalHeaderVisible">
-      <bool>false</bool>
-     </attribute>
-     <attribute name="verticalHeaderDefaultSectionSize">
-      <number>50</number>
-     </attribute>
-    </widget>
+    <widget class="QTreeView" name="mTreeView"/>
    </item>
    <item>
     <widget class="QFrame" name="frame">
@@ -83,7 +57,7 @@ border: 1px solid;</string>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout">
       <property name="spacing">
-       <number>9</number>
+       <number>6</number>
       </property>
       <property name="leftMargin">
        <number>0</number>
@@ -97,6 +71,53 @@ border: 1px solid;</string>
       <property name="bottomMargin">
        <number>0</number>
       </property>
+      <item>
+       <widget class="QPushButton" name="mAddYear">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>40</height>
+         </size>
+        </property>
+        <property name="layoutDirection">
+         <enum>Qt::RightToLeft</enum>
+        </property>
+        <property name="autoFillBackground">
+         <bool>false</bool>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton{
+	font: 75 12pt &quot;Times New Roman&quot;;
+	color: rgb(70, 70, 70);
+	background-color: rgb(200, 200, 200);
+	border: 0px solid;
+}
+
+QPushButton:hover {
+	background-color: rgb(231, 231, 231);
+}</string>
+        </property>
+        <property name="text">
+         <string>Add Year|Class</string>
+        </property>
+        <property name="icon">
+         <iconset resource="OrarApp.qrc">
+          <normaloff>:/Buttons/img/addBtn.png</normaloff>:/Buttons/img/addBtn.png</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>18</width>
+          <height>18</height>
+         </size>
+        </property>
+        <property name="default">
+         <bool>false</bool>
+        </property>
+        <property name="flat">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
       <item>
        <widget class="QPushButton" name="mAddGroup">
         <property name="minimumSize">

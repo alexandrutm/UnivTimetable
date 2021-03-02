@@ -1,30 +1,33 @@
 #include "stdafx.h"
 #include "treemodel.h"
+#include "Classes.h"
 #include "Context.h"
-#include "treeitem.h"
 
 TreeModel::TreeModel(Context & aContext, QObject * parent)
   : QAbstractItemModel(parent)
   , mContext(aContext)
-{
-  QList<QVariant> rootData;
-  QStringList     headers = { "Class name", "Number of students" };
-  for (const QString & header : headers)
-    rootData << header;
 
-  rootItem = new TreeItem(rootData);
-  setupModelData(rootItem);
+{
+  mRootClass = new Classes("ROOT CLASS", 0, 0);
+  mContext.SetRootClass(mRootClass);
 }
 
 TreeModel::~TreeModel()
 {
-  delete rootItem;
+  delete mRootClass;
+}
+
+int TreeModel::rowCount(const QModelIndex & parent) const
+{
+  const auto parentItem = getItem(parent);
+
+  return parentItem ? static_cast<int>(parentItem->GetChildrenSize()) : 0;
 }
 
 int TreeModel::columnCount(const QModelIndex & parent) const
 {
   Q_UNUSED(parent);
-  return rootItem->columnCount();
+  return mRootClass->GetNumberOfData();
 }
 
 QVariant TreeModel::data(const QModelIndex & index, int role) const
@@ -35,9 +38,16 @@ QVariant TreeModel::data(const QModelIndex & index, int role) const
   if (role != Qt::DisplayRole && role != Qt::EditRole)
     return QVariant();
 
-  TreeItem * item = getItem(index);
+  auto item = getItem(index);
 
-  return item->data(index.column());
+  if (index.column() == 0)
+  {
+    return QString::fromStdString(item->GetName());
+  }
+  else
+  {
+    return item->GetNumberOfStudents();
+  }
 }
 
 Qt::ItemFlags TreeModel::flags(const QModelIndex & index) const
@@ -48,23 +58,44 @@ Qt::ItemFlags TreeModel::flags(const QModelIndex & index) const
   return Qt::ItemIsEditable | QAbstractItemModel::flags(index);
 }
 
-TreeItem * TreeModel::getItem(const QModelIndex & index) const
-{
-  if (index.isValid())
-  {
-    TreeItem * item = static_cast<TreeItem *>(index.internalPointer());
-    if (item)
-      return item;
-  }
-  return rootItem;
-}
-
 QVariant TreeModel::headerData(int section, Qt::Orientation orientation, int role) const
 {
-  if (orientation == Qt::Horizontal && role == Qt::DisplayRole)
-    return rootItem->data(section);
-
+  if (role == Qt::DisplayRole && orientation == Qt::Horizontal)
+  {
+    if (section == 0)
+    {
+      return QString("Class Name");
+    }
+    else if (section == 1)
+    {
+      return QString("Students");
+    }
+  }
   return QVariant();
+}
+
+bool TreeModel::setData(const QModelIndex & index, const QVariant & aClassData, int role)
+{
+  if (role != Qt::EditRole)
+    return false;
+
+  auto item = getItem(index);
+
+  switch (index.column())
+  {
+  case 0:
+    item->SetName(aClassData.toString().toStdString());
+    break;
+  case 1:
+    item->SetNumberOfStudents(aClassData.toInt());
+    break;
+  }
+
+  auto b = mContext.GetTeacherSize();
+
+  emit dataChanged(index, index, { Qt::DisplayRole, Qt::EditRole });
+
+  return true;
 }
 
 QModelIndex TreeModel::index(int row, int column, const QModelIndex & parent) const
@@ -72,36 +103,14 @@ QModelIndex TreeModel::index(int row, int column, const QModelIndex & parent) co
   if (parent.isValid() && parent.column() != 0)
     return QModelIndex();
 
-  TreeItem * parentItem = getItem(parent);
+  auto parentItem = getItem(parent);
   if (!parentItem)
     return QModelIndex();
 
-  TreeItem * childItem = parentItem->child(row);
+  auto childItem = parentItem->GetChild(row);
   if (childItem)
     return createIndex(row, column, childItem);
   return QModelIndex();
-}
-
-bool TreeModel::insertColumns(int position, int columns, const QModelIndex & parent)
-{
-  beginInsertColumns(parent, position, position + columns - 1);
-  const bool success = rootItem->insertColumns(position, columns);
-  endInsertColumns();
-
-  return success;
-}
-
-bool TreeModel::insertRows(int position, int rows, const QModelIndex & parent)
-{
-  TreeItem * parentItem = getItem(parent);
-  if (!parentItem)
-    return false;
-
-  beginInsertRows(parent, position, position + rows - 1);
-  const bool success = parentItem->insertChildren(position, rows, rootItem->columnCount());
-  endInsertRows();
-
-  return success;
 }
 
 QModelIndex TreeModel::parent(const QModelIndex & index) const
@@ -109,133 +118,52 @@ QModelIndex TreeModel::parent(const QModelIndex & index) const
   if (!index.isValid())
     return QModelIndex();
 
-  TreeItem * childItem  = getItem(index);
-  TreeItem * parentItem = childItem ? childItem->parent() : nullptr;
+  auto childItem  = getItem(index);
+  auto parentItem = childItem ? childItem->GetParent() : nullptr;
 
-  if (parentItem == rootItem || !parentItem)
+  if (parentItem == mRootClass || !parentItem)
     return QModelIndex();
 
-  return createIndex(parentItem->childNumber(), 0, parentItem);
+  return createIndex(static_cast<int>(parentItem->GetChildrenSize()), 0, parentItem);
 }
 
-bool TreeModel::removeColumns(int position, int columns, const QModelIndex & parent)
+Classes * TreeModel::getItem(const QModelIndex & index) const
 {
-  beginRemoveColumns(parent, position, position + columns - 1);
-  const bool success = rootItem->removeColumns(position, columns);
-  endRemoveColumns();
+  if (index.isValid())
+  {
+    Classes * item = static_cast<Classes *>(index.internalPointer());
+    if (item)
+      return item;
+  }
 
-  if (rootItem->columnCount() == 0)
-    removeRows(0, rowCount());
+  return mRootClass;
+}
 
-  return success;
+bool TreeModel::insertRows(int position, int rows, const QModelIndex & parent)
+{
+  // insert one row at position
+  auto parentItem = getItem(parent);
+  if (!parentItem)
+    return false;
+
+  beginInsertRows(parent, position, position + rows - 1);
+  parentItem->InsertChild(position, mContext.GenerateClassId());
+  endInsertRows();
+
+  auto b = mContext.GetTeacherSize();
+
+  return true;
 }
 
 bool TreeModel::removeRows(int position, int rows, const QModelIndex & parent)
 {
-  TreeItem * parentItem = getItem(parent);
+  auto parentItem = getItem(parent);
   if (!parentItem)
     return false;
 
   beginRemoveRows(parent, position, position + rows - 1);
-  const bool success = parentItem->removeChildren(position, rows);
+  parentItem->RemoveChild(position);
   endRemoveRows();
 
-  return success;
-}
-
-int TreeModel::rowCount(const QModelIndex & parent) const
-{
-  const TreeItem * parentItem = getItem(parent);
-
-  return parentItem ? parentItem->childCount() : 0;
-}
-
-bool TreeModel::setData(const QModelIndex & index, const QVariant & value, int role)
-{
-  if (role != Qt::EditRole)
-    return false;
-
-  TreeItem * item   = getItem(index);
-  bool       result = item->setData(index.column(), value);
-
-  if (result)
-    emit dataChanged(index, index, { Qt::DisplayRole, Qt::EditRole });
-
-  return result;
-}
-
-bool TreeModel::setHeaderData(int              section,
-                              Qt::Orientation  orientation,
-                              const QVariant & value,
-                              int              role)
-{
-  if (role != Qt::EditRole || orientation != Qt::Horizontal)
-    return false;
-
-  const bool result = rootItem->setData(section, value);
-
-  if (result)
-    emit headerDataChanged(orientation, section, section);
-
-  return result;
-}
-
-void TreeModel::setupModelData( TreeItem * parent)
-{
-  // QList<TreeItem *> parents;
-  // QList<int>        indentations;
-  // parents << parent;
-  // indentations << 0;
-
-  // int number = 0;
-
-  // while (number < lines.count())
-  //{
-  //  int position = 0;
-  //  while (position < lines[number].length())
-  //  {
-  //    if (lines[number].at(position) != ' ')
-  //      break;
-  //    ++position;
-  //  }
-
-  //  const QString lineData = lines[number].mid(position).trimmed();
-
-  //  if (!lineData.isEmpty())
-  //  {
-  //    // Read the column data from the rest of the line.
-  //    const QStringList columnStrings = lineData.split(QLatin1Char('\t'), Qt::SkipEmptyParts);
-  //    QList<QVariant>   columnData;
-  //    columnData.reserve(columnStrings.size());
-  //    for (const QString & columnString : columnStrings)
-  //      columnData << columnString;
-
-  //    if (position > indentations.last())
-  //    {
-  //      // The last child of the current parent is now the new parent
-  //      // unless the current parent has no children.
-
-  //      if (parents.last()->childCount() > 0)
-  //      {
-  //        parents << parents.last()->child(parents.last()->childCount() - 1);
-  //        indentations << position;
-  //      }
-  //    }
-  //    else
-  //    {
-  //      while (position < indentations.last() && parents.count() > 0)
-  //      {
-  //        parents.pop_back();
-  //        indentations.pop_back();
-  //      }
-  //    }
-
-  //    // Append a new item to the current parent's list of children.
-  //    TreeItem * parent = parents.last();
-  //    parent->insertChildren(parent->childCount(), 1, rootItem->columnCount());
-  //    for (int column = 0; column < columnData.size(); ++column)
-  //      parent->child(parent->childCount() - 1)->setData(column, columnData[column]);
-  //  }
-  //  ++number;
-  //}
+  return true;
 }

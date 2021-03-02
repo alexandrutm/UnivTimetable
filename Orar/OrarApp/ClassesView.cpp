@@ -1,24 +1,20 @@
 #include "stdafx.h"
 #include "ClassesView.h"
-#include "ClassTableModel.h"
 #include "ClassesDialog.h"
 #include "Context.h"
 #include "INavigator.h"
-#include "SortFilterProxyModel.h"
+#include "TreeModel.h"
 
-ClassesView::ClassesView(ClassTableModel * aStudentGroupModel, Context & aContext, QWidget * parent)
+ClassesView::ClassesView(TreeModel * aStudentGroupModel, Context & aContext, QWidget * parent)
   : QWidget(parent)
   , mContext(aContext)
-  , mStudentGroupModel(aStudentGroupModel)
+  , mTreeModel(aStudentGroupModel)
 {
   ui.setupUi(this);
-  mProxyModel = new SortFilterProxyModel();
 
-  mProxyModel->setSourceModel(mStudentGroupModel);
-  mProxyModel->sort(0, Qt::AscendingOrder);
-  ui.mGroupTable->setModel(mProxyModel);
-  ui.mGroupTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
-  ui.mGroupTable->setSortingEnabled(true);
+  ui.mTreeView->setModel(mTreeModel);
+  ui.mTreeView->header()->setSectionResizeMode(QHeaderView::Stretch);
+  ui.mTreeView->setSortingEnabled(true);
 }
 
 ClassesView::~ClassesView()
@@ -27,7 +23,7 @@ ClassesView::~ClassesView()
 
 void ClassesView::ClearData()
 {
-  mStudentGroupModel->ClearData();
+  // mStudentGroupModel->ClearData();
 }
 
 void ClassesView::on_mAddGroup_clicked()
@@ -41,13 +37,46 @@ void ClassesView::on_mAddGroup_clicked()
 
     if (!name.isEmpty())
     {
-      int newRow = static_cast<int>(mContext.GetGroupSize());
-      mStudentGroupModel->insertRows(newRow, newRow, QModelIndex());
+      const QModelIndex indexParent = ui.mTreeView->selectionModel()->currentIndex();
 
-      QModelIndex index = mStudentGroupModel->index(newRow, 0, QModelIndex());
-      mStudentGroupModel->setData(index, name, Qt::EditRole);
-      index = mStudentGroupModel->index(newRow, 1, QModelIndex());
-      mStudentGroupModel->setData(index, numberOfStudents, Qt::EditRole);
+      // insert a single row before de given row in the child items of the parent index
+      if (!mTreeModel->insertRow(0, indexParent))
+        return;
+
+      const QModelIndex childIndexName = mTreeModel->index(0, 0, indexParent);
+      mTreeModel->setData(childIndexName, name, Qt::EditRole);
+      const QModelIndex childIndexNrOfStud = mTreeModel->index(0, 1, indexParent);
+      mTreeModel->setData(childIndexNrOfStud, numberOfStudents, Qt::EditRole);
+    }
+    else
+      QMessageBox::about(this, "Name error", "You need to insert a class name");
+  }
+}
+
+void ClassesView::on_mAddYear_clicked()
+{
+  ClassesDialog AddDialog(this);
+
+  if (AddDialog.exec())
+  {
+    QString name             = AddDialog.Name->text();
+    int     numberOfStudents = AddDialog.NumberOfStudents->value();
+
+    if (!name.isEmpty())
+    {
+      const QModelIndex indexParent = ui.mTreeView->selectionModel()->currentIndex();
+
+      // insert a single row before de given row in the child items of the parent index
+      if (!mTreeModel->insertRow(indexParent.row() + 1, indexParent.parent()))
+        return;
+
+      const QModelIndex childIndexName =
+        mTreeModel->index(indexParent.row() + 1, 0, indexParent.parent());
+      mTreeModel->setData(childIndexName, name, Qt::EditRole);
+
+      const QModelIndex childIndexNrOfStud =
+        mTreeModel->index(indexParent.row() + 1, 1, indexParent.parent());
+      mTreeModel->setData(childIndexNrOfStud, numberOfStudents, Qt::EditRole);
     }
     else
       QMessageBox::about(this, "Name error", "You need to insert a class name");
@@ -57,62 +86,55 @@ void ClassesView::on_mAddGroup_clicked()
 void ClassesView::on_mEdit_clicked()
 {
   ClassesDialog EditDialog(this);
-  QModelIndex   index;
-  QString       newName;
-  int           newNumberOfStudents;
 
-  // map the current selected row value
-  int currentSelectedRowMapped =
-    mProxyModel->mapToSource(ui.mGroupTable->selectionModel()->currentIndex()).row();
+  QString oldName;
+  int     oldNumberOfStudents;
 
-  if (currentSelectedRowMapped < 0)
+  QString newName;
+  int     newNumberOfStudents;
+
+  auto indexRowSelected = ui.mTreeView->selectionModel()->currentIndex();
+
+  if (!indexRowSelected.isValid())
   {
     QMessageBox::about(this, "No Class Selected", "Please choose a class");
+    return;
   }
-  else if (EditDialog.exec())
+
+  QModelIndex nameIndex = mTreeModel->index(indexRowSelected.row(), 0, indexRowSelected.parent());
+  oldName               = (mTreeModel->data(nameIndex, Qt::DisplayRole)).toString();
+
+  QModelIndex numberOfStudIndex =
+    mTreeModel->index(indexRowSelected.row(), 1, indexRowSelected.parent());
+  oldNumberOfStudents = (mTreeModel->data(numberOfStudIndex, Qt::DisplayRole)).toInt();
+
+  EditDialog.EditEntry(oldName, oldNumberOfStudents);
+
+  if (EditDialog.exec())
   {
-    // QString oldName;
-    // int     oldNumberOfStudents;
-
-    // QModelIndex nameIndex = tableModel->index(currentSelectedRowMapped, 0, QModelIndex());
-    // oldName               = (tableModel->data(nameIndex, Qt::DisplayRole)).toString();
-
-    // QModelIndex addressIndex = tableModel->index(currentSelectedRowMapped, 1, QModelIndex());
-    // oldNumberOfStudents      = (tableModel->data(addressIndex, Qt::DisplayRole)).toInt();
-
     newName             = EditDialog.Name->text();
     newNumberOfStudents = EditDialog.NumberOfStudents->value();
 
     if (!newName.isEmpty())
     {
-      index = mStudentGroupModel->index(currentSelectedRowMapped, 0, QModelIndex());
-      mStudentGroupModel->setData(index, newName, Qt::EditRole);
-      index = mStudentGroupModel->index(currentSelectedRowMapped, 1, QModelIndex());
-      mStudentGroupModel->setData(index, newNumberOfStudents, Qt::EditRole);
+      mTreeModel->setData(nameIndex, newName, Qt::EditRole);
+
+      mTreeModel->setData(numberOfStudIndex, newNumberOfStudents, Qt::EditRole);
     }
   }
 }
 
 void ClassesView::on_mDelete_clicked()
 {
-  int currentSelectedRowMapped =
-    mProxyModel->mapToSource(ui.mGroupTable->selectionModel()->currentIndex()).row();
+  auto indexRowSelected = ui.mTreeView->selectionModel()->currentIndex();
 
-  if (currentSelectedRowMapped < 0)
+  if (!indexRowSelected.isValid())
   {
-    QMessageBox::about(this, "No Class Selected", "Please choose class you want to delete");
+    QMessageBox::about(this, "No Class Selected", "Please choose a class");
+    return;
   }
-  else
-  {
-    if (mContext.GetGroupByIndex(currentSelectedRowMapped).use_count() > 1)
-    {
-      QMessageBox::about(this, "About", "Please remove all lesson that hold this class first");
-    }
-    else
-    {
-      mStudentGroupModel->RemoveItemFromModel(currentSelectedRowMapped);
-    }
-  }
+
+  mTreeModel->removeRow(indexRowSelected.row(), indexRowSelected.parent());
 }
 
 void ClassesView::on_mConstraints_clicked()

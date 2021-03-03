@@ -92,9 +92,6 @@
     <ClCompile Include="SubjectTableModel.cpp">
       <Filter>Source Files\Models</Filter>
     </ClCompile>
-    <ClCompile Include="ClassTableModel.cpp">
-      <Filter>Source Files\Models</Filter>
-    </ClCompile>
     <ClCompile Include="RoomTableModel.cpp">
       <Filter>Source Files\Models</Filter>
     </ClCompile>
@@ -113,13 +110,7 @@
     <ClCompile Include="TimeTableViewModel.cpp">
       <Filter>Source Files\Models</Filter>
     </ClCompile>
-    <ClCompile Include="Students.cpp">
-      <Filter>Source Files\data</Filter>
-    </ClCompile>
     <ClCompile Include="Context.cpp">
-      <Filter>Source Files\data</Filter>
-    </ClCompile>
-    <ClCompile Include="StudentGroup.cpp">
       <Filter>Source Files\data</Filter>
     </ClCompile>
     <ClCompile Include="AddDataDialog.cpp">
@@ -146,8 +137,8 @@
     <ClCompile Include="TreeModel.cpp">
       <Filter>Source Files\Models</Filter>
     </ClCompile>
-    <ClCompile Include="TreeItem.cpp">
-      <Filter>Source Files\Models</Filter>
+    <ClCompile Include="Classes.cpp">
+      <Filter>Source Files\data</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -176,9 +167,6 @@
       <Filter>Source Files\Models</Filter>
     </QtMoc>
     <QtMoc Include="SubjectTableModel.h">
-      <Filter>Source Files\Models</Filter>
-    </QtMoc>
-    <QtMoc Include="ClassTableModel.h">
       <Filter>Source Files\Models</Filter>
     </QtMoc>
     <QtMoc Include="RoomTableModel.h">
@@ -293,14 +281,8 @@
     <ClInclude Include="InstituteData.h">
       <Filter>Source Files\data</Filter>
     </ClInclude>
-    <ClInclude Include="Students.h">
+    <ClInclude Include="Classes.h">
       <Filter>Source Files\data</Filter>
-    </ClInclude>
-    <ClInclude Include="StudentGroup.h">
-      <Filter>Source Files\data</Filter>
-    </ClInclude>
-    <ClInclude Include="TreeItem.h">
-      <Filter>Source Files\Models</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

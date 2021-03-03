@@ -42,7 +42,7 @@ void TeacherView::on_mAdd_clicked()
     QString lastName  = Add.mLastName->text();
     if (!firstName.isEmpty())
     {
-      int newRow = static_cast<int>(mContext.GetGroupSize());
+      int newRow = static_cast<int>(mContext.GetTeacherSize());
       mTeacherTableModel->insertRows(newRow, newRow, QModelIndex());
 
       QModelIndex index = mTeacherTableModel->index(newRow, 0, QModelIndex());

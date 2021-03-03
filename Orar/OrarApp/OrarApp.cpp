@@ -1,20 +1,20 @@
 #include "stdafx.h"
 #include "OrarApp.h"
 #include "AddDataDialog.h"
-#include "ClassTableModel.h"
 #include "InstitutionDetailsDialog.h"
+#include "TreeModel.h"
 
 OrarApp::OrarApp(QWidget * parent)
   : QMainWindow(parent)
-  , mStudentGroupModel(new ClassTableModel(mContext, this))
+  , mClassesModel(new TreeModel(mContext, this))
   , mDataDialog(this)
   , mHomeView(this, this)
-  , mClassView(mStudentGroupModel, mContext, this)
+  , mClassView(mClassesModel, mContext, this)
   , mSubjectView(mContext, this)
   , mRoomView(mContext, this)
   , mTeacherView(mContext, this)
   , mLessonView(mContext, this)
-  , mDisplayTimeTableView(mStudentGroupModel, mContext, this)
+  , mDisplayTimeTableView(mClassesModel, mContext, this)
 
 {
   ui.setupUi(this);

@@ -8,13 +8,10 @@ TreeModel::TreeModel(Context & aContext, QObject * parent)
   , mContext(aContext)
 
 {
-  mRootClass = new Classes("ROOT CLASS", 0, 0);
-  mContext.SetRootClass(mRootClass);
 }
 
 TreeModel::~TreeModel()
 {
-  delete mRootClass;
 }
 
 int TreeModel::rowCount(const QModelIndex & parent) const
@@ -27,7 +24,7 @@ int TreeModel::rowCount(const QModelIndex & parent) const
 int TreeModel::columnCount(const QModelIndex & parent) const
 {
   Q_UNUSED(parent);
-  return mRootClass->GetNumberOfData();
+  return mContext.GetRootClass()->GetNumberOfData();
 }
 
 QVariant TreeModel::data(const QModelIndex & index, int role) const
@@ -91,8 +88,6 @@ bool TreeModel::setData(const QModelIndex & index, const QVariant & aClassData, 
     break;
   }
 
-  auto b = mContext.GetTeacherSize();
-
   emit dataChanged(index, index, { Qt::DisplayRole, Qt::EditRole });
 
   return true;
@@ -121,7 +116,7 @@ QModelIndex TreeModel::parent(const QModelIndex & index) const
   auto childItem  = getItem(index);
   auto parentItem = childItem ? childItem->GetParent() : nullptr;
 
-  if (parentItem == mRootClass || !parentItem)
+  if (parentItem == mContext.GetRootClass() || !parentItem)
     return QModelIndex();
 
   return createIndex(static_cast<int>(parentItem->GetChildrenSize()), 0, parentItem);
@@ -136,7 +131,7 @@ Classes * TreeModel::getItem(const QModelIndex & index) const
       return item;
   }
 
-  return mRootClass;
+  return mContext.GetRootClass();
 }
 
 bool TreeModel::insertRows(int position, int rows, const QModelIndex & parent)
@@ -147,7 +142,7 @@ bool TreeModel::insertRows(int position, int rows, const QModelIndex & parent)
     return false;
 
   beginInsertRows(parent, position, position + rows - 1);
-  parentItem->InsertChild(position, mContext.GenerateClassId());
+  parentItem->InsertChild(position, 0);
   endInsertRows();
 
   auto b = mContext.GetTeacherSize();

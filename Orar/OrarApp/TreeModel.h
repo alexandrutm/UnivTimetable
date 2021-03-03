@@ -32,5 +32,4 @@ public:
 
 private:
   Context & mContext;
-  Classes * mRootClass;
 };

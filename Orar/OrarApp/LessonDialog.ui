@@ -107,6 +107,9 @@ QComboBox:hover {
 	background-color: rgb(231, 231, 231);
 }</string>
           </property>
+          <property name="modelColumn">
+           <number>0</number>
+          </property>
          </widget>
         </item>
        </layout>

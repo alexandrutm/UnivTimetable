@@ -13,7 +13,7 @@
 #include "TeacherView.h"
 #include "ui_OrarApp.h"
 
-class ClassTableModel;
+class TreeModel;
 
 class OrarApp
   : public QMainWindow
@@ -37,7 +37,7 @@ private:
 
   Context mContext;
 
-  ClassTableModel * mStudentGroupModel;
+  TreeModel * mClassesModel;
 
   AddDataDialog        mDataDialog;
   HomeView             mHomeView;

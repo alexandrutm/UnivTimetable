@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "LessonView.h"
-#include "ClassTableModel.h"
+#include "Classes.h"
 #include "Context.h"
 #include "Lesson.h"
 #include "LessonDialog.h"
@@ -11,6 +11,7 @@
 #include "SubjectTableModel.h"
 #include "Teacher.h"
 #include "TeacherTableModel.h"
+#include "TreeModel.h"
 
 LessonView::LessonView(Context & aContext, QWidget * parent)
   : QWidget(parent)
@@ -19,9 +20,9 @@ LessonView::LessonView(Context & aContext, QWidget * parent)
   ui.setupUi(this);
 
   // models for qcombobox
-  mTeacherModel   = new TableModel(mContext, this);
+  mTeacherModel   = new TeacherTableModel(mContext, this);
   mSubjectModel   = new SubjectTableModel(mContext, this);
-  mClassModel     = new ClassTableModel(mContext, this);
+  mClassModel     = new TreeModel(mContext, this);
   mRoomTableModel = new RoomTableModel(mContext, this);
 
   tableModel = new LessonTableModel(mContext, this);
@@ -49,22 +50,28 @@ void LessonView::on_mAdd_clicked()
 
   aDialog.mTeacher->setModel(mTeacherModel);
   aDialog.mSubject->setModel(mSubjectModel);
+
+  QTreeView * tv = new QTreeView(aDialog.mClasses);
+  aDialog.mClasses->setView(tv);
   aDialog.mClasses->setModel(mClassModel);
 
   if (aDialog.exec())
   {
-    int selectedRowTeacher = aDialog.mTeacher->currentIndex();
-    int selectedRowSubject = aDialog.mSubject->currentIndex();
-    int selectedRowClass   = aDialog.mClasses->currentIndex();
+    int  selectedRowTeacher = aDialog.mTeacher->currentIndex();
+    int  selectedRowSubject = aDialog.mSubject->currentIndex();
+    auto selectedRowClass   = aDialog.mClasses->view()->selectionModel()->currentIndex();
 
-    if (selectedRowTeacher >= 0 && selectedRowClass >= 0 && selectedRowSubject >= 0)
+    if (selectedRowTeacher >= 0 && selectedRowSubject >= 0)
     {
-      auto classes      = mContext.GetGroupByIndex(selectedRowClass);
+      Classes *           classe1 = mClassModel->getItem(selectedRowClass);
+      shared_ptr<Classes> classes(classe1);
+
       auto subject      = mContext.GetSubjectByIndex(selectedRowSubject);
       auto teacher      = mContext.GetTeacherByIndex(selectedRowTeacher);
       auto hoursPerWeek = aDialog.mHoursPerWeek->value();
 
-      shared_ptr<Lesson> newLesson =
+      shared_ptr<Classes> classes(classe1);
+      shared_ptr<Lesson>  newLesson =
         make_shared<Lesson>(teacher, subject, classes, hoursPerWeek, mContext.GenerateLessonId());
 
       tableModel->PopulateModel(newLesson);
@@ -83,6 +90,9 @@ void LessonView::on_mEdit_clicked()
 
   aDialog.mTeacher->setModel(mTeacherModel);
   aDialog.mSubject->setModel(mSubjectModel);
+
+  QTreeView * tv = new QTreeView(aDialog.mClasses);
+  aDialog.mClasses->setView(tv);
   aDialog.mClasses->setModel(mClassModel);
 
   int currentSelectedRowMapped =
@@ -100,8 +110,9 @@ void LessonView::on_mEdit_clicked()
     auto selectedSubject = aDialog.mSubject->currentIndex();
     auto subject         = mContext.GetSubjectByIndex(selectedSubject);
 
-    auto selectedClass = aDialog.mClasses->currentIndex();
-    auto classes       = mContext.GetGroupByIndex(selectedClass);
+    auto      selectedRowClass = aDialog.mClasses->view()->selectionModel()->currentIndex();
+    Classes * classe1          = mClassModel->getItem(selectedRowClass);
+    shared_ptr<Classes> classes(classe1);
 
     auto hoursPerWeek = aDialog.mHoursPerWeek->value();
 

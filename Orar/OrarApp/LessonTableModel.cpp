@@ -1,9 +1,9 @@
 #include "stdafx.h"
 #include "LessonTableModel.h"
+#include "Classes.h"
 #include "Context.h"
 #include "Lesson.h"
 #include "Room.h"
-#include "StudentGroup.h"
 #include "Subject.h"
 #include "Teacher.h"
 

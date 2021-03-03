@@ -4,10 +4,10 @@
 
 class Context;
 
-class TableModel;
+class TeacherTableModel;
 class SortFilterProxyModel;
 class SubjectTableModel;
-class ClassTableModel;
+class TreeModel;
 class RoomTableModel;
 class LessonTableModel;
 
@@ -31,9 +31,9 @@ private:
   Ui::LessonView ui;
 
   SortFilterProxyModel * proxyModel;
-  TableModel *           mTeacherModel;
+  TeacherTableModel *    mTeacherModel;
   SubjectTableModel *    mSubjectModel;
-  ClassTableModel *      mClassModel;
+  TreeModel *            mClassModel;
   RoomTableModel *       mRoomTableModel;
   LessonTableModel *     tableModel;
 

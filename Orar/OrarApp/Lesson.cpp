@@ -1,11 +1,11 @@
 #include "stdafx.h"
 #include "Lesson.h"
 
-Lesson::Lesson(shared_ptr<Teacher>      aTeacher,
-               shared_ptr<Subject>      aSubject,
-               shared_ptr<StudentGroup> aClass,
-               int                      aHoursPerWeek,
-               int                      aId)
+Lesson::Lesson(shared_ptr<Teacher> aTeacher,
+               shared_ptr<Subject> aSubject,
+               shared_ptr<Classes> aClass,
+               int                 aHoursPerWeek,
+               int                 aId)
   : mSubject(aSubject)
   , mTeacher(aTeacher)
   , mGroup(aClass)
@@ -19,7 +19,7 @@ void Lesson::SetTeacher(shared_ptr<Teacher> aTeacher)
   this->mTeacher = aTeacher;
 }
 
-void Lesson::SetClass(shared_ptr<StudentGroup> aClass)
+void Lesson::SetClass(shared_ptr<Classes> aClass)
 {
   this->mGroup = aClass;
 }
@@ -39,7 +39,7 @@ shared_ptr<Teacher> Lesson::GetTeacher()
   return mTeacher;
 }
 
-shared_ptr<StudentGroup> Lesson::GetGroup()
+shared_ptr<Classes> Lesson::GetGroup()
 {
   return mGroup;
 }

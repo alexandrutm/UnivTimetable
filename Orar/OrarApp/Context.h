@@ -10,6 +10,7 @@ class Context
 {
 public:
   Context();
+  ~Context();
 
   void                          AddTeacher(shared_ptr<Teacher> aTeacher);
   void                          RemoveTeacher(int i);
@@ -27,8 +28,8 @@ public:
   void                          DeleteSubjects();
   int                           GenerateSubjectId();
 
-  int  GenerateClassId();
-  void SetRootClass(Classes * aClass);
+  // int  GenerateClassId();
+  Classes * GetRootClass();
 
   void                         AddLesson(shared_ptr<Lesson> aLesson);
   void                         RemoveLesson(int i);

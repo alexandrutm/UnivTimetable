@@ -142,7 +142,7 @@ bool TreeModel::insertRows(int position, int rows, const QModelIndex & parent)
     return false;
 
   beginInsertRows(parent, position, position + rows - 1);
-  parentItem->InsertChild(position, 0);
+  parentItem->InsertChild(position, mContext.GenerateClassId());
   endInsertRows();
 
   auto b = mContext.GetTeacherSize();

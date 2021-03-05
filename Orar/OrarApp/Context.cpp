@@ -108,31 +108,31 @@ int Context::GenerateSubjectId()
   return (*maxIdIt)->GetId() + 1;
 }
 
-// int Context::GenerateClassId()
-//{
-//  queue<Classes *> treeNodes;
-//  int              max = 0;
-//
-//  treeNodes.push(mRootClass);
-//
-//  while (!treeNodes.empty())
-//  {
-//    int queueSize = static_cast<int>(treeNodes.size());
-//    while (queueSize > 0)
-//    {
-//      Classes * frontNode = treeNodes.front();
-//      treeNodes.pop();
-//
-//      if (max < frontNode->GetId())
-//        max = frontNode->GetId();
-//
-//      for (int i = 0; i < frontNode->GetChildrenSize(); i++)
-//        treeNodes.push(frontNode->GetChild(i));
-//      queueSize--;
-//    }
-//  }
-//  return max + 1;
-//}
+int Context::GenerateClassId()
+{
+  queue<Classes *> treeNodes;
+  int              max = 0;
+
+  treeNodes.push(mRootClass);
+
+  while (!treeNodes.empty())
+  {
+    int queueSize = static_cast<int>(treeNodes.size());
+    while (queueSize > 0)
+    {
+      Classes * frontNode = treeNodes.front();
+      treeNodes.pop();
+
+      if (max < frontNode->GetId())
+        max = frontNode->GetId();
+
+      for (int i = 0; i < frontNode->GetChildrenSize(); i++)
+        treeNodes.push(frontNode->GetChild(i));
+      queueSize--;
+    }
+  }
+  return max + 1;
+}
 
 Classes * Context::GetRootClass()
 {

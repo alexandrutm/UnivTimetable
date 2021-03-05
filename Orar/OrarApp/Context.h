@@ -28,7 +28,7 @@ public:
   void                          DeleteSubjects();
   int                           GenerateSubjectId();
 
-  // int  GenerateClassId();
+  int       GenerateClassId();
   Classes * GetRootClass();
 
   void                         AddLesson(shared_ptr<Lesson> aLesson);

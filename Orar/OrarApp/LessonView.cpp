@@ -70,8 +70,7 @@ void LessonView::on_mAdd_clicked()
       auto teacher      = mContext.GetTeacherByIndex(selectedRowTeacher);
       auto hoursPerWeek = aDialog.mHoursPerWeek->value();
 
-      shared_ptr<Classes> classes(classe1);
-      shared_ptr<Lesson>  newLesson =
+      shared_ptr<Lesson> newLesson =
         make_shared<Lesson>(teacher, subject, classes, hoursPerWeek, mContext.GenerateLessonId());
 
       tableModel->PopulateModel(newLesson);

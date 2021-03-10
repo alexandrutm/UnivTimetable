@@ -3,6 +3,7 @@
 #include "ClassesDialog.h"
 #include "Context.h"
 #include "INavigator.h"
+#include "Students.h"
 #include "TreeModel.h"
 
 ClassesView::ClassesView(TreeModel * aStudentGroupModel, Context & aContext, QWidget * parent)
@@ -40,12 +41,16 @@ void ClassesView::on_mAddGroup_clicked()
       const QModelIndex indexParent = ui.mTreeView->selectionModel()->currentIndex();
 
       // insert a single row before de given row in the child items of the parent index
-      if (!mTreeModel->insertRow(0, indexParent))
+
+      auto parentItem = mTreeModel->getItem(indexParent);
+      int  row        = static_cast<int>(parentItem->GetChildrenSize());
+
+      if (!mTreeModel->insertRow(row, indexParent))
         return;
 
-      const QModelIndex childIndexName = mTreeModel->index(0, 0, indexParent);
+      const QModelIndex childIndexName = mTreeModel->index(row, 0, indexParent);
       mTreeModel->setData(childIndexName, name, Qt::EditRole);
-      const QModelIndex childIndexNrOfStud = mTreeModel->index(0, 1, indexParent);
+      const QModelIndex childIndexNrOfStud = mTreeModel->index(row, 1, indexParent);
       mTreeModel->setData(childIndexNrOfStud, numberOfStudents, Qt::EditRole);
     }
     else
@@ -64,18 +69,19 @@ void ClassesView::on_mAddYear_clicked()
 
     if (!name.isEmpty())
     {
-      const QModelIndex indexParent = ui.mTreeView->selectionModel()->currentIndex();
+      const QModelIndex indexParent = ui.mTreeView->selectionModel()->currentIndex().parent();
+
+      auto parentItem = mTreeModel->getItem(indexParent);
+      int  row        = static_cast<int>(parentItem->GetChildrenSize());
 
       // insert a single row before de given row in the child items of the parent index
-      if (!mTreeModel->insertRow(indexParent.row() + 1, indexParent.parent()))
+      if (!mTreeModel->insertRow(row, indexParent))
         return;
 
-      const QModelIndex childIndexName =
-        mTreeModel->index(indexParent.row() + 1, 0, indexParent.parent());
+      const QModelIndex childIndexName = mTreeModel->index(row, 0, indexParent);
       mTreeModel->setData(childIndexName, name, Qt::EditRole);
 
-      const QModelIndex childIndexNrOfStud =
-        mTreeModel->index(indexParent.row() + 1, 1, indexParent.parent());
+      const QModelIndex childIndexNrOfStud = mTreeModel->index(row, 1, indexParent);
       mTreeModel->setData(childIndexNrOfStud, numberOfStudents, Qt::EditRole);
     }
     else

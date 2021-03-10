@@ -1,7 +1,7 @@
 #include "stdafx.h"
-#include "Classes.h"
+#include "Students.h"
 
-Classes::Classes(string aName, int aNumber, int aId, Classes * aParent)
+Students::Students(string aName, int aNumber, int aId, Students * aParent)
   : mName(aName)
   , mNumberOfStudents(aNumber)
   , mId(aId)
@@ -9,37 +9,37 @@ Classes::Classes(string aName, int aNumber, int aId, Classes * aParent)
 {
 }
 
-void Classes::SetNumberOfStudents(int aNrOfStudent)
+void Students::SetNumberOfStudents(int aNrOfStudent)
 {
   mNumberOfStudents = aNrOfStudent;
 }
 
-int Classes::GetNumberOfStudents()
+int Students::GetNumberOfStudents()
 {
   return mNumberOfStudents;
 }
 
-void Classes::SetName(string aName)
+void Students::SetName(string aName)
 {
   mName = aName;
 }
 
-string Classes::GetName()
+string Students::GetName()
 {
   return mName;
 }
 
-int Classes::GetId()
+int Students::GetId()
 {
   return mId;
 }
 
-bool Classes::operator==(const Classes & aClass)
+bool Students::operator==(const Students & aClass)
 {
   return mId == aClass.mId;
 }
 
-Classes & Classes::operator=(const Classes & aClass)
+Students & Students::operator=(const Students & aClass)
 {
   if (this != &aClass)
   {
@@ -51,41 +51,41 @@ Classes & Classes::operator=(const Classes & aClass)
   return *this;
 }
 
-Classes::~Classes()
-{  // delete all children
+Students::~Students()
+{
 }
 
-Classes * Classes::GetChild(int nr)
+Students * Students::GetChild(int nr)
 {
   if (nr < 0 || nr >= mChildren.size())
     return nullptr;
-  return mChildren.at(nr);
+  return mChildren.at(nr).get();
 }
 
-size_t Classes::GetChildrenSize()
+size_t Students::GetChildrenSize()
 {
   return mChildren.size();
 }
 
-int Classes::GetNumberOfData()
+int Students::GetNumberOfData()
 {
   // class name and number of students
   return 2;
 }
 
-void Classes::InsertChild(int position, int id)
+void Students::InsertChild(int id)
 {
-  Classes * newClass = new Classes("name", 0, id, this);
+  unique_ptr<Students> newClass = make_unique<Students>("name", 0, id, this);
 
-  mChildren.insert(mChildren.begin() + position, newClass);
+  mChildren.push_back(move(newClass));
 }
 
-Classes * Classes::GetParent()
+Students * Students::GetParent()
 {
-  return mParent;
+  return mParent.get();
 }
 
-void Classes::RemoveChild(int pos)
+void Students::RemoveChild(int pos)
 {
   mChildren.erase(remove_if(mChildren.begin(), mChildren.end(),
                             [&](auto const & classes) {

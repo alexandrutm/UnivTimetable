@@ -1,20 +1,19 @@
 #include "stdafx.h"
 #include "Context.h"
-#include "Classes.h"
 #include "InstituteData.h"
 #include "Lesson.h"
 #include "Room.h"
+#include "Students.h"
 #include "Subject.h"
 #include "Teacher.h"
 
 Context::Context()
 {
-  mRootClass = new Classes("Root Class", 0, 0);
+  mRootNodeStudents = make_unique<Students>("Root Class", 0, 0);
 }
 
 Context::~Context()
 {
-  delete mRootClass;
 }
 
 void Context::AddTeacher(shared_ptr<Teacher> aTeacher)
@@ -110,17 +109,17 @@ int Context::GenerateSubjectId()
 
 int Context::GenerateClassId()
 {
-  queue<Classes *> treeNodes;
-  int              max = 0;
+  queue<Students *> treeNodes;
+  int               max = 0;
 
-  treeNodes.push(mRootClass);
+  treeNodes.push(mRootNodeStudents.get());
 
   while (!treeNodes.empty())
   {
     int queueSize = static_cast<int>(treeNodes.size());
     while (queueSize > 0)
     {
-      Classes * frontNode = treeNodes.front();
+      Students * frontNode = treeNodes.front();
       treeNodes.pop();
 
       if (max < frontNode->GetId())
@@ -134,9 +133,9 @@ int Context::GenerateClassId()
   return max + 1;
 }
 
-Classes * Context::GetRootClass()
+Students * Context::GetRootClass()
 {
-  return mRootClass;
+  return mRootNodeStudents.get();
 }
 
 void Context::AddLesson(shared_ptr<Lesson> aLesson)
@@ -236,4 +235,9 @@ int Context::GenerateRoomId()
 void Context::AddInstituteData(shared_ptr<InstituteData> aInstituteData)
 {
   mInstituteData = aInstituteData;
+}
+
+shared_ptr<InstituteData> Context::GetInstituteData()
+{
+  return mInstituteData;
 }

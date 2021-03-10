@@ -1,12 +1,12 @@
 #include "stdafx.h"
 #include "LessonView.h"
-#include "Classes.h"
 #include "Context.h"
 #include "Lesson.h"
 #include "LessonDialog.h"
 #include "LessonTableModel.h"
 #include "RoomTableModel.h"
 #include "SortFilterProxyModel.h"
+#include "Students.h"
 #include "Subject.h"
 #include "SubjectTableModel.h"
 #include "Teacher.h"
@@ -63,8 +63,8 @@ void LessonView::on_mAdd_clicked()
 
     if (selectedRowTeacher >= 0 && selectedRowSubject >= 0)
     {
-      Classes *           classe1 = mClassModel->getItem(selectedRowClass);
-      shared_ptr<Classes> classes(classe1);
+      Students *           classe1 = mClassModel->getItem(selectedRowClass);
+      shared_ptr<Students> classes(classe1);
 
       auto subject      = mContext.GetSubjectByIndex(selectedRowSubject);
       auto teacher      = mContext.GetTeacherByIndex(selectedRowTeacher);
@@ -109,9 +109,9 @@ void LessonView::on_mEdit_clicked()
     auto selectedSubject = aDialog.mSubject->currentIndex();
     auto subject         = mContext.GetSubjectByIndex(selectedSubject);
 
-    auto      selectedRowClass = aDialog.mClasses->view()->selectionModel()->currentIndex();
-    Classes * classe1          = mClassModel->getItem(selectedRowClass);
-    shared_ptr<Classes> classes(classe1);
+    auto       selectedRowClass = aDialog.mClasses->view()->selectionModel()->currentIndex();
+    Students * classe1          = mClassModel->getItem(selectedRowClass);
+    shared_ptr<Students> classes(classe1);
 
     auto hoursPerWeek = aDialog.mHoursPerWeek->value();
 

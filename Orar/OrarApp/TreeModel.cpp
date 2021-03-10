@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "treemodel.h"
-#include "Classes.h"
 #include "Context.h"
+#include "Students.h"
 
 TreeModel::TreeModel(Context & aContext, QObject * parent)
   : QAbstractItemModel(parent)
@@ -122,11 +122,11 @@ QModelIndex TreeModel::parent(const QModelIndex & index) const
   return createIndex(static_cast<int>(parentItem->GetChildrenSize()), 0, parentItem);
 }
 
-Classes * TreeModel::getItem(const QModelIndex & index) const
+Students * TreeModel::getItem(const QModelIndex & index) const
 {
   if (index.isValid())
   {
-    Classes * item = static_cast<Classes *>(index.internalPointer());
+    Students * item = static_cast<Students *>(index.internalPointer());
     if (item)
       return item;
   }
@@ -142,7 +142,7 @@ bool TreeModel::insertRows(int position, int rows, const QModelIndex & parent)
     return false;
 
   beginInsertRows(parent, position, position + rows - 1);
-  parentItem->InsertChild(position, mContext.GenerateClassId());
+  parentItem->InsertChild(mContext.GenerateClassId());
   endInsertRows();
 
   auto b = mContext.GetTeacherSize();

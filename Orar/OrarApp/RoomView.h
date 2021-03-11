@@ -22,7 +22,8 @@ private slots:
   void on_mConstraints_clicked();
 
 private:
-  Ui::RoomView           ui;
+  Ui::RoomView ui;
+
   SortFilterProxyModel * proxyModel;
   RoomTableModel *       tableModel;
   Context &              mContext;

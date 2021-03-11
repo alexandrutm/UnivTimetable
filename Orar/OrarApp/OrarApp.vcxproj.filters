@@ -40,6 +40,9 @@
     <Filter Include="Source Files\Dialogs">
       <UniqueIdentifier>{7ca0aa05-1237-469e-9820-9a0b7953ac0b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Constraint">
+      <UniqueIdentifier>{c256548a-ffc9-42db-ab15-26dcb06be75f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <QtRcc Include="OrarApp.qrc">
@@ -137,8 +140,17 @@
     <ClCompile Include="TreeModel.cpp">
       <Filter>Source Files\Models</Filter>
     </ClCompile>
-    <ClCompile Include="Classes.cpp">
+    <ClCompile Include="Students.cpp">
       <Filter>Source Files\data</Filter>
+    </ClCompile>
+    <ClCompile Include="TimeConstraint.cpp">
+      <Filter>Source Files\Constraint</Filter>
+    </ClCompile>
+    <ClCompile Include="TeacherConstraintDialog.cpp">
+      <Filter>Source Files\Dialogs</Filter>
+    </ClCompile>
+    <ClCompile Include="Constraints.cpp">
+      <Filter>Source Files\Constraint</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -208,6 +220,9 @@
     <QtMoc Include="TreeModel.h">
       <Filter>Source Files\Models</Filter>
     </QtMoc>
+    <QtMoc Include="TeacherConstraintDialog.h">
+      <Filter>Source Files\Dialogs</Filter>
+    </QtMoc>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="AddDataDialog.ui">
@@ -255,6 +270,9 @@
     <QtUic Include="RoomDialog.ui">
       <Filter>Resource Files\Dialog</Filter>
     </QtUic>
+    <QtUic Include="TeacherConstraintDialog.ui">
+      <Filter>Resource Files\Dialog</Filter>
+    </QtUic>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -281,8 +299,14 @@
     <ClInclude Include="InstituteData.h">
       <Filter>Source Files\data</Filter>
     </ClInclude>
-    <ClInclude Include="Classes.h">
+    <ClInclude Include="Students.h">
       <Filter>Source Files\data</Filter>
+    </ClInclude>
+    <ClInclude Include="Constraints.h">
+      <Filter>Source Files\Constraint</Filter>
+    </ClInclude>
+    <ClInclude Include="TimeConstraint.h">
+      <Filter>Source Files\Constraint</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

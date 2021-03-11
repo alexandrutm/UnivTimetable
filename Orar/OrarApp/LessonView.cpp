@@ -37,6 +37,12 @@ LessonView::LessonView(Context & aContext, QWidget * parent)
 
 LessonView::~LessonView()
 {
+  delete mTeacherModel;
+  delete mSubjectModel;
+  delete mClassModel;
+  delete mRoomTableModel;
+  delete tableModel;
+  delete proxyModel;
 }
 
 void LessonView::ClearData()
@@ -51,8 +57,8 @@ void LessonView::on_mAdd_clicked()
   aDialog.mTeacher->setModel(mTeacherModel);
   aDialog.mSubject->setModel(mSubjectModel);
 
-  QTreeView * tv = new QTreeView(aDialog.mClasses);
-  aDialog.mClasses->setView(tv);
+  QTreeView * treeViewCombobox = new QTreeView(aDialog.mClasses);
+  aDialog.mClasses->setView(treeViewCombobox);
   aDialog.mClasses->setModel(mClassModel);
 
   if (aDialog.exec())
@@ -61,11 +67,9 @@ void LessonView::on_mAdd_clicked()
     int  selectedRowSubject = aDialog.mSubject->currentIndex();
     auto selectedRowClass   = aDialog.mClasses->view()->selectionModel()->currentIndex();
 
-    if (selectedRowTeacher >= 0 && selectedRowSubject >= 0)
+    if (selectedRowTeacher >= 0 && selectedRowSubject >= 0 && selectedRowClass.row() >= 0)
     {
-      Students *           classe1 = mClassModel->getItem(selectedRowClass);
-      shared_ptr<Students> classes(classe1);
-
+      auto classes      = mClassModel->getItem(selectedRowClass);
       auto subject      = mContext.GetSubjectByIndex(selectedRowSubject);
       auto teacher      = mContext.GetTeacherByIndex(selectedRowTeacher);
       auto hoursPerWeek = aDialog.mHoursPerWeek->value();
@@ -80,6 +84,7 @@ void LessonView::on_mAdd_clicked()
       QMessageBox::about(this, "Error", "Please complete all fields");
     }
   }
+  delete treeViewCombobox;
 }
 
 void LessonView::on_mEdit_clicked()
@@ -90,8 +95,8 @@ void LessonView::on_mEdit_clicked()
   aDialog.mTeacher->setModel(mTeacherModel);
   aDialog.mSubject->setModel(mSubjectModel);
 
-  QTreeView * tv = new QTreeView(aDialog.mClasses);
-  aDialog.mClasses->setView(tv);
+  QTreeView * treeViewCombobox = new QTreeView(aDialog.mClasses);
+  aDialog.mClasses->setView(treeViewCombobox);
   aDialog.mClasses->setModel(mClassModel);
 
   int currentSelectedRowMapped =
@@ -103,24 +108,28 @@ void LessonView::on_mEdit_clicked()
   }
   else if (aDialog.exec())
   {
-    auto selectedTeacher = aDialog.mTeacher->currentIndex();
-    auto teacher         = mContext.GetTeacherByIndex(selectedTeacher);
-
-    auto selectedSubject = aDialog.mSubject->currentIndex();
-    auto subject         = mContext.GetSubjectByIndex(selectedSubject);
-
-    auto       selectedRowClass = aDialog.mClasses->view()->selectionModel()->currentIndex();
-    Students * classe1          = mClassModel->getItem(selectedRowClass);
-    shared_ptr<Students> classes(classe1);
+    auto selectedTeacher  = aDialog.mTeacher->currentIndex();
+    auto selectedSubject  = aDialog.mSubject->currentIndex();
+    auto selectedRowClass = aDialog.mClasses->view()->selectionModel()->currentIndex();
 
     auto hoursPerWeek = aDialog.mHoursPerWeek->value();
 
-    shared_ptr<Lesson> newLesson =
-      make_shared<Lesson>(teacher, subject, classes, hoursPerWeek, mContext.GenerateLessonId());
+    if (selectedTeacher >= 0 && selectedSubject >= 0 && selectedRowClass.row() >= 0)
+    {
+      auto teacher = mContext.GetTeacherByIndex(selectedTeacher);
+      auto subject = mContext.GetSubjectByIndex(selectedSubject);
+      auto classes = mClassModel->getItem(selectedRowClass);
 
-    index = tableModel->index(currentSelectedRowMapped, 0, QModelIndex());
-    tableModel->setData(index, newLesson, Qt::EditRole);
+      shared_ptr<Lesson> newLesson =
+        make_shared<Lesson>(teacher, subject, classes, hoursPerWeek, mContext.GenerateLessonId());
+
+      index = tableModel->index(currentSelectedRowMapped, 0, QModelIndex());
+      tableModel->setData(index, newLesson, Qt::EditRole);
+    }
+    else
+      QMessageBox::about(this, "Error", "Please complete all fields");
   }
+  delete treeViewCombobox;
 }
 
 void LessonView::on_mDelete_clicked()

@@ -103,7 +103,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AddDataDialog.cpp" />
-    <ClCompile Include="Classes.cpp" />
+    <ClCompile Include="Constraints.cpp" />
+    <ClCompile Include="Students.cpp" />
     <ClCompile Include="DisplayTimetableView.cpp" />
     <ClCompile Include="InstituteData.cpp" />
     <ClCompile Include="ClassesDialog.cpp" />
@@ -123,12 +124,16 @@
     <ClCompile Include="SubjectDialog.cpp" />
     <ClCompile Include="SubjectTableModel.cpp" />
     <ClCompile Include="SubjectView.cpp" />
+    <ClCompile Include="TeacherConstraintDialog.cpp" />
     <ClCompile Include="TeacherTableModel.cpp" />
     <ClCompile Include="Teacher.cpp" />
     <ClCompile Include="TeacherDialog.cpp" />
     <ClCompile Include="TeacherView.cpp" />
+    <ClCompile Include="TimeConstraint.cpp" />
     <ClCompile Include="TimeTableViewModel.cpp" />
     <ClCompile Include="TreeModel.cpp" />
+    <QtMoc Include="TeacherConstraintDialog.h" />
+    <ClInclude Include="TimeConstraint.h" />
     <QtMoc Include="TreeModel.h" />
     <QtMoc Include="TimeTableViewModel.h" />
     <QtMoc Include="TeacherDialog.h" />
@@ -137,7 +142,8 @@
     <QtMoc Include="ClassesDialog.h" />
     <QtMoc Include="AddDataDialog.h" />
     <QtMoc Include="DisplayTimetableView.h" />
-    <ClInclude Include="Classes.h" />
+    <ClInclude Include="Students.h" />
+    <ClInclude Include="Constraints.h" />
     <ClInclude Include="InstituteData.h" />
     <QtMoc Include="LessonView.h" />
     <QtMoc Include="InstitutionDetailsDialog.h" />
@@ -181,6 +187,7 @@
     <QtUic Include="RoomView.ui" />
     <QtUic Include="SubjectDialog.ui" />
     <QtUic Include="SubjectView.ui" />
+    <QtUic Include="TeacherConstraintDialog.ui" />
     <QtUic Include="TeacherDialog.ui" />
     <QtUic Include="TeacherView.ui" />
   </ItemGroup>

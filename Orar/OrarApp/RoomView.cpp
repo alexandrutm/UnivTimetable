@@ -23,6 +23,8 @@ RoomView::RoomView(Context & aContext, QWidget * parent)
 
 RoomView::~RoomView()
 {
+  delete proxyModel;
+  delete tableModel;
 }
 
 void RoomView::ClearData()

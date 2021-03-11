@@ -22,7 +22,8 @@ private slots:
   void on_mConstraints_clicked();
 
 private:
-  Ui::SubjectView        ui;
+  Ui::SubjectView ui;
+
   SortFilterProxyModel * proxyModel;
   SubjectTableModel *    tableModel;
   Context &              mContext;

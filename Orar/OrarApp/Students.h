@@ -32,5 +32,5 @@ private:
   int    mId;
 
   vector<unique_ptr<Students>> mChildren;
-  unique_ptr<Students>         mParent;
+  Students *                   mParent;
 };

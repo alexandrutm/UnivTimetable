@@ -17,7 +17,7 @@ public:
 private:
   Ui::DisplayTimetableView ui;
 
-  TimeTableViewModel * tableModel;
-  TreeModel *          mClassesModel;
+  TimeTableViewModel * mTableModel;
+  TreeModel *          mTreeModel;
   Context &            mContext;
 };

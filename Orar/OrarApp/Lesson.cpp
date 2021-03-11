@@ -1,30 +1,27 @@
 #include "stdafx.h"
 #include "Lesson.h"
 
-Lesson::Lesson(shared_ptr<Teacher>  aTeacher,
-               shared_ptr<Subject>  aSubject,
-               shared_ptr<Students> aClass,
-               int                  aHoursPerWeek,
-               int                  aId)
+Lesson::Lesson(
+  Teacher * aTeacher, Subject * aSubject, Students * aClass, int aHoursPerWeek, int aId)
   : mSubject(aSubject)
   , mTeacher(aTeacher)
-  , mGroup(aClass)
+  , mStudentClass(aClass)
   , mHoursPerWeek(aHoursPerWeek)
   , mId(aId)
 {
 }
 
-void Lesson::SetTeacher(shared_ptr<Teacher> aTeacher)
+void Lesson::SetTeacher(Teacher * aTeacher)
 {
   this->mTeacher = aTeacher;
 }
 
-void Lesson::SetClass(shared_ptr<Students> aClass)
+void Lesson::SetClass(Students * aClass)
 {
-  this->mGroup = aClass;
+  this->mStudentClass = aClass;
 }
 
-void Lesson::SetSubject(shared_ptr<Subject> aSubject)
+void Lesson::SetSubject(Subject * aSubject)
 {
   this->mSubject = aSubject;
 }
@@ -34,17 +31,17 @@ void Lesson::SetNumberOfHours(int aNumberOfHours)
   this->mHoursPerWeek = aNumberOfHours;
 }
 
-shared_ptr<Teacher> Lesson::GetTeacher()
+Teacher * Lesson::GetTeacher()
 {
   return mTeacher;
 }
 
-shared_ptr<Students> Lesson::GetGroup()
+Students * Lesson::GetStudentClass()
 {
-  return mGroup;
+  return mStudentClass;
 }
 
-shared_ptr<Subject> Lesson::GetSubject()
+Subject * Lesson::GetSubject()
 {
   return mSubject;
 }
@@ -68,7 +65,7 @@ Lesson & Lesson::operator=(const Lesson & lesson)
 {
   if (this != &lesson)
   {
-    this->mGroup        = lesson.mGroup;
+    this->mStudentClass = lesson.mStudentClass;
     this->mTeacher      = lesson.mTeacher;
     this->mSubject      = lesson.mSubject;
     this->mHoursPerWeek = lesson.mHoursPerWeek;

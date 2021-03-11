@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "Context.h"
+#include "Constraints.h"
 #include "InstituteData.h"
 #include "Lesson.h"
 #include "Room.h"
@@ -30,19 +31,14 @@ void Context::RemoveTeacher(int i)
                   mTeachers.end());
 }
 
-vector<shared_ptr<Teacher>> & Context::GetTeachers()
-{
-  return mTeachers;
-}
-
 size_t Context::GetTeacherSize()
 {
   return mTeachers.size();
 }
 
-shared_ptr<Teacher> & Context::GetTeacherByIndex(int i)
+Teacher * Context::GetTeacherByIndex(int i)
 {
-  return mTeachers[i];
+  return mTeachers[i].get();
 }
 
 void Context::DeleteTeachers()
@@ -76,19 +72,14 @@ void Context::RemoveSubject(int i)
                   mSubjects.end());
 }
 
-vector<shared_ptr<Subject>> & Context::GetSubjects()
-{
-  return mSubjects;
-}
-
 size_t Context::GetSubjectSize()
 {
   return mSubjects.size();
 }
 
-shared_ptr<Subject> & Context::GetSubjectByIndex(int i)
+Subject * Context::GetSubjectByIndex(int i)
 {
-  return mSubjects[i];
+  return mSubjects[i].get();
 }
 
 void Context::DeleteSubjects()
@@ -140,7 +131,7 @@ Students * Context::GetRootClass()
 
 void Context::AddLesson(shared_ptr<Lesson> aLesson)
 {
-  mLessons.push_back(aLesson);
+  mLessons.push_back(std::move(aLesson));
 }
 
 void Context::RemoveLesson(int i)
@@ -150,11 +141,6 @@ void Context::RemoveLesson(int i)
                              return mLessons[i]->GetId() == lesson->GetId();
                            }),
                  mLessons.end());
-}
-
-vector<shared_ptr<Lesson>> & Context::GetLessons()
-{
-  return mLessons;
 }
 
 size_t Context::GetLessonSize()
@@ -200,19 +186,14 @@ void Context::RemoveRoom(int i)
                mRooms.end());
 }
 
-vector<shared_ptr<Room>> & Context::GetRooms()
-{
-  return mRooms;
-}
-
 size_t Context::GetRoomSize()
 {
   return mRooms.size();
 }
 
-shared_ptr<Room> & Context::GetRoomByIndex(int i)
+Room * Context::GetRoomByIndex(int i)
 {
-  return mRooms[i];
+  return mRooms[i].get();
 }
 
 void Context::DeleteRooms()
@@ -240,4 +221,13 @@ void Context::AddInstituteData(shared_ptr<InstituteData> aInstituteData)
 shared_ptr<InstituteData> Context::GetInstituteData()
 {
   return mInstituteData;
+}
+
+void Context::AddConstraint(unique_ptr<Constraints> aConstr)
+{
+  mConstraints.push_back(move(aConstr));
+}
+
+void Context::DeleteConstraint()
+{
 }

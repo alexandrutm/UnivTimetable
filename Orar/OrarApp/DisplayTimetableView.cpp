@@ -9,14 +9,14 @@ DisplayTimetableView::DisplayTimetableView(TreeModel * aTreeModel,
                                            QWidget *   parent)
   : QWidget(parent)
   , mContext(aContext)
-  , mClassesModel(aTreeModel)
+  , mTreeModel(aTreeModel)
 {
   ui.setupUi(this);
 
-  tableModel = new TimeTableViewModel(mContext, this);
+  mTableModel = new TimeTableViewModel(mContext, this);
 
-  ui.mTimeTableView->setModel(tableModel);
-  ui.mTreeView->setModel(mClassesModel);
+  ui.mTimeTableView->setModel(mTableModel);
+  ui.mTreeView->setModel(mTreeModel);
 
   ui.mTimeTableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
   ui.mTimeTableView->verticalHeader()->setSectionResizeMode(QHeaderView::Stretch);
@@ -24,4 +24,5 @@ DisplayTimetableView::DisplayTimetableView(TreeModel * aTreeModel,
 
 DisplayTimetableView::~DisplayTimetableView()
 {
+  delete mTableModel;
 }

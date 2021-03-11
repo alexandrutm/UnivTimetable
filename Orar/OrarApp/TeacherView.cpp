@@ -1,10 +1,13 @@
 #include "stdafx.h"
 #include "TeacherView.h"
 #include "Context.h"
+#include "InstituteData.h"
 #include "SortFilterProxyModel.h"
 #include "Teacher.h"
+#include "TeacherConstraintDialog.h"
 #include "TeacherDialog.h"
 #include "TeacherTableModel.h"
+#include "TimeConstraint.h"
 
 TeacherView::TeacherView(Context & aContext, QWidget * parent)
   : QWidget(parent)
@@ -25,6 +28,8 @@ TeacherView::TeacherView(Context & aContext, QWidget * parent)
 
 TeacherView::~TeacherView()
 {
+  delete mTeacherProxyModel;
+  delete mTeacherTableModel;
 }
 
 void TeacherView::ClearData()
@@ -34,12 +39,12 @@ void TeacherView::ClearData()
 
 void TeacherView::on_mAdd_clicked()
 {
-  TeacherDialog Add(this);
+  TeacherDialog Dialog(this);
 
-  if (Add.exec())
+  if (Dialog.exec())
   {
-    QString firstName = Add.mFirstName->text();
-    QString lastName  = Add.mLastName->text();
+    QString firstName = Dialog.mFirstName->text();
+    QString lastName  = Dialog.mLastName->text();
     if (!firstName.isEmpty())
     {
       int newRow = static_cast<int>(mContext.GetTeacherSize());
@@ -109,18 +114,39 @@ void TeacherView::on_mDelete_clicked()
   }
   else
   {
-    if (mContext.GetTeacherByIndex(currentSelectedRowMapped).use_count() > 1)
-    {
-      QMessageBox::about(this, "About", "Please remove all lesson that hold this teacher first");
-    }
-    else
-    {
-      mTeacherTableModel->removeRows(currentSelectedRowMapped, currentSelectedRowMapped,
-                                     QModelIndex());
-    }
+    // if (mContext.GetTeacherByIndex(currentSelectedRowMapped).use_count() > 1)
+    //{
+    //  QMessageBox::about(this, "About", "Please remove all lesson that hold this teacher first");
+    //}
+    // else
+    //{
+    mTeacherTableModel->removeRows(currentSelectedRowMapped, currentSelectedRowMapped,
+                                   QModelIndex());
+    //}
   }
 }
 
 void TeacherView::on_mConstraints_clicked()
 {
+  TeacherConstraintDialog ConstraintDialog(mContext, this);
+
+  int currentSelectedRowMapped =
+    mTeacherProxyModel->mapToSource(ui.mTable->selectionModel()->currentIndex()).row();
+
+  if (ConstraintDialog.exec())
+  {
+    vector<int> daysNotAviable;
+    vector<int> hoursNotAviable;
+    for (int day = 0; day < mContext.GetInstituteData()->GetNumberOfDayPerWeek(); day++)
+      for (int hour = 0; hour < mContext.GetInstituteData()->GetNumberOfHoursPerDay(); hour++)
+        if (ConstraintDialog.mTeacherTableAviabileTime->item(hour, day)->text() == "X")
+        {
+          daysNotAviable.push_back(day);
+          hoursNotAviable.push_back(hour);
+        }
+
+    unique_ptr<TimeConstraint> constraint = make_unique<TimeConstraint>(
+      hoursNotAviable, daysNotAviable, mContext.GetTeacherByIndex(currentSelectedRowMapped));
+    mContext.AddConstraint(std::move(constraint));
+  }
 }

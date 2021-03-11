@@ -23,6 +23,7 @@ class OrarApp
 
 public:
   OrarApp(QWidget * parent = Q_NULLPTR);
+  ~OrarApp();
   void ChangeView(INavigator::viewId theView);
   void ChangeStatus(string);
 
@@ -39,7 +40,8 @@ private:
 
   TreeModel * mClassesModel;
 
-  AddDataDialog        mDataDialog;
+  AddDataDialog mDataDialog;
+
   HomeView             mHomeView;
   SubjectView          mSubjectView;
   ClassesView          mClassView;

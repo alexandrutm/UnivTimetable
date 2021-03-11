@@ -82,7 +82,7 @@ void Students::InsertChild(int id)
 
 Students * Students::GetParent()
 {
-  return mParent.get();
+  return mParent;
 }
 
 void Students::RemoveChild(int pos)

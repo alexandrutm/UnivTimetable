@@ -36,8 +36,13 @@ OrarApp::OrarApp(QWidget * parent)
 
   // create institution
   shared_ptr<InstituteData> InstitutionData =
-    make_shared<InstituteData>("Institution name", 12, 8, 20);
+    make_shared<InstituteData>("Institution name", 12, 8, 20, 5);
   mContext.AddInstituteData(InstitutionData);
+}
+
+OrarApp::~OrarApp()
+{
+  delete mClassesModel;
 }
 
 void OrarApp::ChangeView(INavigator::viewId theView)
@@ -77,9 +82,10 @@ void OrarApp::on_mInstitutionData_triggered()
     int hoursPerDay = institutionDialog.HoursPerDay->value();
     int startHour   = institutionDialog.mStartHour->value();
     int finishHour  = institutionDialog.mFinishHour->value();
+    int daysPerWeek = institutionDialog.mDaysPerWeek->value();
 
-    shared_ptr<InstituteData> InstitutionData =
-      make_shared<InstituteData>(name.toStdString(), hoursPerDay, startHour, finishHour);
+    shared_ptr<InstituteData> InstitutionData = make_shared<InstituteData>(
+      name.toStdString(), hoursPerDay, startHour, finishHour, daysPerWeek);
     mContext.AddInstituteData(InstitutionData);
   }
 }

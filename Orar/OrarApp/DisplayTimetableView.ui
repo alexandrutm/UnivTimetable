@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>669</width>
-    <height>414</height>
+    <width>802</width>
+    <height>440</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -46,7 +46,7 @@
     <widget class="QFrame" name="mRightMenu">
      <property name="minimumSize">
       <size>
-       <width>200</width>
+       <width>220</width>
        <height>0</height>
       </size>
      </property>

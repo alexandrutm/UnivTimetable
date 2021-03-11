@@ -10,23 +10,23 @@ public:
   bool     operator==(const Lesson & aLesson);
   Lesson & operator=(const Lesson & l);
 
-  Lesson(shared_ptr<Teacher>, shared_ptr<Subject>, shared_ptr<Students>, int, int);
+  Lesson(Teacher *, Subject *, Students *, int, int);
 
-  void SetTeacher(shared_ptr<Teacher> aTeacher);
-  void SetClass(shared_ptr<Students> aClass);
-  void SetSubject(shared_ptr<Subject> aSubject);
+  void SetTeacher(Teacher * aTeacher);
+  void SetClass(Students * aClass);
+  void SetSubject(Subject * aSubject);
   void SetNumberOfHours(int aNumberOfHours);
 
-  shared_ptr<Teacher>  GetTeacher();
-  shared_ptr<Students> GetGroup();
-  shared_ptr<Subject>  GetSubject();
-  int                  GetNumberOfHours();
-  int                  GetId();
+  Teacher *  GetTeacher();
+  Students * GetStudentClass();
+  Subject *  GetSubject();
+  int        GetNumberOfHours();
+  int        GetId();
 
 private:
-  shared_ptr<Subject>  mSubject;
-  shared_ptr<Teacher>  mTeacher;
-  shared_ptr<Students> mGroup;
-  int                  mHoursPerWeek;
-  int                  mId;
+  Subject *  mSubject;
+  Teacher *  mTeacher;
+  Students * mStudentClass;
+  int        mHoursPerWeek;
+  int        mId;
 };

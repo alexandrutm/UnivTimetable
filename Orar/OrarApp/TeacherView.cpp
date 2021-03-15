@@ -125,28 +125,3 @@ void TeacherView::on_mDelete_clicked()
     //}
   }
 }
-
-void TeacherView::on_mConstraints_clicked()
-{
-  TeacherConstraintDialog ConstraintDialog(mContext, this);
-
-  int currentSelectedRowMapped =
-    mTeacherProxyModel->mapToSource(ui.mTable->selectionModel()->currentIndex()).row();
-
-  if (ConstraintDialog.exec())
-  {
-    vector<int> daysNotAviable;
-    vector<int> hoursNotAviable;
-    for (int day = 0; day < mContext.GetInstituteData()->GetNumberOfDayPerWeek(); day++)
-      for (int hour = 0; hour < mContext.GetInstituteData()->GetNumberOfHoursPerDay(); hour++)
-        if (ConstraintDialog.mTeacherTableAviabileTime->item(hour, day)->text() == "X")
-        {
-          daysNotAviable.push_back(day);
-          hoursNotAviable.push_back(hour);
-        }
-
-    unique_ptr<TimeConstraint> constraint = make_unique<TimeConstraint>(
-      hoursNotAviable, daysNotAviable, mContext.GetTeacherByIndex(currentSelectedRowMapped));
-    mContext.AddConstraint(std::move(constraint));
-  }
-}

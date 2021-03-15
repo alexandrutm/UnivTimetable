@@ -1,10 +1,9 @@
 #include "stdafx.h"
 #include "TimeConstraint.h"
 
-TimeConstraint::TimeConstraint(vector<int> days, vector<int> hours, Teacher * aTeacher)
+TimeConstraint::TimeConstraint(vector<pair<int, int>> aDayAndHour, Teacher * aTeacher)
   : mTeacher(aTeacher)
-  , mDays(days)
-  , mHours(hours)
+  , mDayAndHour(aDayAndHour)
 {
 }
 

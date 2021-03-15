@@ -2,8 +2,8 @@
 #include "ClassesView.h"
 #include "ClassesDialog.h"
 #include "Context.h"
+#include "Group.h"
 #include "INavigator.h"
-#include "Students.h"
 #include "TreeModel.h"
 
 ClassesView::ClassesView(TreeModel * aStudentGroupModel, Context & aContext, QWidget * parent)

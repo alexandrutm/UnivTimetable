@@ -1,6 +1,6 @@
 #pragma once
 
-class Students;
+class Group;
 class Context;
 
 class TreeModel : public QAbstractItemModel
@@ -28,7 +28,7 @@ public:
   QModelIndex index(int row, int column, const QModelIndex & parent = QModelIndex()) const override;
   QModelIndex parent(const QModelIndex & index) const override;
 
-  Students * getItem(const QModelIndex & index) const;
+  Group * getItem(const QModelIndex & index) const;
 
 private:
   Context & mContext;

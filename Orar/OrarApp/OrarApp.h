@@ -2,6 +2,7 @@
 
 #include "AddDataDialog.h"
 #include "ClassesView.h"
+#include "ConstraintsView.h"
 #include "Context.h"
 #include "DisplayTimetableView.h"
 #include "HomeView.h"
@@ -49,4 +50,5 @@ private:
   TeacherView          mTeacherView;
   LessonView           mLessonView;
   DisplayTimetableView mDisplayTimeTableView;
+  ConstraintsView      mConstraintsView;
 };

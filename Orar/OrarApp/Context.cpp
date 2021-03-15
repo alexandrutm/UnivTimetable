@@ -1,16 +1,16 @@
 #include "stdafx.h"
 #include "Context.h"
-#include "Constraints.h"
+#include "Constraint.h"
+#include "Group.h"
 #include "InstituteData.h"
 #include "Lesson.h"
 #include "Room.h"
-#include "Students.h"
 #include "Subject.h"
 #include "Teacher.h"
 
 Context::Context()
 {
-  mRootNodeStudents = make_unique<Students>("Root Class", 0, 0);
+  mRootNodeStudents = make_unique<Group>("Root Class", 0, 0);
 }
 
 Context::~Context()
@@ -100,8 +100,8 @@ int Context::GenerateSubjectId()
 
 int Context::GenerateClassId()
 {
-  queue<Students *> treeNodes;
-  int               max = 0;
+  queue<Group *> treeNodes;
+  int            max = 0;
 
   treeNodes.push(mRootNodeStudents.get());
 
@@ -110,7 +110,7 @@ int Context::GenerateClassId()
     int queueSize = static_cast<int>(treeNodes.size());
     while (queueSize > 0)
     {
-      Students * frontNode = treeNodes.front();
+      Group * frontNode = treeNodes.front();
       treeNodes.pop();
 
       if (max < frontNode->GetId())
@@ -124,7 +124,7 @@ int Context::GenerateClassId()
   return max + 1;
 }
 
-Students * Context::GetRootClass()
+Group * Context::GetRootClass()
 {
   return mRootNodeStudents.get();
 }
@@ -223,7 +223,7 @@ shared_ptr<InstituteData> Context::GetInstituteData()
   return mInstituteData;
 }
 
-void Context::AddConstraint(unique_ptr<Constraints> aConstr)
+void Context::AddConstraint(unique_ptr<Constraint> aConstr)
 {
   mConstraints.push_back(move(aConstr));
 }

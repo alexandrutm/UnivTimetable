@@ -1,16 +1,15 @@
 #pragma once
-#include "Constraints.h"
+#include "Constraint.h"
 
 class Teacher;
 
-class TimeConstraint : public Constraints
+class TimeConstraint : public Constraint
 {
 public:
-  TimeConstraint(vector<int> aHours, vector<int> aDays, Teacher * aTeacher);
+  TimeConstraint(vector<pair<int, int>> aDayAndHour, Teacher * aTeacher);
   bool Validate();
 
 private:
-  Teacher *   mTeacher;
-  vector<int> mDays;
-  vector<int> mHours;
+  Teacher *              mTeacher;
+  vector<pair<int, int>> mDayAndHour;
 };

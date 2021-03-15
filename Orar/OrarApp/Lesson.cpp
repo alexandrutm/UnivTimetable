@@ -1,8 +1,7 @@
 #include "stdafx.h"
 #include "Lesson.h"
 
-Lesson::Lesson(
-  Teacher * aTeacher, Subject * aSubject, Students * aClass, int aHoursPerWeek, int aId)
+Lesson::Lesson(Teacher * aTeacher, Subject * aSubject, Group * aClass, int aHoursPerWeek, int aId)
   : mSubject(aSubject)
   , mTeacher(aTeacher)
   , mStudentClass(aClass)
@@ -16,7 +15,7 @@ void Lesson::SetTeacher(Teacher * aTeacher)
   this->mTeacher = aTeacher;
 }
 
-void Lesson::SetClass(Students * aClass)
+void Lesson::SetClass(Group * aClass)
 {
   this->mStudentClass = aClass;
 }
@@ -36,7 +35,7 @@ Teacher * Lesson::GetTeacher()
   return mTeacher;
 }
 
-Students * Lesson::GetStudentClass()
+Group * Lesson::GetStudentClass()
 {
   return mStudentClass;
 }

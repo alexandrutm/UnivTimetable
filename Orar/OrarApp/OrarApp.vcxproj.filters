@@ -77,7 +77,7 @@
     <ClCompile Include="Teacher.cpp">
       <Filter>Source Files\data</Filter>
     </ClCompile>
-    <ClCompile Include="Subject.cpp">
+    <ClCompile Include="Group.cpp">
       <Filter>Source Files\data</Filter>
     </ClCompile>
     <ClCompile Include="Lesson.cpp">
@@ -146,11 +146,14 @@
     <ClCompile Include="TimeConstraint.cpp">
       <Filter>Source Files\Constraint</Filter>
     </ClCompile>
-    <ClCompile Include="TeacherConstraintDialog.cpp">
+    <ClCompile Include="AviabilityConstraintDialog.cpp">
       <Filter>Source Files\Dialogs</Filter>
     </ClCompile>
-    <ClCompile Include="Constraints.cpp">
+    <ClCompile Include="Constraint.cpp">
       <Filter>Source Files\Constraint</Filter>
+    </ClCompile>
+    <ClCompile Include="ConstraintsView.cpp">
+      <Filter>Source Files\views</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -220,8 +223,11 @@
     <QtMoc Include="TreeModel.h">
       <Filter>Source Files\Models</Filter>
     </QtMoc>
-    <QtMoc Include="TeacherConstraintDialog.h">
+    <QtMoc Include="AviabilityConstraintDialog.h">
       <Filter>Source Files\Dialogs</Filter>
+    </QtMoc>
+    <QtMoc Include="ConstraintsView.h">
+      <Filter>Source Files\views</Filter>
     </QtMoc>
   </ItemGroup>
   <ItemGroup>
@@ -270,8 +276,11 @@
     <QtUic Include="RoomDialog.ui">
       <Filter>Resource Files\Dialog</Filter>
     </QtUic>
-    <QtUic Include="TeacherConstraintDialog.ui">
+    <QtUic Include="AviabilityConstraintDialog.ui">
       <Filter>Resource Files\Dialog</Filter>
+    </QtUic>
+    <QtUic Include="ConstraintsView.ui">
+      <Filter>Resource Files\Views</Filter>
     </QtUic>
   </ItemGroup>
   <ItemGroup>
@@ -299,10 +308,10 @@
     <ClInclude Include="InstituteData.h">
       <Filter>Source Files\data</Filter>
     </ClInclude>
-    <ClInclude Include="Students.h">
+    <ClInclude Include="Group.h">
       <Filter>Source Files\data</Filter>
     </ClInclude>
-    <ClInclude Include="Constraints.h">
+    <ClInclude Include="Constraint.h">
       <Filter>Source Files\Constraint</Filter>
     </ClInclude>
     <ClInclude Include="TimeConstraint.h">

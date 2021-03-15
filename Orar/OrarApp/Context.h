@@ -1,11 +1,11 @@
 #pragma once
 class Teacher;
 class Subject;
-class Students;
+class Group;
 class Lesson;
 class InstituteData;
 class Room;
-class Constraints;
+class Constraint;
 
 class Context
 {
@@ -27,8 +27,8 @@ public:
   void      DeleteSubjects();
   int       GenerateSubjectId();
 
-  int        GenerateClassId();
-  Students * GetRootClass();
+  int     GenerateClassId();
+  Group * GetRootClass();
 
   void                 AddLesson(shared_ptr<Lesson> aLesson);
   void                 RemoveLesson(int i);
@@ -47,15 +47,15 @@ public:
   void                      AddInstituteData(shared_ptr<InstituteData> aInstituteData);
   shared_ptr<InstituteData> GetInstituteData();
 
-  void AddConstraint(unique_ptr<Constraints> aConstr);
+  void AddConstraint(unique_ptr<Constraint> aConstr);
   void DeleteConstraint();
 
 private:
-  vector<unique_ptr<Constraints>> mConstraints;
-  vector<shared_ptr<Subject>>     mSubjects;
-  vector<shared_ptr<Teacher>>     mTeachers;
-  unique_ptr<Students>            mRootNodeStudents;
-  vector<shared_ptr<Lesson>>      mLessons;
-  vector<shared_ptr<Room>>        mRooms;
-  shared_ptr<InstituteData>       mInstituteData;
+  vector<unique_ptr<Constraint>> mConstraints;
+  vector<shared_ptr<Subject>>    mSubjects;
+  vector<shared_ptr<Teacher>>    mTeachers;
+  unique_ptr<Group>              mRootNodeStudents;
+  vector<shared_ptr<Lesson>>     mLessons;
+  vector<shared_ptr<Room>>       mRooms;
+  shared_ptr<InstituteData>      mInstituteData;
 };

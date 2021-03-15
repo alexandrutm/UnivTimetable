@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "treemodel.h"
 #include "Context.h"
-#include "Students.h"
+#include "Group.h"
 
 TreeModel::TreeModel(Context & aContext, QObject * parent)
   : QAbstractItemModel(parent)
@@ -122,11 +122,11 @@ QModelIndex TreeModel::parent(const QModelIndex & index) const
   return createIndex(static_cast<int>(parentItem->GetChildrenSize()), 0, parentItem);
 }
 
-Students * TreeModel::getItem(const QModelIndex & index) const
+Group * TreeModel::getItem(const QModelIndex & index) const
 {
   if (index.isValid())
   {
-    Students * item = static_cast<Students *>(index.internalPointer());
+    Group * item = static_cast<Group *>(index.internalPointer());
     if (item)
       return item;
   }

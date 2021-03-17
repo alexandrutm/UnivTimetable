@@ -18,6 +18,7 @@
 
 #include <QAbstractTableModel>
 #include <QDialog>
+#include <QSortFilterProxyModel>
 #include <QWidget>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets>

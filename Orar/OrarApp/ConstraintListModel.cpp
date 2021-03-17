@@ -9,9 +9,9 @@ ConstraintListModel::ConstraintListModel(Context & aContext, QObject * parent)
 {
 }
 
-int ConstraintListModel::rowCount(const QModelIndex & parent) const
+int ConstraintListModel::rowCount(const QModelIndex & /*parent*/) const
 {
-  return mContext.GetConstraintSize();
+  return static_cast<int>(mContext.GetConstraintSize());
 }
 
 QVariant ConstraintListModel::data(const QModelIndex & index, int role) const

@@ -13,22 +13,23 @@ public:
   Context();
   ~Context();
 
-  void      AddTeacher(shared_ptr<Teacher> aTeacher);
-  void      RemoveTeacher(int i);
-  size_t    GetTeacherSize();
-  Teacher * GetTeacherByIndex(int i);
-  void      DeleteTeachers();
-  int       GenerateTeacherId();
+  void                AddTeacher(shared_ptr<Teacher> aTeacher);
+  void                RemoveTeacher(int i);
+  size_t              GetTeacherSize();
+  shared_ptr<Teacher> GetTeacherByIndex(int i);
+  void                DeleteTeachers();
+  int                 GenerateTeacherId();
 
-  void      AddSubject(shared_ptr<Subject> aSubject);
-  void      RemoveSubject(int i);
-  size_t    GetSubjectSize();
-  Subject * GetSubjectByIndex(int i);
-  void      DeleteSubjects();
-  int       GenerateSubjectId();
+  void                AddSubject(shared_ptr<Subject> aSubject);
+  void                RemoveSubject(int i);
+  size_t              GetSubjectSize();
+  shared_ptr<Subject> GetSubjectByIndex(int i);
+  void                DeleteSubjects();
+  int                 GenerateSubjectId();
 
   int     GenerateClassId();
   Group * GetRootClass();
+  Group * GetClassById(int id);
 
   void                 AddLesson(shared_ptr<Lesson> aLesson);
   void                 RemoveLesson(int i);
@@ -44,11 +45,14 @@ public:
   void   DeleteRooms();
   int    GenerateRoomId();
 
-  void                      AddInstituteData(shared_ptr<InstituteData> aInstituteData);
-  shared_ptr<InstituteData> GetInstituteData();
+  void            AddInstituteData(shared_ptr<InstituteData> aInstituteData);
+  InstituteData * GetInstituteData();
 
-  void AddConstraint(unique_ptr<Constraint> aConstr);
-  void DeleteConstraint();
+  void         AddConstraint(unique_ptr<Constraint> aConstr);
+  void         DeleteConstraint();
+  size_t       GetConstraintSize();
+  Constraint * GetConstraintByIndex(int index);
+  void         RemoveConstraint(int index);
 
 private:
   vector<unique_ptr<Constraint>> mConstraints;

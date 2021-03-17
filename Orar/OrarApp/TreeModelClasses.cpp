@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "treemodel.h"
+#include "TreeModelClasses.h"
 #include "Context.h"
 #include "Group.h"
 
@@ -144,8 +144,6 @@ bool TreeModel::insertRows(int position, int rows, const QModelIndex & parent)
   beginInsertRows(parent, position, position + rows - 1);
   parentItem->InsertChild(mContext.GenerateClassId());
   endInsertRows();
-
-  auto b = mContext.GetTeacherSize();
 
   return true;
 }

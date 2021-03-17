@@ -1,5 +1,4 @@
 #pragma once
-#include <QAbstractTableModel>
 
 class Context;
 

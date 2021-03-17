@@ -71,7 +71,7 @@ void ConstraintsView::AddTeacherConstraint()
   TeacherConstraintDialog ConstraintDialog(mContext, this);
 
   ConstraintDialog.mTeacher->setModel(mTeacherModel);
-  int teacherSize = mContext.GetTeacherSize();
+  int teacherSize = static_cast<int>(mContext.GetTeacherSize());
 
   if (teacherSize == 0)
   {
@@ -98,7 +98,7 @@ void ConstraintsView::AddTeacherConstraint()
       make_unique<TimeConstraint>(dayAndHour, mContext.GetTeacherByIndex(currentSelectedRow));
     mContext.AddConstraint(std::move(constraint));
 
-    int constraintSize = mContext.GetConstraintSize();
+    int constraintSize = static_cast<int>(mContext.GetConstraintSize());
 
     mListModel->insertRows(constraintSize, constraintSize);
   }

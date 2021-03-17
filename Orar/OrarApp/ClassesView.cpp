@@ -4,7 +4,7 @@
 #include "Context.h"
 #include "Group.h"
 #include "INavigator.h"
-#include "TreeModel.h"
+#include "TreeModelClasses.h"
 
 ClassesView::ClassesView(TreeModel * aStudentGroupModel, Context & aContext, QWidget * parent)
   : QWidget(parent)
@@ -40,16 +40,16 @@ void ClassesView::on_mAddGroup_clicked()
     {
       const QModelIndex indexParent = ui.mTreeView->selectionModel()->currentIndex();
 
-      // insert a single row before de given row in the child items of the parent index
-
       auto parentItem = mTreeModel->getItem(indexParent);
       int  row        = static_cast<int>(parentItem->GetChildrenSize());
 
+      // insert a single row before de given row in the child items of the parent index
       if (!mTreeModel->insertRow(row, indexParent))
         return;
 
       const QModelIndex childIndexName = mTreeModel->index(row, 0, indexParent);
       mTreeModel->setData(childIndexName, name, Qt::EditRole);
+
       const QModelIndex childIndexNrOfStud = mTreeModel->index(row, 1, indexParent);
       mTreeModel->setData(childIndexNrOfStud, numberOfStudents, Qt::EditRole);
     }
@@ -74,7 +74,6 @@ void ClassesView::on_mAddYear_clicked()
       auto parentItem = mTreeModel->getItem(indexParent);
       int  row        = static_cast<int>(parentItem->GetChildrenSize());
 
-      // insert a single row before de given row in the child items of the parent index
       if (!mTreeModel->insertRow(row, indexParent))
         return;
 

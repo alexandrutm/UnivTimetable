@@ -36,9 +36,9 @@ size_t Context::GetTeacherSize()
   return mTeachers.size();
 }
 
-Teacher * Context::GetTeacherByIndex(int i)
+shared_ptr<Teacher> Context::GetTeacherByIndex(int i)
 {
-  return mTeachers[i].get();
+  return mTeachers[i];
 }
 
 void Context::DeleteTeachers()
@@ -77,9 +77,9 @@ size_t Context::GetSubjectSize()
   return mSubjects.size();
 }
 
-Subject * Context::GetSubjectByIndex(int i)
+shared_ptr<Subject> Context::GetSubjectByIndex(int i)
 {
-  return mSubjects[i].get();
+  return mSubjects[i];
 }
 
 void Context::DeleteSubjects()
@@ -127,6 +127,32 @@ int Context::GenerateClassId()
 Group * Context::GetRootClass()
 {
   return mRootNodeStudents.get();
+}
+
+Group * Context::GetClassById(int id)
+{
+  queue<Group *> treeNodes;
+
+  treeNodes.push(mRootNodeStudents.get());
+
+  while (!treeNodes.empty())
+  {
+    int queueSize = static_cast<int>(treeNodes.size());
+    while (queueSize > 0)
+    {
+      auto frontNode = treeNodes.front();
+      treeNodes.pop();
+
+      if (id == frontNode->GetId())
+        return frontNode;
+
+      for (int i = 0; i < frontNode->GetChildrenSize(); i++)
+        treeNodes.push(frontNode->GetChild(i));
+      queueSize--;
+    }
+  }
+
+  return nullptr;
 }
 
 void Context::AddLesson(shared_ptr<Lesson> aLesson)
@@ -218,9 +244,9 @@ void Context::AddInstituteData(shared_ptr<InstituteData> aInstituteData)
   mInstituteData = aInstituteData;
 }
 
-shared_ptr<InstituteData> Context::GetInstituteData()
+InstituteData * Context::GetInstituteData()
 {
-  return mInstituteData;
+  return mInstituteData.get();
 }
 
 void Context::AddConstraint(unique_ptr<Constraint> aConstr)
@@ -230,4 +256,22 @@ void Context::AddConstraint(unique_ptr<Constraint> aConstr)
 
 void Context::DeleteConstraint()
 {
+}
+
+size_t Context::GetConstraintSize()
+{
+  return mConstraints.size();
+}
+
+Constraint * Context::GetConstraintByIndex(int index)
+{
+  return mConstraints[index].get();
+}
+
+void Context::RemoveConstraint(int index)
+{
+  if (index >= mConstraints.size())
+    return;
+
+  mConstraints.erase(mConstraints.begin() + index);
 }

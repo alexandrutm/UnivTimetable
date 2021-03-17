@@ -1,7 +1,7 @@
 #pragma once
-#include <QAbstractTableModel>
 
 class Context;
+
 class RoomTableModel : public QAbstractTableModel
 {
   Q_OBJECT

@@ -11,7 +11,7 @@
 #include "SubjectTableModel.h"
 #include "Teacher.h"
 #include "TeacherTableModel.h"
-#include "TreeModel.h"
+#include "TreeModelClasses.h"
 
 LessonView::LessonView(Context & aContext, QWidget * parent)
   : QWidget(parent)
@@ -57,19 +57,25 @@ void LessonView::on_mAdd_clicked()
   aDialog.mTeacher->setModel(mTeacherModel);
   aDialog.mSubject->setModel(mSubjectModel);
 
+  // paint a tree model into class combobox
   QTreeView * treeViewCombobox = new QTreeView(aDialog.mClasses);
   aDialog.mClasses->setView(treeViewCombobox);
   aDialog.mClasses->setModel(mClassModel);
 
   if (aDialog.exec())
   {
-    int  selectedRowTeacher = aDialog.mTeacher->currentIndex();
-    int  selectedRowSubject = aDialog.mSubject->currentIndex();
-    auto selectedRowClass   = aDialog.mClasses->view()->selectionModel()->currentIndex();
+    // tree model for classes combo box
+    auto selectedRowClass = aDialog.mClasses->view()->selectionModel()->currentIndex();
+
+    int selectedRowTeacher = aDialog.mTeacher->currentIndex();
+    int selectedRowSubject = aDialog.mSubject->currentIndex();
 
     if (selectedRowTeacher >= 0 && selectedRowSubject >= 0 && selectedRowClass.row() >= 0)
     {
-      auto classes = mClassModel->getItem(selectedRowClass);
+      int  classId    = mClassModel->getItem(selectedRowClass)->GetId();
+      auto classesPtr = mContext.GetClassById(classId);
+
+      shared_ptr<Group> classes(classesPtr);
 
       auto subject      = mContext.GetSubjectByIndex(selectedRowSubject);
       auto teacher      = mContext.GetTeacherByIndex(selectedRowTeacher);
@@ -85,6 +91,8 @@ void LessonView::on_mAdd_clicked()
       QMessageBox::about(this, "Error", "Please complete all fields");
     }
   }
+
+  //
   delete treeViewCombobox;
 }
 
@@ -112,14 +120,17 @@ void LessonView::on_mEdit_clicked()
     auto selectedTeacher  = aDialog.mTeacher->currentIndex();
     auto selectedSubject  = aDialog.mSubject->currentIndex();
     auto selectedRowClass = aDialog.mClasses->view()->selectionModel()->currentIndex();
-
-    auto hoursPerWeek = aDialog.mHoursPerWeek->value();
+    auto hoursPerWeek     = aDialog.mHoursPerWeek->value();
 
     if (selectedTeacher >= 0 && selectedSubject >= 0 && selectedRowClass.row() >= 0)
     {
+      int  classId    = mClassModel->getItem(selectedRowClass)->GetId();
+      auto classesPtr = mContext.GetClassById(classId);
+
+      shared_ptr<Group> classes(classesPtr);
+
       auto teacher = mContext.GetTeacherByIndex(selectedTeacher);
       auto subject = mContext.GetSubjectByIndex(selectedSubject);
-      auto classes = mClassModel->getItem(selectedRowClass);
 
       shared_ptr<Lesson> newLesson =
         make_shared<Lesson>(teacher, subject, classes, hoursPerWeek, mContext.GenerateLessonId());

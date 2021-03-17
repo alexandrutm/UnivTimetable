@@ -77,7 +77,7 @@
     <ClCompile Include="Teacher.cpp">
       <Filter>Source Files\data</Filter>
     </ClCompile>
-    <ClCompile Include="Group.cpp">
+    <ClCompile Include="Subject.cpp">
       <Filter>Source Files\data</Filter>
     </ClCompile>
     <ClCompile Include="Lesson.cpp">
@@ -137,23 +137,26 @@
     <ClCompile Include="TeacherDialog.cpp">
       <Filter>Source Files\Dialogs</Filter>
     </ClCompile>
-    <ClCompile Include="TreeModel.cpp">
+    <ClCompile Include="TreeModelClasses.cpp">
       <Filter>Source Files\Models</Filter>
-    </ClCompile>
-    <ClCompile Include="Students.cpp">
-      <Filter>Source Files\data</Filter>
     </ClCompile>
     <ClCompile Include="TimeConstraint.cpp">
       <Filter>Source Files\Constraint</Filter>
-    </ClCompile>
-    <ClCompile Include="AviabilityConstraintDialog.cpp">
-      <Filter>Source Files\Dialogs</Filter>
     </ClCompile>
     <ClCompile Include="Constraint.cpp">
       <Filter>Source Files\Constraint</Filter>
     </ClCompile>
     <ClCompile Include="ConstraintsView.cpp">
       <Filter>Source Files\views</Filter>
+    </ClCompile>
+    <ClCompile Include="Group.cpp">
+      <Filter>Source Files\data</Filter>
+    </ClCompile>
+    <ClCompile Include="TeacherConstraintDialog.cpp">
+      <Filter>Source Files\Dialogs</Filter>
+    </ClCompile>
+    <ClCompile Include="ConstraintListModel.cpp">
+      <Filter>Source Files\Models</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -220,14 +223,17 @@
     <QtMoc Include="TeacherDialog.h">
       <Filter>Source Files\Dialogs</Filter>
     </QtMoc>
-    <QtMoc Include="TreeModel.h">
+    <QtMoc Include="TreeModelClasses.h">
       <Filter>Source Files\Models</Filter>
-    </QtMoc>
-    <QtMoc Include="AviabilityConstraintDialog.h">
-      <Filter>Source Files\Dialogs</Filter>
     </QtMoc>
     <QtMoc Include="ConstraintsView.h">
       <Filter>Source Files\views</Filter>
+    </QtMoc>
+    <QtMoc Include="TeacherConstraintDialog.h">
+      <Filter>Source Files\Dialogs</Filter>
+    </QtMoc>
+    <QtMoc Include="ConstraintListModel.h">
+      <Filter>Source Files\Models</Filter>
     </QtMoc>
   </ItemGroup>
   <ItemGroup>
@@ -276,11 +282,11 @@
     <QtUic Include="RoomDialog.ui">
       <Filter>Resource Files\Dialog</Filter>
     </QtUic>
-    <QtUic Include="AviabilityConstraintDialog.ui">
-      <Filter>Resource Files\Dialog</Filter>
-    </QtUic>
     <QtUic Include="ConstraintsView.ui">
       <Filter>Resource Files\Views</Filter>
+    </QtUic>
+    <QtUic Include="TeacherConstraintDialog.ui">
+      <Filter>Resource Files\Dialog</Filter>
     </QtUic>
   </ItemGroup>
   <ItemGroup>

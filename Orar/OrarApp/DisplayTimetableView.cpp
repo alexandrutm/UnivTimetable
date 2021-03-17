@@ -2,7 +2,7 @@
 #include "DisplayTimetableView.h"
 #include "Context.h"
 #include "TimeTableViewModel.h"
-#include "TreeModel.h"
+#include "TreeModelClasses.h"
 
 DisplayTimetableView::DisplayTimetableView(TreeModel * aTreeModel,
                                            Context &   aContext,

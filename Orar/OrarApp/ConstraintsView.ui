@@ -18,7 +18,11 @@
     <widget class="QListView" name="mConstraintsList"/>
    </item>
    <item>
-    <widget class="QListView" name="mDetailsConstraintsList"/>
+    <widget class="QPlainTextEdit" name="mConstraintDetails">
+     <property name="readOnly">
+      <bool>true</bool>
+     </property>
+    </widget>
    </item>
    <item>
     <layout class="QVBoxLayout" name="verticalLayout">

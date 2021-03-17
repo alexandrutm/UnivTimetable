@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>598</width>
-    <height>476</height>
+    <width>600</width>
+    <height>508</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -20,6 +20,20 @@
       <string>Aviability</string>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout">
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_2">
+        <item>
+         <widget class="QLabel" name="label_3">
+          <property name="text">
+           <string>Teacher </string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QComboBox" name="mTeacher"/>
+        </item>
+       </layout>
+      </item>
       <item>
        <widget class="QTableWidget" name="mTeacherTableAviabileTime">
         <property name="minimumSize">

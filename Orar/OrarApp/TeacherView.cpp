@@ -4,7 +4,6 @@
 #include "InstituteData.h"
 #include "SortFilterProxyModel.h"
 #include "Teacher.h"
-#include "TeacherConstraintDialog.h"
 #include "TeacherDialog.h"
 #include "TeacherTableModel.h"
 #include "TimeConstraint.h"

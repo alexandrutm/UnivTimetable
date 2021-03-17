@@ -7,7 +7,9 @@ class TimeConstraint : public Constraint
 {
 public:
   TimeConstraint(vector<pair<int, int>> aDayAndHour, Teacher * aTeacher);
-  bool Validate();
+  bool                   Validate();
+  string                 GetConstraintName();
+  vector<pair<int, int>> GetConstraintDetails();
 
 private:
   Teacher *              mTeacher;

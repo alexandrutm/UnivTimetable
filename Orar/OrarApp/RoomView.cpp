@@ -38,11 +38,12 @@ void RoomView::on_mAdd_clicked()
 
   if (Add.exec())
   {
-    QString aName = Add.Name->text();
+    QString aName    = Add.mName->text();
+    int     capacity = Add.mCapacity->value();
 
     if (!aName.isEmpty())
     {
-      tableModel->PopulateModel(aName);
+      tableModel->PopulateModel(aName, capacity);
     }
     else
     {
@@ -66,16 +67,24 @@ void RoomView::on_mEdit_clicked()
   else if (Edit.exec())
   {
     QString oldName;
+    int     oldCapacity;
 
     QModelIndex nameIndex = tableModel->index(currentSelectedRowMapped, 0, QModelIndex());
     oldName               = (tableModel->data(nameIndex, Qt::DisplayRole)).toString();
 
-    QString newName = Edit.Name->text();
+    QModelIndex capacityIndex = tableModel->index(currentSelectedRowMapped, 1, QModelIndex());
+    oldCapacity               = (tableModel->data(capacityIndex, Qt::DisplayRole)).toInt();
 
-    if (newName != oldName)
+    QString newName     = Edit.mName->text();
+    int     newCapacity = Edit.mCapacity->value();
+
+    if (newName != oldName || newCapacity != oldCapacity)
     {
       index = tableModel->index(currentSelectedRowMapped, 0, QModelIndex());
       tableModel->setData(index, newName, Qt::EditRole);
+
+      index = tableModel->index(currentSelectedRowMapped, 1, QModelIndex());
+      tableModel->setData(index, newCapacity, Qt::EditRole);
     }
   }
 }

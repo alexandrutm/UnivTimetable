@@ -17,7 +17,7 @@
    <item>
     <widget class="QGroupBox" name="groupBox">
      <property name="title">
-      <string>Aviability</string>
+      <string>Availability</string>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout">
       <item>
@@ -47,7 +47,7 @@
       <item>
        <widget class="QLabel" name="label_2">
         <property name="text">
-         <string>X - Not aviable   Empty cell - Aviable</string>
+         <string>X - Not available   Empty cell - Available</string>
         </property>
        </widget>
       </item>

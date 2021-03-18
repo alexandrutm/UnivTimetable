@@ -72,10 +72,7 @@ void LessonView::on_mAdd_clicked()
 
     if (selectedRowTeacher >= 0 && selectedRowSubject >= 0 && selectedRowClass.row() >= 0)
     {
-      int  classId    = mClassModel->getItem(selectedRowClass)->GetId();
-      auto classesPtr = mContext.GetClassById(classId);
-
-      shared_ptr<Group> classes(classesPtr);
+      auto classes = mClassModel->getItem(selectedRowClass);
 
       auto subject      = mContext.GetSubjectByIndex(selectedRowSubject);
       auto teacher      = mContext.GetTeacherByIndex(selectedRowTeacher);
@@ -124,11 +121,7 @@ void LessonView::on_mEdit_clicked()
 
     if (selectedTeacher >= 0 && selectedSubject >= 0 && selectedRowClass.row() >= 0)
     {
-      int  classId    = mClassModel->getItem(selectedRowClass)->GetId();
-      auto classesPtr = mContext.GetClassById(classId);
-
-      shared_ptr<Group> classes(classesPtr);
-
+      auto classes = mClassModel->getItem(selectedRowClass);
       auto teacher = mContext.GetTeacherByIndex(selectedTeacher);
       auto subject = mContext.GetSubjectByIndex(selectedSubject);
 

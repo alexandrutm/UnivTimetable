@@ -39,7 +39,11 @@
     <number>10</number>
    </property>
    <item>
-    <widget class="QTreeView" name="mTreeView"/>
+    <widget class="QTreeView" name="mTreeView">
+     <property name="editTriggers">
+      <set>QAbstractItemView::NoEditTriggers</set>
+     </property>
+    </widget>
    </item>
    <item>
     <widget class="QFrame" name="frame">

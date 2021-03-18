@@ -94,14 +94,14 @@ void SubjectView::on_mDelete_clicked()
   }
   else
   {
-    // if (mContext.GetSubjectByIndex(currentSelectedRowMapped).use_count() > 1)
-    //{
-    //  QMessageBox::about(this, "About", "Please remove all lesson that hold this subject first");
-    //}
-    // else
-    //{
-    tableModel->RemoveItemFromModel(currentSelectedRowMapped);
-    //}
+    if (mContext.GetSubjectByIndex(currentSelectedRowMapped).use_count() > 2)
+    {
+      QMessageBox::about(this, "About", "Please remove all lesson that hold this subject first");
+    }
+    else
+    {
+      tableModel->RemoveItemFromModel(currentSelectedRowMapped);
+    }
   }
 }
 

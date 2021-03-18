@@ -6,12 +6,12 @@ class Teacher;
 class TimeConstraint : public Constraint
 {
 public:
-  TimeConstraint(vector<pair<int, int>> aDayAndHour, Teacher * aTeacher);
+  TimeConstraint(vector<pair<int, int>> aDayAndHour, shared_ptr<Teacher> aTeacher);
   bool                   Validate();
   string                 GetConstraintName();
   vector<pair<int, int>> GetConstraintDetails();
 
 private:
-  Teacher *              mTeacher;
+  shared_ptr<Teacher>    mTeacher;
   vector<pair<int, int>> mDayAndHour;
 };

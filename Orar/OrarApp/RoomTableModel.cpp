@@ -26,14 +26,17 @@ QVariant RoomTableModel::data(const QModelIndex & index, int role) const
     return QVariant();
   }
 
-  if (index.column() == 0)
+  switch (index.column())
   {
-    QString aName;
-    aName = QString::fromStdString((mContext.GetRoomByIndex(index.row()))->GetNume());
-    return aName;
+  case 0:
+    return QString::fromStdString((mContext.GetRoomByIndex(index.row()))->GetNume());
+    break;
+  case 1:
+    return mContext.GetRoomByIndex(index.row())->GetCapacity();
+    break;
+  default:
+    return QVariant();
   }
-
-  return QVariant();
 }
 
 QVariant RoomTableModel::headerData(int section, Qt::Orientation orientation, int role) const
@@ -52,7 +55,7 @@ QVariant RoomTableModel::headerData(int section, Qt::Orientation orientation, in
   return QVariant();
 }
 
-bool RoomTableModel::setData(const QModelIndex & index, const QVariant & aName, int role)
+bool RoomTableModel::setData(const QModelIndex & index, const QVariant & aData, int role)
 {
   if (index.isValid() && role == Qt::EditRole)
   {
@@ -61,7 +64,10 @@ bool RoomTableModel::setData(const QModelIndex & index, const QVariant & aName, 
     switch (index.column())
     {
     case 0:
-      room->SetName((aName.toString()).toStdString());
+      room->SetName((aData.toString()).toStdString());
+      break;
+    case 1:
+      room->SetCapacity(aData.toInt());
       break;
     default:
       return false;
@@ -85,14 +91,15 @@ void RoomTableModel::RemoveItemFromModel(int aRowSelected)
   endRemoveRows();
 }
 
-void RoomTableModel::PopulateModel(QString aName)
+void RoomTableModel::PopulateModel(QString aName, int aCapacity)
 {
   int newRow = static_cast<int>(mContext.GetRoomSize());
 
   beginInsertRows(QModelIndex(), newRow,
                   newRow);  // emit signal to notify view that a new row is inserted
 
-  shared_ptr<Room> newRoom = make_shared<Room>(aName.toStdString(), mContext.GenerateRoomId());
+  shared_ptr<Room> newRoom =
+    make_shared<Room>(aName.toStdString(), aCapacity, mContext.GenerateRoomId());
   mContext.AddRoom(newRoom);
 
   endInsertRows();

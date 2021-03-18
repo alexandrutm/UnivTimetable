@@ -16,7 +16,7 @@ public:
                       int             role = Qt::DisplayRole) const Q_DECL_OVERRIDE;
   bool     setData(const QModelIndex & index, const QVariant & aName, int role) override;
   void     RemoveItemFromModel(int aRowSelected);
-  void     PopulateModel(QString aName);
+  void     PopulateModel(QString aName, int aCapacity);
 
   void ClearData();
 

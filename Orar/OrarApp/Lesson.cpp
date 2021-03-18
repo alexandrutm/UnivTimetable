@@ -3,7 +3,7 @@
 
 Lesson::Lesson(shared_ptr<Teacher> aTeacher,
                shared_ptr<Subject> aSubject,
-               shared_ptr<Group>   aClass,
+               Group *             aClass,
                int                 aHoursPerWeek,
                int                 aId)
   : mSubject(aSubject)
@@ -19,7 +19,7 @@ void Lesson::SetTeacher(shared_ptr<Teacher> aTeacher)
   this->mTeacher = aTeacher;
 }
 
-void Lesson::SetClass(shared_ptr<Group> aClass)
+void Lesson::SetClass(Group * aClass)
 {
   this->mStudentClass = aClass;
 }
@@ -39,7 +39,7 @@ shared_ptr<Teacher> Lesson::GetTeacher()
   return mTeacher;
 }
 
-shared_ptr<Group> Lesson::GetClass()
+Group * Lesson::GetGroup()
 {
   return mStudentClass;
 }

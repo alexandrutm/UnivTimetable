@@ -2,7 +2,7 @@
 #include "TimeConstraint.h"
 #include "Teacher.h"
 
-TimeConstraint::TimeConstraint(vector<pair<int, int>> aDayAndHour, Teacher * aTeacher)
+TimeConstraint::TimeConstraint(vector<pair<int, int>> aDayAndHour, shared_ptr<Teacher> aTeacher)
   : mTeacher(aTeacher)
   , mDayAndHour(aDayAndHour)
 {

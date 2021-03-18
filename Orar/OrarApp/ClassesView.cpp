@@ -69,7 +69,7 @@ void ClassesView::on_mAddYear_clicked()
 
     if (!name.isEmpty())
     {
-      const QModelIndex indexParent = ui.mTreeView->selectionModel()->currentIndex().parent();
+      const QModelIndex indexParent = ui.mTreeView->rootIndex();
 
       auto parentItem = mTreeModel->getItem(indexParent);
       int  row        = static_cast<int>(parentItem->GetChildrenSize());

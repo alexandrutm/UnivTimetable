@@ -1,8 +1,9 @@
 #include "stdafx.h"
 #include "Room.h"
 
-Room::Room(string aName, int aId)
+Room::Room(string aName, int aCapacity, int aId)
   : mName(aName)
+  , mCapacity(aCapacity)
   , mId(aId)
 {
 }
@@ -30,6 +31,16 @@ void Room::SetName(string aNume)
 string Room::GetNume()
 {
   return mName;
+}
+
+void Room::SetCapacity(int aCapacity)
+{
+  mCapacity = aCapacity;
+}
+
+int Room::GetCapacity()
+{
+  return mCapacity;
 }
 
 int Room::GetId()

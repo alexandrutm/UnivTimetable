@@ -113,14 +113,15 @@ void TeacherView::on_mDelete_clicked()
   }
   else
   {
-    // if (mContext.GetTeacherByIndex(currentSelectedRowMapped).use_count() > 1)
-    //{
-    //  QMessageBox::about(this, "About", "Please remove all lesson that hold this teacher first");
-    //}
-    // else
-    //{
-    mTeacherTableModel->removeRows(currentSelectedRowMapped, currentSelectedRowMapped,
-                                   QModelIndex());
-    //}
+    if (mContext.GetTeacherByIndex(currentSelectedRowMapped).use_count() > 2)
+    {
+      QMessageBox::about(this, "About",
+                         "Please remove all lesson/constraints that hold this teacher first");
+    }
+    else
+    {
+      mTeacherTableModel->removeRows(currentSelectedRowMapped, currentSelectedRowMapped,
+                                     QModelIndex());
+    }
   }
 }

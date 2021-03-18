@@ -42,7 +42,7 @@ QVariant LessonTableModel::data(const QModelIndex & index, int role) const
   }
   else if (index.column() == 2)
   {
-    auto studentClass = mContext.GetLessonByIndex(index.row())->GetClass();
+    auto studentClass = mContext.GetLessonByIndex(index.row())->GetGroup();
     return QString::fromStdString(studentClass->GetName());
   }
   else if (index.column() == 3)
@@ -86,7 +86,7 @@ bool LessonTableModel::setData(const QModelIndex & index, shared_ptr<Lesson> aLe
 
     oldLesson->SetSubject(aLesson->GetSubject());
 
-    oldLesson->SetClass(aLesson->GetClass());
+    oldLesson->SetClass(aLesson->GetGroup());
 
     oldLesson->SetNumberOfHours(aLesson->GetNumberOfHours());
 

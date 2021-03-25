@@ -24,7 +24,8 @@ private slots:
 private:
   Ui::ClassesView ui;
 
-  TreeModel * mTreeModel;
+  TreeModel *                mTreeModel;
+  QAbstractItemModelTester * modelTester;
 
   Context & mContext;
 };

@@ -13,6 +13,9 @@ ClassesView::ClassesView(TreeModel * aStudentGroupModel, Context & aContext, QWi
 {
   ui.setupUi(this);
 
+  modelTester = new QAbstractItemModelTester(
+    mTreeModel, QAbstractItemModelTester::FailureReportingMode::Fatal, this);
+
   ui.mTreeView->setModel(mTreeModel);
   ui.mTreeView->header()->setSectionResizeMode(QHeaderView::Stretch);
   ui.mTreeView->setSortingEnabled(true);
@@ -20,6 +23,7 @@ ClassesView::ClassesView(TreeModel * aStudentGroupModel, Context & aContext, QWi
 
 ClassesView::~ClassesView()
 {
+  delete modelTester;
 }
 
 void ClassesView::ClearData()
@@ -43,7 +47,7 @@ void ClassesView::on_mAddGroup_clicked()
       auto parentItem = mTreeModel->getItem(indexParent);
       int  row        = static_cast<int>(parentItem->GetChildrenSize());
 
-      // insert a single row before de given row in the child items of the parent index
+      // append a single row
       if (!mTreeModel->insertRow(row, indexParent))
         return;
 
@@ -131,15 +135,22 @@ void ClassesView::on_mEdit_clicked()
 
 void ClassesView::on_mDelete_clicked()
 {
-  auto indexRowSelected = ui.mTreeView->selectionModel()->currentIndex();
+  auto indexSelectedGroup = ui.mTreeView->selectionModel()->currentIndex();
 
-  if (!indexRowSelected.isValid())
+  if (!indexSelectedGroup.isValid())
   {
     QMessageBox::about(this, "No Class Selected", "Please choose a class");
     return;
   }
 
-  mTreeModel->removeRow(indexRowSelected.row(), indexRowSelected.parent());
+  auto result = mContext.SearchGroup(mTreeModel->getItem(indexSelectedGroup));
+  if (!result.empty())
+  {
+    result.append("Please remove all objects that hold this Group");
+    QMessageBox::about(this, "About", QString::fromStdString(result));
+  }
+  else
+    mTreeModel->removeRow(indexSelectedGroup.row(), indexSelectedGroup.parent());
 }
 
 void ClassesView::on_mConstraints_clicked()

@@ -30,6 +30,21 @@ string Group::GetName()
   return mName;
 }
 
+int Group::GetChildNumber() const
+{
+  if (mParent)
+  {
+    auto it =
+      find_if(mParent->mChildren.begin(), mParent->mChildren.end(), [&](auto const & child) {
+        return child.get() == this;
+      });
+
+    if (it != mParent->mChildren.end())
+      return it - mParent->mChildren.begin();
+  }
+  return 0;
+}
+
 int Group::GetId()
 {
   return mId;
@@ -63,22 +78,20 @@ Group * Group::GetChild(int nr)
   return mChildren.at(nr).get();
 }
 
-size_t Group::GetChildrenSize()
+size_t Group::GetChildrenSize() const
 {
   return mChildren.size();
 }
 
-int Group::GetNumberOfData()
+int Group::ColumnCount() const
 {
   // class name and number of students
   return 2;
 }
 
-void Group::InsertChild(int id)
+void Group::AppendChild(int id)
 {
-  shared_ptr<Group> newClass = make_shared<Group>("name", 0, id, this);
-
-  mChildren.push_back(move(newClass));
+  mChildren.emplace_back(make_unique<Group>("name", 0, id, this));
 }
 
 Group * Group::GetParent()
@@ -88,7 +101,7 @@ Group * Group::GetParent()
 
 void Group::RemoveChild(int pos)
 {
-  if (pos >= mChildren.size())
+  if (pos < 0 || pos >= mChildren.size())
     return;
 
   mChildren.erase(mChildren.begin() + pos);

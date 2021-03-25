@@ -9,17 +9,17 @@ public:
 
   ~Group();
 
-  size_t GetChildrenSize();
-  int    GetNumberOfData();
+  size_t GetChildrenSize() const;
+  int    ColumnCount() const;
 
-  void InsertChild(int id);
+  void AppendChild(int id);
   void RemoveChild(int pos);
 
-  void SetNumberOfStudents(int aNrOfStudent);
-  int  GetNumberOfStudents();
-
+  void   SetNumberOfStudents(int aNrOfStudent);
+  int    GetNumberOfStudents();
   void   SetName(string aName);
   string GetName();
+  int    GetChildNumber() const;
 
   Group * GetParent();
   Group * GetChild(int nr);

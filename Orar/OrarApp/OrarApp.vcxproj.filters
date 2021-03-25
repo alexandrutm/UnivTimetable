@@ -143,9 +143,6 @@
     <ClCompile Include="TimeConstraint.cpp">
       <Filter>Source Files\Constraint</Filter>
     </ClCompile>
-    <ClCompile Include="Constraint.cpp">
-      <Filter>Source Files\Constraint</Filter>
-    </ClCompile>
     <ClCompile Include="ConstraintsView.cpp">
       <Filter>Source Files\views</Filter>
     </ClCompile>
@@ -316,9 +313,6 @@
     </ClInclude>
     <ClInclude Include="Group.h">
       <Filter>Source Files\data</Filter>
-    </ClInclude>
-    <ClInclude Include="Constraint.h">
-      <Filter>Source Files\Constraint</Filter>
     </ClInclude>
     <ClInclude Include="TimeConstraint.h">
       <Filter>Source Files\Constraint</Filter>

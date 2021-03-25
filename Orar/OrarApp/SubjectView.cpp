@@ -85,23 +85,24 @@ void SubjectView::on_mEdit_clicked()
 
 void SubjectView::on_mDelete_clicked()
 {
-  int currentSelectedRowMapped =
+  // map selected row in the view with the one stored in context using proxy model
+  int selectedRowMapped =
     proxyModel->mapToSource(ui.mTable->selectionModel()->currentIndex()).row();
 
-  if (currentSelectedRowMapped < 0)
+  if (selectedRowMapped < 0)
   {
     QMessageBox::about(this, "No item selected", "Please choose an item to delete");
   }
   else
   {
-    if (mContext.GetSubjectByIndex(currentSelectedRowMapped).use_count() > 2)
+    auto result = mContext.SearchSubject(mContext.GetSubjectByIndex(selectedRowMapped));
+    if (!result.empty())
     {
-      QMessageBox::about(this, "About", "Please remove all lesson that hold this subject first");
+      result.append("\nPlease remove all objects that hold this Subject");
+      QMessageBox::about(this, "About", QString::fromStdString(result));
     }
     else
-    {
-      tableModel->RemoveItemFromModel(currentSelectedRowMapped);
-    }
+      tableModel->RemoveItemFromModel(selectedRowMapped);
   }
 }
 

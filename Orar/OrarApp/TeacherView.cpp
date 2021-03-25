@@ -113,10 +113,12 @@ void TeacherView::on_mDelete_clicked()
   }
   else
   {
-    if (mContext.GetTeacherByIndex(currentSelectedRowMapped).use_count() > 2)
+    auto result = mContext.SearchTeacher(mContext.GetTeacherByIndex(currentSelectedRowMapped));
+
+    if (!result.empty())
     {
-      QMessageBox::about(this, "About",
-                         "Please remove all lesson/constraints that hold this teacher first");
+      result.append("\nPlease remove all objects that hold this teacher");
+      QMessageBox::about(this, "About", QString::fromStdString(result));
     }
     else
     {

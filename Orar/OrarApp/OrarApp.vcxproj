@@ -54,7 +54,7 @@
   </ItemDefinitionGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="QtSettings">
     <QtInstall>Qt6.0</QtInstall>
-    <QtModules>core;gui;widgets</QtModules>
+    <QtModules>core;gui;testlib;widgets</QtModules>
     <QtBuildConfig>debug</QtBuildConfig>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'" Label="QtSettings">
@@ -103,7 +103,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AddDataDialog.cpp" />
-    <ClCompile Include="Constraint.cpp" />
     <ClCompile Include="ConstraintListModel.cpp" />
     <ClCompile Include="ConstraintsView.cpp" />
     <ClCompile Include="DisplayTimetableView.cpp" />
@@ -147,7 +146,6 @@
     <QtMoc Include="AddDataDialog.h" />
     <QtMoc Include="DisplayTimetableView.h" />
     <ClInclude Include="Group.h" />
-    <ClInclude Include="Constraint.h" />
     <ClInclude Include="InstituteData.h" />
     <QtMoc Include="LessonView.h" />
     <QtMoc Include="InstitutionDetailsDialog.h" />

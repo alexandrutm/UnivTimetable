@@ -16,6 +16,7 @@
 #pragma warning(disable : 26439)
 #pragma warning(disable : 6386)
 
+#include <QAbstractItemModelTester>
 #include <QAbstractTableModel>
 #include <QDialog>
 #include <QSortFilterProxyModel>

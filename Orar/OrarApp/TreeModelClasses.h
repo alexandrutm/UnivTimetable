@@ -32,4 +32,5 @@ public:
 
 private:
   Context & mContext;
+  Group *   mRootGroup;
 };

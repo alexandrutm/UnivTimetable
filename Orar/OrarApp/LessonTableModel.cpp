@@ -86,7 +86,7 @@ bool LessonTableModel::setData(const QModelIndex & index, shared_ptr<Lesson> aLe
 
     oldLesson->SetSubject(aLesson->GetSubject());
 
-    oldLesson->SetClass(aLesson->GetGroup());
+    oldLesson->SetGroup(aLesson->GetGroup());
 
     oldLesson->SetNumberOfHours(aLesson->GetNumberOfHours());
 

@@ -2,7 +2,7 @@
 #include "OrarApp.h"
 #include "AddDataDialog.h"
 #include "InstitutionDetailsDialog.h"
-#include "TreeModel.h"
+#include "TreeModelClasses.h"
 
 OrarApp::OrarApp(QWidget * parent)
   : QMainWindow(parent)

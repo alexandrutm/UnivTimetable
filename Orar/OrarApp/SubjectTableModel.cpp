@@ -27,9 +27,7 @@ QVariant SubjectTableModel::data(const QModelIndex & index, int role) const
 
   if (index.column() == 0)
   {
-    QString Name;
-    Name = QString::fromStdString((mContext.GetSubjectByIndex(index.row()))->GetName());
-    return Name;
+    return QString::fromStdString((mContext.GetSubjectByIndex(index.row()))->GetName());
   }
   return QVariant();
 }

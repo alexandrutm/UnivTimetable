@@ -1,12 +1,12 @@
 #include "stdafx.h"
 #include "Context.h"
-#include "Constraint.h"
 #include "Group.h"
 #include "InstituteData.h"
 #include "Lesson.h"
 #include "Room.h"
 #include "Subject.h"
 #include "Teacher.h"
+#include "TimeConstraint.h"
 
 Context::Context()
 {
@@ -22,13 +22,9 @@ void Context::AddTeacher(shared_ptr<Teacher> aTeacher)
   mTeachers.push_back(aTeacher);
 }
 
-void Context::RemoveTeacher(int i)
+void Context::RemoveTeacher(int pos)
 {
-  mTeachers.erase(remove_if(mTeachers.begin(), mTeachers.end(),
-                            [&](auto const & teacher) {
-                              return mTeachers[i]->GetId() == teacher->GetId();
-                            }),
-                  mTeachers.end());
+  mTeachers.erase(mTeachers.begin() + pos);
 }
 
 size_t Context::GetTeacherSize()
@@ -36,9 +32,9 @@ size_t Context::GetTeacherSize()
   return mTeachers.size();
 }
 
-shared_ptr<Teacher> Context::GetTeacherByIndex(int i)
+Teacher * Context::GetTeacherByIndex(int i)
 {
-  return mTeachers[i];
+  return mTeachers[i].get();
 }
 
 void Context::DeleteTeachers()
@@ -58,18 +54,37 @@ int Context::GenerateTeacherId()
   return (*maxIdIt)->GetId() + 1;
 }
 
+string Context::SearchTeacher(Teacher * aTeacher)
+{
+  string result;
+
+  // If we find a reference of this teacher in constraint or in lesson we return a
+  auto it = find_if(mConstraints.begin(), mConstraints.end(), [&](auto const & constr) {
+    return constr->GetTeacher() == aTeacher;
+  });
+
+  auto it2 = find_if(mLessons.begin(), mLessons.end(), [&](auto const & lesson) {
+    return lesson->GetTeacher() == aTeacher;
+  });
+
+  if (it2 != mLessons.end() && it != mConstraints.end())
+    result.append("This teacher is referred in Lesson and Constraint view");
+  else if (it2 != mLessons.end())
+    result.append("This teacher is referred in Lesson view");
+  else if (it != mConstraints.end())
+    result.append("This teacher is referred in Constraint view");
+
+  return result;
+}
+
 void Context::AddSubject(shared_ptr<Subject> aSubject)
 {
   mSubjects.push_back(aSubject);
 }
 
-void Context::RemoveSubject(int i)
+void Context::RemoveSubject(int pos)
 {
-  mSubjects.erase(remove_if(mSubjects.begin(), mSubjects.end(),
-                            [&](auto const & subject) {
-                              return mSubjects[i]->GetId() == subject->GetId();
-                            }),
-                  mSubjects.end());
+  mSubjects.erase(mSubjects.begin() + pos);
 }
 
 size_t Context::GetSubjectSize()
@@ -77,9 +92,9 @@ size_t Context::GetSubjectSize()
   return mSubjects.size();
 }
 
-shared_ptr<Subject> Context::GetSubjectByIndex(int i)
+Subject * Context::GetSubjectByIndex(int i)
 {
-  return mSubjects[i];
+  return mSubjects[i].get();
 }
 
 void Context::DeleteSubjects()
@@ -98,7 +113,22 @@ int Context::GenerateSubjectId()
   return (*maxIdIt)->GetId() + 1;
 }
 
-int Context::GenerateClassId()
+string Context::SearchSubject(Subject * aSubject)
+{
+  string result;
+
+  auto it = find_if(mLessons.begin(), mLessons.end(), [&](auto const & lesson) {
+    return lesson->GetSubject() == aSubject;
+  });
+
+  if (it != mLessons.end())
+  {
+    result.append("This subject is refered in lesson view\n");
+  }
+  return result;
+}
+
+int Context::GenerateGroupId()
 {
   queue<Group *> treeNodes;
   int            max = 0;
@@ -107,29 +137,25 @@ int Context::GenerateClassId()
 
   while (!treeNodes.empty())
   {
-    int queueSize = static_cast<int>(treeNodes.size());
-    while (queueSize > 0)
-    {
-      Group * frontNode = treeNodes.front();
-      treeNodes.pop();
+    Group * frontNode = treeNodes.front();
+    treeNodes.pop();
 
-      if (max < frontNode->GetId())
-        max = frontNode->GetId();
+    if (max < frontNode->GetId())
+      max = frontNode->GetId();
 
-      for (int i = 0; i < frontNode->GetChildrenSize(); i++)
-        treeNodes.push(frontNode->GetChild(i));
-      queueSize--;
-    }
+    for (int i = 0; i < frontNode->GetChildrenSize(); i++)
+      treeNodes.push(frontNode->GetChild(i));
   }
+
   return max + 1;
 }
 
-Group * Context::GetRootClass()
+Group * Context::GetRootGroup()
 {
   return mRootNodeStudents.get();
 }
 
-Group * Context::GetClassById(int id)
+Group * Context::GetGroupById(int id)
 {
   queue<Group *> treeNodes;
 
@@ -137,36 +163,40 @@ Group * Context::GetClassById(int id)
 
   while (!treeNodes.empty())
   {
-    int queueSize = static_cast<int>(treeNodes.size());
-    while (queueSize > 0)
-    {
-      auto frontNode = treeNodes.front();
-      treeNodes.pop();
+    auto frontNode = treeNodes.front();
+    treeNodes.pop();
 
-      if (id == frontNode->GetId())
-        return frontNode;
+    if (id == frontNode->GetId())
+      return frontNode;
 
-      for (int i = 0; i < frontNode->GetChildrenSize(); i++)
-        treeNodes.push(frontNode->GetChild(i));
-      queueSize--;
-    }
+    for (int i = 0; i < frontNode->GetChildrenSize(); i++)
+      treeNodes.push(frontNode->GetChild(i));
   }
 
   return nullptr;
 }
 
-void Context::AddLesson(shared_ptr<Lesson> aLesson)
+string Context::SearchGroup(Group * aGroup)
 {
-  mLessons.push_back(std::move(aLesson));
+  string result;
+
+  auto it = find_if(mLessons.begin(), mLessons.end(), [&](auto const & lesson) {
+    return lesson->GetGroup() == aGroup;
+  });
+
+  if (it != mLessons.end())
+    result.append("This goup is refered in lesson view\n");
+  return result;
 }
 
-void Context::RemoveLesson(int i)
+void Context::AddLesson(shared_ptr<Lesson> aLesson)
 {
-  mLessons.erase(remove_if(mLessons.begin(), mLessons.end(),
-                           [&](auto const & lesson) {
-                             return mLessons[i]->GetId() == lesson->GetId();
-                           }),
-                 mLessons.end());
+  mLessons.push_back(aLesson);
+}
+
+void Context::RemoveLesson(int pos)
+{
+  mLessons.erase(mLessons.begin() + pos);
 }
 
 size_t Context::GetLessonSize()
@@ -174,9 +204,9 @@ size_t Context::GetLessonSize()
   return mLessons.size();
 }
 
-shared_ptr<Lesson> & Context::GetLessonByIndex(int i)
+Lesson * Context::GetLessonByIndex(int i)
 {
-  return mLessons[i];
+  return mLessons[i].get();
 }
 
 void Context::DeleteLessons()
@@ -201,15 +231,9 @@ void Context::AddRoom(shared_ptr<Room> aRoom)
   mRooms.push_back(aRoom);
 }
 
-void Context::RemoveRoom(int i)
+void Context::RemoveRoom(int pos)
 {
-  auto aRoom = mRooms[i];
-
-  mRooms.erase(remove_if(mRooms.begin(), mRooms.end(),
-                         [&](auto const & room) {
-                           return aRoom->GetId() == room->GetId();
-                         }),
-               mRooms.end());
+  mRooms.erase(mRooms.begin() + pos);
 }
 
 size_t Context::GetRoomSize()
@@ -249,13 +273,9 @@ InstituteData * Context::GetInstituteData()
   return mInstituteData.get();
 }
 
-void Context::AddConstraint(unique_ptr<Constraint> aConstr)
+void Context::AddConstraint(unique_ptr<TimeConstraint> aConstr)
 {
   mConstraints.push_back(move(aConstr));
-}
-
-void Context::DeleteConstraint()
-{
 }
 
 size_t Context::GetConstraintSize()
@@ -263,7 +283,7 @@ size_t Context::GetConstraintSize()
   return mConstraints.size();
 }
 
-Constraint * Context::GetConstraintByIndex(int index)
+TimeConstraint * Context::GetConstraintByIndex(int index)
 {
   return mConstraints[index].get();
 }

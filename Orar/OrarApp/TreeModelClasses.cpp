@@ -17,8 +17,9 @@ TreeModel::~TreeModel()
 
 int TreeModel::rowCount(const QModelIndex & parent) const
 {
-  const auto parentItem = getItem(parent);
-
+  if (parent.isValid() && parent.column() > 0)
+    return 0;
+  const Group * parentItem = getItem(parent);
   return parentItem ? static_cast<int>(parentItem->GetChildrenSize()) : 0;
 }
 

@@ -43,6 +43,9 @@
     <Filter Include="Source Files\Constraint">
       <UniqueIdentifier>{c256548a-ffc9-42db-ab15-26dcb06be75f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\engine">
+      <UniqueIdentifier>{dd211de5-47b1-4c0f-a055-f63d84da901b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <QtRcc Include="OrarApp.qrc">

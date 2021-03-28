@@ -13,19 +13,18 @@ public:
   ClassesView(TreeModel * aTreeModel, Context & aContext, QWidget * parent = Q_NULLPTR);
   ~ClassesView();
   void ClearData();
+  void UpdateActions();
 
 private slots:
-  void on_mAddGroup_clicked();
-  void on_mAddYear_clicked();
+  void on_mSplitClass_clicked();
+  void on_mAddClass_clicked();
   void on_mEdit_clicked();
   void on_mDelete_clicked();
-  void on_mConstraints_clicked();
 
 private:
   Ui::ClassesView ui;
 
-  TreeModel *                mTreeModel;
-  QAbstractItemModelTester * modelTester;
+  TreeModel * mTreeModel;
 
   Context & mContext;
 };

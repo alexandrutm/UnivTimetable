@@ -40,7 +40,7 @@ int Group::GetChildNumber() const
       });
 
     if (it != mParent->mChildren.end())
-      return it - mParent->mChildren.begin();
+      return static_cast<int>(it - mParent->mChildren.begin());
   }
   return 0;
 }

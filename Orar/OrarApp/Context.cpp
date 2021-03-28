@@ -178,15 +178,28 @@ Group * Context::GetGroupById(int id)
 
 string Context::SearchGroup(Group * aGroup)
 {
-  string result;
+  // search for every child of the aGroup to don't be refered
+  queue<Group *> treeNodes;
 
-  auto it = find_if(mLessons.begin(), mLessons.end(), [&](auto const & lesson) {
-    return lesson->GetGroup() == aGroup;
-  });
+  treeNodes.push(aGroup);
 
-  if (it != mLessons.end())
-    result.append("This goup is refered in lesson view\n");
-  return result;
+  while (!treeNodes.empty())
+  {
+    auto frontNode = treeNodes.front();
+    treeNodes.pop();
+
+    auto it = find_if(mLessons.begin(), mLessons.end(), [&](auto const & lesson) {
+      return lesson->GetGroup() == frontNode;
+    });
+
+    if (it != mLessons.end())
+      return "This group or his children are refered in lesson view\n";
+
+    for (int i = 0; i < frontNode->GetChildrenSize(); i++)
+      treeNodes.push(frontNode->GetChild(i));
+  }
+
+  return "";
 }
 
 void Context::AddLesson(shared_ptr<Lesson> aLesson)

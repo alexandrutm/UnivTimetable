@@ -79,7 +79,7 @@
        <number>0</number>
       </property>
       <item>
-       <widget class="QPushButton" name="mAddYear">
+       <widget class="QPushButton" name="mAddClass">
         <property name="minimumSize">
          <size>
           <width>0</width>
@@ -105,7 +105,7 @@ QPushButton:hover {
 }</string>
         </property>
         <property name="text">
-         <string>Add Year|Class</string>
+         <string>Add Class</string>
         </property>
         <property name="icon">
          <iconset resource="OrarApp.qrc">
@@ -126,7 +126,7 @@ QPushButton:hover {
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="mAddGroup">
+       <widget class="QPushButton" name="mSplitClass">
         <property name="minimumSize">
          <size>
           <width>0</width>
@@ -152,7 +152,7 @@ QPushButton:hover {
 }</string>
         </property>
         <property name="text">
-         <string>Add Group</string>
+         <string>Add Class</string>
         </property>
         <property name="icon">
          <iconset resource="OrarApp.qrc">
@@ -239,44 +239,6 @@ QPushButton:hover {
         <property name="icon">
          <iconset resource="OrarApp.qrc">
           <normaloff>:/Buttons/img/deleteBtn.png</normaloff>:/Buttons/img/deleteBtn.png</iconset>
-        </property>
-        <property name="iconSize">
-         <size>
-          <width>18</width>
-          <height>18</height>
-         </size>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="mConstraints">
-        <property name="minimumSize">
-         <size>
-          <width>0</width>
-          <height>40</height>
-         </size>
-        </property>
-        <property name="layoutDirection">
-         <enum>Qt::RightToLeft</enum>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">QPushButton{
-	font: 75 12pt &quot;Times New Roman&quot;;
-	color: rgb(70, 70, 70);
-	background-color: rgb(200, 200, 200);
-	border: 0px solid;
-}
-
-QPushButton:hover {
-	background-color: rgb(231, 231, 231);
-}</string>
-        </property>
-        <property name="text">
-         <string>Constraints  </string>
-        </property>
-        <property name="icon">
-         <iconset resource="OrarApp.qrc">
-          <normaloff>:/Buttons/img/constr.png</normaloff>:/Buttons/img/constr.png</iconset>
         </property>
         <property name="iconSize">
          <size>

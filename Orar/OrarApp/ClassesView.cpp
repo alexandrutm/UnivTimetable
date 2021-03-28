@@ -13,17 +13,15 @@ ClassesView::ClassesView(TreeModel * aStudentGroupModel, Context & aContext, QWi
 {
   ui.setupUi(this);
 
-  modelTester = new QAbstractItemModelTester(
-    mTreeModel, QAbstractItemModelTester::FailureReportingMode::Fatal, this);
-
   ui.mTreeView->setModel(mTreeModel);
   ui.mTreeView->header()->setSectionResizeMode(QHeaderView::Stretch);
   ui.mTreeView->setSortingEnabled(true);
+
+  ui.mSplitClass->setHidden(true);
 }
 
 ClassesView::~ClassesView()
 {
-  delete modelTester;
 }
 
 void ClassesView::ClearData()
@@ -31,7 +29,17 @@ void ClassesView::ClearData()
   // mStudentGroupModel->ClearData();
 }
 
-void ClassesView::on_mAddGroup_clicked()
+void ClassesView::UpdateActions()
+{
+  const bool hasSelection = ui.mTreeView->selectionModel()->selection().isEmpty();
+  ui.mSplitClass->setHidden(hasSelection);
+  if (!hasSelection)
+    ui.mSplitClass->setText("Split Class");
+  else
+    ui.mSplitClass->setText("Add Class");
+}
+
+void ClassesView::on_mSplitClass_clicked()
 {
   ClassesDialog AddDialog(this);
 
@@ -40,13 +48,12 @@ void ClassesView::on_mAddGroup_clicked()
     QString name             = AddDialog.Name->text();
     int     numberOfStudents = AddDialog.NumberOfStudents->value();
 
+    const QModelIndex indexParent = ui.mTreeView->selectionModel()->currentIndex();
+    auto              parentItem  = mTreeModel->getItem(indexParent);
+    int               row         = static_cast<int>(parentItem->GetChildrenSize());
+
     if (!name.isEmpty())
     {
-      const QModelIndex indexParent = ui.mTreeView->selectionModel()->currentIndex();
-
-      auto parentItem = mTreeModel->getItem(indexParent);
-      int  row        = static_cast<int>(parentItem->GetChildrenSize());
-
       // append a single row
       if (!mTreeModel->insertRow(row, indexParent))
         return;
@@ -59,10 +66,16 @@ void ClassesView::on_mAddGroup_clicked()
     }
     else
       QMessageBox::about(this, "Name error", "You need to insert a class name");
+
+    ui.mTreeView->selectionModel()->setCurrentIndex(mTreeModel->index(row, 0, indexParent),
+                                                    QItemSelectionModel::ClearAndSelect |
+                                                      QItemSelectionModel::Rows);
   }
+
+  UpdateActions();
 }
 
-void ClassesView::on_mAddYear_clicked()
+void ClassesView::on_mAddClass_clicked()
 {
   ClassesDialog AddDialog(this);
 
@@ -70,6 +83,11 @@ void ClassesView::on_mAddYear_clicked()
   {
     QString name             = AddDialog.Name->text();
     int     numberOfStudents = AddDialog.NumberOfStudents->value();
+
+    const QModelIndex indexParent = ui.mTreeView->rootIndex();
+
+    auto parentItem = mTreeModel->getItem(indexParent);
+    int  row        = static_cast<int>(parentItem->GetChildrenSize());
 
     if (!name.isEmpty())
     {
@@ -89,7 +107,13 @@ void ClassesView::on_mAddYear_clicked()
     }
     else
       QMessageBox::about(this, "Name error", "You need to insert a class name");
+
+    ui.mTreeView->selectionModel()->setCurrentIndex(mTreeModel->index(row, 0, indexParent),
+                                                    QItemSelectionModel::ClearAndSelect |
+                                                      QItemSelectionModel::Rows);
   }
+
+  UpdateActions();
 }
 
 void ClassesView::on_mEdit_clicked()
@@ -143,6 +167,7 @@ void ClassesView::on_mDelete_clicked()
     return;
   }
 
+  // if delete a base class search for children to don't be referend into other view
   auto result = mContext.SearchGroup(mTreeModel->getItem(indexSelectedGroup));
   if (!result.empty())
   {
@@ -151,8 +176,6 @@ void ClassesView::on_mDelete_clicked()
   }
   else
     mTreeModel->removeRow(indexSelectedGroup.row(), indexSelectedGroup.parent());
-}
 
-void ClassesView::on_mConstraints_clicked()
-{
+  UpdateActions();
 }

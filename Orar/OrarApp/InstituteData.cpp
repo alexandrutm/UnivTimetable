@@ -9,20 +9,20 @@ bool InstituteData::operator==(const InstituteData & aInfo)
 InstituteData::InstituteData(
   string aName, int aHoursPerDay, int aStartHour, int aFinishHour, int aDaysPerWeek)
   : mSchoolName(aName)
-  , mHoursPerDay(aHoursPerDay)
+  , mNumberOfHoursPerDay(aHoursPerDay)
   , mStartHour(aStartHour)
   , mFinishHour(aFinishHour)
-  , mDaysPerWeek(aDaysPerWeek)
+  , mNumberOfDaysPerWeek(aDaysPerWeek)
 {
   // default data
-  mDaysWeek.resize(mHoursPerDay);
+  mDaysWeek.resize(mNumberOfHoursPerDay);
   mDaysWeek[0] = ("Monday");
   mDaysWeek[1] = ("Tuesday");
   mDaysWeek[2] = ("Wednesday");
   mDaysWeek[3] = ("Thursday");
   mDaysWeek[4] = ("Friday");
 
-  mHoursDay.resize(mHoursPerDay);
+  mHoursDay.resize(mNumberOfHoursPerDay);
   mHoursDay[0]  = ("08:00");
   mHoursDay[1]  = ("09:00");
   mHoursDay[2]  = ("10:00");
@@ -44,12 +44,12 @@ string InstituteData::GetSchoolName()
 
 int InstituteData::GetNumberOfHoursPerDay()
 {
-  return mHoursPerDay;
+  return mNumberOfHoursPerDay;
 }
 
-int InstituteData::GetNumberOfDayPerWeek()
+int InstituteData::GetNumberOfDaysPerWeek()
 {
-  return mDaysPerWeek;
+  return mNumberOfDaysPerWeek;
 }
 
 int InstituteData::GetStartHour()
@@ -64,12 +64,12 @@ void InstituteData::SetSchoolName(string aSchoolName)
 
 void InstituteData::SetHoursPerDay(int aHoursPerDay)
 {
-  mHoursPerDay = aHoursPerDay;
+  mNumberOfHoursPerDay = aHoursPerDay;
 }
 
 void InstituteData::SetDayPerWeek(int aDayPerWeek)
 {
-  mDaysPerWeek = aDayPerWeek;
+  mNumberOfDaysPerWeek = aDayPerWeek;
 }
 
 void InstituteData::SetStartHour(int startHour)
@@ -91,11 +91,11 @@ InstituteData & InstituteData::operator=(const InstituteData & aBasicInfo)
 {
   if (this != &aBasicInfo)
   {
-    mSchoolName  = aBasicInfo.mSchoolName;
-    mStartHour   = aBasicInfo.mStartHour;
-    mHoursPerDay = aBasicInfo.mHoursPerDay;
-    mFinishHour  = aBasicInfo.mFinishHour;
-    mDaysPerWeek = aBasicInfo.mDaysPerWeek;
+    mSchoolName          = aBasicInfo.mSchoolName;
+    mStartHour           = aBasicInfo.mStartHour;
+    mNumberOfHoursPerDay = aBasicInfo.mNumberOfHoursPerDay;
+    mFinishHour          = aBasicInfo.mFinishHour;
+    mNumberOfDaysPerWeek = aBasicInfo.mNumberOfDaysPerWeek;
   }
 
   return *this;

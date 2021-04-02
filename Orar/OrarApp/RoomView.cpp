@@ -51,6 +51,7 @@ void RoomView::on_mAdd_clicked()
     }
   }
 }
+
 void RoomView::on_mEdit_clicked()
 {
   RoomDialog  Edit(this);
@@ -100,17 +101,6 @@ void RoomView::on_mDelete_clicked()
   }
   else
   {
-    // if (mContext.GetRoomByIndex(currentSelectedRowMapped).use_count() > 1)
-    //{
-    //  QMessageBox::about(this, "About", "Please remove all lesson that hold this room first");
-    //}
-    // else
-    //{
     tableModel->RemoveItemFromModel(currentSelectedRowMapped);
-    // }
   }
-}
-
-void RoomView::on_mConstraints_clicked()
-{
 }

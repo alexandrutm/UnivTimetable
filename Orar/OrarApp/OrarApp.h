@@ -5,6 +5,7 @@
 #include "ConstraintsView.h"
 #include "Context.h"
 #include "DisplayTimetableView.h"
+#include "GenerateTimeTable.h"
 #include "HomeView.h"
 #include "INavigator.h"
 #include "InstituteData.h"
@@ -32,6 +33,7 @@ private slots:
   // toolbar actions
   void on_mNew_triggered();
   void on_mData_triggered();
+  void on_mGenerate_triggered();
   void on_mInstitutionData_triggered();
 
 private:
@@ -51,4 +53,6 @@ private:
   LessonView           mLessonView;
   DisplayTimetableView mDisplayTimeTableView;
   ConstraintsView      mConstraintsView;
+
+  GenerateTimeTable mTimeTable;
 };

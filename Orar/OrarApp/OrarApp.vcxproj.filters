@@ -158,6 +158,12 @@
     <ClCompile Include="ConstraintListModel.cpp">
       <Filter>Source Files\Models</Filter>
     </ClCompile>
+    <ClCompile Include="TimeSlot.cpp">
+      <Filter>Source Files\data</Filter>
+    </ClCompile>
+    <ClCompile Include="GenerateTimeTable.cpp">
+      <Filter>Source Files\engine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="ClassesView.h">
@@ -319,6 +325,12 @@
     </ClInclude>
     <ClInclude Include="TimeConstraint.h">
       <Filter>Source Files\Constraint</Filter>
+    </ClInclude>
+    <ClInclude Include="TimeSlot.h">
+      <Filter>Source Files\data</Filter>
+    </ClInclude>
+    <ClInclude Include="GenerateTimeTable.h">
+      <Filter>Source Files\engine</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -13,12 +13,12 @@ TeacherConstraintDialog::TeacherConstraintDialog(Context & aContext, QWidget * p
   mTeacherTableAviabileTime->verticalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
   mTeacherTableAviabileTime->setRowCount(mContext.GetInstituteData()->GetNumberOfHoursPerDay());
-  mTeacherTableAviabileTime->setColumnCount(mContext.GetInstituteData()->GetNumberOfDayPerWeek());
+  mTeacherTableAviabileTime->setColumnCount(mContext.GetInstituteData()->GetNumberOfDaysPerWeek());
 
   auto daysWeek = mContext.GetInstituteData()->GetDaysWeek();
   auto hoursDay = mContext.GetInstituteData()->GetHoursDay();
 
-  for (int j = 0; j < mContext.GetInstituteData()->GetNumberOfDayPerWeek(); j++)
+  for (int j = 0; j < mContext.GetInstituteData()->GetNumberOfDaysPerWeek(); j++)
   {
     QTableWidgetItem * item = new QTableWidgetItem(QString::fromStdString(daysWeek[j]));
     mTeacherTableAviabileTime->setHorizontalHeaderItem(j, item);
@@ -32,7 +32,8 @@ TeacherConstraintDialog::TeacherConstraintDialog(Context & aContext, QWidget * p
 
   for (int hourDay = 0; hourDay < mContext.GetInstituteData()->GetNumberOfHoursPerDay(); hourDay++)
   {
-    for (int dayWeek = 0; dayWeek < mContext.GetInstituteData()->GetNumberOfDayPerWeek(); dayWeek++)
+    for (int dayWeek = 0; dayWeek < mContext.GetInstituteData()->GetNumberOfDaysPerWeek();
+         dayWeek++)
     {
       QTableWidgetItem * item = new QTableWidgetItem(" ");
       item->setTextAlignment(Qt::AlignCenter);
@@ -58,7 +59,7 @@ TeacherConstraintDialog::~TeacherConstraintDialog()
 
 void TeacherConstraintDialog::ColumnClicked(int col)
 {
-  if (col >= 0 && col < mContext.GetInstituteData()->GetNumberOfDayPerWeek())
+  if (col >= 0 && col < mContext.GetInstituteData()->GetNumberOfDaysPerWeek())
   {
     QString itemText = mTeacherTableAviabileTime->item(0, col)->text();
 

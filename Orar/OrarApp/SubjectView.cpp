@@ -105,7 +105,3 @@ void SubjectView::on_mDelete_clicked()
       tableModel->RemoveItemFromModel(selectedRowMapped);
   }
 }
-
-void SubjectView::on_mConstraints_clicked()
-{
-}

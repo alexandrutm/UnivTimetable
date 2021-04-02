@@ -1,8 +1,10 @@
 #pragma once
+#include "timeSlot.h"
 
 class Subject;
 class Teacher;
 class Group;
+class Room;
 
 class Lesson
 {
@@ -12,21 +14,36 @@ public:
 
   Lesson(Teacher *, Subject *, Group *, int, int);
 
-  void SetTeacher(Teacher * aTeacher);
-  void SetGroup(Group * aGroup);
-  void SetSubject(Subject * aSubject);
-  void SetNumberOfHours(int aNumberOfHours);
+  void     SetTimeSlot(TimeSlot aTimeSlot);
+  TimeSlot GetTimeSlot();
 
+  void   SetRoom(Room * aRoom);
+  Room * GetRoom();
+
+  void      SetTeacher(Teacher * aTeacher);
   Teacher * GetTeacher();
-  Group *   GetGroup();
+
+  void    SetGroup(Group * aGroup);
+  Group * GetGroup();
+
+  void      SetSubject(Subject * aSubject);
   Subject * GetSubject();
-  int       GetNumberOfHours();
-  int       GetId();
+
+  void SetDuration(int aNumberOfHours);
+  int  GetDuration();
+
+  int GetId();
 
 private:
+  int mId;
+
+  TimeSlot mTimeSlot;
+
+  Room * mRoom;
+
   Subject * mSubject;
   Teacher * mTeacher;
   Group *   mGroup;
-  int       mHoursPerWeek;
-  int       mId;
+
+  int mDuration;
 };

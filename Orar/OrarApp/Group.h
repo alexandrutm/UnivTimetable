@@ -26,6 +26,9 @@ public:
 
   int GetId();
 
+  void ChangeAvailability(pair<int, int> availability);
+  bool IsAvailable(pair<int, int> availability);
+
 private:
   string mName;
   int    mNumberOfStudents;
@@ -33,4 +36,6 @@ private:
 
   vector<unique_ptr<Group>> mChildren;
   Group *                   mParent;
+
+  vector<pair<int, int>> mAvailability;
 };

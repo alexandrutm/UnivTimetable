@@ -3,6 +3,7 @@
 #include "ConstraintListModel.h"
 #include "Context.h"
 #include "InstituteData.h"
+#include "Teacher.h"
 #include "TeacherConstraintDialog.h"
 #include "TeacherTableModel.h"
 #include "TimeConstraint.h"
@@ -51,10 +52,11 @@ void ConstraintsView::ListItemChanged(QModelIndex index)
   else
   {
     QString detailsConstraint("Not aviable hours: ");
-    auto    daysConstraint    = mContext.GetConstraintByIndex(index.row())->GetConstraintDetails();
-    auto    instituteDaysWeek = mContext.GetInstituteData()->GetDaysWeek();
-    auto    instituteHoursDay = mContext.GetInstituteData()->GetHoursDay();
-            
+    auto    daysConstraint =
+      mContext.GetConstraintByIndex(index.row())->GetConstraintDetailsDayAndHour();
+    auto instituteDaysWeek = mContext.GetInstituteData()->GetDaysWeek();
+    auto instituteHoursDay = mContext.GetInstituteData()->GetHoursDay();
+
     for (int i = 0; i < daysConstraint.size(); i++)
     {
       detailsConstraint.append(QString::fromStdString(instituteDaysWeek[daysConstraint[i].first]));
@@ -85,14 +87,15 @@ void ConstraintsView::AddTeacherConstraint()
   {
     vector<pair<int, int>> dayAndHour;
 
-    for (int day = 0; day < mContext.GetInstituteData()->GetNumberOfDayPerWeek(); day++)
+    int currentSelectedRow = ConstraintDialog.mTeacher->currentIndex();
+
+    for (int day = 0; day < mContext.GetInstituteData()->GetNumberOfDaysPerWeek(); day++)
       for (int hour = 0; hour < mContext.GetInstituteData()->GetNumberOfHoursPerDay(); hour++)
         if (ConstraintDialog.mTeacherTableAviabileTime->item(hour, day)->text() == "X")
         {
           dayAndHour.push_back(make_pair(day, hour));
+          mContext.GetTeacherByIndex(currentSelectedRow)->ChangeAvailability(make_pair(day, hour));
         }
-
-    int currentSelectedRow = ConstraintDialog.mTeacher->currentIndex();
 
     unique_ptr<TimeConstraint> constraint =
       make_unique<TimeConstraint>(dayAndHour, mContext.GetTeacherByIndex(currentSelectedRow));

@@ -9,12 +9,19 @@ public:
 
   void   SetName(string);
   string GetNume();
-  void   SetCapacity(int aCapacity);
-  int    GetCapacity();
-  int    GetId();
+
+  void SetCapacity(int aCapacity);
+  int  GetCapacity();
+
+  int GetId();
+
+  void ChangeAvailability(pair<int, int> availability);
+  bool IsAvailable(pair<int, int> availability);
 
 private:
   string mName;
   int    mCapacity;
   int    mId;
+
+  vector<pair<int, int>> mAvailability;
 };

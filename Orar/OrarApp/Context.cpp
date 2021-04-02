@@ -11,6 +11,11 @@
 Context::Context()
 {
   mRootNodeStudents = make_unique<Group>("Root Class", 0, 0);
+
+  // create institution
+  shared_ptr<InstituteData> InstitutionData =
+    make_shared<InstituteData>("Institution name", 12, 8, 20, 5);
+  this->AddInstituteData(InstitutionData);
 }
 
 Context::~Context()
@@ -56,8 +61,6 @@ int Context::GenerateTeacherId()
 
 string Context::SearchTeacher(Teacher * aTeacher)
 {
-  string result;
-
   // If we find a reference of this teacher in constraint or in lesson we return a
   auto it = find_if(mConstraints.begin(), mConstraints.end(), [&](auto const & constr) {
     return constr->GetTeacher() == aTeacher;
@@ -68,13 +71,16 @@ string Context::SearchTeacher(Teacher * aTeacher)
   });
 
   if (it2 != mLessons.end() && it != mConstraints.end())
-    result.append("This teacher is referred in Lesson and Constraint view");
+    return "This teacher is referred in Lesson and Constraint view";
   else if (it2 != mLessons.end())
-    result.append("This teacher is referred in Lesson view");
+    return "This teacher is referred in Lesson view";
   else if (it != mConstraints.end())
-    result.append("This teacher is referred in Constraint view");
+    return "This teacher is referred in Constraint view";
+}
 
-  return result;
+vector<shared_ptr<Teacher>> Context::GetTeachers()
+{
+  return mTeachers;
 }
 
 void Context::AddSubject(shared_ptr<Subject> aSubject)
@@ -115,17 +121,13 @@ int Context::GenerateSubjectId()
 
 string Context::SearchSubject(Subject * aSubject)
 {
-  string result;
-
   auto it = find_if(mLessons.begin(), mLessons.end(), [&](auto const & lesson) {
     return lesson->GetSubject() == aSubject;
   });
 
   if (it != mLessons.end())
-  {
-    result.append("This subject is refered in lesson view\n");
-  }
-  return result;
+    return "This subject is refered in lesson view\n";
+  return "";
 }
 
 int Context::GenerateGroupId()
@@ -239,6 +241,11 @@ int Context::GenerateLessonId()
   return (*maxIdIt)->GetId() + 1;
 }
 
+vector<shared_ptr<Lesson>> Context::GetLessons()
+{
+  return mLessons;
+}
+
 void Context::AddRoom(shared_ptr<Room> aRoom)
 {
   mRooms.push_back(aRoom);
@@ -276,6 +283,11 @@ int Context::GenerateRoomId()
   return (*maxIdIt)->GetId() + 1;
 }
 
+vector<shared_ptr<Room>> Context::GetRooms()
+{
+  return mRooms;
+}
+
 void Context::AddInstituteData(shared_ptr<InstituteData> aInstituteData)
 {
   mInstituteData = aInstituteData;
@@ -299,6 +311,16 @@ size_t Context::GetConstraintSize()
 TimeConstraint * Context::GetConstraintByIndex(int index)
 {
   return mConstraints[index].get();
+}
+
+TimeConstraint * Context::GetConstraintByTeacher(Teacher * aTeacher)
+{
+  auto it = find_if(mConstraints.begin(), mConstraints.end(), [&](auto const & constraint) {
+    return constraint->GetTeacher() == aTeacher;
+  });
+
+  if (it != mConstraints.end())
+    return it->get();
 }
 
 void Context::RemoveConstraint(int index)

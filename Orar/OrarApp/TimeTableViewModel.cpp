@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "TimeTableViewModel.h"
 #include "Context.h"
+#include "InstituteData.h"
 
 TimeTableViewModel::TimeTableViewModel(Context & aContext, QObject * parent)
   : QAbstractTableModel(parent)
@@ -10,12 +11,12 @@ TimeTableViewModel::TimeTableViewModel(Context & aContext, QObject * parent)
 
 int TimeTableViewModel::rowCount(const QModelIndex & /*parent*/) const
 {
-  return 1;
+  return mContext.GetInstituteData()->GetNumberOfHoursPerDay();
 }
 
 int TimeTableViewModel::columnCount(const QModelIndex & /*parent*/) const
 {
-  return 5;
+  return mContext.GetInstituteData()->GetNumberOfDaysPerWeek();
 }
 
 QVariant TimeTableViewModel::data(const QModelIndex & index, int role) const
@@ -25,27 +26,6 @@ QVariant TimeTableViewModel::data(const QModelIndex & index, int role) const
     return QVariant();
   }
 
-  switch (index.column())
-  {
-  case 0:
-    return "14:00-16:00 (C)  Algoritmi Paraleli Cr. Popirlan  sala 113\n16:00-18:00 (L) Algoritmi "
-           "Paraleli Cr.Popirlan\n   ";
-  case 1:
-    return "14:00-16:00 (C)  Algoritmi Paraleli Cr. Popirlan  sala 113\n16:00-18:00 (L) Algoritmi "
-           "Paraleli Cr.Popirlan\n   ";
-  case 2:
-    return "14:00-16:00 (C)  Algoritmi Paraleli Cr. Popirlan  sala 113\n16:00-18:00 (L) Algoritmi "
-           "Paraleli Cr.Popirlan\n   ";
-  case 3:
-    return "09:00-10:00 (C)  Algoritmi Paraleli Cr. Popirlan  sala 113\n10:00-12:00 (L) Algoritmi "
-           "Paraleli Cr.Popirlan\n14:00-16:00 (C) Medii de programare Vizuala Cl. Popirlan sala "
-           "305   ";
-  case 4:
-    return "14:00-16:00 (C)  Algoritmi Paraleli Cr. Popirlan  sala 113\n16:00-18:00 (L) Algoritmi "
-           "Paraleli Cr.Popirlan\n   ";
-  default:
-    break;
-  }
   return QVariant();
 }
 

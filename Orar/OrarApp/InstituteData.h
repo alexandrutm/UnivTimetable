@@ -6,11 +6,15 @@ public:
   bool            operator==(const InstituteData & aInfo);
   InstituteData & operator=(const InstituteData &);
 
-  InstituteData(string, int, int, int, int);
+  InstituteData(string aName      = "Institution name",
+                int    aNrOfHours = 12,
+                int    aStartHour = 8,
+                int    aEndHour   = 20,
+                int    aDayWeek   = 5);
 
   string GetSchoolName();
   int    GetNumberOfHoursPerDay();
-  int    GetNumberOfDayPerWeek();
+  int    GetNumberOfDaysPerWeek();
   int    GetStartHour();
 
   void SetSchoolName(string aSchoolName);
@@ -26,8 +30,8 @@ private:
   vector<string> mHoursDay;
 
   string mSchoolName;
-  int    mHoursPerDay;
+  int    mNumberOfHoursPerDay;
   int    mStartHour;
   int    mFinishHour;
-  int    mDaysPerWeek;
+  int    mNumberOfDaysPerWeek;
 };

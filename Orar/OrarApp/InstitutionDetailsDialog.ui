@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>328</width>
+    <width>346</width>
     <height>328</height>
    </rect>
   </property>
@@ -51,7 +51,7 @@
                 <item>
                  <widget class="QLineEdit" name="SchoolName">
                   <property name="text">
-                   <string>Institution name</string>
+                   <string/>
                   </property>
                  </widget>
                 </item>
@@ -133,35 +133,35 @@
                </widget>
               </item>
               <item>
-               <widget class="QSpinBox" name="mStartHour">
-                <property name="specialValueText">
-                 <string>08:00</string>
+               <widget class="QSpinBox" name="mStartTime">
+                <property name="minimum">
+                 <number>8</number>
                 </property>
                 <property name="maximum">
-                 <number>24</number>
+                 <number>20</number>
+                </property>
+                <property name="value">
+                 <number>8</number>
                 </property>
                </widget>
               </item>
               <item>
                <widget class="QLabel" name="label_4">
                 <property name="text">
-                 <string>Finish hour</string>
+                 <string>End hour</string>
                 </property>
                </widget>
               </item>
               <item>
-               <widget class="QSpinBox" name="mFinishHour">
-                <property name="minimumSize">
-                 <size>
-                  <width>40</width>
-                  <height>0</height>
-                 </size>
-                </property>
-                <property name="specialValueText">
-                 <string>20:00</string>
+               <widget class="QSpinBox" name="mEndTime">
+                <property name="minimum">
+                 <number>8</number>
                 </property>
                 <property name="maximum">
-                 <number>24</number>
+                 <number>20</number>
+                </property>
+                <property name="value">
+                 <number>20</number>
                 </property>
                </widget>
               </item>

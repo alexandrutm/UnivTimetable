@@ -18,7 +18,7 @@ string TimeConstraint::GetConstraintName()
   return mTeacher->GetFirstName() + "  " + mTeacher->GetLastName();
 }
 
-vector<pair<int, int>> TimeConstraint::GetConstraintDetails()
+vector<pair<int, int>> TimeConstraint::GetConstraintDetailsDayAndHour()
 {
   return mDayAndHour;
 }

@@ -50,6 +50,23 @@ int Group::GetId()
   return mId;
 }
 
+void Group::ChangeAvailability(pair<int, int> availability)
+{
+  mAvailability.push_back(availability);
+}
+
+bool Group::IsAvailable(pair<int, int> availability)
+{
+  auto it = find_if(mAvailability.begin(), mAvailability.end(), [&](const auto & aTimeslot) {
+    return aTimeslot == availability;
+  });
+
+  if (it != mAvailability.end())
+    return false;
+
+  return true;
+}
+
 bool Group::operator==(const Group & aClass)
 {
   return mId == aClass.mId;

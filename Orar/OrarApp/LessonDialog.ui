@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>376</width>
-    <height>337</height>
+    <width>299</width>
+    <height>309</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -122,7 +122,7 @@ QComboBox:hover {
      <item>
       <widget class="QLabel" name="label_3">
        <property name="text">
-        <string>Hours per week</string>
+        <string>Duration</string>
        </property>
       </widget>
      </item>
@@ -140,7 +140,7 @@ QComboBox:hover {
       </spacer>
      </item>
      <item>
-      <widget class="QSpinBox" name="mHoursPerWeek">
+      <widget class="QSpinBox" name="mDuration">
        <property name="styleSheet">
         <string notr="true">QSpinBox{
 	font: 75 11pt &quot;Times New Roman&quot;;
@@ -153,6 +153,15 @@ QSpinBox:hover {
 	background-color: rgb(231, 231, 231);
 }</string>
        </property>
+       <property name="minimum">
+        <number>1</number>
+       </property>
+       <property name="maximum">
+        <number>6</number>
+       </property>
+       <property name="value">
+        <number>2</number>
+       </property>
       </widget>
      </item>
     </layout>
@@ -160,20 +169,13 @@ QSpinBox:hover {
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout_6">
      <item>
-      <spacer name="horizontalSpacer">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
+      <widget class="QPushButton" name="Ok">
+       <property name="maximumSize">
         <size>
-         <width>40</width>
-         <height>20</height>
+         <width>100</width>
+         <height>16777215</height>
         </size>
        </property>
-      </spacer>
-     </item>
-     <item>
-      <widget class="QPushButton" name="Ok">
        <property name="styleSheet">
         <string notr="true">QPushButton{
 	font: 75 11pt &quot;Times New Roman&quot;;

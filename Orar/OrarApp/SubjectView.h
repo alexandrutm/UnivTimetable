@@ -19,7 +19,6 @@ private slots:
   void on_mAdd_clicked();
   void on_mEdit_clicked();
   void on_mDelete_clicked();
-  void on_mConstraints_clicked();
 
 private:
   Ui::SubjectView ui;

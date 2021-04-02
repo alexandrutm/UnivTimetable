@@ -16,6 +16,7 @@ OrarApp::OrarApp(QWidget * parent)
   , mLessonView(mContext, this)
   , mDisplayTimeTableView(mClassesModel, mContext, this)
   , mConstraintsView(mContext, this)
+  , mTimeTable(mContext)
 
 {
   ui.setupUi(this);
@@ -36,11 +37,6 @@ OrarApp::OrarApp(QWidget * parent)
   ui.centralStackWidget->insertWidget(0, &mHomeView);
   ui.centralStackWidget->insertWidget(1, &mDisplayTimeTableView);
   ui.centralStackWidget->setCurrentIndex(0);
-
-  // create institution
-  shared_ptr<InstituteData> InstitutionData =
-    make_shared<InstituteData>("Institution name", 12, 8, 20, 5);
-  mContext.AddInstituteData(InstitutionData);
 }
 
 OrarApp::~OrarApp()
@@ -74,6 +70,12 @@ void OrarApp::on_mData_triggered()
   }
 }
 
+void OrarApp::on_mGenerate_triggered()
+{
+  if (mTimeTable.IsGenerated())
+    QMessageBox::about(this, "Succes", "Timetable is generated");
+}
+
 void OrarApp::on_mInstitutionData_triggered()
 {
   InstitutionDetailsDialog institutionDialog = new InstitutionDetailsDialog(this);
@@ -83,12 +85,12 @@ void OrarApp::on_mInstitutionData_triggered()
     QString name = institutionDialog.SchoolName->text();
 
     int hoursPerDay = institutionDialog.HoursPerDay->value();
-    int startHour   = institutionDialog.mStartHour->value();
-    int finishHour  = institutionDialog.mFinishHour->value();
+    int startTime   = institutionDialog.mStartTime->value();
+    int endTime     = institutionDialog.mEndTime->value();
     int daysPerWeek = institutionDialog.mDaysPerWeek->value();
 
-    shared_ptr<InstituteData> InstitutionData = make_shared<InstituteData>(
-      name.toStdString(), hoursPerDay, startHour, finishHour, daysPerWeek);
+    shared_ptr<InstituteData> InstitutionData =
+      make_shared<InstituteData>(name.toStdString(), hoursPerDay, startTime, endTime, daysPerWeek);
     mContext.AddInstituteData(InstitutionData);
   }
 }

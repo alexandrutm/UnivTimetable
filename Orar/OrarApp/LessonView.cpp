@@ -76,7 +76,7 @@ void LessonView::on_mAdd_clicked()
 
       auto subject      = mContext.GetSubjectByIndex(selectedRowSubject);
       auto teacher      = mContext.GetTeacherByIndex(selectedRowTeacher);
-      auto hoursPerWeek = aDialog.mHoursPerWeek->value();
+      auto hoursPerWeek = aDialog.mDuration->value();
 
       shared_ptr<Lesson> newLesson =
         make_shared<Lesson>(teacher, subject, classes, hoursPerWeek, mContext.GenerateLessonId());
@@ -117,7 +117,7 @@ void LessonView::on_mEdit_clicked()
     auto selectedTeacher  = aDialog.mTeacher->currentIndex();
     auto selectedSubject  = aDialog.mSubject->currentIndex();
     auto selectedRowClass = aDialog.mClasses->view()->selectionModel()->currentIndex();
-    auto hoursPerWeek     = aDialog.mHoursPerWeek->value();
+    auto hoursPerWeek     = aDialog.mDuration->value();
 
     if (selectedTeacher >= 0 && selectedSubject >= 0 && selectedRowClass.row() >= 0)
     {
@@ -150,8 +150,4 @@ void LessonView::on_mDelete_clicked()
   {
     tableModel->RemoveItemFromModel(currentSelectedRowMapped);
   }
-}
-
-void LessonView::on_mConstraints_clicked()
-{
 }

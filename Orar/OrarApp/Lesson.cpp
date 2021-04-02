@@ -5,9 +5,21 @@ Lesson::Lesson(Teacher * aTeacher, Subject * aSubject, Group * aClass, int aHour
   : mSubject(aSubject)
   , mTeacher(aTeacher)
   , mGroup(aClass)
-  , mHoursPerWeek(aHoursPerWeek)
+  , mDuration(aHoursPerWeek)
   , mId(aId)
+  , mRoom(nullptr)
+  , mTimeSlot(TimeSlot())
 {
+}
+
+void Lesson::SetTimeSlot(TimeSlot aTimeSlot)
+{
+  mTimeSlot = aTimeSlot;
+}
+
+void Lesson::SetRoom(Room * aRoom)
+{
+  mRoom = aRoom;
 }
 
 void Lesson::SetTeacher(Teacher * aTeacher)
@@ -25,9 +37,19 @@ void Lesson::SetSubject(Subject * aSubject)
   this->mSubject = aSubject;
 }
 
-void Lesson::SetNumberOfHours(int aNumberOfHours)
+void Lesson::SetDuration(int aNumberOfHours)
 {
-  this->mHoursPerWeek = aNumberOfHours;
+  this->mDuration = aNumberOfHours;
+}
+
+TimeSlot Lesson::GetTimeSlot()
+{
+  return mTimeSlot.IsValid() ? mTimeSlot : TimeSlot();
+}
+
+Room * Lesson::GetRoom()
+{
+  return mRoom ? mRoom : nullptr;
 }
 
 Teacher * Lesson::GetTeacher()
@@ -45,9 +67,9 @@ Subject * Lesson::GetSubject()
   return mSubject;
 }
 
-int Lesson::GetNumberOfHours()
+int Lesson::GetDuration()
 {
-  return mHoursPerWeek;
+  return mDuration;
 }
 
 int Lesson::GetId()
@@ -64,11 +86,11 @@ Lesson & Lesson::operator=(const Lesson & lesson)
 {
   if (this != &lesson)
   {
-    this->mGroup        = lesson.mGroup;
-    this->mTeacher      = lesson.mTeacher;
-    this->mSubject      = lesson.mSubject;
-    this->mHoursPerWeek = lesson.mHoursPerWeek;
-    this->mId           = lesson.mId;
+    this->mGroup    = lesson.mGroup;
+    this->mTeacher  = lesson.mTeacher;
+    this->mSubject  = lesson.mSubject;
+    this->mDuration = lesson.mDuration;
+    this->mId       = lesson.mId;
   }
 
   return *this;

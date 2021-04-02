@@ -13,8 +13,13 @@ public:
   void   SetLastName(string aName);
   int    GetId();
 
+  void ChangeAvailability(pair<int, int> availability);
+  bool IsAvailable(pair<int, int> availability);
+
 private:
   string mFirstName;
   string mLastName;
   int    mId;
+
+  vector<pair<int, int>> mAvailability;
 };

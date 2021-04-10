@@ -6,7 +6,6 @@ class Lesson;
 class InstituteData;
 class Room;
 class TimeConstraint;
-class Placement;
 
 class Context
 {
@@ -61,19 +60,7 @@ public:
   TimeConstraint * GetConstraintByTeacher(Teacher * aTeacher);
   void             RemoveConstraint(int index);
 
-  //
-  vector<Lesson *> GetUnassignedLessons();
-  vector<Lesson *> GetAssignedLessons();
-  //
-  void                            SaveBestSolution(vector<pair<Lesson, Placement>> aBestSolution);
-  vector<pair<Lesson, Placement>> RestoreBestSolution();
-
 private:
-  //
-  vector<pair<Lesson, Placement>> mBestSolution;
-  vector<Lesson *>                mUnassignedLesson;
-  vector<Lesson *>                mAssignedLessons;
-  //
   vector<unique_ptr<TimeConstraint>> mConstraints;
   vector<shared_ptr<Subject>>        mSubjects;
   vector<shared_ptr<Teacher>>        mTeachers;

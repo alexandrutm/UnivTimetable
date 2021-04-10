@@ -207,7 +207,6 @@ string Context::SearchGroup(Group * aGroup)
 void Context::AddLesson(shared_ptr<Lesson> aLesson)
 {
   mLessons.push_back(aLesson);
-  mUnassignedLesson.push_back(aLesson.get());
 }
 
 void Context::RemoveLesson(int pos)
@@ -330,23 +329,4 @@ void Context::RemoveConstraint(int index)
     return;
 
   mConstraints.erase(mConstraints.begin() + index);
-}
-
-vector<Lesson *> Context::GetUnassignedLessons()
-{
-  return mUnassignedLesson;
-}
-
-vector<Lesson *> Context::GetAssignedLessons()
-{
-  return mAssignedLessons;
-}
-
-void Context::SaveBestSolution(vector<pair<Lesson, Placement>> aBestSolution)
-{
-}
-
-vector<pair<Lesson, Placement>> Context::RestoreBestSolution()
-{
-  return vector<pair<Lesson, Placement>>();
 }

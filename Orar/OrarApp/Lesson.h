@@ -5,6 +5,7 @@ class Subject;
 class Teacher;
 class Group;
 class Room;
+class TimeConstraint;
 
 class Lesson
 {
@@ -13,12 +14,6 @@ public:
   Lesson & operator=(const Lesson & l);
 
   Lesson(Teacher *, Subject *, Group *, int, int);
-
-  void     SetTimeSlot(TimeSlot aTimeSlot);
-  TimeSlot GetTimeSlot();
-
-  void   SetRoom(Room * aRoom);
-  Room * GetRoom();
 
   void      SetTeacher(Teacher * aTeacher);
   Teacher * GetTeacher();
@@ -34,12 +29,18 @@ public:
 
   int GetId();
 
+  //
+  void Unassign();
+  void Assign(Placement aPlacement);
+
+  Placement GetPlacement();
+
 private:
   int mId;
 
-  TimeSlot mTimeSlot;
-
-  Room * mRoom;
+  Placement * mPlacement;
+  Placement   mBestPlacement;
+  Placement   mIntialPlacement;
 
   Subject * mSubject;
   Teacher * mTeacher;

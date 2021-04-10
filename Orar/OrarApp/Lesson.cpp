@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "Lesson.h"
+#include "Placement.h"
 
 Lesson::Lesson(Teacher * aTeacher, Subject * aSubject, Group * aClass, int aHoursPerWeek, int aId)
   : mSubject(aSubject)
@@ -7,19 +8,37 @@ Lesson::Lesson(Teacher * aTeacher, Subject * aSubject, Group * aClass, int aHour
   , mGroup(aClass)
   , mDuration(aHoursPerWeek)
   , mId(aId)
-  , mRoom(nullptr)
-  , mTimeSlot(TimeSlot())
+
 {
 }
 
-void Lesson::SetTimeSlot(TimeSlot aTimeSlot)
+void Lesson::Unassign()
 {
-  mTimeSlot = aTimeSlot;
+  Placement * oldValuePlacement = mPlacement;
+
+  mPlacement = nullptr;
+  // unassign all constraint that contain this lesson
+  // ----
+  // ----
+  // ----
 }
 
-void Lesson::SetRoom(Room * aRoom)
+void Lesson::Assign(Placement aPlacement)
 {
-  mRoom = aRoom;
+  // if (mTimeSlotRoom.first != nullptr && mTimeSlotRoom.second != nullptr)
+  // if placement is valid
+  Unassign();
+  mTimeSlotRoom = aTimeSlotRoom;
+
+  // assign all constraint that contain this lesson
+  // ----
+  // ----
+  // ----
+}
+
+pair<TimeSlot *, Room *> Lesson::GetTimeSlotRoom()
+{
+  return mTimeSlotRoom;
 }
 
 void Lesson::SetTeacher(Teacher * aTeacher)

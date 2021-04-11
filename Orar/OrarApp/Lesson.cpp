@@ -77,6 +77,11 @@ int Lesson::GetId()
   return mId;
 }
 
+void Lesson::AssignPlacement(Placement * aPlacement)
+{
+  mPlacement = aPlacement;
+}
+
 bool Lesson::operator==(const Lesson & aLesson)
 {
   return mId == aLesson.mId;

@@ -6,6 +6,7 @@ Teacher::Teacher(string aFirstName, string aLastName, int aTeacherId)
   , mLastName(aLastName)
   , mId(aTeacherId)
 {
+  mWeight = 0;
 }
 
 bool Teacher::operator==(const Teacher & aTeacher)
@@ -49,8 +50,9 @@ int Teacher::GetId()
   return mId;
 }
 
-void Teacher::ChangeAvailability(pair<int, int> availability)
+void Teacher::AddUnavailableDate(pair<int, int> availability)
 {
+  mWeight++;
   mAvailability.push_back(availability);
 }
 
@@ -64,4 +66,9 @@ bool Teacher::IsAvailable(pair<int, int> availability)
     return false;
 
   return true;
+}
+
+int Teacher::GetTeacherWeight()
+{
+  return mWeight;
 }

@@ -13,13 +13,19 @@ public:
   void   SetLastName(string aName);
   int    GetId();
 
-  void ChangeAvailability(pair<int, int> availability);
+  void AddUnavailableDate(pair<int, int> availability);
   bool IsAvailable(pair<int, int> availability);
+
+  // the size of mAvailability
+  // used for sort lesson by teacher constraint
+  int GetTeacherWeight();
 
 private:
   string mFirstName;
   string mLastName;
   int    mId;
+
+  int mWeight;
 
   vector<pair<int, int>> mAvailability;
 };

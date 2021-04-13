@@ -13,7 +13,8 @@ public:
   void   SetLastName(string aName);
   int    GetId();
 
-  void AddUnavailableDate(pair<int, int> availability);
+  void MakeUnavailableTimeSlot(pair<int, int> aTimeSlot);
+  void MakeAvailableTimeSlot(pair<int, int> aTimeSlot);
   bool IsAvailable(pair<int, int> availability);
 
   // the size of mAvailability

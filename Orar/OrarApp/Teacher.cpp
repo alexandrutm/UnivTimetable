@@ -50,16 +50,22 @@ int Teacher::GetId()
   return mId;
 }
 
-void Teacher::AddUnavailableDate(pair<int, int> availability)
+void Teacher::SetUnavailableTimeSlot(pair<int, int> aTimeSlot)
 {
   mWeight++;
-  mAvailability.push_back(availability);
+  mAvailability.push_back(aTimeSlot);
 }
 
-bool Teacher::IsAvailable(pair<int, int> availability)
+void Teacher::MakeAvailableTimeSlot(pair<int, int> aTimeSlot)
 {
-  auto it = find_if(mAvailability.begin(), mAvailability.end(), [&](const auto & aTimeslot) {
-    return aTimeslot == availability;
+  mAvailability.erase(remove(mAvailability.begin(), mAvailability.end(), aTimeSlot),
+                      mAvailability.end());
+}
+
+bool Teacher::IsAvailable(pair<int, int> aTimeSlot)
+{
+  auto it = find_if(mAvailability.begin(), mAvailability.end(), [&](const auto & timeslot) {
+    return timeslot == aTimeSlot;
   });
 
   if (it != mAvailability.end())

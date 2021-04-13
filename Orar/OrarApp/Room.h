@@ -1,4 +1,5 @@
 #pragma once
+#include "TimeSlot.h"
 
 class Room
 {
@@ -15,7 +16,8 @@ public:
 
   int GetId();
 
-  void ChangeAvailability(pair<int, int> availability);
+  void MakeUnavailableTimeSlot(pair<int, int> availability);
+  void MakeAvailableTimeSlot(pair<int, int> availability);
   bool IsAvailable(pair<int, int> availability);
 
 private:

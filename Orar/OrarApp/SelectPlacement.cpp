@@ -110,3 +110,4 @@ Placement SelectPlacement::GetPlacement(Lesson * aLesson)
       }
     }
   }
+}

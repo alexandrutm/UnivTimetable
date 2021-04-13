@@ -7,19 +7,7 @@ Lesson::Lesson(Teacher * aTeacher, Subject * aSubject, Group * aClass, int aHour
   , mGroup(aClass)
   , mDuration(aHoursPerWeek)
   , mId(aId)
-  , mRoom(nullptr)
-  , mTimeSlot(TimeSlot())
 {
-}
-
-void Lesson::SetTimeSlot(TimeSlot aTimeSlot)
-{
-  mTimeSlot = aTimeSlot;
-}
-
-void Lesson::SetRoom(Room * aRoom)
-{
-  mRoom = aRoom;
 }
 
 void Lesson::SetTeacher(Teacher * aTeacher)
@@ -40,16 +28,6 @@ void Lesson::SetSubject(Subject * aSubject)
 void Lesson::SetDuration(int aNumberOfHours)
 {
   this->mDuration = aNumberOfHours;
-}
-
-TimeSlot Lesson::GetTimeSlot()
-{
-  return mTimeSlot.IsValid() ? mTimeSlot : TimeSlot();
-}
-
-Room * Lesson::GetRoom()
-{
-  return mRoom ? mRoom : nullptr;
 }
 
 Teacher * Lesson::GetTeacher()
@@ -77,9 +55,14 @@ int Lesson::GetId()
   return mId;
 }
 
-void Lesson::AssignPlacement(Placement * aPlacement)
+void Lesson::SetPlacement(Placement aPlacement)
 {
   mPlacement = aPlacement;
+}
+
+Placement Lesson::GetPlacement()
+{
+  return mPlacement;
 }
 
 bool Lesson::operator==(const Lesson & aLesson)

@@ -1,9 +1,9 @@
 #pragma once
+#include "Placement.h"
 
 class Subject;
 class Teacher;
 class Group;
-class Placement;
 
 class Lesson
 {
@@ -27,12 +27,13 @@ public:
 
   int GetId();
 
-  void AssignPlacement(Placement * aPlacement);
+  void      SetPlacement(Placement aPlacement);
+  Placement GetPlacement();
 
 private:
   int mId;
 
-  Placement * mPlacement;
+  Placement mPlacement;
 
   Subject * mSubject;
   Teacher * mTeacher;

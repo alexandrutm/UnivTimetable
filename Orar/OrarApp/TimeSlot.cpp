@@ -8,6 +8,26 @@ TimeSlot::TimeSlot(int aDayOfWeek, int aStartTime, int aEndTime)
 {
 }
 
+bool TimeSlot::operator==(const TimeSlot & aTimeSlot)
+{
+  if (this->mDayOfWeek == aTimeSlot.mDayOfWeek && this->mStartTime == aTimeSlot.mStartTime &&
+      this->mEndTime == aTimeSlot.mEndTime)
+    return true;
+
+  return false;
+}
+
+TimeSlot & TimeSlot::operator=(const TimeSlot & aTimeSlot)
+{
+  if (this != &aTimeSlot)
+  {
+    this->mDayOfWeek = aTimeSlot.mDayOfWeek;
+    this->mStartTime = aTimeSlot.mStartTime;
+    this->mEndTime   = aTimeSlot.mEndTime;
+  }
+  return *this;
+}
+
 bool TimeSlot::IsValid()
 {
   if (mStartTime != -1 && mEndTime != -1 && mDayOfWeek != -1)

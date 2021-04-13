@@ -6,6 +6,9 @@ public:
   TimeSlot();
   TimeSlot(int aDayOfWeek, int aStartTime, int aEndTime);
 
+  bool       operator==(const TimeSlot & aTimeSlot);
+  TimeSlot & operator=(const TimeSlot & aTimeSlot);
+
   bool IsValid();
 
   void SetStartTime(int aStartTime);

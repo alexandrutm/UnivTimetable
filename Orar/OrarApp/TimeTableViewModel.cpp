@@ -1,22 +1,21 @@
 #include "stdafx.h"
 #include "TimeTableViewModel.h"
-#include "Context.h"
 #include "InstituteData.h"
 
-TimeTableViewModel::TimeTableViewModel(Context & aContext, QObject * parent)
+TimeTableViewModel::TimeTableViewModel(QObject * parent)
   : QAbstractTableModel(parent)
-  , mContext(aContext)
 {
+  mLessonsDetails.resize(5, "");
 }
 
 int TimeTableViewModel::rowCount(const QModelIndex & /*parent*/) const
 {
-  return mContext.GetInstituteData()->GetNumberOfHoursPerDay();
+  return 1;
 }
 
 int TimeTableViewModel::columnCount(const QModelIndex & /*parent*/) const
 {
-  return mContext.GetInstituteData()->GetNumberOfDaysPerWeek();
+  return 5;
 }
 
 QVariant TimeTableViewModel::data(const QModelIndex & index, int role) const
@@ -26,6 +25,26 @@ QVariant TimeTableViewModel::data(const QModelIndex & index, int role) const
     return QVariant();
   }
 
+  switch (index.column())
+  {
+  case 0:
+    return QString::fromStdString(mLessonsDetails[0]);
+    break;
+  case 1:
+    return QString::fromStdString(mLessonsDetails[1]);
+    break;
+  case 2:
+    return QString::fromStdString(mLessonsDetails[2]);
+    break;
+  case 3:
+    return QString::fromStdString(mLessonsDetails[3]);
+    break;
+  case 4:
+    return QString::fromStdString(mLessonsDetails[4]);
+    break;
+  default:
+    break;
+  }
   return QVariant();
 }
 
@@ -59,4 +78,9 @@ QVariant TimeTableViewModel::headerData(int section, Qt::Orientation orientation
 
 void TimeTableViewModel::ClearData()
 {
+}
+
+void TimeTableViewModel::AddData(vector<string> aLessonsDetails)
+{
+  mLessonsDetails = aLessonsDetails;
 }

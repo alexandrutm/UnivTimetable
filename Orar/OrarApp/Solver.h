@@ -1,9 +1,10 @@
 #pragma once
 
-class Solution;
+#include "SelectPlacement.h"
+#include "Solution.h"
+#include "TerminationCondition.h"
+
 class Context;
-class TerminationCondition;
-class SelectPlacement;
 
 class Solver
 {
@@ -13,10 +14,10 @@ public:
   Solution * FindSolution();
 
 private:
-  unique_ptr<Solution> mSolution;
-
   Context & mContext;
 
-  unique_ptr<TerminationCondition> mTerminationCondition;
-  unique_ptr<SelectPlacement>      mSelectPlacement;
+  Solution mSolution;
+
+  TerminationCondition mTerminationCondition;
+  SelectPlacement      mSelectPlacement;
 };

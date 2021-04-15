@@ -80,7 +80,7 @@ void TeacherConstraintDialog::RowClicked(int row)
 
     itemText == "X" ? itemText = " " : itemText = "X";
 
-    for (int col = 0; col < mContext.GetInstituteData()->GetNumberOfHoursPerDay(); col++)
+    for (int col = 0; col < mContext.GetInstituteData()->GetNumberOfDaysPerWeek(); col++)
     {
       mTeacherTableAviabileTime->item(row, col)->setText(itemText);
     }

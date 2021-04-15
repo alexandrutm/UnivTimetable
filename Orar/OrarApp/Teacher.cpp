@@ -50,7 +50,7 @@ int Teacher::GetId()
   return mId;
 }
 
-void Teacher::SetUnavailableTimeSlot(pair<int, int> aTimeSlot)
+void Teacher::MakeUnavailableTimeSlot(pair<int, int> aTimeSlot)
 {
   mWeight++;
   mAvailability.push_back(aTimeSlot);

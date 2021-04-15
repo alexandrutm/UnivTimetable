@@ -161,7 +161,22 @@
     <ClCompile Include="TimeSlot.cpp">
       <Filter>Source Files\data</Filter>
     </ClCompile>
-    <ClCompile Include="GenerateTimeTable.cpp">
+    <ClCompile Include="Solver.cpp">
+      <Filter>Source Files\engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Solution.cpp">
+      <Filter>Source Files\engine</Filter>
+    </ClCompile>
+    <ClCompile Include="TerminationCondition.cpp">
+      <Filter>Source Files\engine</Filter>
+    </ClCompile>
+    <ClCompile Include="SelectPlacement.cpp">
+      <Filter>Source Files\engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Placement.cpp">
+      <Filter>Source Files\data</Filter>
+    </ClCompile>
+    <ClCompile Include="TransformLessonDetails.cpp">
       <Filter>Source Files\engine</Filter>
     </ClCompile>
   </ItemGroup>
@@ -329,7 +344,22 @@
     <ClInclude Include="TimeSlot.h">
       <Filter>Source Files\data</Filter>
     </ClInclude>
-    <ClInclude Include="GenerateTimeTable.h">
+    <ClInclude Include="Solver.h">
+      <Filter>Source Files\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Solution.h">
+      <Filter>Source Files\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Placement.h">
+      <Filter>Source Files\data</Filter>
+    </ClInclude>
+    <ClInclude Include="TerminationCondition.h">
+      <Filter>Source Files\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="SelectPlacement.h">
+      <Filter>Source Files\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="TransformLessonDetails.h">
       <Filter>Source Files\engine</Filter>
     </ClInclude>
   </ItemGroup>

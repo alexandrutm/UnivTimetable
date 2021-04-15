@@ -39,21 +39,23 @@ Placement SelectPlacement::GetPlacement(Lesson * aLesson)
   for (int day = 0; day < mTimeSlotMatrix.size(); day++)
   {
     // to place a lesson from 18 to 20 evening if duration is 2 hours we can't check from 19 oclock
-    for (int hour = 0; hour <= mTimeSlotMatrix[day].size() - lessonDuration; hour++)
+    for (int currentHour = 0; currentHour < mTimeSlotMatrix[day].size() - lessonDuration;
+         currentHour++)
     {
       bool teacherUnavailable = false;
       bool groupUnavailable   = false;
-      // iterate ahead by lesson duration
-      for (int duration = hour; duration < hour + lessonDuration; duration++)
+
+      // iterate ahead to check available hours
+      for (int hourCheck = currentHour; hourCheck < currentHour + lessonDuration; hourCheck++)
       {
         // check teacher availability
-        if (!aLesson->GetTeacher()->IsAvailable(pair<int, int>(day, duration)))
+        if (!aLesson->GetTeacher()->IsAvailable(pair<int, int>(day, hourCheck)))
         {
           teacherUnavailable = true;
           break;
         }
-        // check room availability
-        if (!aLesson->GetGroup()->IsAvailable(pair<int, int>(day, duration)))
+        // check group availability
+        if (!aLesson->GetGroup()->IsAvailable(pair<int, int>(day, hourCheck)))
         {
           groupUnavailable = true;
           break;
@@ -64,7 +66,8 @@ Placement SelectPlacement::GetPlacement(Lesson * aLesson)
       {
         // we find a slot available for teacher and group
         // save slot into vector
-        availableTimeSlotsTeacherGroup.emplace_back(TimeSlot(day, hour, hour + lessonDuration));
+        availableTimeSlotsTeacherGroup.emplace_back(
+          TimeSlot(day, currentHour, currentHour + lessonDuration));
       }
     }
   }
@@ -106,8 +109,11 @@ Placement SelectPlacement::GetPlacement(Lesson * aLesson)
         aLesson->GetGroup()->MakeUnavailableTimeSlot(
           pair<int, int>(timeslot.GetDayOfWeek(), startTime));
 
+        // return valid placement
         return Placement(room, timeslot);
       }
     }
   }
+
+  return Placement();
 }

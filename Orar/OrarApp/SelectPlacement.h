@@ -1,5 +1,5 @@
 #pragma once
-#include "Placement.h";
+#include "Placement.h"
 
 class Lesson;
 class Context;

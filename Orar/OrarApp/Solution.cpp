@@ -23,7 +23,7 @@ void Solution::FillUnassignedLessons()
 void Solution::SortUnassignedLessons()
 {
   sort(mUnassignedLessons.begin(), mUnassignedLessons.end(), [](Lesson * first, Lesson * second) {
-    return first->GetTeacher()->GetTeacherWeight() > second->GetTeacher()->GetTeacherWeight();
+    return first->GetTeacher()->GetTeacherWeight() < second->GetTeacher()->GetTeacherWeight();
   });
 }
 
@@ -39,6 +39,7 @@ void Solution::SetAssignedLesson(Lesson * aLesson)
 
 Lesson * Solution::GetNextUnassignedLesson()
 {
+  // selext next unassigned lesson and delete it from the vector
   auto lesson = mUnassignedLessons.back();
   mUnassignedLessons.pop_back();
   return lesson;
@@ -46,4 +47,9 @@ Lesson * Solution::GetNextUnassignedLesson()
 
 void Solution::SetLessonAsUnassigned()
 {
+}
+
+vector<Lesson *> Solution::GetAssignedLessons()
+{
+  return mAssignedLessons;
 }

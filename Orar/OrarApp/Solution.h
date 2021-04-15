@@ -15,8 +15,11 @@ public:
   vector<Lesson *> GetUnassignedLessons();
   void             SetAssignedLesson(Lesson * aLesson);
 
+  // get next available lesson and remove it from unassigned lessons
   Lesson * GetNextUnassignedLesson();
-  void     SetLessonAsUnassigned();
+
+  void             SetLessonAsUnassigned();
+  vector<Lesson *> GetAssignedLessons();
 
 private:
   Context & mContext;

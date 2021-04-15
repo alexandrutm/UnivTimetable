@@ -94,7 +94,8 @@ void ConstraintsView::AddTeacherConstraint()
         if (ConstraintDialog.mTeacherTableAviabileTime->item(hour, day)->text() == "X")
         {
           dayAndHour.push_back(make_pair(day, hour));
-          mContext.GetTeacherByIndex(currentSelectedRow)->ChangeAvailability(make_pair(day, hour));
+          mContext.GetTeacherByIndex(currentSelectedRow)
+            ->MakeUnavailableTimeSlot(make_pair(day, hour));
         }
 
     unique_ptr<TimeConstraint> constraint =

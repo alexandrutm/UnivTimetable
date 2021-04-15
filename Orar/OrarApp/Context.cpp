@@ -61,7 +61,8 @@ int Context::GenerateTeacherId()
 
 string Context::SearchTeacher(Teacher * aTeacher)
 {
-  // If we find a reference of this teacher in constraint or in lesson we return a
+  // If we find a reference of this teacher in constraint or in lesson we return a string with
+  // location
   auto it = find_if(mConstraints.begin(), mConstraints.end(), [&](auto const & constr) {
     return constr->GetTeacher() == aTeacher;
   });
@@ -76,6 +77,7 @@ string Context::SearchTeacher(Teacher * aTeacher)
     return "This teacher is referred in Lesson view";
   else if (it != mConstraints.end())
     return "This teacher is referred in Constraint view";
+  return "";
 }
 
 vector<shared_ptr<Teacher>> Context::GetTeachers()
@@ -321,6 +323,8 @@ TimeConstraint * Context::GetConstraintByTeacher(Teacher * aTeacher)
 
   if (it != mConstraints.end())
     return it->get();
+
+  return nullptr;
 }
 
 void Context::RemoveConstraint(int index)

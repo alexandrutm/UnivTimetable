@@ -14,6 +14,8 @@ public:
   Room *   GetRoom();
   TimeSlot GetTimeSlot();
 
+  bool IsValid();
+
 private:
   Room *   mRoom;
   TimeSlot mTimeSlot;

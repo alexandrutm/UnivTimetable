@@ -1,8 +1,10 @@
 #include "stdafx.h"
 #include "Placement.h"
+#include "Room.h"
 
 Placement::Placement()
 {
+  mRoom = nullptr;
 }
 
 Placement::Placement(Room * aRoom, TimeSlot aTimeSlot)
@@ -29,4 +31,9 @@ Room * Placement::GetRoom()
 TimeSlot Placement::GetTimeSlot()
 {
   return mTimeSlot;
+}
+
+bool Placement::IsValid()
+{
+  return mRoom == nullptr ? false : true;
 }

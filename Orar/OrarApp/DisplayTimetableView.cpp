@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "DisplayTimetableView.h"
 #include "Context.h"
+#include "Lesson.h"
 #include "TimeTableViewModel.h"
 #include "TreeModelClasses.h"
 
@@ -13,7 +14,7 @@ DisplayTimetableView::DisplayTimetableView(TreeModel * aTreeModel,
 {
   ui.setupUi(this);
 
-  mTableModel = new TimeTableViewModel(mContext, this);
+  mTableModel = new TimeTableViewModel(this);
 
   ui.mTimeTableView->setModel(mTableModel);
   ui.mTreeView->setModel(mTreeModel);
@@ -25,4 +26,9 @@ DisplayTimetableView::DisplayTimetableView(TreeModel * aTreeModel,
 DisplayTimetableView::~DisplayTimetableView()
 {
   delete mTableModel;
+}
+
+void DisplayTimetableView::PrintTimeTable(vector<string> aLessonsDetails)
+{
+  mTableModel->AddData(aLessonsDetails);
 }

@@ -5,7 +5,6 @@
 #include "ConstraintsView.h"
 #include "Context.h"
 #include "DisplayTimetableView.h"
-#include "GenerateTimeTable.h"
 #include "HomeView.h"
 #include "INavigator.h"
 #include "InstituteData.h"
@@ -53,6 +52,4 @@ private:
   LessonView           mLessonView;
   DisplayTimetableView mDisplayTimeTableView;
   ConstraintsView      mConstraintsView;
-
-  GenerateTimeTable mTimeTable;
 };

@@ -1,7 +1,11 @@
 #include "stdafx.h"
 #include "OrarApp.h"
 #include "AddDataDialog.h"
+#include "DisplayTimetableView.h"
 #include "InstitutionDetailsDialog.h"
+#include "Solution.h"
+#include "Solver.h"
+#include "TransformLessonDetails.h"
 #include "TreeModelClasses.h"
 
 OrarApp::OrarApp(QWidget * parent)
@@ -16,7 +20,6 @@ OrarApp::OrarApp(QWidget * parent)
   , mLessonView(mContext, this)
   , mDisplayTimeTableView(mClassesModel, mContext, this)
   , mConstraintsView(mContext, this)
-  , mTimeTable(mContext)
 
 {
   ui.setupUi(this);
@@ -72,8 +75,13 @@ void OrarApp::on_mData_triggered()
 
 void OrarApp::on_mGenerate_triggered()
 {
-  if (mTimeTable.IsGenerated())
-    QMessageBox::about(this, "Succes", "Timetable is generated");
+  TransformLessonDetails lessonDetails;
+  Solver                 solver = Solver(mContext);
+
+  Solution * solution = solver.FindSolution();
+
+  mDisplayTimeTableView.PrintTimeTable(
+    lessonDetails.GetLessonDetails(mContext.GetInstituteData(), solution));
 }
 
 void OrarApp::on_mInstitutionData_triggered()

@@ -72,6 +72,10 @@ Placement SelectPlacement::GetPlacement(Lesson * aLesson)
     }
   }
 
+  // no time slot or room available  for this lesson
+  if (availableTimeSlotsTeacherGroup.size() == 0 || roomsWithEnoughCapacity.size() == 0)
+    return Placement();
+
   // pick a pseudo-random timeslot and check for a pseudo-random room with enough capacity available
   // otherwise pick another timeslot and check again
   srand(time(NULL));

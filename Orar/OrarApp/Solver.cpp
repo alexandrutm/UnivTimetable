@@ -19,10 +19,12 @@ Solution * Solver::FindSolution()
     auto currentLesson = mSolution.GetNextUnassignedLesson();
     // Search for an available placement for selected lesson, in which this lesson can be placed
     // respecting the constraints. If more slots are available, choose a random one. If none is
-    // available, do recursive swapping:
-    if (mSelectPlacement.GetPlacement(currentLesson).IsValid())
+    // available, do backtr
+    auto placement = mSelectPlacement.GetPlacement(currentLesson);
+
+    if (placement.IsValid())
     {
-      currentLesson->SetPlacement(mSelectPlacement.GetPlacement(currentLesson));
+      currentLesson->SetPlacement(placement);
       // make lesson unavailable for placement
       mSolution.SetAssignedLesson(currentLesson);
     }

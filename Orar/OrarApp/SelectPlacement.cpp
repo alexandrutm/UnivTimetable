@@ -112,10 +112,9 @@ Placement SelectPlacement::GetPlacement(Lesson * aLesson)
 
         aLesson->GetGroup()->MakeUnavailableTimeSlot(
           pair<int, int>(timeslot.GetDayOfWeek(), startTime));
-
-        // return valid placement
-        return Placement(room, timeslot);
       }
+      // return valid placement
+      return Placement(room, timeslot);
     }
   }
 

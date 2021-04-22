@@ -82,12 +82,11 @@ QVariant TeacherTableModel::headerData(int section, Qt::Orientation orientation,
   return QVariant();
 }
 
-bool TeacherTableModel::insertRows(int first, int last, const QModelIndex & index)
+bool TeacherTableModel::insertRows(int first, int last, int aTeacherId)
 {
-  Q_UNUSED(index);
   beginInsertRows(QModelIndex(), first, last);
 
-  mContext.AddTeacher(make_shared<Teacher>("fName", "lName", mContext.GenerateTeacherId()));
+  mContext.AddTeacher(make_shared<Teacher>("fName", "lName", aTeacherId));
 
   endInsertRows();
   return true;

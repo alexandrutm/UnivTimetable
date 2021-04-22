@@ -36,6 +36,17 @@ void TeacherView::ClearData()
   mTeacherTableModel->ClearContent();
 }
 
+void TeacherView::AddTeacher(string aFirstName, string aLastName, int aId)
+{
+  int newRow = static_cast<int>(mContext.GetTeacherSize());
+  mTeacherTableModel->insertRows(newRow, newRow, aId);
+
+  QModelIndex index = mTeacherTableModel->index(newRow, 0, QModelIndex());
+  mTeacherTableModel->setData(index, QString::fromStdString(aFirstName), Qt::EditRole);
+  index = mTeacherTableModel->index(newRow, 1, QModelIndex());
+  mTeacherTableModel->setData(index, QString::fromStdString(aLastName), Qt::EditRole);
+}
+
 void TeacherView::on_mAdd_clicked()
 {
   TeacherDialog Dialog(this);
@@ -44,10 +55,12 @@ void TeacherView::on_mAdd_clicked()
   {
     QString firstName = Dialog.mFirstName->text();
     QString lastName  = Dialog.mLastName->text();
+
+    int id = mContext.GenerateTeacherId();
     if (!firstName.isEmpty())
     {
       int newRow = static_cast<int>(mContext.GetTeacherSize());
-      mTeacherTableModel->insertRows(newRow, newRow, QModelIndex());
+      mTeacherTableModel->insertRows(newRow, newRow, id);
 
       QModelIndex index = mTeacherTableModel->index(newRow, 0, QModelIndex());
       mTeacherTableModel->setData(index, firstName, Qt::EditRole);

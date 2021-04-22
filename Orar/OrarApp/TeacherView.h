@@ -14,6 +14,7 @@ public:
   TeacherView(Context & aContext, QWidget * parent = Q_NULLPTR);
   ~TeacherView();
   void ClearData();
+  void AddTeacher(string aFirstName, string aLastName, int aId);
 
 private slots:
   void on_mAdd_clicked();

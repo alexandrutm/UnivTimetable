@@ -119,7 +119,7 @@ void Group::AppendChild(int id)
 
 Group * Group::GetParent()
 {
-  return mParent;
+  return mParent != nullptr ? mParent : nullptr;
 }
 
 void Group::RemoveChild(int pos)

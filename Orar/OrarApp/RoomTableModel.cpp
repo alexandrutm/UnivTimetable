@@ -29,7 +29,7 @@ QVariant RoomTableModel::data(const QModelIndex & index, int role) const
   switch (index.column())
   {
   case 0:
-    return QString::fromStdString((mContext.GetRoomByIndex(index.row()))->GetNume());
+    return QString::fromStdString((mContext.GetRoomByIndex(index.row()))->GetName());
     break;
   case 1:
     return mContext.GetRoomByIndex(index.row())->GetCapacity();

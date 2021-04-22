@@ -28,7 +28,7 @@ void Room::SetName(string aNume)
   mName = aNume;
 }
 
-string Room::GetNume()
+string Room::GetName()
 {
   return mName;
 }

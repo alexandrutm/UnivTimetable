@@ -9,7 +9,7 @@ public:
   Room & operator=(const Room & aRoom);
 
   void   SetName(string);
-  string GetNume();
+  string GetName();
 
   void SetCapacity(int aCapacity);
   int  GetCapacity();

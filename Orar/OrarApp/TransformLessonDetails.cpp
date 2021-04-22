@@ -23,9 +23,8 @@ vector<string> TransformLessonDetails::GetLessonDetails(InstituteData * aInstitu
     int lessonStartTime = lesson->GetPlacement().GetTimeSlot().GetStartTime();
     int lessonEndTime   = lesson->GetPlacement().GetTimeSlot().GetEndTime();
 
-    string lessonRoom = lesson->GetPlacement().GetRoom()->GetNume();
-    string lessonTeacher =
-      (lesson->GetTeacher()->GetLastName() + " - " + lesson->GetTeacher()->GetFirstName());
+    string lessonRoom    = lesson->GetPlacement().GetRoom()->GetName();
+    string lessonTeacher = lesson->GetTeacher()->GetLastName();
     string lessonGroup   = lesson->GetGroup()->GetName();
     string lessonSubject = lesson->GetSubject()->GetName();
 

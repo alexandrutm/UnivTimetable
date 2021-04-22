@@ -1,0 +1,16 @@
+<?xml version="1.0" ?>
+<Context>
+    <Institution Details name="Institution name" nrOfHoursPerDay="12" startHour="8" endHour="20" nrOfDaysPerWeek="5" />
+    <Subjects>
+        <Subject name="aaaaaa" id="1" />
+        <Subject name="ddddddd" id="2" />
+        <Subject name="sssssss" id="3" />
+        <Subject name="bbbbbbb" id="4" />
+    </Subjects>
+    <Teachers />
+    <Groups>
+        <Group name="Root Class" nrStudents="0" id="0" parentId="-1" />
+    </Groups>
+    <Rooms />
+    <Lessons />
+</Context>

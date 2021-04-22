@@ -31,6 +31,7 @@ public:
 private slots:
   // toolbar actions
   void on_mNew_triggered();
+  void on_mSave_triggered();
   void on_mData_triggered();
   void on_mGenerate_triggered();
   void on_mInstitutionData_triggered();

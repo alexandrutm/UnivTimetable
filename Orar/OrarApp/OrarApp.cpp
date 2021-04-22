@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "OrarApp.h"
 #include "AddDataDialog.h"
+#include "AppData.h"
 #include "DisplayTimetableView.h"
 #include "InstitutionDetailsDialog.h"
 #include "Solution.h"
@@ -64,6 +65,14 @@ void OrarApp::ChangeView(INavigator::viewId theView)
 void OrarApp::ChangeStatus(string aStatus)
 {
   ui.statusBar->showMessage(QString::fromStdString(aStatus), 5000);
+}
+
+void OrarApp::on_mSave_triggered()
+{
+  AppData data;
+  QString text = QInputDialog::getText(this, "Save data", "Give a name to this data set");
+
+  data.SaveData(mContext, (text.toStdString() + ".xml"));
 }
 
 void OrarApp::on_mData_triggered()

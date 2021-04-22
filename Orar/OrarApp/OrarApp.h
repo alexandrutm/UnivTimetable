@@ -35,6 +35,7 @@ private slots:
   void on_mData_triggered();
   void on_mGenerate_triggered();
   void on_mInstitutionData_triggered();
+  void on_mImport_data_triggered();
 
 private:
   Ui::OrarAppClass ui;

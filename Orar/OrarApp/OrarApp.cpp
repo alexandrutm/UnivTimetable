@@ -8,6 +8,7 @@
 #include "Solver.h"
 #include "TransformLessonDetails.h"
 #include "TreeModelClasses.h"
+#include "tinyxml/tinyxml.h"
 
 OrarApp::OrarApp(QWidget * parent)
   : QMainWindow(parent)
@@ -108,7 +109,79 @@ void OrarApp::on_mInstitutionData_triggered()
 
     shared_ptr<InstituteData> InstitutionData =
       make_shared<InstituteData>(name.toStdString(), hoursPerDay, startTime, endTime, daysPerWeek);
-    mContext.AddInstituteData(InstitutionData);
+    mContext.ChangeInstituteData(InstitutionData);
+  }
+}
+
+void OrarApp::on_mImport_data_triggered()
+{
+  // select witch document to import
+  string filename = "context.xml";
+
+  TiXmlDocument doc(filename.c_str());
+  if (!doc.LoadFile())
+    return;
+
+  TiXmlHandle    hDoc(&doc);
+  TiXmlElement * pElem;
+  TiXmlHandle    hRoot(0);
+
+  {
+    pElem = hDoc.FirstChildElement().Element();
+    if (!pElem)
+      return;
+    // save this for later
+    hRoot = TiXmlHandle(pElem);
+  }
+
+  // block: InstitutionDetails
+  {
+    TiXmlElement * institData = hRoot.FirstChildElement().Element();
+
+    int dayWeek;
+    int hourDay;
+    int startHour;
+    int endHour;
+
+    string name = institData->Attribute("name");
+    institData->QueryIntAttribute("nrOfDaysPerWeek", &dayWeek);
+    institData->QueryIntAttribute("nrOfHoursPerDay", &hourDay);
+    institData->QueryIntAttribute("startHour", &startHour);
+    institData->QueryIntAttribute("endHour", &endHour);
+
+    shared_ptr<InstituteData> instituteData =
+      make_shared<InstituteData>(name, hourDay, startHour, endHour, dayWeek);
+    mContext.ChangeInstituteData(instituteData);
+  }
+
+  // block Subjects
+  {
+    TiXmlElement * subject = hRoot.FirstChild("Subjects").FirstChild().Element();
+    int            id;
+    while (subject)
+    {
+      string name = subject->Attribute("name");
+      subject->QueryIntAttribute("id", &id);
+
+      subject = subject->NextSiblingElement();
+    }
+  }
+
+  // block Teachers
+  {
+    TiXmlElement * teacher = hRoot.FirstChild("Teachers").FirstChild().Element();
+    int            id;
+
+    while (teacher)
+    {
+      string fname = teacher->Attribute("fname");
+      string lname = teacher->Attribute("lname");
+      teacher->QueryIntAttribute("id", &id);
+
+      mTeacherView.AddTeacher(fname, lname, id);
+
+      teacher = teacher->NextSiblingElement();
+    }
   }
 }
 

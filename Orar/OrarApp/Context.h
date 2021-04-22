@@ -22,13 +22,14 @@ public:
   string                      SearchTeacher(Teacher * aTeacher);
   vector<shared_ptr<Teacher>> GetTeachers();
 
-  void      AddSubject(shared_ptr<Subject> aSubject);
-  void      RemoveSubject(int i);
-  size_t    GetSubjectSize();
-  Subject * GetSubjectByIndex(int i);
-  void      DeleteSubjects();
-  int       GenerateSubjectId();
-  string    SearchSubject(Subject * aSubject);
+  void                        AddSubject(shared_ptr<Subject> aSubject);
+  void                        RemoveSubject(int i);
+  size_t                      GetSubjectSize();
+  Subject *                   GetSubjectByIndex(int i);
+  void                        DeleteSubjects();
+  int                         GenerateSubjectId();
+  string                      SearchSubject(Subject * aSubject);
+  vector<shared_ptr<Subject>> GetSubjects();
 
   int     GenerateGroupId();
   Group * GetRootGroup();

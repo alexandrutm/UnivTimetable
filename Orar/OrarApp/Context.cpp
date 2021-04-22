@@ -132,6 +132,11 @@ string Context::SearchSubject(Subject * aSubject)
   return "";
 }
 
+vector<shared_ptr<Subject>> Context::GetSubjects()
+{
+  return mSubjects;
+}
+
 int Context::GenerateGroupId()
 {
   queue<Group *> treeNodes;

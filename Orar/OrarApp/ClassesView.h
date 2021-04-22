@@ -14,6 +14,7 @@ public:
   ~ClassesView();
   void ClearData();
   void UpdateActions();
+  void AddClass();
 
 private slots:
   void on_mSplitClass_clicked();
@@ -24,7 +25,7 @@ private slots:
 private:
   Ui::ClassesView ui;
 
-  TreeModel * mTreeModel;
-
-  Context & mContext;
+  TreeModel *                mTreeModel;
+  QAbstractItemModelTester * modelTester;
+  Context &                  mContext;
 };

@@ -1,16 +1,39 @@
 <?xml version="1.0" ?>
 <Context>
-    <Institution Details name="Institution name" nrOfHoursPerDay="12" startHour="8" endHour="20" nrOfDaysPerWeek="5" />
+    <Institution name="Institution name" nrOfHoursPerDay="12" startHour="8" endHour="20" nrOfDaysPerWeek="5" />
     <Subjects>
-        <Subject name="aaaaaa" id="1" />
-        <Subject name="ddddddd" id="2" />
-        <Subject name="sssssss" id="3" />
-        <Subject name="bbbbbbb" id="4" />
+        <Subject name="romana" id="1" />
+        <Subject name="algebra" id="2" />
+        <Subject name="istorie" id="3" />
+        <Subject name="franceza" id="4" />
+        <Subject name="engleza" id="5" />
+        <Subject name="analiza" id="6" />
     </Subjects>
-    <Teachers />
+    <Teachers>
+        <Subject fname="ion" lname="ion" id="1" />
+        <Subject fname="adi " lname="adi" id="2" />
+        <Subject fname="alin" lname="alin" id="3" />
+        <Subject fname="macron" lname="macron" id="4" />
+        <Subject fname="klaus" lname="klaus" id="5" />
+        <Subject fname="ilarie" lname="ilarie" id="6" />
+    </Teachers>
     <Groups>
         <Group name="Root Class" nrStudents="0" id="0" parentId="-1" />
+        <Group name="anul1" nrStudents="50" id="1" parentId="0" />
+        <Group name="anul2" nrStudents="60" id="2" parentId="0" />
+        <Group name="anul3" nrStudents="80" id="4" parentId="0" />
+        <Group name="grupa1an1" nrStudents="20" id="3" parentId="1" />
+        <Group name="subgr1an1gr1" nrStudents="10" id="5" parentId="3" />
     </Groups>
-    <Rooms />
-    <Lessons />
+    <Rooms>
+        <Room name="sala223" capacity="80" id="1" />
+        <Room name="sala296" capacity="22" id="2" />
+        <Room name="laborator113" capacity="40" id="3" />
+        <Room name="laborator222" capacity="33" id="4" />
+    </Rooms>
+    <Lessons>
+        <Lesson teacherId="1" subjectId="1" groupId="1" />
+        <Lesson teacherId="3" subjectId="4" groupId="2" />
+        <Lesson teacherId="4" subjectId="3" groupId="2" />
+    </Lessons>
 </Context>

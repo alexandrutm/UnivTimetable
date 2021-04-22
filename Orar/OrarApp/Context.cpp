@@ -15,7 +15,7 @@ Context::Context()
   // create institution
   shared_ptr<InstituteData> InstitutionData =
     make_shared<InstituteData>("Institution name", 12, 8, 20, 5);
-  this->AddInstituteData(InstitutionData);
+  this->ChangeInstituteData(InstitutionData);
 }
 
 Context::~Context()
@@ -295,7 +295,7 @@ vector<shared_ptr<Room>> Context::GetRooms()
   return mRooms;
 }
 
-void Context::AddInstituteData(shared_ptr<InstituteData> aInstituteData)
+void Context::ChangeInstituteData(shared_ptr<InstituteData> aInstituteData)
 {
   mInstituteData = aInstituteData;
 }

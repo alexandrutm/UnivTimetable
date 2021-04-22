@@ -13,6 +13,9 @@ ClassesView::ClassesView(TreeModel * aStudentGroupModel, Context & aContext, QWi
 {
   ui.setupUi(this);
 
+  modelTester = new QAbstractItemModelTester(
+    mTreeModel, QAbstractItemModelTester::FailureReportingMode::Fatal, this);
+
   ui.mTreeView->setModel(mTreeModel);
   ui.mTreeView->header()->setSectionResizeMode(QHeaderView::Stretch);
   ui.mTreeView->setSortingEnabled(true);
@@ -22,6 +25,7 @@ ClassesView::ClassesView(TreeModel * aStudentGroupModel, Context & aContext, QWi
 
 ClassesView::~ClassesView()
 {
+  delete modelTester;
 }
 
 void ClassesView::ClearData()
@@ -37,6 +41,10 @@ void ClassesView::UpdateActions()
     ui.mSplitClass->setText("Split Class");
   else
     ui.mSplitClass->setText("Add Class");
+}
+
+void ClassesView::AddClass()
+{
 }
 
 void ClassesView::on_mSplitClass_clicked()

@@ -5,6 +5,10 @@
 #include <string>
 #include <vector>
 
+// Tinyxml
+#pragma warning(push)
+#pragma warning(disable : 4458)
+
 // Qt class
 #pragma warning(push)
 #pragma warning(disable : 4127)
@@ -17,6 +21,7 @@
 #pragma warning(disable : 26439)
 #pragma warning(disable : 6386)
 
+#include <QAbstractItemModelTester>
 #include <QAbstractTableModel>
 #include <QDialog>
 #include <QSortFilterProxyModel>

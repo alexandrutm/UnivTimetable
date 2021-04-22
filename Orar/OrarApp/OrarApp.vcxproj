@@ -54,7 +54,7 @@
   </ItemDefinitionGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="QtSettings">
     <QtInstall>Qt6.0</QtInstall>
-    <QtModules>core;gui;widgets</QtModules>
+    <QtModules>core;gui;testlib;widgets</QtModules>
     <QtBuildConfig>debug</QtBuildConfig>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'" Label="QtSettings">
@@ -139,10 +139,10 @@
     <ClCompile Include="TimeConstraint.cpp" />
     <ClCompile Include="TimeSlot.cpp" />
     <ClCompile Include="TimeTableViewModel.cpp" />
-    <ClCompile Include="tinystr.cpp" />
-    <ClCompile Include="tinyxml.cpp" />
-    <ClCompile Include="tinyxmlerror.cpp" />
-    <ClCompile Include="tinyxmlparser.cpp" />
+    <ClCompile Include="tinyxml\tinystr.cpp" />
+    <ClCompile Include="tinyxml\tinyxml.cpp" />
+    <ClCompile Include="tinyxml\tinyxmlerror.cpp" />
+    <ClCompile Include="tinyxml\tinyxmlparser.cpp" />
     <ClCompile Include="TransformLessonDetails.cpp" />
     <ClCompile Include="TreeModelClasses.cpp" />
     <ClInclude Include="Placement.h" />
@@ -152,8 +152,8 @@
     <ClInclude Include="Solver.h" />
     <ClInclude Include="TerminationCondition.h" />
     <ClInclude Include="TimeSlot.h" />
-    <ClInclude Include="tinystr.h" />
-    <ClInclude Include="tinyxml.h" />
+    <ClInclude Include="tinyxml\tinystr.h" />
+    <ClInclude Include="tinyxml\tinyxml.h" />
     <ClInclude Include="TransformLessonDetails.h" />
     <QtMoc Include="ConstraintsView.h" />
     <QtMoc Include="TeacherConstraintDialog.h" />

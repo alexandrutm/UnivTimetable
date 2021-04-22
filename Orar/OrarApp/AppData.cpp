@@ -7,7 +7,7 @@
 #include "Room.h"
 #include "Subject.h"
 #include "Teacher.h"
-#include "tinyxml.h"
+#include "tinyxml/tinyxml.h"
 
 void AppData::SaveData(Context & aContext, string aFileName)
 {
@@ -20,7 +20,7 @@ void AppData::SaveData(Context & aContext, string aFileName)
 
   // block: InstitutionDetails
   {
-    TiXmlElement * institutionNode = new TiXmlElement("Institution Details");
+    TiXmlElement * institutionNode = new TiXmlElement("Institution");
     root->LinkEndChild(institutionNode);
 
     auto institutionData = aContext.GetInstituteData();
@@ -60,7 +60,7 @@ void AppData::SaveData(Context & aContext, string aFileName)
 
     for (auto teacher : teachers)
     {
-      TiXmlElement * teacherElement = new TiXmlElement("Subject");
+      TiXmlElement * teacherElement = new TiXmlElement("Teacher");
 
       teacherNode->LinkEndChild(teacherElement);
 
@@ -135,80 +135,9 @@ void AppData::SaveData(Context & aContext, string aFileName)
       lessonElement->SetAttribute("teacherId", lesson->GetTeacher()->GetId());
       lessonElement->SetAttribute("subjectId", lesson->GetSubject()->GetId());
       lessonElement->SetAttribute("groupId", lesson->GetGroup()->GetId());
+      lessonElement->SetAttribute("lessonLength", lesson->GetDuration());
     }
   }
 
   doc.SaveFile(aFileName.c_str());
-}
-
-void AppData::LoadData(Context & aContext, string aFileName)
-{
-  /*
-  TiXmlDocument doc(aFileName.c_str());
-  if (!doc.LoadFile())
-    return;
-
-  TiXmlHandle    hDoc(&doc);
-  TiXmlElement * pElem;
-  TiXmlHandle    hRoot(0);
-
-  // block: name
-  {
-    pElem = hDoc.FirstChildElement().Element();
-    // should always have a valid root but handle gracefully if it does
-    if (!pElem)
-      return;
-    m_name = pElem->Value();
-
-    // save this for later
-    hRoot = TiXmlHandle(pElem);
-  }
-
-  // block: string table
-  {
-    m_messages.clear();  // trash existing table
-
-    pElem = hRoot.FirstChild("Messages").FirstChild().Element();
-    for (pElem; pElem; pElem = pElem->NextSiblingElement())
-    {
-      const char * pKey  = pElem->Value();
-      const char * pText = pElem->GetText();
-      if (pKey && pText)
-      {
-        m_messages[pKey] = pText;
-      }
-    }
-  }
-
-  // block: windows
-  {
-    m_windows.clear();  // trash existing list
-
-    TiXmlElement * pWindowNode = hRoot.FirstChild("Windows").FirstChild().Element();
-    for (pWindowNode; pWindowNode; pWindowNode = pWindowNode->NextSiblingElement())
-    {
-      WindowSettings w;
-      const char *   pName = pWindowNode->Attribute("name");
-      if (pName)
-        w.name = pName;
-
-      pWindowNode->QueryIntAttribute("x", &w.x);  // If this fails, original value is left as-is
-      pWindowNode->QueryIntAttribute("y", &w.y);
-      pWindowNode->QueryIntAttribute("w", &w.w);
-      pWindowNode->QueryIntAttribute("hh", &w.h);
-
-      m_windows.push_back(w);
-    }
-  }
-
-  // block: connection
-  {
-    pElem = hRoot.FirstChild("Connection").Element();
-    if (pElem)
-    {
-      m_connection.ip = pElem->Attribute("ip");
-      pElem->QueryDoubleAttribute("timeout", &m_connection.timeout);
-    }
-  }
-  */
 }

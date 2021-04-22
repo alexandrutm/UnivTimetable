@@ -52,7 +52,7 @@ public:
   int                      GenerateRoomId();
   vector<shared_ptr<Room>> GetRooms();
 
-  void            AddInstituteData(shared_ptr<InstituteData> aInstituteData);
+  void            ChangeInstituteData(shared_ptr<InstituteData> aInstituteData);
   InstituteData * GetInstituteData();
 
   void             AddConstraint(unique_ptr<TimeConstraint> aConstr);

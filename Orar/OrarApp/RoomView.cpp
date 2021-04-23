@@ -32,18 +32,27 @@ void RoomView::ClearData()
   tableModel->ClearData();
 }
 
+void RoomView::AddRoom(string aName, int aCapacity, int aId)
+{
+  if (!aName.empty())
+  {
+    tableModel->PopulateModel(QString::fromStdString(aName), aCapacity, aId);
+  }
+}
+
 void RoomView::on_mAdd_clicked()
 {
   RoomDialog Add(this);
 
   if (Add.exec())
   {
+    int     id       = mContext.GenerateRoomId();
     QString aName    = Add.mName->text();
     int     capacity = Add.mCapacity->value();
 
     if (!aName.isEmpty())
     {
-      tableModel->PopulateModel(aName, capacity);
+      tableModel->PopulateModel(aName, capacity, id);
     }
     else
     {

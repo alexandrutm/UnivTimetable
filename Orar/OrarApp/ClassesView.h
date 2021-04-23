@@ -14,7 +14,7 @@ public:
   ~ClassesView();
   void ClearData();
   void UpdateActions();
-  void AddClass();
+  void AddClass(string aName, int aNumberOfStudents, int aId, int parentId);
 
 private slots:
   void on_mSplitClass_clicked();
@@ -24,6 +24,8 @@ private slots:
 
 private:
   Ui::ClassesView ui;
+
+  vector<pair<int, QModelIndex>> idIndexPair;
 
   TreeModel *                mTreeModel;
   QAbstractItemModelTester * modelTester;

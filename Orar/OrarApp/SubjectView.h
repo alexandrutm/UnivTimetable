@@ -14,6 +14,7 @@ public:
   SubjectView(Context & aContext, QWidget * parent = Q_NULLPTR);
   ~SubjectView();
   void ClearData();
+  void AddSubject(string aName, int aId);
 
 private slots:
   void on_mAdd_clicked();

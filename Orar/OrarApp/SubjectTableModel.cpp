@@ -76,14 +76,13 @@ void SubjectTableModel::RemoveItemFromModel(int aRowSelected)
   endRemoveRows();
 }
 
-void SubjectTableModel::PopulateModel(QString aName)
+void SubjectTableModel::PopulateModel(QString aName, int aId)
 {
   int newRow = static_cast<int>(mContext.GetSubjectSize());
 
   beginInsertRows(QModelIndex(), newRow, newRow);
 
-  shared_ptr<Subject> newSubject =
-    make_shared<Subject>(aName.toStdString(), mContext.GenerateSubjectId());
+  shared_ptr<Subject> newSubject = make_shared<Subject>(aName.toStdString(), aId);
   mContext.AddSubject(newSubject);
 
   endInsertRows();

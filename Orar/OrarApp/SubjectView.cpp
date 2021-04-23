@@ -35,17 +35,26 @@ void SubjectView::ClearData()
   tableModel->ClearContent();
 }
 
+void SubjectView::AddSubject(string aName, int aId)
+{
+  if (!aName.empty())
+  {
+    tableModel->PopulateModel(QString::fromStdString(aName), aId);
+  }
+}
+
 void SubjectView::on_mAdd_clicked()
 {
   SubjectDialog AddSubject(this);
 
   if (AddSubject.exec())
   {
+    int     id          = mContext.GenerateSubjectId();
     QString subjectName = AddSubject.Name->text();
 
     if (!subjectName.isEmpty())
     {
-      tableModel->PopulateModel(subjectName);
+      tableModel->PopulateModel(subjectName, id);
     }
     else
       QMessageBox::about(this, "Name eror", "You need to fill all fields with *");

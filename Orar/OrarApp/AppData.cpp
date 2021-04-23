@@ -121,8 +121,8 @@ void AppData::SaveData(Context & aContext, string aFileName)
 
   // block: Lessons
   {
-    TiXmlElement * lessonNode = new TiXmlElement("Lessons");
-    root->LinkEndChild(lessonNode);
+    auto lessonNode = make_unique<TiXmlElement>("Lessons");
+    root->LinkEndChild(lessonNode.release());
 
     auto lessons = aContext.GetLessons();
 

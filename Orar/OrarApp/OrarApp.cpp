@@ -163,6 +163,8 @@ void OrarApp::on_mImport_data_triggered()
       string name = subject->Attribute("name");
       subject->QueryIntAttribute("id", &id);
 
+      mSubjectView.AddSubject(name, id);
+
       subject = subject->NextSiblingElement();
     }
   }
@@ -181,6 +183,60 @@ void OrarApp::on_mImport_data_triggered()
       mTeacherView.AddTeacher(fname, lname, id);
 
       teacher = teacher->NextSiblingElement();
+    }
+  }
+
+  // block room
+  {
+    TiXmlElement * room = hRoot.FirstChild("Rooms").FirstChild().Element();
+    int            id;
+    int            capacity;
+
+    while (room)
+    {
+      string name = room->Attribute("name");
+      room->QueryIntAttribute("capacity", &capacity);
+      room->QueryIntAttribute("id", &id);
+
+      mRoomView.AddRoom(name, capacity, id);
+
+      room = room->NextSiblingElement();
+    }
+  }
+
+  // block groups
+  {
+    TiXmlElement * group = hRoot.FirstChild("Groups").FirstChild().Element();
+    struct groupStructure
+    {
+      int    id;
+      int    numberOfStud;
+      string fname;
+      int    parentId;
+    };
+    vector<groupStructure> theGroups;
+
+    while (group)
+    {
+      groupStructure currentGroup;
+      currentGroup.fname = group->Attribute("name");
+      group->QueryIntAttribute("nrStudents", &currentGroup.numberOfStud);
+      group->QueryIntAttribute("id", &currentGroup.id);
+      group->QueryIntAttribute("parentId", &currentGroup.parentId);
+
+      theGroups.push_back(currentGroup);
+
+      group = group->NextSiblingElement();
+    }
+
+    sort(theGroups.begin(), theGroups.end(), [](auto first, auto second) {
+      return first.parentId < second.parentId;
+    });
+
+    for (auto currentGroup : theGroups)
+    {
+      mClassView.AddClass(currentGroup.fname, currentGroup.numberOfStud, currentGroup.id,
+                          currentGroup.parentId);
     }
   }
 }

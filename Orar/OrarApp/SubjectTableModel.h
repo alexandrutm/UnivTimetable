@@ -19,7 +19,7 @@ public:
                                   int                 role) override;
 
   void RemoveItemFromModel(int aRowSelected);
-  void PopulateModel(QString aFirstName);
+  void PopulateModel(QString aFirstName, int aId);
 
   void ClearContent();
 

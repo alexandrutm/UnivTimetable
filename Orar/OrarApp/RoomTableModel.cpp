@@ -91,15 +91,14 @@ void RoomTableModel::RemoveItemFromModel(int aRowSelected)
   endRemoveRows();
 }
 
-void RoomTableModel::PopulateModel(QString aName, int aCapacity)
+void RoomTableModel::PopulateModel(QString aName, int aCapacity, int aId)
 {
   int newRow = static_cast<int>(mContext.GetRoomSize());
 
   // emit signal to notify view that a new row is inserted
   beginInsertRows(QModelIndex(), newRow, newRow);
 
-  shared_ptr<Room> newRoom =
-    make_shared<Room>(aName.toStdString(), aCapacity, mContext.GenerateRoomId());
+  shared_ptr<Room> newRoom = make_shared<Room>(aName.toStdString(), aCapacity, aId);
   mContext.AddRoom(newRoom);
 
   endInsertRows();

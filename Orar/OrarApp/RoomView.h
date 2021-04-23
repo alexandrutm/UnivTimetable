@@ -14,6 +14,7 @@ public:
   RoomView(Context &, QWidget * parent = Q_NULLPTR);
   ~RoomView();
   void ClearData();
+  void AddRoom(string aName, int aCapacity, int aId);
 
 private slots:
   void on_mAdd_clicked();

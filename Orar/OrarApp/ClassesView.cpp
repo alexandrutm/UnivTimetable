@@ -43,56 +43,6 @@ void ClassesView::UpdateActions()
     ui.mSplitClass->setText("Add Class");
 }
 
-void ClassesView::AddClass(string aName, int aNumberOfStudents, int aId, int parentId)
-{
-  // check parent id
-  if (parentId == -1)
-  {  // root item
-  }
-  else if (parentId == 0)
-  {
-    const QModelIndex indexParent = ui.mTreeView->rootIndex();
-    auto              parentItem  = mTreeModel->getItem(indexParent);
-    int               row         = static_cast<int>(parentItem->GetChildrenSize());
-
-    if (!mTreeModel->insertRows(row, aId, indexParent))
-      return;
-
-    const QModelIndex childIndexName = mTreeModel->index(row, 0, indexParent);
-    mTreeModel->setData(childIndexName, QString::fromStdString(aName), Qt::EditRole);
-
-    const QModelIndex childIndexNrOfStud = mTreeModel->index(row, 1, indexParent);
-    mTreeModel->setData(childIndexNrOfStud, aNumberOfStudents, Qt::EditRole);
-
-    idIndexPair.push_back(pair<int, QModelIndex>(aId, childIndexName));
-  }
-  else
-  {
-    QModelIndex parent;
-    for (auto pair : idIndexPair)
-    {
-      if (pair.first == parentId)
-      {
-        parent = pair.second;
-        break;
-      }
-    }
-
-    auto parentItem = mTreeModel->getItem(parent);
-    int  row        = static_cast<int>(parentItem->GetChildrenSize());
-    if (!mTreeModel->insertRows(row, aId, parent))
-      return;
-
-    const QModelIndex childIndexName = mTreeModel->index(row, 0, parent);
-    mTreeModel->setData(childIndexName, QString::fromStdString(aName), Qt::EditRole);
-
-    const QModelIndex childIndexNrOfStud = mTreeModel->index(row, 1, parent);
-    mTreeModel->setData(childIndexNrOfStud, aNumberOfStudents, Qt::EditRole);
-
-    idIndexPair.push_back(pair<int, QModelIndex>(aId, childIndexName));
-  }
-}
-
 void ClassesView::on_mSplitClass_clicked()
 {
   ClassesDialog AddDialog(this);

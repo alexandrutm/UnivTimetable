@@ -23,6 +23,8 @@ TeacherView::TeacherView(Context & aContext, QWidget * parent)
   ui.mTable->setModel(mTeacherProxyModel);
   ui.mTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
   ui.mTable->setSortingEnabled(true);
+
+  mContext.RegisterObserver(mTeacherTableModel);
 }
 
 TeacherView::~TeacherView()

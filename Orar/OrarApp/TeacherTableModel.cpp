@@ -103,6 +103,23 @@ bool TeacherTableModel::removeRows(int first, int last, const QModelIndex & inde
   return true;
 }
 
+void TeacherTableModel::AddNewRow()
+{
+  if (mContext.GetTeacherSize() == 0)
+    return;
+
+  int newRow = static_cast<int>(mContext.GetTeacherSize()) - 1;
+
+  beginInsertRows(QModelIndex(), newRow, newRow);
+  endInsertRows();
+}
+
+void TeacherTableModel::Update(string aInstruction)
+{
+  if (aInstruction == "addnewrow")
+    AddNewRow();
+}
+
 void TeacherTableModel::ClearContent()
 {
   if (mContext.GetTeacherSize() > 0)

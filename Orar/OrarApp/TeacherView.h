@@ -21,9 +21,10 @@ private slots:
   void on_mEdit_clicked();
   void on_mDelete_clicked();
 
-private:
+public:
   Ui::TeacherView ui;
 
+private:
   SortFilterProxyModel * mTeacherProxyModel;
   TeacherTableModel *    mTeacherTableModel;
 

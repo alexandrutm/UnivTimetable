@@ -52,6 +52,9 @@
     <Filter Include="Source Files\ui\views">
       <UniqueIdentifier>{5c8fc305-fc62-43cc-ab96-2b955a04a23a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\ObserverPattern">
+      <UniqueIdentifier>{92e52fd4-128e-4fd1-ae0a-e1cfa063b10a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <QtRcc Include="OrarApp.qrc">
@@ -391,6 +394,12 @@
     </ClInclude>
     <ClInclude Include="tinyxml\tinyxml.h">
       <Filter>Source Files\tinyxml</Filter>
+    </ClInclude>
+    <ClInclude Include="Observable.h">
+      <Filter>Source Files\ObserverPattern</Filter>
+    </ClInclude>
+    <ClInclude Include="Observer.h">
+      <Filter>Source Files\ObserverPattern</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -7,6 +7,7 @@ TeacherTableModel::TeacherTableModel(Context & aContext, QObject * parent)
   : QAbstractTableModel(parent)
   , mContext(aContext)
 {
+  mModelName = "teachermodel";
 }
 
 int TeacherTableModel::rowCount(const QModelIndex & parent) const
@@ -118,6 +119,11 @@ void TeacherTableModel::Update(string aInstruction)
 {
   if (aInstruction == "addnewrow")
     AddNewRow();
+}
+
+string TeacherTableModel::GetModelName()
+{
+  return mModelName;
 }
 
 void TeacherTableModel::ClearContent()

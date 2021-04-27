@@ -22,12 +22,11 @@ void Context::RemoveObserver(Observer * aObserver)
     mObservers.erase(it);
 }
 
-void Context::NotifyObserver(Observer * aObserver)
+void Context::NotifyObserver(string aModelName, string instuction)
 {
-  auto it = find(mObservers.begin(), mObservers.end(), aObserver);
-
-  if (it != mObservers.end())
-    (*it)->Update("addnewrow");
+  for (auto obs : mObservers)
+    if (obs->GetModelName() == aModelName)
+      obs->Update(instuction);
 }
 
 Context::Context()

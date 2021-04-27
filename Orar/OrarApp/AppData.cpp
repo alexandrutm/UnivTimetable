@@ -141,3 +141,130 @@ void AppData::SaveData(Context & aContext, string aFileName)
 
   doc.SaveFile(aFileName.c_str());
 }
+
+void AppData::LoadData(Context & aContext, string aFileName)
+{
+  // select witch document to import
+  TiXmlDocument doc(aFileName.c_str());
+  if (!doc.LoadFile())
+    return;
+
+  TiXmlHandle    hDoc(&doc);
+  TiXmlElement * pElem;
+  TiXmlHandle    hRoot(0);
+
+  {
+    pElem = hDoc.FirstChildElement().Element();
+    if (!pElem)
+      return;
+    // save this for later
+    hRoot = TiXmlHandle(pElem);
+  }
+
+  // block: InstitutionDetails
+  {
+    TiXmlElement * institData = hRoot.FirstChildElement().Element();
+
+    int dayWeek;
+    int hourDay;
+    int startHour;
+    int endHour;
+
+    string name = institData->Attribute("name");
+    institData->QueryIntAttribute("nrOfDaysPerWeek", &dayWeek);
+    institData->QueryIntAttribute("nrOfHoursPerDay", &hourDay);
+    institData->QueryIntAttribute("startHour", &startHour);
+    institData->QueryIntAttribute("endHour", &endHour);
+
+    shared_ptr<InstituteData> instituteData =
+      make_shared<InstituteData>(name, hourDay, startHour, endHour, dayWeek);
+    aContext.ChangeInstituteData(instituteData);
+  }
+
+  //// block Subjects
+  //{
+  //  TiXmlElement * subject = hRoot.FirstChild("Subjects").FirstChild().Element();
+  //  int            id;
+  //  while (subject)
+  //  {
+  //    string name = subject->Attribute("name");
+  //    subject->QueryIntAttribute("id", &id);
+
+  //    mSubjectView.AddSubject(name, id);
+
+  //    subject = subject->NextSiblingElement();
+  //  }
+  //}
+
+  // block Teachers
+  {
+    TiXmlElement * teacher = hRoot.FirstChild("Teachers").FirstChild().Element();
+    int            id;
+
+    while (teacher)
+    {
+      string fname = teacher->Attribute("fname");
+      string lname = teacher->Attribute("lname");
+      teacher->QueryIntAttribute("id", &id);
+
+      aContext.AddTeacher(make_shared<Teacher>(fname, lname, id));
+      // notify just teacher model
+      aContext.NotifyObserver("teachermodel", "addnewrow");
+      teacher = teacher->NextSiblingElement();
+    }
+  }
+
+  //// block room
+  //{
+  //  TiXmlElement * room = hRoot.FirstChild("Rooms").FirstChild().Element();
+  //  int            id;
+  //  int            capacity;
+
+  //  while (room)
+  //  {
+  //    string name = room->Attribute("name");
+  //    room->QueryIntAttribute("capacity", &capacity);
+  //    room->QueryIntAttribute("id", &id);
+
+  //    mRoomView.AddRoom(name, capacity, id);
+
+  //    room = room->NextSiblingElement();
+  //  }
+  //}
+
+  //// block groups
+  //{
+  //  TiXmlElement * group = hRoot.FirstChild("Groups").FirstChild().Element();
+  //  struct groupStructure
+  //  {
+  //    int    id;
+  //    int    numberOfStud;
+  //    string fname;
+  //    int    parentId;
+  //  };
+  //  vector<groupStructure> theGroups;
+
+  //  while (group)
+  //  {
+  //    groupStructure currentGroup;
+  //    currentGroup.fname = group->Attribute("name");
+  //    group->QueryIntAttribute("nrStudents", &currentGroup.numberOfStud);
+  //    group->QueryIntAttribute("id", &currentGroup.id);
+  //    group->QueryIntAttribute("parentId", &currentGroup.parentId);
+
+  //    theGroups.push_back(currentGroup);
+
+  //    group = group->NextSiblingElement();
+  //  }
+
+  //  sort(theGroups.begin(), theGroups.end(), [](auto first, auto second) {
+  //    return first.parentId < second.parentId;
+  //  });
+
+  //  for (auto currentGroup : theGroups)
+  //  {
+  //    mClassView.AddClass(currentGroup.fname, currentGroup.numberOfStud, currentGroup.id,
+  //                        currentGroup.parentId);
+  //  }
+  //}
+}

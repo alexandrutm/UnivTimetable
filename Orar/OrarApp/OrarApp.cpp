@@ -115,6 +115,9 @@ void OrarApp::on_mInstitutionData_triggered()
 
 void OrarApp::on_mImport_data_triggered()
 {
+  AppData data;
+
+  data.LoadData(mContext, "context.xml");
 }
 
 void OrarApp::on_mNew_triggered()

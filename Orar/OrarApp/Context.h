@@ -15,7 +15,7 @@ class Context : public Observable
 public:
   void RegisterObserver(Observer * aObserver) override;
   void RemoveObserver(Observer * aObserver) override;
-  void NotifyObserver(Observer * aObserver) override;
+  void NotifyObserver(string aModelName, string instuction) override;
 
   Context();
   ~Context();

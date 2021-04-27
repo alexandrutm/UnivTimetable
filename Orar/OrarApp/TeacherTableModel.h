@@ -22,8 +22,9 @@ public:
   bool insertRows(int position, int rows, int aTeacherId);
   bool removeRows(int position, int rows, const QModelIndex & index = QModelIndex()) override;
 
-  void AddNewRow();
-  void Update(string aInstruction) override;
+  void   AddNewRow();
+  void   Update(string aInstruction) override;
+  string GetModelName() override;
 
   void ClearContent();
 

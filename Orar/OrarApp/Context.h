@@ -1,4 +1,7 @@
 #pragma once
+#include "Observable.h"
+class Observer;
+
 class Teacher;
 class Subject;
 class Group;
@@ -7,9 +10,13 @@ class InstituteData;
 class Room;
 class TimeConstraint;
 
-class Context
+class Context : public Observable
 {
 public:
+  void RegisterObserver(Observer * aObserver) override;
+  void RemoveObserver(Observer * aObserver) override;
+  void NotifyObserver(Observer * aObserver) override;
+
   Context();
   ~Context();
 
@@ -62,6 +69,9 @@ public:
   void             RemoveConstraint(int index);
 
 private:
+  // observer pattern
+  vector<Observer *> mObservers;
+  //
   vector<unique_ptr<TimeConstraint>> mConstraints;
   vector<shared_ptr<Subject>>        mSubjects;
   vector<shared_ptr<Teacher>>        mTeachers;

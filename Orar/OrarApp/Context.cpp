@@ -3,10 +3,32 @@
 #include "Group.h"
 #include "InstituteData.h"
 #include "Lesson.h"
+#include "Observer.h"
 #include "Room.h"
 #include "Subject.h"
 #include "Teacher.h"
 #include "TimeConstraint.h"
+
+void Context::RegisterObserver(Observer * aObserver)
+{
+  mObservers.push_back(aObserver);
+}
+
+void Context::RemoveObserver(Observer * aObserver)
+{
+  auto it = find(mObservers.begin(), mObservers.end(), aObserver);
+
+  if (it != mObservers.end())
+    mObservers.erase(it);
+}
+
+void Context::NotifyObserver(Observer * aObserver)
+{
+  auto it = find(mObservers.begin(), mObservers.end(), aObserver);
+
+  if (it != mObservers.end())
+    (*it)->Update("addnewrow");
+}
 
 Context::Context()
 {

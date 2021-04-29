@@ -32,14 +32,6 @@ void RoomView::ClearData()
   tableModel->ClearData();
 }
 
-void RoomView::AddRoom(string aName, int aCapacity, int aId)
-{
-  if (!aName.empty())
-  {
-    tableModel->PopulateModel(QString::fromStdString(aName), aCapacity, aId);
-  }
-}
-
 void RoomView::on_mAdd_clicked()
 {
   RoomDialog Add(this);

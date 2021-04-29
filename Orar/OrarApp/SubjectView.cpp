@@ -19,6 +19,7 @@ SubjectView::SubjectView(Context & aContext, QWidget * parent)
 
   proxyModel->setSourceModel(tableModel);
   proxyModel->sort(0, Qt::AscendingOrder);
+
   ui.mTable->setModel(proxyModel);
   ui.mTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
   ui.mTable->setSortingEnabled(true);
@@ -33,14 +34,6 @@ SubjectView::~SubjectView()
 void SubjectView::ClearData()
 {
   tableModel->ClearContent();
-}
-
-void SubjectView::AddSubject(string aName, int aId)
-{
-  if (!aName.empty())
-  {
-    tableModel->PopulateModel(QString::fromStdString(aName), aId);
-  }
 }
 
 void SubjectView::on_mAdd_clicked()

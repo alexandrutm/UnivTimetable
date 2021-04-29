@@ -3,7 +3,6 @@
 #include "ClassesDialog.h"
 #include "Context.h"
 #include "Group.h"
-#include "INavigator.h"
 #include "TreeModelClasses.h"
 
 ClassesView::ClassesView(TreeModel * aStudentGroupModel, Context & aContext, QWidget * parent)
@@ -59,9 +58,7 @@ void ClassesView::on_mSplitClass_clicked()
     if (!name.isEmpty())
     {
       // append a single row
-      int id = mContext.GenerateGroupId();
-
-      if (!mTreeModel->insertRows(row, id, indexParent))
+      if (!mTreeModel->insertRow(row, indexParent))
         return;
 
       const QModelIndex childIndexName = mTreeModel->index(row, 0, indexParent);
@@ -73,9 +70,9 @@ void ClassesView::on_mSplitClass_clicked()
     else
       QMessageBox::about(this, "Name error", "You need to insert a class name");
 
-    ui.mTreeView->selectionModel()->setCurrentIndex(
-      mTreeModel->index(indexParent.row(), 0, indexParent),
-      QItemSelectionModel::ClearAndSelect | QItemSelectionModel::Rows);
+    ui.mTreeView->selectionModel()->setCurrentIndex(mTreeModel->index(row, 0, indexParent),
+                                                    QItemSelectionModel::ClearAndSelect |
+                                                      QItemSelectionModel::Rows);
   }
 
   UpdateActions();
@@ -97,9 +94,7 @@ void ClassesView::on_mAddClass_clicked()
 
     if (!name.isEmpty())
     {
-      int id = mContext.GenerateGroupId();
-
-      if (!mTreeModel->insertRows(row, id, indexParent))
+      if (!mTreeModel->insertRow(row, indexParent))
         return;
 
       const QModelIndex childIndexName = mTreeModel->index(row, 0, indexParent);

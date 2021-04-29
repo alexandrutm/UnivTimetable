@@ -135,15 +135,15 @@ Group * TreeModel::getItem(const QModelIndex & index) const
   return mRootGroup;
 }
 
-bool TreeModel::insertRows(int position, int aId, const QModelIndex & parent)
+bool TreeModel::insertRows(int position, int rows, const QModelIndex & parent)
 {
   // insert one row at position
   auto parentItem = getItem(parent);
   if (!parentItem)
     return false;
 
-  beginInsertRows(parent, position, position);
-  parentItem->AppendChild(aId);
+  beginInsertRows(parent, position, position + rows - 1);
+  parentItem->AppendChild(mContext.GenerateGroupId());
   endInsertRows();
 
   return true;

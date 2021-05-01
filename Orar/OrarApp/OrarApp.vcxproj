@@ -145,7 +145,6 @@
     <ClCompile Include="tinyxml\tinyxmlparser.cpp" />
     <ClCompile Include="TransformLessonDetails.cpp" />
     <ClCompile Include="TreeModelClasses.cpp" />
-    <ClInclude Include="Observable.h" />
     <ClInclude Include="Observer.h" />
     <ClInclude Include="Placement.h" />
     <ClInclude Include="SelectPlacement.h" />

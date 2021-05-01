@@ -42,7 +42,7 @@ private:
 
   Context mContext;
 
-  TreeModel * mClassesModel;
+  shared_ptr<TreeModel> mClassesModel;
 
   AddDataDialog mDataDialog;
 

@@ -1,26 +1,22 @@
 #include "stdafx.h"
 #include "OrarApp.h"
-#include "AddDataDialog.h"
 #include "AppData.h"
-#include "DisplayTimetableView.h"
 #include "InstitutionDetailsDialog.h"
 #include "Solution.h"
 #include "Solver.h"
 #include "TransformLessonDetails.h"
 #include "TreeModelClasses.h"
-#include "tinyxml/tinyxml.h"
 
 OrarApp::OrarApp(QWidget * parent)
   : QMainWindow(parent)
-  , mClassesModel(new TreeModel(mContext, this))
   , mDataDialog(this)
   , mHomeView(this, this)
-  , mClassView(mClassesModel, mContext, this)
+  , mClassView(mContext, this)
   , mSubjectView(mContext, this)
   , mRoomView(mContext, this)
   , mTeacherView(mContext, this)
   , mLessonView(mContext, this)
-  , mDisplayTimeTableView(mClassesModel, mContext, this)
+  , mDisplayTimeTableView(mContext, this)
   , mConstraintsView(mContext, this)
 
 {
@@ -42,11 +38,15 @@ OrarApp::OrarApp(QWidget * parent)
   ui.centralStackWidget->insertWidget(0, &mHomeView);
   ui.centralStackWidget->insertWidget(1, &mDisplayTimeTableView);
   ui.centralStackWidget->setCurrentIndex(0);
+
+  //
+  mClassesModel = make_shared<TreeModel>(mContext, this);
+  mDisplayTimeTableView.AddTreeModel(mClassesModel);
+  mClassView.AddModel(mClassesModel);
 }
 
 OrarApp::~OrarApp()
 {
-  delete mClassesModel;
 }
 
 void OrarApp::ChangeView(INavigator::viewId theView)
@@ -85,13 +85,7 @@ void OrarApp::on_mData_triggered()
 
 void OrarApp::on_mGenerate_triggered()
 {
-  TransformLessonDetails lessonDetails;
-  Solver                 solver = Solver(mContext);
-
-  Solution * solution = solver.FindSolution();
-
-  mDisplayTimeTableView.PrintTimeTable(
-    lessonDetails.GetLessonDetails(mContext.GetInstituteData(), solution));
+  mDisplayTimeTableView.PrintTimeTable(mContext.GetTimeTable());
 }
 
 void OrarApp::on_mInstitutionData_triggered()

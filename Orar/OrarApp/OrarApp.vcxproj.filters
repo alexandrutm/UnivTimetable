@@ -395,9 +395,6 @@
     <ClInclude Include="tinyxml\tinyxml.h">
       <Filter>Source Files\tinyxml</Filter>
     </ClInclude>
-    <ClInclude Include="Observable.h">
-      <Filter>Source Files\ObserverPattern</Filter>
-    </ClInclude>
     <ClInclude Include="Observer.h">
       <Filter>Source Files\ObserverPattern</Filter>
     </ClInclude>

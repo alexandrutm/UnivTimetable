@@ -4,7 +4,6 @@
 #include "Group.h"
 #include "InstituteData.h"
 #include "Lesson.h"
-#include "Placement.h"
 #include "Room.h"
 #include "Teacher.h"
 

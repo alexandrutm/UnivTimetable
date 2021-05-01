@@ -4,15 +4,14 @@
 #include "InstituteData.h"
 #include "Lesson.h"
 #include "Room.h"
-#include "Solution.h"
 #include "Subject.h"
 #include "Teacher.h"
 #include "TimeSlot.h"
 
 vector<string> TransformLessonDetails::GetLessonDetails(InstituteData * aInstituteData,
-                                                        Solution *      aSolution)
+                                                        Solution        aSolution)
 {
-  auto lessons = aSolution->GetAssignedLessons();
+  auto lessons = aSolution.GetAssignedLessons();
 
   vector<string> lessonsDetails(5);
 

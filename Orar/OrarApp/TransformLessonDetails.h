@@ -1,12 +1,13 @@
 #pragma once
 
-class Solution;
+#include "Solution.h"
+
 class InstituteData;
 
 class TransformLessonDetails
 {
 public:
-  vector<string> GetLessonDetails(InstituteData * aInstituteData, Solution * aSolution);
+  vector<string> GetLessonDetails(InstituteData * aInstituteData, Solution aSolution);
 
 private:
   vector<string> mLessonDetails;

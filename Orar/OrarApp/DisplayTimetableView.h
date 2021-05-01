@@ -12,15 +12,17 @@ class DisplayTimetableView : public QWidget
   Q_OBJECT
 
 public:
-  DisplayTimetableView(TreeModel * classesModel, Context & aContex, QWidget * parent = Q_NULLPTR);
+  DisplayTimetableView(Context & aContex, QWidget * parent = Q_NULLPTR);
   ~DisplayTimetableView();
 
   void PrintTimeTable(vector<string> aLessonsDetails);
+  void AddTreeModel(shared_ptr<TreeModel> aTreeModel);
 
 private:
   Ui::DisplayTimetableView ui;
 
-  TimeTableViewModel * mTableModel;
-  TreeModel *          mTreeModel;
-  Context &            mContext;
+  Context & mContext;
+
+  TimeTableViewModel *  mTableModel;
+  shared_ptr<TreeModel> mTreeModel;
 };

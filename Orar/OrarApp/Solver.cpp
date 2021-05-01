@@ -1,32 +1,33 @@
 #include "stdafx.h"
 #include "Solver.h"
 #include "Lesson.h"
+#include "SelectPlacement.h"
 
-Solver::Solver(Context & aContext)
-  : mContext(aContext)
-  , mSolution(Solution(mContext))
-  , mTerminationCondition(TerminationCondition())
-  , mSelectPlacement(SelectPlacement(mContext))
+Solver::Solver()
+  : mTerminationCondition(TerminationCondition())
 {
 }
 
-Solution * Solver::FindSolution()
+Solution Solver::FindSolution(Context & aContext)
 {
+  SelectPlacement selectPlacement(aContext);
+  Solution        solution(aContext);
+
   // Try to place each lesson in an allowed placement
-  while (mTerminationCondition.CanContinue(&mSolution))
+  while (mTerminationCondition.CanContinue(&solution))
   {
     // select a lesson and remove it from unassigned lessons;
-    auto currentLesson = mSolution.GetNextUnassignedLesson();
+    auto currentLesson = solution.GetNextUnassignedLesson();
     // Search for an available placement for selected lesson, in which this lesson can be placed
     // respecting the constraints. If more slots are available, choose a random one. If none is
     // available, do backtr
-    auto placement = mSelectPlacement.GetPlacement(currentLesson);
+    auto placement = selectPlacement.GetPlacement(currentLesson);
 
     if (placement.IsValid())
     {
       currentLesson->SetPlacement(placement);
       // make lesson unavailable for placement
-      mSolution.SetAssignedLesson(currentLesson);
+      solution.SetAssignedLesson(currentLesson);
     }
     else
     {
@@ -34,5 +35,5 @@ Solution * Solver::FindSolution()
       // we need to take a step back
     }
   }
-  return &mSolution;
+  return solution;
 }

@@ -1,5 +1,4 @@
 #pragma once
-#include "Observable.h"
 class Observer;
 
 class Teacher;
@@ -10,12 +9,12 @@ class InstituteData;
 class Room;
 class TimeConstraint;
 
-class Context : public Observable
+class Context
 {
 public:
-  void RegisterObserver(Observer * aObserver) override;
-  void RemoveObserver(Observer * aObserver) override;
-  void NotifyObserver(string aModelName, string instuction) override;
+  void RegisterObserver(shared_ptr<Observer> aObserver);
+  void RemoveObserver(shared_ptr<Observer> aObserver);
+  void NotifyObserver(string aModelName, string instuction);
 
   Context();
   ~Context();

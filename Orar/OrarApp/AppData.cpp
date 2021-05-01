@@ -181,20 +181,21 @@ void AppData::LoadData(Context & aContext, string aFileName)
     aContext.ChangeInstituteData(instituteData);
   }
 
-  //// block Subjects
-  //{
-  //  TiXmlElement * subject = hRoot.FirstChild("Subjects").FirstChild().Element();
-  //  int            id;
-  //  while (subject)
-  //  {
-  //    string name = subject->Attribute("name");
-  //    subject->QueryIntAttribute("id", &id);
+  // block Subjects
+  {
+    TiXmlElement * subject = hRoot.FirstChild("Subjects").FirstChild().Element();
+    int            id;
+    while (subject)
+    {
+      string name = subject->Attribute("name");
+      subject->QueryIntAttribute("id", &id);
 
-  //    mSubjectView.AddSubject(name, id);
+      aContext.AddSubject(make_shared<Subject>(name, id));
+      aContext.NotifyObserver("subjectmodel", "addnewrow");
 
-  //    subject = subject->NextSiblingElement();
-  //  }
-  //}
+      subject = subject->NextSiblingElement();
+    }
+  }
 
   // block Teachers
   {
@@ -215,22 +216,23 @@ void AppData::LoadData(Context & aContext, string aFileName)
   }
 
   //// block room
-  //{
-  //  TiXmlElement * room = hRoot.FirstChild("Rooms").FirstChild().Element();
-  //  int            id;
-  //  int            capacity;
+  {
+    TiXmlElement * room = hRoot.FirstChild("Rooms").FirstChild().Element();
+    int            id;
+    int            capacity;
 
-  //  while (room)
-  //  {
-  //    string name = room->Attribute("name");
-  //    room->QueryIntAttribute("capacity", &capacity);
-  //    room->QueryIntAttribute("id", &id);
+    while (room)
+    {
+      string name = room->Attribute("name");
+      room->QueryIntAttribute("capacity", &capacity);
+      room->QueryIntAttribute("id", &id);
 
-  //    mRoomView.AddRoom(name, capacity, id);
+      aContext.AddRoom(make_shared<Room>(name, capacity, id));
+      aContext.NotifyObserver("roommodel", "addnewrow");
 
-  //    room = room->NextSiblingElement();
-  //  }
-  //}
+      room = room->NextSiblingElement();
+    }
+  }
 
   //// block groups
   //{

@@ -1,12 +1,10 @@
 #include "stdafx.h"
 #include "TeacherView.h"
 #include "Context.h"
-#include "InstituteData.h"
 #include "SortFilterProxyModel.h"
 #include "Teacher.h"
 #include "TeacherDialog.h"
 #include "TeacherTableModel.h"
-#include "TimeConstraint.h"
 
 TeacherView::TeacherView(Context & aContext, QWidget * parent)
   : QWidget(parent)
@@ -14,13 +12,13 @@ TeacherView::TeacherView(Context & aContext, QWidget * parent)
 {
   ui.setupUi(this);
 
-  mTeacherTableModel = new TeacherTableModel(mContext, this);
-  mTeacherProxyModel = new SortFilterProxyModel();
+  mTeacherTableModel = make_shared<TeacherTableModel>(mContext, this);
+  mTeacherProxyModel = make_unique<SortFilterProxyModel>();
 
-  mTeacherProxyModel->setSourceModel(mTeacherTableModel);
+  mTeacherProxyModel->setSourceModel(mTeacherTableModel.get());
   mTeacherProxyModel->sort(0, Qt::AscendingOrder);
 
-  ui.mTable->setModel(mTeacherProxyModel);
+  ui.mTable->setModel(mTeacherProxyModel.get());
   ui.mTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
   ui.mTable->setSortingEnabled(true);
 
@@ -29,8 +27,7 @@ TeacherView::TeacherView(Context & aContext, QWidget * parent)
 
 TeacherView::~TeacherView()
 {
-  delete mTeacherProxyModel;
-  delete mTeacherTableModel;
+  mContext.RemoveObserver(mTeacherTableModel);
 }
 
 void TeacherView::ClearData()
@@ -46,17 +43,11 @@ void TeacherView::on_mAdd_clicked()
   {
     QString firstName = Dialog.mFirstName->text();
     QString lastName  = Dialog.mLastName->text();
+    int     id        = mContext.GenerateTeacherId();
 
-    int id = mContext.GenerateTeacherId();
     if (!firstName.isEmpty())
     {
-      int newRow = static_cast<int>(mContext.GetTeacherSize());
-      mTeacherTableModel->insertRows(newRow, newRow, id);
-
-      QModelIndex index = mTeacherTableModel->index(newRow, 0, QModelIndex());
-      mTeacherTableModel->setData(index, firstName, Qt::EditRole);
-      index = mTeacherTableModel->index(newRow, 1, QModelIndex());
-      mTeacherTableModel->setData(index, lastName, Qt::EditRole);
+      mTeacherTableModel->PopulateModel(firstName.toStdString(), lastName.toStdString(), id);
     }
     else
     {
@@ -77,11 +68,11 @@ void TeacherView::on_mEdit_clicked()
 
   Dialog.setWindowTitle(tr("Edit Teacher"));
 
-  QModelIndex nameIndex = mTeacherTableModel->index(currentSelectedRowMapped, 0, QModelIndex());
-  firstOldName          = (mTeacherTableModel->data(nameIndex, Qt::DisplayRole)).toString();
+  firstOldName =
+    QString::fromStdString(mContext.GetTeacherByIndex(currentSelectedRowMapped)->GetFirstName());
 
-  QModelIndex addressIndex = mTeacherTableModel->index(currentSelectedRowMapped, 1, QModelIndex());
-  lastOldName              = (mTeacherTableModel->data(addressIndex, Qt::DisplayRole)).toString();
+  lastOldName =
+    QString::fromStdString(mContext.GetTeacherByIndex(currentSelectedRowMapped)->GetLastName());
 
   Dialog.EditEntry(firstOldName, lastOldName);
 

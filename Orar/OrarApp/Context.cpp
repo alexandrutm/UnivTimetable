@@ -5,20 +5,23 @@
 #include "Lesson.h"
 #include "Observer.h"
 #include "Room.h"
+#include "Solution.h"
+#include "Solver.h"
 #include "Subject.h"
 #include "Teacher.h"
 #include "TimeConstraint.h"
+#include "TransformLessonDetails.h"
 
-void Context::RegisterObserver(Observer * aObserver)
+void Context::RegisterObserver(shared_ptr<Observer> aObserver)
 {
   mObservers.push_back(aObserver);
 }
 
-void Context::RemoveObserver(Observer * aObserver)
+void Context::RemoveObserver(shared_ptr<Observer> aObserver)
 {
-  auto it = find(mObservers.begin(), mObservers.end(), aObserver);
+   auto it = find(mObservers.begin(), mObservers.end(), aObserver);
 
-  if (it != mObservers.end())
+   if (it != mObservers.end())
     mObservers.erase(it);
 }
 
@@ -359,4 +362,12 @@ void Context::RemoveConstraint(int index)
     return;
 
   mConstraints.erase(mConstraints.begin() + index);
+}
+
+vector<string> Context::GetTimeTable()
+{
+  Solver solver;
+
+  TransformLessonDetails lessons;
+  return lessons.GetLessonDetails(GetInstituteData(), solver.FindSolution(*this));
 }

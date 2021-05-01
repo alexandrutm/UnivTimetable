@@ -10,21 +10,23 @@ RoomView::RoomView(Context & aContext, QWidget * parent)
   , mContext(aContext)
 {
   ui.setupUi(this);
-  tableModel = new RoomTableModel(mContext, this);
+  tableModel = make_shared<RoomTableModel>(mContext, this);
 
-  proxyModel = new SortFilterProxyModel();
+  proxyModel = make_unique<SortFilterProxyModel>();
 
-  proxyModel->setSourceModel(tableModel);
+  proxyModel->setSourceModel(tableModel.get());
   proxyModel->sort(0, Qt::AscendingOrder);
-  ui.mTable->setModel(proxyModel);
+
+  ui.mTable->setModel(proxyModel.get());
   ui.mTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
   ui.mTable->setSortingEnabled(true);
+
+  mContext.RegisterObserver(tableModel);
 }
 
 RoomView::~RoomView()
 {
-  delete proxyModel;
-  delete tableModel;
+  mContext.RemoveObserver(tableModel);
 }
 
 void RoomView::ClearData()

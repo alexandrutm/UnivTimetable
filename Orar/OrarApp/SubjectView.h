@@ -22,8 +22,8 @@ private slots:
 
 private:
   Ui::SubjectView ui;
+  Context &       mContext;
 
-  SortFilterProxyModel * proxyModel;
-  SubjectTableModel *    tableModel;
-  Context &              mContext;
+  shared_ptr<SubjectTableModel>    tableModel;
+  unique_ptr<SortFilterProxyModel> proxyModel;
 };

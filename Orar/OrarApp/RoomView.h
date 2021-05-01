@@ -22,8 +22,8 @@ private slots:
 
 private:
   Ui::RoomView ui;
+  Context &    mContext;
 
-  SortFilterProxyModel * proxyModel;
-  RoomTableModel *       tableModel;
-  Context &              mContext;
+  shared_ptr<RoomTableModel>       tableModel;
+  unique_ptr<SortFilterProxyModel> proxyModel;
 };

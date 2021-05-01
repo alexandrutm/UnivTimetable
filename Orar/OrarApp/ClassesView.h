@@ -10,10 +10,11 @@ class ClassesView : public QWidget
   Q_OBJECT
 
 public:
-  ClassesView(TreeModel * aTreeModel, Context & aContext, QWidget * parent = Q_NULLPTR);
+  ClassesView(Context & aContext, QWidget * parent = Q_NULLPTR);
   ~ClassesView();
   void ClearData();
   void UpdateActions();
+  void AddModel(shared_ptr<TreeModel> aTreeModel);
 
 private slots:
   void on_mSplitClass_clicked();
@@ -24,7 +25,9 @@ private slots:
 private:
   Ui::ClassesView ui;
 
-  TreeModel *                mTreeModel;
+  Context & mContext;
+
+  shared_ptr<TreeModel> mTreeModel;
+
   QAbstractItemModelTester * modelTester;
-  Context &                  mContext;
 };

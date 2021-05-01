@@ -24,8 +24,8 @@ public:
   Ui::TeacherView ui;
 
 private:
-  SortFilterProxyModel * mTeacherProxyModel;
-  TeacherTableModel *    mTeacherTableModel;
-
   Context & mContext;
+
+  shared_ptr<TeacherTableModel>    mTeacherTableModel;
+  unique_ptr<SortFilterProxyModel> mTeacherProxyModel;
 };

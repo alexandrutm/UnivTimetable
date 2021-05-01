@@ -12,23 +12,22 @@ SubjectView::SubjectView(Context & aContext, QWidget * parent)
 {
   ui.setupUi(this);
 
-  tableModel = new SubjectTableModel(mContext, this);
-  proxyModel = new SortFilterProxyModel();
+  tableModel = make_shared<SubjectTableModel>(mContext, this);
+  proxyModel = make_unique<SortFilterProxyModel>();
 
-  ui.mTable->setModel(tableModel);
-
-  proxyModel->setSourceModel(tableModel);
+  proxyModel->setSourceModel(tableModel.get());
   proxyModel->sort(0, Qt::AscendingOrder);
 
-  ui.mTable->setModel(proxyModel);
+  ui.mTable->setModel(proxyModel.get());
   ui.mTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
   ui.mTable->setSortingEnabled(true);
+
+  mContext.RegisterObserver(tableModel);
 }
 
 SubjectView::~SubjectView()
 {
-  delete tableModel;
-  delete proxyModel;
+  mContext.RemoveObserver(tableModel);
 }
 
 void SubjectView::ClearData()

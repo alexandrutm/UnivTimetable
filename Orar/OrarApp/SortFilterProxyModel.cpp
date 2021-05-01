@@ -1,3 +1,4 @@
+#include "stdafx.h"
 #include "SortFilterProxyModel.h"
 
 SortFilterProxyModel::SortFilterProxyModel(QObject * parent)

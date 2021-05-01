@@ -83,16 +83,6 @@ QVariant TeacherTableModel::headerData(int section, Qt::Orientation orientation,
   return QVariant();
 }
 
-bool TeacherTableModel::insertRows(int first, int last, int aTeacherId)
-{
-  beginInsertRows(QModelIndex(), first, last);
-
-  mContext.AddTeacher(make_shared<Teacher>("fName", "lName", aTeacherId));
-
-  endInsertRows();
-  return true;
-}
-
 bool TeacherTableModel::removeRows(int first, int last, const QModelIndex & index)
 {
   Q_UNUSED(index);
@@ -102,6 +92,17 @@ bool TeacherTableModel::removeRows(int first, int last, const QModelIndex & inde
 
   endRemoveRows();
   return true;
+}
+
+void TeacherTableModel::PopulateModel(string aFirstName, string aLastName, int aTeacherId)
+{
+  int row = static_cast<int>(mContext.GetTeacherSize());
+
+  beginInsertRows(QModelIndex(), row, row);
+
+  mContext.AddTeacher(make_shared<Teacher>(aFirstName, aLastName, aTeacherId));
+
+  endInsertRows();
 }
 
 void TeacherTableModel::AddNewRow()

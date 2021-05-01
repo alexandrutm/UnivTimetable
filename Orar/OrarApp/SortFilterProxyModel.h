@@ -1,5 +1,4 @@
 #pragma once
-#include <QSortFilterProxyModel>
 
 class SortFilterProxyModel : public QSortFilterProxyModel
 {

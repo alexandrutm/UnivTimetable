@@ -7,6 +7,7 @@ RoomTableModel::RoomTableModel(Context & aContext, QObject * parent)
   : QAbstractTableModel(parent)
   , mContext(aContext)
 {
+  mModelName = "roommodel";
 }
 
 int RoomTableModel::rowCount(const QModelIndex & /*parent*/) const
@@ -112,4 +113,26 @@ void RoomTableModel::ClearData()
     mContext.DeleteRooms();
     endRemoveRows();
   }
+}
+
+void RoomTableModel::AddNewRow()
+{
+  if (mContext.GetRoomSize() == 0)
+    return;
+
+  int newRow = static_cast<int>(mContext.GetRoomSize()) - 1;
+
+  beginInsertRows(QModelIndex(), newRow, newRow);
+  endInsertRows();
+}
+
+void RoomTableModel::Update(string aInstruction)
+{
+  if (aInstruction == "addnewrow")
+    AddNewRow();
+}
+
+string RoomTableModel::GetModelName()
+{
+  return mModelName;
 }

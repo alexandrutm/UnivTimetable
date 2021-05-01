@@ -7,7 +7,9 @@ SubjectTableModel::SubjectTableModel(Context & aContext, QObject * parent)
   : QAbstractTableModel(parent)
   , mContext(aContext)
 {
+  mModelName = "subjectmodel";
 }
+
 int SubjectTableModel::rowCount(const QModelIndex & /*parent*/) const
 {
   return static_cast<int>(mContext.GetSubjectSize());
@@ -98,4 +100,26 @@ void SubjectTableModel::ClearContent()
 
     endRemoveRows();
   }
+}
+
+void SubjectTableModel::AddNewRow()
+{
+  if (mContext.GetSubjectSize() == 0)
+    return;
+
+  int newRow = static_cast<int>(mContext.GetSubjectSize()) - 1;
+
+  beginInsertRows(QModelIndex(), newRow, newRow);
+  endInsertRows();
+}
+
+void SubjectTableModel::Update(string aInstruction)
+{
+  if (aInstruction == "addnewrow")
+    AddNewRow();
+}
+
+string SubjectTableModel::GetModelName()
+{
+  return mModelName;
 }

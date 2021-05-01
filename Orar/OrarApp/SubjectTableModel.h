@@ -1,8 +1,10 @@
 #pragma once
-
+#include "Observer.h"
 class Context;
 
-class SubjectTableModel : public QAbstractTableModel
+class SubjectTableModel
+  : public QAbstractTableModel
+  , public Observer
 {
   Q_OBJECT
 
@@ -22,6 +24,10 @@ public:
   void PopulateModel(QString aFirstName, int aId);
 
   void ClearContent();
+
+  void   AddNewRow();
+  void   Update(string aInstruction) override;
+  string GetModelName() override;
 
 private:
   Context & mContext;

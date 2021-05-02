@@ -28,13 +28,12 @@ private slots:
 
 private:
   Ui::LessonView ui;
+  Context &      mContext;
 
-  SortFilterProxyModel * proxyModel;
   TeacherTableModel *    mTeacherModel;
   SubjectTableModel *    mSubjectModel;
   TreeModel *            mClassModel;
   RoomTableModel *       mRoomTableModel;
   LessonTableModel *     tableModel;
-
-  Context & mContext;
+  SortFilterProxyModel * proxyModel;
 };

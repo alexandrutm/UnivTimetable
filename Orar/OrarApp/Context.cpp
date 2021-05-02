@@ -12,26 +12,6 @@
 #include "TimeConstraint.h"
 #include "TransformLessonDetails.h"
 
-void Context::RegisterObserver(shared_ptr<Observer> aObserver)
-{
-  mObservers.push_back(aObserver);
-}
-
-void Context::RemoveObserver(shared_ptr<Observer> aObserver)
-{
-   auto it = find(mObservers.begin(), mObservers.end(), aObserver);
-
-   if (it != mObservers.end())
-    mObservers.erase(it);
-}
-
-void Context::NotifyObserver(string aModelName, string instuction)
-{
-  for (auto obs : mObservers)
-    if (obs->GetModelName() == aModelName)
-      obs->Update(instuction);
-}
-
 Context::Context()
 {
   mRootNodeStudents = make_unique<Group>("Root Class", 0, 0);
@@ -40,6 +20,26 @@ Context::Context()
   shared_ptr<InstituteData> InstitutionData =
     make_shared<InstituteData>("Institution name", 12, 8, 20, 5);
   this->ChangeInstituteData(InstitutionData);
+}
+
+void Context::RegisterObserver(shared_ptr<Observer> aObserver)
+{
+  mObservers.push_back(aObserver);
+}
+
+void Context::RemoveObserver(shared_ptr<Observer> aObserver)
+{
+  auto it = find(mObservers.begin(), mObservers.end(), aObserver);
+
+  if (it != mObservers.end())
+    mObservers.erase(it);
+}
+
+void Context::NotifyObserver(string aModelName, string instuction)
+{
+  for (auto obs : mObservers)
+    if (obs->GetModelName() == aModelName)
+      obs->Update(instuction);
 }
 
 Context::~Context()

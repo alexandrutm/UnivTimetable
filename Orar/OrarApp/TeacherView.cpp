@@ -13,6 +13,8 @@ TeacherView::TeacherView(Context & aContext, QWidget * parent)
   ui.setupUi(this);
 
   mTeacherTableModel = make_shared<TeacherTableModel>(mContext, this);
+  mContext.RegisterObserver(mTeacherTableModel);
+
   mTeacherProxyModel = make_unique<SortFilterProxyModel>();
 
   mTeacherProxyModel->setSourceModel(mTeacherTableModel.get());
@@ -21,8 +23,6 @@ TeacherView::TeacherView(Context & aContext, QWidget * parent)
   ui.mTable->setModel(mTeacherProxyModel.get());
   ui.mTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
   ui.mTable->setSortingEnabled(true);
-
-  mContext.RegisterObserver(mTeacherTableModel);
 }
 
 TeacherView::~TeacherView()

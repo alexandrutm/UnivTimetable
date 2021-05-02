@@ -133,7 +133,6 @@ void TeacherTableModel::ClearContent()
   {
     beginRemoveRows(QModelIndex(), 0, static_cast<int>(mContext.GetTeacherSize()) - 1);
     // emit signal to notify view that a new row is removed
-
     mContext.DeleteTeachers();
     endRemoveRows();
   }

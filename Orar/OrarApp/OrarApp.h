@@ -1,17 +1,10 @@
 #pragma once
 
 #include "AddDataDialog.h"
-#include "ClassesView.h"
-#include "ConstraintsView.h"
 #include "Context.h"
 #include "DisplayTimetableView.h"
 #include "HomeView.h"
 #include "INavigator.h"
-#include "InstituteData.h"
-#include "LessonView.h"
-#include "RoomView.h"
-#include "SubjectView.h"
-#include "TeacherView.h"
 #include "ui_OrarApp.h"
 
 class TreeModel;
@@ -47,11 +40,5 @@ private:
   AddDataDialog mDataDialog;
 
   HomeView             mHomeView;
-  SubjectView          mSubjectView;
-  ClassesView          mClassView;
-  RoomView             mRoomView;
-  TeacherView          mTeacherView;
-  LessonView           mLessonView;
   DisplayTimetableView mDisplayTimeTableView;
-  ConstraintsView      mConstraintsView;
 };

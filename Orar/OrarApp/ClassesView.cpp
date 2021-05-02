@@ -5,17 +5,12 @@
 #include "Group.h"
 #include "TreeModelClasses.h"
 
-ClassesView::ClassesView(TreeModel * aStudentGroupModel, Context & aContext, QWidget * parent)
+ClassesView::ClassesView(Context & aContext, QWidget * parent)
   : QWidget(parent)
   , mContext(aContext)
-  , mTreeModel(aStudentGroupModel)
 {
   ui.setupUi(this);
 
-  modelTester = new QAbstractItemModelTester(
-    mTreeModel, QAbstractItemModelTester::FailureReportingMode::Fatal, this);
-
-  ui.mTreeView->setModel(mTreeModel);
   ui.mTreeView->header()->setSectionResizeMode(QHeaderView::Stretch);
   ui.mTreeView->setSortingEnabled(true);
 
@@ -40,6 +35,15 @@ void ClassesView::UpdateActions()
     ui.mSplitClass->setText("Split Class");
   else
     ui.mSplitClass->setText("Add Class");
+}
+
+void ClassesView::AddModel(shared_ptr<TreeModel> aTreeModel)
+{
+  mTreeModel = aTreeModel;
+
+  modelTester = new QAbstractItemModelTester(
+    mTreeModel.get(), QAbstractItemModelTester::FailureReportingMode::Fatal, this);
+  ui.mTreeView->setModel(mTreeModel.get());
 }
 
 void ClassesView::on_mSplitClass_clicked()

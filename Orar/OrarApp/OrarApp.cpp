@@ -1,23 +1,15 @@
 #include "stdafx.h"
 #include "OrarApp.h"
 #include "AppData.h"
+#include "InstituteData.h"
 #include "InstitutionDetailsDialog.h"
-#include "Solution.h"
-#include "Solver.h"
-#include "TransformLessonDetails.h"
 #include "TreeModelClasses.h"
 
 OrarApp::OrarApp(QWidget * parent)
   : QMainWindow(parent)
-  , mDataDialog(this)
+  , mDataDialog(mContext, this)
   , mHomeView(this, this)
-  , mClassView(mContext, this)
-  , mSubjectView(mContext, this)
-  , mRoomView(mContext, this)
-  , mTeacherView(mContext, this)
-  , mLessonView(mContext, this)
   , mDisplayTimeTableView(mContext, this)
-  , mConstraintsView(mContext, this)
 
 {
   ui.setupUi(this);
@@ -25,14 +17,6 @@ OrarApp::OrarApp(QWidget * parent)
   // hide toolBar and menuBar on first page
   ui.toolBar->hide();
   ui.menuBar->hide();
-
-  // Basic data Dialog
-  mDataDialog.mData->addTab(&mSubjectView, "Subjects");
-  mDataDialog.mData->addTab(&mClassView, "Classes");
-  mDataDialog.mData->addTab(&mRoomView, "Rooms");
-  mDataDialog.mData->addTab(&mTeacherView, "Teachers");
-  mDataDialog.mData->addTab(&mLessonView, "Lessons");
-  mDataDialog.mData->addTab(&mConstraintsView, "Constraints");
 
   setCentralWidget(ui.centralStackWidget);
   ui.centralStackWidget->insertWidget(0, &mHomeView);
@@ -42,7 +26,7 @@ OrarApp::OrarApp(QWidget * parent)
   //
   mClassesModel = make_shared<TreeModel>(mContext, this);
   mDisplayTimeTableView.AddTreeModel(mClassesModel);
-  mClassView.AddModel(mClassesModel);
+  mDataDialog.AddTreeModel(mClassesModel);
 }
 
 OrarApp::~OrarApp()
@@ -123,11 +107,11 @@ void OrarApp::on_mNew_triggered()
   {
     // delete data from context and from all models
     ui.centralStackWidget->setCurrentIndex(0);
-    mTeacherView.ClearData();
-    mSubjectView.ClearData();
-    mClassView.ClearData();
-    mRoomView.ClearData();
-    mLessonView.ClearData();
+    // mTeacherView.ClearData();
+    // mSubjectView.ClearData();
+    // mClassView.ClearData();
+    // mRoomView.ClearData();
+    // mLessonView.ClearData();
 
     ui.toolBar->hide();
     ui.menuBar->hide();

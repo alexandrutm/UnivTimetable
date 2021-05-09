@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "AppData.h"
+#include "XmlParser.h"
 #include "Context.h"
 #include "Group.h"
 #include "InstituteData.h"
@@ -9,19 +9,19 @@
 #include "Teacher.h"
 #include "tinyxml/tinyxml.h"
 
-void AppData::SaveData(Context & aContext, string aFileName)
+void XmlParser::SaveData(Context & aContext, string aFileName)
 {
   TiXmlDocument doc;
   auto          decl = make_unique<TiXmlDeclaration>("1.0", "", "");
-  doc.LinkEndChild(decl.release());
+  doc.LinkEndChild(decl.get());
 
   auto root = make_unique<TiXmlElement>("Context");
-  doc.LinkEndChild(root.release());
+  doc.LinkEndChild(root.get());
 
   // block: InstitutionDetails
   {
     auto institutionNode = make_unique<TiXmlElement>("Institution");
-    root->LinkEndChild(institutionNode.release());
+    root->LinkEndChild(institutionNode.get());
 
     auto institutionData = aContext.GetInstituteData();
 
@@ -36,7 +36,7 @@ void AppData::SaveData(Context & aContext, string aFileName)
   // block: Subjects
   {
     auto subjectNode = make_unique<TiXmlElement>("Subjects");
-    root->LinkEndChild(subjectNode.release());
+    root->LinkEndChild(subjectNode.get());
 
     auto subjects = aContext.GetSubjects();
 
@@ -44,7 +44,7 @@ void AppData::SaveData(Context & aContext, string aFileName)
     {
       auto subjectElement = make_unique<TiXmlElement>("Subject");
 
-      subjectNode->LinkEndChild(subjectElement.release());
+      subjectNode->LinkEndChild(subjectElement.get());
 
       subjectElement->SetAttribute("name", subject->GetName().c_str());
       subjectElement->SetAttribute("id", subject->GetId());
@@ -54,7 +54,7 @@ void AppData::SaveData(Context & aContext, string aFileName)
   // block: Teachers
   {
     auto teacherNode = make_unique<TiXmlElement>("Teachers");
-    root->LinkEndChild(teacherNode.release());
+    root->LinkEndChild(teacherNode.get());
 
     auto teachers = aContext.GetTeachers();
 
@@ -62,7 +62,7 @@ void AppData::SaveData(Context & aContext, string aFileName)
     {
       auto teacherElement = make_unique<TiXmlElement>("Teacher");
 
-      teacherNode->LinkEndChild(teacherElement.release());
+      teacherNode->LinkEndChild(teacherElement.get());
 
       teacherElement->SetAttribute("fname", teacher->GetFirstName().c_str());
       teacherElement->SetAttribute("lname", teacher->GetLastName().c_str());
@@ -73,7 +73,7 @@ void AppData::SaveData(Context & aContext, string aFileName)
   // block: Groups
   {
     auto groupNode = make_unique<TiXmlElement>("Groups");
-    root->LinkEndChild(groupNode.release());
+    root->LinkEndChild(groupNode.get());
 
     queue<Group *> treeNodes;
 
@@ -85,7 +85,7 @@ void AppData::SaveData(Context & aContext, string aFileName)
       treeNodes.pop();
 
       auto groupElement = make_unique<TiXmlElement>("Group");
-      groupNode->LinkEndChild(groupElement.release());
+      groupNode->LinkEndChild(groupElement.get());
       groupElement->SetAttribute("name", frontNode->GetName().c_str());
       groupElement->SetAttribute("nrStudents", frontNode->GetNumberOfStudents());
       groupElement->SetAttribute("id", frontNode->GetId());
@@ -103,7 +103,7 @@ void AppData::SaveData(Context & aContext, string aFileName)
   // block: Rooms
   {
     auto roomNode = make_unique<TiXmlElement>("Rooms");
-    root->LinkEndChild(roomNode.release());
+    root->LinkEndChild(roomNode.get());
 
     auto rooms = aContext.GetRooms();
 
@@ -111,7 +111,7 @@ void AppData::SaveData(Context & aContext, string aFileName)
     {
       auto roomElement = make_unique<TiXmlElement>("Room");
 
-      roomNode->LinkEndChild(roomElement.release());
+      roomNode->LinkEndChild(roomElement.get());
 
       roomElement->SetAttribute("name", room->GetName().c_str());
       roomElement->SetAttribute("capacity", room->GetCapacity());
@@ -122,7 +122,7 @@ void AppData::SaveData(Context & aContext, string aFileName)
   // block: Lessons
   {
     auto lessonNode = make_unique<TiXmlElement>("Lessons");
-    root->LinkEndChild(lessonNode.release());
+    root->LinkEndChild(lessonNode.get());
 
     auto lessons = aContext.GetLessons();
 
@@ -130,7 +130,7 @@ void AppData::SaveData(Context & aContext, string aFileName)
     {
       auto lessonElement = make_unique<TiXmlElement>("Lesson");
 
-      lessonNode->LinkEndChild(lessonElement.release());
+      lessonNode->LinkEndChild(lessonElement.get());
 
       lessonElement->SetAttribute("teacherId", lesson->GetTeacher()->GetId());
       lessonElement->SetAttribute("subjectId", lesson->GetSubject()->GetId());
@@ -142,7 +142,7 @@ void AppData::SaveData(Context & aContext, string aFileName)
   doc.SaveFile(aFileName.c_str());
 }
 
-void AppData::LoadData(Context & aContext, string aFileName)
+void XmlParser::LoadData(Context & aContext, string aFileName)
 {
   // select witch document to import
   TiXmlDocument doc(aFileName.c_str());
@@ -234,39 +234,61 @@ void AppData::LoadData(Context & aContext, string aFileName)
     }
   }
 
-  //// block groups
-  //{
-  //  TiXmlElement * group = hRoot.FirstChild("Groups").FirstChild().Element();
-  //  struct groupStructure
-  //  {
-  //    int    id;
-  //    int    numberOfStud;
-  //    string fname;
-  //    int    parentId;
-  //  };
-  //  vector<groupStructure> theGroups;
+  // block groups
+  {
+    struct groupStruct
+    {
+      int    id;
+      int    numberOfStud;
+      string fname;
+      int    parentId;
+    };
 
-  //  while (group)
-  //  {
-  //    groupStructure currentGroup;
-  //    currentGroup.fname = group->Attribute("name");
-  //    group->QueryIntAttribute("nrStudents", &currentGroup.numberOfStud);
-  //    group->QueryIntAttribute("id", &currentGroup.id);
-  //    group->QueryIntAttribute("parentId", &currentGroup.parentId);
+    vector<groupStruct> theGroups;
 
-  //    theGroups.push_back(currentGroup);
+    TiXmlElement * group = hRoot.FirstChild("Groups").FirstChild().Element();
 
-  //    group = group->NextSiblingElement();
-  //  }
+    while (group)
+    {
+      groupStruct aGroup;
+      aGroup.fname = group->Attribute("name");
+      group->QueryIntAttribute("nrStudents", &aGroup.numberOfStud);
+      group->QueryIntAttribute("id", &aGroup.id);
+      group->QueryIntAttribute("parentId", &aGroup.parentId);
 
-  //  sort(theGroups.begin(), theGroups.end(), [](auto first, auto second) {
-  //    return first.parentId < second.parentId;
-  //  });
+      // add new group
+      theGroups.push_back(aGroup);
+      group = group->NextSiblingElement();
+    }
 
-  //  for (auto currentGroup : theGroups)
-  //  {
-  //    mClassView.AddClass(currentGroup.fname, currentGroup.numberOfStud, currentGroup.id,
-  //                        currentGroup.parentId);
-  //  }
-  //}
+    sort(theGroups.begin(), theGroups.end(), [](auto first, auto second) {
+      return first.parentId < second.parentId;
+    });
+
+    for (auto aGroup : theGroups)
+    {
+      aContext.LoadGroupFromXml(aGroup.fname, aGroup.numberOfStud, aGroup.id, aGroup.parentId);
+    }
+
+    aContext.NotifyObserver("groupmodel", "treeloaded");
+  }
+
+  // block lessons
+  {
+    TiXmlElement * lesson = hRoot.FirstChild("Lessons").FirstChild().Element();
+    // int            id;
+    // int            capacity;
+
+    // while (lesson)
+    //{
+    //  string name = lesson->Attribute("name");
+    //  lesson->QueryIntAttribute("capacity", &capacity);
+    //  lesson->QueryIntAttribute("id", &id);
+
+    //  aContext.AddRoom(make_shared<Room>(name, capacity, id));
+    //  aContext.NotifyObserver("roommodel", "addnewrow");
+
+    //  lesson = lesson->NextSiblingElement();
+    }
+  }
 }

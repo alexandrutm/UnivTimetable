@@ -2,7 +2,7 @@
 
 class Context;
 
-class AppData
+class XmlParser
 {
 public:
   void SaveData(Context & aContext, string aFileName);

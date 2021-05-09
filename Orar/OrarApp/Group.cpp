@@ -117,6 +117,11 @@ void Group::AppendChild(int id)
   mChildren.emplace_back(make_unique<Group>("name", 0, id, this));
 }
 
+void Group::LoadChildFromXml(string aName, int aNrOfStud, int aId)
+{
+  mChildren.emplace_back(make_unique<Group>(aName, aNrOfStud, aId, this));
+}
+
 Group * Group::GetParent()
 {
   return mParent != nullptr ? mParent : nullptr;

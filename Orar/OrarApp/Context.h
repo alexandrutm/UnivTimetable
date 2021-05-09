@@ -41,6 +41,7 @@ public:
   Group * GetRootGroup();
   Group * GetGroupById(int id);
   string  SearchGroup(Group * aGroup);
+  void    LoadGroupFromXml(string aNume, int aNumberOfStudents, int aId, int aParentId);
 
   void                       AddLesson(shared_ptr<Lesson> aLesson);
   void                       RemoveLesson(int i);

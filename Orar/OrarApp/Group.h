@@ -13,6 +13,7 @@ public:
   int    ColumnCount() const;
 
   void AppendChild(int id);
+  void LoadChildFromXml(string aName, int aNrOfStud, int aId);
   void RemoveChild(int pos);
 
   void   SetNumberOfStudents(int aNrOfStudent);

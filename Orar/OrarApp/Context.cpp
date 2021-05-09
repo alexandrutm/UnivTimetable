@@ -235,6 +235,28 @@ string Context::SearchGroup(Group * aGroup)
   return "";
 }
 
+void Context::LoadGroupFromXml(string aName, int aNumberOfStudents, int aId, int aParentId)
+{
+  queue<Group *> treeNodes;
+
+  treeNodes.push(mRootNodeStudents.get());
+
+  while (!treeNodes.empty())
+  {
+    auto frontNode = treeNodes.front();
+    treeNodes.pop();
+
+    if (aParentId == frontNode->GetId())
+    {
+      frontNode->LoadChildFromXml(aName, aNumberOfStudents, aId);
+      break;
+    }
+
+    for (int i = 0; i < frontNode->GetChildrenSize(); i++)
+      treeNodes.push(frontNode->GetChild(i));
+  }
+}
+
 void Context::AddLesson(shared_ptr<Lesson> aLesson)
 {
   mLessons.push_back(aLesson);

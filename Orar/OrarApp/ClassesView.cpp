@@ -20,6 +20,7 @@ ClassesView::ClassesView(Context & aContext, QWidget * parent)
 ClassesView::~ClassesView()
 {
   delete modelTester;
+  mContext.RemoveObserver(mTreeModel);
 }
 
 void ClassesView::ClearData()
@@ -44,6 +45,8 @@ void ClassesView::AddModel(shared_ptr<TreeModel> aTreeModel)
   modelTester = new QAbstractItemModelTester(
     mTreeModel.get(), QAbstractItemModelTester::FailureReportingMode::Fatal, this);
   ui.mTreeView->setModel(mTreeModel.get());
+
+  mContext.RegisterObserver(mTreeModel);
 }
 
 void ClassesView::on_mSplitClass_clicked()
@@ -62,7 +65,7 @@ void ClassesView::on_mSplitClass_clicked()
     if (!name.isEmpty())
     {
       // append a single row
-      if (!mTreeModel->insertRow(row, indexParent))
+      if (!mTreeModel->insertRows(row, mContext.GenerateGroupId(), indexParent))
         return;
 
       const QModelIndex childIndexName = mTreeModel->index(row, 0, indexParent);
@@ -98,7 +101,7 @@ void ClassesView::on_mAddClass_clicked()
 
     if (!name.isEmpty())
     {
-      if (!mTreeModel->insertRow(row, indexParent))
+      if (!mTreeModel->insertRows(row, mContext.GenerateGroupId(), indexParent))
         return;
 
       const QModelIndex childIndexName = mTreeModel->index(row, 0, indexParent);

@@ -1,4 +1,3 @@
-
 #include <fstream>
 #include <iostream>
 #include <queue>
@@ -20,6 +19,7 @@
 #pragma warning(disable : 28020)
 #pragma warning(disable : 26439)
 #pragma warning(disable : 6386)
+#pragma warning(disable : 26451)
 
 #include <QAbstractItemModelTester>
 #include <QAbstractTableModel>

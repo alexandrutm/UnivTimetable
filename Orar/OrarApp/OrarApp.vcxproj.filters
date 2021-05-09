@@ -188,7 +188,7 @@
     <ClCompile Include="TransformLessonDetails.cpp">
       <Filter>Source Files\Timetable generation</Filter>
     </ClCompile>
-    <ClCompile Include="AppData.cpp">
+    <ClCompile Include="XmlParser.cpp">
       <Filter>Source Files\data</Filter>
     </ClCompile>
     <ClCompile Include="tinyxml\tinystr.cpp">
@@ -386,7 +386,7 @@
     <ClInclude Include="TransformLessonDetails.h">
       <Filter>Source Files\Timetable generation</Filter>
     </ClInclude>
-    <ClInclude Include="AppData.h">
+    <ClInclude Include="XmlParser.h">
       <Filter>Source Files\data</Filter>
     </ClInclude>
     <ClInclude Include="tinyxml\tinystr.h">

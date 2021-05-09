@@ -1,9 +1,12 @@
 #pragma once
 
+#include "Observer.h"
 class Group;
 class Context;
 
-class TreeModel : public QAbstractItemModel
+class TreeModel
+  : public QAbstractItemModel
+  , public Observer
 {
   Q_OBJECT
 
@@ -30,7 +33,12 @@ public:
 
   Group * getItem(const QModelIndex & index) const;
 
+  void   Update(string instruction) override;
+  string GetModelName() override;
+
 private:
   Context & mContext;
   Group *   mRootGroup;
+
+  vector<pair<int, QModelIndex>> idIndexPair;
 };

@@ -13,7 +13,7 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>{9F368329-CF42-4BA9-BDB2-15243D8FC4DF}</ProjectGuid>
     <Keyword>QtVS_v303</Keyword>
-    <WindowsTargetPlatformVersion Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">10.0.18362.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">10.0.19041.0</WindowsTargetPlatformVersion>
     <WindowsTargetPlatformVersion Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">10.0.18362.0</WindowsTargetPlatformVersion>
     <QtMsBuild Condition="'$(QtMsBuild)'=='' OR !Exists('$(QtMsBuild)\qt.targets')">$(MSBuildProjectDirectory)\QtMsBuild</QtMsBuild>
   </PropertyGroup>
@@ -122,7 +122,7 @@
     <ClCompile Include="RoomTableModel.cpp" />
     <ClCompile Include="RoomView.cpp" />
     <ClCompile Include="SelectPlacement.cpp" />
-    <ClCompile Include="AppData.cpp" />
+    <ClCompile Include="XmlParser.cpp" />
     <ClCompile Include="Solution.cpp" />
     <ClCompile Include="Solver.cpp" />
     <ClCompile Include="SortFilterProxyModel.cpp" />
@@ -148,7 +148,7 @@
     <ClInclude Include="Observer.h" />
     <ClInclude Include="Placement.h" />
     <ClInclude Include="SelectPlacement.h" />
-    <ClInclude Include="AppData.h" />
+    <ClInclude Include="XmlParser.h" />
     <ClInclude Include="Solution.h" />
     <ClInclude Include="Solver.h" />
     <ClInclude Include="TerminationCondition.h" />

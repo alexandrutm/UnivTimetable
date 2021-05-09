@@ -1,6 +1,6 @@
 #pragma once
-#include "Observer.h"
 
+#include "Observer.h"
 class Context;
 
 class TeacherTableModel

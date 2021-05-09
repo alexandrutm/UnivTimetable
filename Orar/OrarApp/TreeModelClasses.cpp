@@ -9,6 +9,7 @@ TreeModel::TreeModel(Context & aContext, QObject * parent)
 
 {
   mRootGroup = mContext.GetRootGroup();
+  mModelName = "groupmodel";
 }
 
 TreeModel::~TreeModel()
@@ -135,15 +136,45 @@ Group * TreeModel::getItem(const QModelIndex & index) const
   return mRootGroup;
 }
 
-bool TreeModel::insertRows(int position, int rows, const QModelIndex & parent)
+void TreeModel::Update(string aInstruction)
+{
+  // if (aInstruction == "treeloaded")
+  //{
+  //  // create tree
+  //  queue<Group *> treeNodes;
+
+  //  treeNodes.push(mRootGroup);
+
+  //  while (!treeNodes.empty())
+  //  {
+  //    auto frontNode = treeNodes.front();
+  //    treeNodes.pop();
+
+  //    // QModelIndex parent=
+  //    for (int position = 0; position < frontNode->GetChildrenSize(); position++)
+  //    {
+  //      // beginInsertRows(parent, position, position);
+
+  //      // endInsertRows();
+  //    }
+  //  }
+  //}
+}
+
+string TreeModel::GetModelName()
+{
+  return mModelName;
+}
+
+bool TreeModel::insertRows(int position, int aId, const QModelIndex & parent)
 {
   // insert one row at position
   auto parentItem = getItem(parent);
   if (!parentItem)
     return false;
 
-  beginInsertRows(parent, position, position + rows - 1);
-  parentItem->AppendChild(mContext.GenerateGroupId());
+  beginInsertRows(parent, position, position);
+  parentItem->AppendChild(aId);
   endInsertRows();
 
   return true;

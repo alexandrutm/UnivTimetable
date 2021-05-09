@@ -1,5 +1,6 @@
 #pragma once
 #include "Observer.h"
+
 class Context;
 
 class RoomTableModel

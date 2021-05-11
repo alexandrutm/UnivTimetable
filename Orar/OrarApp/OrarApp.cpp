@@ -1,9 +1,9 @@
 #include "stdafx.h"
 #include "OrarApp.h"
-#include "AppData.h"
 #include "InstituteData.h"
 #include "InstitutionDetailsDialog.h"
 #include "TreeModelClasses.h"
+#include "XmlParser.h "
 
 OrarApp::OrarApp(QWidget * parent)
   : QMainWindow(parent)
@@ -54,10 +54,18 @@ void OrarApp::ChangeStatus(string aStatus)
 
 void OrarApp::on_mSave_triggered()
 {
-  AppData data;
-  QString text = QInputDialog::getText(this, "Save data", "Give a name to this data set");
+  XmlParser data;
+  QString   text = QInputDialog::getText(this, "Save data", "Give a name to this data set");
 
   data.SaveData(mContext, (text.toStdString() + ".xml"));
+}
+
+void OrarApp::on_mOpen_triggered()
+{
+  XmlParser data;
+
+  // choose which file to open
+  data.LoadData(mContext, "context.xml");
 }
 
 void OrarApp::on_mData_triggered()
@@ -89,13 +97,6 @@ void OrarApp::on_mInstitutionData_triggered()
       make_shared<InstituteData>(name.toStdString(), hoursPerDay, startTime, endTime, daysPerWeek);
     mContext.ChangeInstituteData(InstitutionData);
   }
-}
-
-void OrarApp::on_mImport_data_triggered()
-{
-  AppData data;
-
-  data.LoadData(mContext, "context.xml");
 }
 
 void OrarApp::on_mNew_triggered()

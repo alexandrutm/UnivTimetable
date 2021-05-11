@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>894</width>
+    <width>890</width>
     <height>553</height>
    </rect>
   </property>
@@ -53,8 +53,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>894</width>
-     <height>21</height>
+     <width>890</width>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -117,11 +117,10 @@
    <addaction name="mOpen"/>
    <addaction name="mSave"/>
    <addaction name="separator"/>
-   <addaction name="mImport_data"/>
-   <addaction name="mGenerate"/>
-   <addaction name="separator"/>
    <addaction name="mData"/>
    <addaction name="mInstitutionData"/>
+   <addaction name="separator"/>
+   <addaction name="mGenerate"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <action name="mNew">

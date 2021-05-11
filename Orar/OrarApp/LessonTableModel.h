@@ -1,9 +1,12 @@
 #pragma once
+#include "Observer.h"
 
 class Context;
 class Lesson;
 
-class LessonTableModel : public QAbstractTableModel
+class LessonTableModel
+  : public QAbstractTableModel
+  , public Observer
 {
   Q_OBJECT
 
@@ -20,6 +23,10 @@ public:
   void     PopulateModel(shared_ptr<Lesson> aLesson);
 
   void ClearContent();
+
+  void   Update(string instruction) override;
+  string GetModelName() override;
+  void   AddNewRow();
 
 private:
   Context & mContext;

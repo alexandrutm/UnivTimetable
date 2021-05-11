@@ -50,6 +50,8 @@ public:
   void                       DeleteLessons();
   int                        GenerateLessonId();
   vector<shared_ptr<Lesson>> GetLessons();
+  void                       AddLessonFromXml(
+                          int aTeacherId, int aSubjectId, int aGroupId, int aNumberOfHours, int aLessonId);
 
   void                     AddRoom(shared_ptr<Room> aRoom);
   void                     RemoveRoom(int i);

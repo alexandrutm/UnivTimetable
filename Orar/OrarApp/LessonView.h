@@ -30,10 +30,10 @@ private:
   Ui::LessonView ui;
   Context &      mContext;
 
-  TeacherTableModel *    mTeacherModel;
-  SubjectTableModel *    mSubjectModel;
-  TreeModel *            mClassModel;
-  RoomTableModel *       mRoomTableModel;
-  LessonTableModel *     tableModel;
-  SortFilterProxyModel * proxyModel;
+  TeacherTableModel *          mTeacherModel;
+  SubjectTableModel *          mSubjectModel;
+  TreeModel *                  mClassModel;
+  RoomTableModel *             mRoomTableModel;
+  shared_ptr<LessonTableModel> tableModel;
+  SortFilterProxyModel *       proxyModel;
 };

@@ -299,6 +299,42 @@ vector<shared_ptr<Lesson>> Context::GetLessons()
   return mLessons;
 }
 
+void Context::AddLessonFromXml(
+  int aTeacherId, int aSubjectId, int aGroupId, int aNumberOfHours, int aLessonId)
+{
+  auto teacherIt = find_if(mTeachers.begin(), mTeachers.end(), [&](auto const & teacher) {
+    return teacher->GetId() == aTeacherId;
+  });
+
+  auto subjectIt = find_if(mSubjects.begin(), mSubjects.end(), [&](auto const & subject) {
+    return subject->GetId() == aSubjectId;
+  });
+
+  // find group
+  queue<Group *> treeNodes;
+  Group *        lessonGroup;
+
+  treeNodes.push(mRootNodeStudents.get());
+
+  while (!treeNodes.empty())
+  {
+    auto frontNode = treeNodes.front();
+    treeNodes.pop();
+
+    if (aGroupId == frontNode->GetId())
+    {
+      lessonGroup = frontNode;
+      break;
+    }
+
+    for (int i = 0; i < frontNode->GetChildrenSize(); i++)
+      treeNodes.push(frontNode->GetChild(i));
+  }
+
+  mLessons.push_back(make_shared<Lesson>((*teacherIt).get(), (*subjectIt).get(), lessonGroup,
+                                         aNumberOfHours, aLessonId));
+}
+
 void Context::AddRoom(shared_ptr<Room> aRoom)
 {
   mRooms.push_back(aRoom);

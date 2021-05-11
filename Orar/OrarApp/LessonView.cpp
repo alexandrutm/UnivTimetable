@@ -25,23 +25,25 @@ LessonView::LessonView(Context & aContext, QWidget * parent)
   mClassModel     = new TreeModel(mContext, this);
   mRoomTableModel = new RoomTableModel(mContext, this);
 
-  tableModel = new LessonTableModel(mContext, this);
+  tableModel = make_shared<LessonTableModel>(mContext, this);
   proxyModel = new SortFilterProxyModel();
 
-  proxyModel->setSourceModel(tableModel);
+  proxyModel->setSourceModel(tableModel.get());
   proxyModel->sort(0, Qt::AscendingOrder);
   ui.mTable->setModel(proxyModel);
   ui.mTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
   ui.mTable->setSortingEnabled(true);
+
+  mContext.RegisterObserver(tableModel);
 }
 
 LessonView::~LessonView()
 {
+  mContext.RemoveObserver(tableModel);
   delete mTeacherModel;
   delete mSubjectModel;
   delete mClassModel;
   delete mRoomTableModel;
-  delete tableModel;
   delete proxyModel;
 }
 

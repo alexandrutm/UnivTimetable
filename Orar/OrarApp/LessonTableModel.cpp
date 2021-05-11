@@ -11,6 +11,7 @@ LessonTableModel::LessonTableModel(Context & aContext, QObject * parent)
   : QAbstractTableModel(parent)
   , mContext(aContext)
 {
+  mModelName = "lessonmodel";
 }
 
 int LessonTableModel::rowCount(const QModelIndex & /*parent*/) const
@@ -124,4 +125,25 @@ void LessonTableModel::ClearContent()
     mContext.DeleteLessons();
     endRemoveRows();
   }
+}
+
+void LessonTableModel::AddNewRow()
+{
+  if (mContext.GetLessonSize() == 0)
+    return;
+
+  int newRow = static_cast<int>(mContext.GetLessonSize()) - 1;
+
+  beginInsertRows(QModelIndex(), newRow, newRow);
+  endInsertRows();
+}
+void LessonTableModel::Update(string instruction)
+{
+  if (instruction == "addnewrow")
+    AddNewRow();
+}
+
+string LessonTableModel::GetModelName()
+{
+  return mModelName;
 }

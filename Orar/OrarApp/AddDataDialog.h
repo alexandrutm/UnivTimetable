@@ -23,7 +23,7 @@ public:
 private:
   Context & mContext;
 
-  // SubjectView     mSubjectView;
+  SubjectView     mSubjectView;
   ClassesView     mClassView;
   RoomView        mRoomView;
   TeacherView     mTeacherView;

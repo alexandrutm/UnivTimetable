@@ -6,7 +6,7 @@ AddDataDialog::AddDataDialog(Context & aContext, QWidget * parent)
   : QDialog(parent)
   , mContext(aContext)
   , mClassView(mContext, this)
-  //, mSubjectView(mContext, this)
+  , mSubjectView(mContext, this)
   , mRoomView(mContext, this)
   , mTeacherView(mContext, this)
   , mLessonView(mContext, this)
@@ -15,7 +15,7 @@ AddDataDialog::AddDataDialog(Context & aContext, QWidget * parent)
   setupUi(this);
   // Basic data Dialog
 
-  // mData->addTab(&mSubjectView, "Subjects");
+  mData->addTab(&mSubjectView, "Subjects");
   mData->addTab(&mClassView, "Classes");
   mData->addTab(&mRoomView, "Rooms");
   mData->addTab(&mTeacherView, "Teachers");

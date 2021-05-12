@@ -69,6 +69,9 @@ void OrarApp::on_mOpen_triggered()
   // choose which file to open
   auto fileName = QFileDialog::getOpenFileName(this, tr("Open File"), "", tr("Xml File (*.xml)"));
   data.LoadData(mContext, fileName.toStdString());
+
+  // notify tableview about changes
+  mDisplayTimeTableView.Update();
 }
 
 void OrarApp::on_mData_triggered()
@@ -81,6 +84,8 @@ void OrarApp::on_mData_triggered()
 void OrarApp::on_mGenerate_triggered()
 {
   mDisplayTimeTableView.PrintTimeTable(mContext.GetTimeTable());
+
+  mDisplayTimeTableView.Update();
 }
 
 void OrarApp::on_mInstitutionData_triggered()

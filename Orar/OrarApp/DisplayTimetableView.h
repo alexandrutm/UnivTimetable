@@ -17,6 +17,7 @@ public:
 
   void PrintTimeTable(vector<string> aLessonsDetails);
   void AddTreeModel(shared_ptr<TreeModel> aTreeModel);
+  void Update();
 
 private:
   Ui::DisplayTimetableView ui;

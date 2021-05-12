@@ -34,3 +34,9 @@ void DisplayTimetableView::AddTreeModel(shared_ptr<TreeModel> aTreeModel)
   mTreeModel = aTreeModel;
   ui.mTreeView->setModel(mTreeModel.get());
 }
+
+void DisplayTimetableView::Update()
+{
+  ui.mTreeView->resizeColumnToContents(0);
+  ui.mTimeTableView->repaint();
+}

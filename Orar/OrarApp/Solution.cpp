@@ -45,8 +45,17 @@ Lesson * Solution::GetNextUnassignedLesson()
   return lesson;
 }
 
-void Solution::SetLessonAsUnassigned()
+void Solution::UnassignLastAssignedLesson()
 {
+  mUnassignedLessons.push_back(mAssignedLessons.back());
+  mAssignedLessons.pop_back();
+
+  // remove placement for this lesson
+}
+
+void Solution::SetUnassignedLesson(Lesson * aLesson)
+{
+  mUnassignedLessons.push_back(aLesson);
 }
 
 vector<Lesson *> Solution::GetAssignedLessons()

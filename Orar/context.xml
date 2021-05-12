@@ -1,0 +1,51 @@
+<?xml version="1.0" ?>
+<Context>
+    <Institution name="Institution name" nrOfHoursPerDay="12" startHour="8" endHour="20" nrOfDaysPerWeek="5" />
+    <Subjects>
+        <Subject name="romana" id="1" />
+        <Subject name="algebra" id="2" />
+        <Subject name="istorie" id="3" />
+        <Subject name="franceza" id="4" />
+        <Subject name="engleza" id="5" />
+        <Subject name="analiza" id="6" />
+    </Subjects>
+    <Teachers>
+        <Teacher fname="ion" lname="ion" id="1" />
+        <Teacher fname="adi " lname="adi" id="2" />
+        <Teacher fname="alin" lname="alin" id="3" />
+        <Teacher fname="macron" lname="macron" id="4" />
+        <Teacher fname="klaus" lname="klaus" id="5" />
+        <Teacher fname="ilarie" lname="ilarie" id="6" />
+    </Teachers>
+    <Rooms>
+        <Room name="sala223" capacity="80" id="1" />
+        <Room name="sala296" capacity="22" id="2" />
+        <Room name="laborator113" capacity="40" id="3" />
+        <Room name="laborator222" capacity="33" id="4" />
+        <Room name="sala255" capacity="160" id="5" />
+        <Room name="sala266" capacity="140" id="6" />
+    </Rooms>
+    <Groups>
+        <Group name="Root Class" nrStudents="0" id="0" parentId="-1" />
+        <Group name="anul1" nrStudents="160" id="1" parentId="0" />
+        <Group name="anul2" nrStudents="140" id="2" parentId="0" />
+        <Group name="anul3" nrStudents="120" id="4" parentId="0" />
+        <Group name="masterAn1" nrStudents="40" id="6" parentId="0" />
+        <Group name="grupa1an1" nrStudents="40" id="3" parentId="1" />
+        <Group name="grupa2an1" nrStudents="40" id="7" parentId="1" />
+        <Group name="grupa3an1" nrStudents="40" id="8" parentId="1" />
+        <Group name="subgr1an1gr1" nrStudents="20" id="5" parentId="3" />
+    </Groups>
+    <Lessons>
+        <Lesson teacherId="1" subjectId="1" groupId="1" lessonLength="2" lessonId="2" />
+        <Lesson teacherId="3" subjectId="4" groupId="2" lessonLength="2" lessonId="2" />
+        <Lesson teacherId="4" subjectId="3" groupId="2" lessonLength="2" lessonId="2" />
+        <Lesson teacherId="2" subjectId="2" groupId="1" lessonLength="2" lessonId="2" />
+        <Lesson teacherId="3" subjectId="2" groupId="2" lessonLength="2" lessonId="2" />
+        <Lesson teacherId="2" subjectId="2" groupId="4" lessonLength="2" lessonId="2" />
+        <Lesson teacherId="1" subjectId="1" groupId="4" lessonLength="2" lessonId="2" />
+        <Lesson teacherId="1" subjectId="1" groupId="2" lessonLength="2" lessonId="2" />
+        <Lesson teacherId="4" subjectId="1" groupId="3" lessonLength="4" lessonId="4" />
+        <Lesson teacherId="4" subjectId="3" groupId="8" lessonLength="4" lessonId="4" />
+    </Lessons>
+</Context>

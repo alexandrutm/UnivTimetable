@@ -13,7 +13,7 @@ Solution Solver::FindSolution(Context & aContext)
   SelectPlacement selectPlacement(aContext);
   Solution        solution(aContext);
 
-  // Try to place each lesson in an allowed placement
+  // Try to place each lesson in an allowed placement && give a timer
   while (mTerminationCondition.CanContinue(&solution))
   {
     // select a lesson and remove it from unassigned lessons;
@@ -32,7 +32,11 @@ Solution Solver::FindSolution(Context & aContext)
     else
     {
       // we didn't found a placement for the lesson
+      solution.SetUnassignedLesson(currentLesson);
       // we need to take a step back
+      // pop_back last lesson and choose another placement for it
+
+      solution.UnassignLastAssignedLesson();
     }
   }
   return solution;

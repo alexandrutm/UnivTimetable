@@ -104,6 +104,23 @@ Placement SelectPlacement::GetPlacement(Lesson * aLesson)
     {
       for (int startTime = timeslot.GetStartTime(); startTime < timeslot.GetEndTime(); startTime++)
       {
+        // if we found another placement for this lesson we make available previous placement and we
+        // make unavailable current placement
+        if (aLesson->GetPlacement().IsValid())
+        {
+          aLesson->GetTeacher()->MakeAvailableTimeSlot(
+            pair<int, int>(aLesson->GetPlacement().GetTimeSlot().GetDayOfWeek(),
+                           aLesson->GetPlacement().GetTimeSlot().GetStartTime()));
+
+          aLesson->GetPlacement().GetRoom()->MakeAvailableTimeSlot(
+            pair<int, int>(aLesson->GetPlacement().GetTimeSlot().GetDayOfWeek(),
+                           aLesson->GetPlacement().GetTimeSlot().GetStartTime()));
+
+          aLesson->GetGroup()->MakeAvailableTimeSlot(
+            pair<int, int>(aLesson->GetPlacement().GetTimeSlot().GetDayOfWeek(),
+                           aLesson->GetPlacement().GetTimeSlot().GetStartTime()));
+        }
+
         room->MakeUnavailableTimeSlot(pair<int, int>(timeslot.GetDayOfWeek(), startTime));
 
         aLesson->GetTeacher()->MakeUnavailableTimeSlot(

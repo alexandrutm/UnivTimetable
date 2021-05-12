@@ -55,9 +55,11 @@ void OrarApp::ChangeStatus(string aStatus)
 void OrarApp::on_mSave_triggered()
 {
   XmlParser data;
-  QString   text = QInputDialog::getText(this, "Save data", "Give a name to this data set");
 
-  data.SaveData(mContext, (text.toStdString() + ".xml"));
+  QString fileName =
+    QFileDialog::getSaveFileName(this, tr("Save data"), "", tr("Xml File (*.xml);;All Files (*)"));
+
+  data.SaveData(mContext, (fileName.toStdString()));
 }
 
 void OrarApp::on_mOpen_triggered()
@@ -65,7 +67,8 @@ void OrarApp::on_mOpen_triggered()
   XmlParser data;
 
   // choose which file to open
-  data.LoadData(mContext, "context.xml");
+  auto fileName = QFileDialog::getOpenFileName(this, tr("Open File"), "", tr("Xml File (*.xml)"));
+  data.LoadData(mContext, fileName.toStdString());
 }
 
 void OrarApp::on_mData_triggered()
@@ -108,6 +111,7 @@ void OrarApp::on_mNew_triggered()
   {
     // delete data from context and from all models
     ui.centralStackWidget->setCurrentIndex(0);
+
     // mTeacherView.ClearData();
     // mSubjectView.ClearData();
     // mClassView.ClearData();

@@ -139,6 +139,9 @@ auto XmlParser::SaveLessons(Context & aContext)
 
 void XmlParser::SaveData(Context & aContext, string aFileName)
 {
+  if (aFileName.empty())
+    return;
+
   TiXmlDocument doc;
   auto          decl = make_unique<TiXmlDeclaration>("1.0", "", "");
   doc.LinkEndChild(decl.release());
@@ -296,7 +299,9 @@ void XmlParser::LoadLessons(Context & aContext, TiXmlHandle & hRoot)
 
 void XmlParser::LoadData(Context & aContext, string aFileName)
 {
-  // select which document to import
+  if (aFileName.empty())
+    return;
+  // select which document to impor
   TiXmlDocument doc(aFileName.c_str());
   if (!doc.LoadFile())
     return;

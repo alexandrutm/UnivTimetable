@@ -2,11 +2,11 @@
 
 #include "AddDataDialog.h"
 #include "Context.h"
-#include "DisplayTimetableView.h"
 #include "HomeView.h"
 #include "INavigator.h"
 #include "ui_OrarApp.h"
 
+class TimeTableViewModel;
 class TreeModel;
 
 class OrarApp
@@ -35,10 +35,10 @@ private:
 
   Context mContext;
 
+  TimeTableViewModel *  mTableModel;
   shared_ptr<TreeModel> mClassesModel;
 
   AddDataDialog mDataDialog;
 
-  HomeView             mHomeView;
-  DisplayTimetableView mDisplayTimeTableView;
+  HomeView mHomeView;
 };

@@ -2,6 +2,7 @@
 #include "OrarApp.h"
 #include "InstituteData.h"
 #include "InstitutionDetailsDialog.h"
+#include "TimeTableViewModel.h"
 #include "TreeModelClasses.h"
 #include "XmlParser.h "
 
@@ -9,7 +10,6 @@ OrarApp::OrarApp(QWidget * parent)
   : QMainWindow(parent)
   , mDataDialog(mContext, this)
   , mHomeView(this, this)
-  , mDisplayTimeTableView(mContext, this)
 
 {
   ui.setupUi(this);
@@ -20,12 +20,17 @@ OrarApp::OrarApp(QWidget * parent)
 
   setCentralWidget(ui.centralStackWidget);
   ui.centralStackWidget->insertWidget(0, &mHomeView);
-  ui.centralStackWidget->insertWidget(1, &mDisplayTimeTableView);
   ui.centralStackWidget->setCurrentIndex(0);
+
+  // display results
+  mTableModel = new TimeTableViewModel(this);
+  ui.mTimeTableView->setModel(mTableModel);
+  ui.mTimeTableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+  ui.mTimeTableView->verticalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
   //
   mClassesModel = make_shared<TreeModel>(mContext, this);
-  mDisplayTimeTableView.AddTreeModel(mClassesModel);
+  ui.mTreeView->setModel(mClassesModel.get());
   mDataDialog.AddTreeModel(mClassesModel);
 }
 
@@ -71,7 +76,7 @@ void OrarApp::on_mOpen_triggered()
   data.LoadData(mContext, fileName.toStdString());
 
   // notify tableview about changes
-  mDisplayTimeTableView.Update();
+  ui.mTreeView->resizeColumnToContents(0);
 }
 
 void OrarApp::on_mData_triggered()
@@ -83,9 +88,11 @@ void OrarApp::on_mData_triggered()
 
 void OrarApp::on_mGenerate_triggered()
 {
-  mDisplayTimeTableView.PrintTimeTable(mContext.GetTimeTable());
+  mTableModel->AddData((mContext.GetTimeTable()));
 
-  mDisplayTimeTableView.Update();
+  // notify tableview about changes
+
+  ui.mTimeTableView->repaint();
 }
 
 void OrarApp::on_mInstitutionData_triggered()

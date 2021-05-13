@@ -105,7 +105,6 @@
     <ClCompile Include="AddDataDialog.cpp" />
     <ClCompile Include="ConstraintListModel.cpp" />
     <ClCompile Include="ConstraintsView.cpp" />
-    <ClCompile Include="DisplayTimetableView.cpp" />
     <ClCompile Include="Group.cpp" />
     <ClCompile Include="InstituteData.cpp" />
     <ClCompile Include="ClassesDialog.cpp" />
@@ -167,7 +166,6 @@
     <QtMoc Include="ClassesView.h" />
     <QtMoc Include="ClassesDialog.h" />
     <QtMoc Include="AddDataDialog.h" />
-    <QtMoc Include="DisplayTimetableView.h" />
     <ClInclude Include="Group.h" />
     <ClInclude Include="InstituteData.h" />
     <QtMoc Include="LessonView.h" />
@@ -191,7 +189,6 @@
     <QtUic Include="ClassesDialog.ui" />
     <QtUic Include="ClassesView.ui" />
     <QtUic Include="ConstraintsView.ui" />
-    <QtUic Include="DisplayTimetableView.ui" />
     <QtUic Include="HomeView.ui" />
     <QtUic Include="InstitutionDetailsDialog.ui" />
     <QtUic Include="LessonDialog.ui" />

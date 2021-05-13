@@ -119,9 +119,6 @@
     <ClCompile Include="SortFilterProxyModel.cpp">
       <Filter>Source Files\ui\Models</Filter>
     </ClCompile>
-    <ClCompile Include="DisplayTimetableView.cpp">
-      <Filter>Source Files\ui\views</Filter>
-    </ClCompile>
     <ClCompile Include="TimeTableViewModel.cpp">
       <Filter>Source Files\ui\Models</Filter>
     </ClCompile>
@@ -241,9 +238,6 @@
     <QtMoc Include="SortFilterProxyModel.h">
       <Filter>Source Files\ui\Models</Filter>
     </QtMoc>
-    <QtMoc Include="DisplayTimetableView.h">
-      <Filter>Source Files\ui\views</Filter>
-    </QtMoc>
     <QtMoc Include="TimeTableViewModel.h">
       <Filter>Source Files\ui\Models</Filter>
     </QtMoc>
@@ -301,9 +295,6 @@
       <Filter>Resource Files\Dialog</Filter>
     </QtUic>
     <QtUic Include="ClassesView.ui">
-      <Filter>Resource Files\Views</Filter>
-    </QtUic>
-    <QtUic Include="DisplayTimetableView.ui">
       <Filter>Resource Files\Views</Filter>
     </QtUic>
     <QtUic Include="HomeView.ui">

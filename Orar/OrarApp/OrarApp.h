@@ -20,6 +20,7 @@ public:
   ~OrarApp();
   void ChangeView(INavigator::viewId theView);
   void ChangeStatus(string);
+  void ClassChanged();
 
 private slots:
   // toolbar actions

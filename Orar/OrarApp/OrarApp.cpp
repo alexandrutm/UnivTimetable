@@ -32,6 +32,9 @@ OrarApp::OrarApp(QWidget * parent)
   mClassesModel = make_shared<TreeModel>(mContext, this);
   ui.mTreeView->setModel(mClassesModel.get());
   mDataDialog.AddTreeModel(mClassesModel);
+
+  connect(ui.mTreeView->selectionModel(), &QItemSelectionModel::currentChanged, this,
+          &OrarApp::ClassChanged);
 }
 
 OrarApp::~OrarApp()
@@ -55,6 +58,21 @@ void OrarApp::ChangeView(INavigator::viewId theView)
 void OrarApp::ChangeStatus(string aStatus)
 {
   ui.statusBar->showMessage(QString::fromStdString(aStatus), 5000);
+}
+
+void OrarApp::ClassChanged()
+{
+  auto indexRowSelected = ui.mTreeView->selectionModel()->currentIndex();
+
+  if (!indexRowSelected.isValid())
+  {
+    QMessageBox::about(this, "No Class Selected", "Please choose a class");
+    return;
+  }
+
+  QModelIndex nameIndex =
+    mClassesModel->index(indexRowSelected.row(), 0, indexRowSelected.parent());
+  auto name = (mClassesModel->data(nameIndex, Qt::DisplayRole)).toString().toStdString();
 }
 
 void OrarApp::on_mSave_triggered()

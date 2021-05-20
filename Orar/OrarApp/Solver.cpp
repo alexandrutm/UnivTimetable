@@ -33,6 +33,7 @@ Solution Solver::FindSolution(Context & aContext)
     {
       // we didn't found a placement for the lesson
       solution.SetUnassignedLesson(currentLesson);
+      currentLesson->ClearVisitedPlacements();
       // we need to take a step back
       // pop_back last lesson and choose another placement for it
 

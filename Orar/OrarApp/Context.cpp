@@ -16,10 +16,8 @@ Context::Context()
 {
   mRootNodeStudents = make_unique<Group>("Root Class", 0, 0);
 
-  // create institution
-  shared_ptr<InstituteData> InstitutionData =
-    make_shared<InstituteData>("Institution name", 12, 8, 20, 5);
-  this->ChangeInstituteData(InstitutionData);
+  // create institution with default data member
+  mInstituteData = make_shared<InstituteData>("Institution name", 12, 8, 20, 5);
 }
 
 void Context::RegisterObserver(shared_ptr<Observer> aObserver)
@@ -302,6 +300,7 @@ vector<shared_ptr<Lesson>> Context::GetLessons()
 void Context::AddLessonFromXml(
   int aTeacherId, int aSubjectId, int aGroupId, int aNumberOfHours, int aLessonId)
 {
+  // search teacher, subject and group in context and assign them to a lesson
   auto teacherIt = find_if(mTeachers.begin(), mTeachers.end(), [&](auto const & teacher) {
     return teacher->GetId() == aTeacherId;
   });
@@ -310,7 +309,6 @@ void Context::AddLessonFromXml(
     return subject->GetId() == aSubjectId;
   });
 
-  // find group
   queue<Group *> treeNodes;
   Group *        lessonGroup;
 
@@ -333,6 +331,14 @@ void Context::AddLessonFromXml(
 
   mLessons.push_back(make_shared<Lesson>((*teacherIt).get(), (*subjectIt).get(), lessonGroup,
                                          aNumberOfHours, aLessonId));
+}
+
+void Context::DeleteLessonsPlacements()
+{
+  for (auto lesson:mLessons)
+  {
+    lesson->ClearAssingnedData();
+  }
 }
 
 void Context::AddRoom(shared_ptr<Room> aRoom)
@@ -426,6 +432,11 @@ vector<string> Context::GetTimeTable()
 {
   Solver solver;
 
-  TransformLessonDetails lessons;
-  return lessons.GetLessonDetails(GetInstituteData(), solver.FindSolution(*this));
+  TransformLessonDetails lessonsStringData;
+  return lessonsStringData.LessonsDataToString(GetInstituteData(), solver.FindSolution(*this));
+}
+
+bool Context::CheckTimetable()
+{
+  return GetLessonByIndex(0)->GetPlacement().IsValid();
 }

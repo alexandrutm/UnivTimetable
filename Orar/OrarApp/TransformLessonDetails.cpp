@@ -8,8 +8,8 @@
 #include "Teacher.h"
 #include "TimeSlot.h"
 
-vector<string> TransformLessonDetails::GetLessonDetails(InstituteData * aInstituteData,
-                                                        Solution        aSolution)
+vector<string> TransformLessonDetails::LessonsDataToString(InstituteData * aInstituteData,
+                                                           Solution        aSolution)
 {
   auto lessons = aSolution.GetAssignedLessons();
 

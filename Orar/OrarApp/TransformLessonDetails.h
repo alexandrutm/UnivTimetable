@@ -7,7 +7,7 @@ class InstituteData;
 class TransformLessonDetails
 {
 public:
-  vector<string> GetLessonDetails(InstituteData * aInstituteData, Solution aSolution);
+  vector<string> LessonsDataToString(InstituteData * aInstituteData, Solution aSolution);
 
 private:
   vector<string> mLessonDetails;

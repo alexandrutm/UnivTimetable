@@ -1,5 +1,8 @@
 #include "stdafx.h"
 #include "Lesson.h"
+#include "Group.h"
+#include "Room.h"
+#include "Teacher.h"
 
 Lesson::Lesson(Teacher * aTeacher, Subject * aSubject, Group * aClass, int aHoursPerWeek, int aId)
   : mSubject(aSubject)
@@ -63,6 +66,41 @@ void Lesson::SetPlacement(Placement aPlacement)
 Placement Lesson::GetPlacement()
 {
   return mPlacement;
+}
+
+void Lesson::ClearAssingnedData()
+{
+  GetTeacher()->MakeAvailableTimeSlot(pair<int, int>(GetPlacement().GetTimeSlot().GetDayOfWeek(),
+                                                     GetPlacement().GetTimeSlot().GetStartTime()));
+
+  GetPlacement().GetRoom()->MakeAvailableTimeSlot(pair<int, int>(
+    GetPlacement().GetTimeSlot().GetDayOfWeek(), GetPlacement().GetTimeSlot().GetStartTime()));
+
+  GetGroup()->MakeAvailableTimeSlot(pair<int, int>(GetPlacement().GetTimeSlot().GetDayOfWeek(),
+                                                   GetPlacement().GetTimeSlot().GetStartTime()));
+  mVisited.clear();
+  mPlacement.Clear();
+}
+
+void Lesson::AddVisitedPlacement(Placement aPlacement)
+{
+  mVisited.push_back(aPlacement);
+}
+
+bool Lesson::IsVisited(Placement aPlacement)
+{
+  auto it = find_if(mVisited.begin(), mVisited.end(), [&](auto placement) {
+    return placement == aPlacement;
+  });
+
+  if (it != mVisited.end())
+    return true;
+  return false;
+}
+
+void Lesson::ClearVisitedPlacements()
+{
+  mVisited.clear();
 }
 
 bool Lesson::operator==(const Lesson & aLesson)

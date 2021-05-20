@@ -52,6 +52,7 @@ public:
   vector<shared_ptr<Lesson>> GetLessons();
   void                       AddLessonFromXml(
                           int aTeacherId, int aSubjectId, int aGroupId, int aNumberOfHours, int aLessonId);
+  void DeleteLessonsPlacements();
 
   void                     AddRoom(shared_ptr<Room> aRoom);
   void                     RemoveRoom(int i);
@@ -71,6 +72,7 @@ public:
   void             RemoveConstraint(int index);
 
   vector<string> GetTimeTable();
+  bool           CheckTimetable();
 
 private:
   // observer pattern

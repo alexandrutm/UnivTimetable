@@ -8,6 +8,7 @@ class Placement
 public:
   Placement();
   Placement(Room * aRoom, TimeSlot aTimeSlot);
+  bool operator==(const Placement & aPlacement);
   void SetRoom(Room * aRoom);
   void SetTimeSlot(TimeSlot aTimeSlot);
 
@@ -15,6 +16,8 @@ public:
   TimeSlot GetTimeSlot();
 
   bool IsValid();
+
+  void Clear();
 
 private:
   Room *   mRoom;

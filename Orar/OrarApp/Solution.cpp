@@ -47,10 +47,9 @@ Lesson * Solution::GetNextUnassignedLesson()
 
 void Solution::UnassignLastAssignedLesson()
 {
+  // remove placement for this lesson
   mUnassignedLessons.push_back(mAssignedLessons.back());
   mAssignedLessons.pop_back();
-
-  // remove placement for this lesson
 }
 
 void Solution::SetUnassignedLesson(Lesson * aLesson)

@@ -12,6 +12,10 @@ Placement::Placement(Room * aRoom, TimeSlot aTimeSlot)
   , mTimeSlot(aTimeSlot)
 {
 }
+bool Placement::operator==(const Placement & aPlacement)
+{
+  return mRoom == aPlacement.mRoom && mTimeSlot == aPlacement.mTimeSlot;
+}
 
 void Placement::SetRoom(Room * aRoom)
 {
@@ -36,4 +40,9 @@ TimeSlot Placement::GetTimeSlot()
 bool Placement::IsValid()
 {
   return mRoom == nullptr ? false : true;
+}
+
+void Placement::Clear()
+{
+  mRoom = nullptr;
 }

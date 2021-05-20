@@ -8,7 +8,8 @@ class SelectPlacement
 {
 public:
   SelectPlacement(Context & aContext);
-  Placement GetPlacement(Lesson * aLesson);
+  Placement        GetPlacement(Lesson * aLesson);
+  vector<TimeSlot> GetAvailableTimeslotForTeacherAndGroup(Lesson * aLesson);
 
 private:
   Context & mContext;

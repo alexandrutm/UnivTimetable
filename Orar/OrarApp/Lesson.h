@@ -29,11 +29,18 @@ public:
 
   void      SetPlacement(Placement aPlacement);
   Placement GetPlacement();
+  void      ClearAssingnedData();
+
+  void AddVisitedPlacement(Placement);
+  bool IsVisited(Placement);
+  void ClearVisitedPlacements();
 
 private:
   int mId;
 
   Placement mPlacement;
+
+  vector<Placement> mVisited;
 
   Subject * mSubject;
   Teacher * mTeacher;

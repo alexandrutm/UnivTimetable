@@ -60,8 +60,8 @@ void LessonView::on_mAdd_clicked()
   aDialog.mSubject->setModel(mSubjectModel);
 
   // paint a tree model into class combobox
-  QTreeView * treeViewCombobox = new QTreeView(aDialog.mClasses);
-  aDialog.mClasses->setView(treeViewCombobox);
+  unique_ptr<QTreeView> treeViewCombobox = make_unique<QTreeView>(aDialog.mClasses);
+  aDialog.mClasses->setView(treeViewCombobox.get());
   aDialog.mClasses->setModel(mClassModel);
 
   if (aDialog.exec())
@@ -92,7 +92,6 @@ void LessonView::on_mAdd_clicked()
   }
 
   //
-  delete treeViewCombobox;
 }
 
 void LessonView::on_mEdit_clicked()

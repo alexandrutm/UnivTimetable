@@ -2,6 +2,7 @@
 #include "OrarApp.h"
 #include "InstituteData.h"
 #include "InstitutionDetailsDialog.h"
+#include "SortFilterProxyModel.h"
 #include "TimeTableViewModel.h"
 #include "TreeModelClasses.h"
 #include "XmlParser.h "
@@ -22,19 +23,25 @@ OrarApp::OrarApp(QWidget * parent)
   ui.centralStackWidget->insertWidget(0, &mHomeView);
   ui.centralStackWidget->setCurrentIndex(0);
 
-  // display results
-  mTableModel = new TimeTableViewModel(this);
-  ui.mTimeTableView->setModel(mTableModel);
-  ui.mTimeTableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
-  ui.mTimeTableView->verticalHeader()->setSectionResizeMode(QHeaderView::Stretch);
-
-  //
-  mClassesModel = make_shared<TreeModel>(mContext, this);
-  ui.mTreeView->setModel(mClassesModel.get());
-  mDataDialog.AddTreeModel(mClassesModel);
+  CreateModels();
 
   connect(ui.mTreeView->selectionModel(), &QItemSelectionModel::currentChanged, this,
           &OrarApp::ClassChanged);
+}
+
+void OrarApp::CreateModels()
+{
+  mTableModel = make_unique<TimeTableViewModel>();
+  mProxyModel = make_unique<SortFilterProxyModel>();
+  mProxyModel->setSourceModel(mTableModel.get());
+  ui.mTimeTableView->setModel(mProxyModel.get());
+
+  ui.mTimeTableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+  ui.mTimeTableView->verticalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+
+  mClassesModel = make_shared<TreeModel>(mContext, this);
+  ui.mTreeView->setModel(mClassesModel.get());
+  mDataDialog.AddTreeModel(mClassesModel);
 }
 
 OrarApp::~OrarApp()
@@ -79,8 +86,8 @@ void OrarApp::on_mSave_triggered()
 {
   XmlParser data;
 
-  QString fileName =
-    QFileDialog::getSaveFileName(this, tr("Save data"), "", tr("Xml File (*.xml);;All Files (*)"));
+  QString fileName = QFileDialog::getSaveFileName(this, tr("Save data"), "",
+                                                  tr("Orar File (*.orar);;All Files (*)"));
 
   data.SaveData(mContext, (fileName.toStdString()));
 }
@@ -90,7 +97,7 @@ void OrarApp::on_mOpen_triggered()
   XmlParser data;
 
   // choose which file to open
-  auto fileName = QFileDialog::getOpenFileName(this, tr("Open File"), "", tr("Xml File (*.xml)"));
+  auto fileName = QFileDialog::getOpenFileName(this, tr("Open File"), "", tr("Orar File (*.orar)"));
   data.LoadData(mContext, fileName.toStdString());
 
   // notify tableview about changes
@@ -106,8 +113,17 @@ void OrarApp::on_mData_triggered()
 
 void OrarApp::on_mGenerate_triggered()
 {
-  mTableModel->AddData((mContext.GetTimeTable()));
-
+  // check if we have a generated timetable
+  if (mContext.CheckTimetable())
+  {
+    // already have a timetable generated-> delete lesson placement and generated another timetable
+    mContext.DeleteLessonsPlacements();
+    mTableModel->AddData((mContext.GetTimeTable()));
+  }
+  else
+  {
+    mTableModel->AddData((mContext.GetTimeTable()));
+  }
   // notify tableview about changes
 
   ui.mTimeTableView->repaint();

@@ -33,28 +33,28 @@ vector<Lesson *> Solution::GetUnassignedLessons()
 }
 
 void Solution::SetAssignedLesson(Lesson * aLesson)
-{
+{  // move lesson from unassigned to assigned
+  auto it = find(mUnassignedLessons.begin(), mUnassignedLessons.end(), aLesson);
+
+  if (it != mUnassignedLessons.end())
+    mUnassignedLessons.erase(it);
+
   mAssignedLessons.push_back(aLesson);
 }
 
 Lesson * Solution::GetNextUnassignedLesson()
 {
-  // selext next unassigned lesson and delete it from the vector
-  auto lesson = mUnassignedLessons.back();
-  mUnassignedLessons.pop_back();
-  return lesson;
+  return mUnassignedLessons.back();
 }
 
 void Solution::UnassignLastAssignedLesson()
 {
   // remove placement for this lesson
-  mUnassignedLessons.push_back(mAssignedLessons.back());
-  mAssignedLessons.pop_back();
-}
-
-void Solution::SetUnassignedLesson(Lesson * aLesson)
-{
-  mUnassignedLessons.push_back(aLesson);
+  if (mAssignedLessons.size() > 0)
+  {
+    mUnassignedLessons.push_back(mAssignedLessons.back());
+    mAssignedLessons.pop_back();
+  }
 }
 
 vector<Lesson *> Solution::GetAssignedLessons()

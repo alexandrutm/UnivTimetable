@@ -34,7 +34,7 @@ QVariant LessonTableModel::data(const QModelIndex & index, int role) const
   if (index.column() == 0)
   {
     auto teacher = mContext.GetLessonByIndex(index.row())->GetTeacher();
-    return QString::fromStdString(teacher->GetFirstName());
+    return QString::fromStdString(teacher->GetFirstName() + " " + teacher->GetLastName());
   }
   else if (index.column() == 1)
   {

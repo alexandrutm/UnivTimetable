@@ -65,28 +65,29 @@ Placement SelectPlacement::GetPlacement(Lesson * aLesson)
       // int this time slot
       if (!roomUnavailable)
       {
-        for (int startTime = timeslot.GetStartTime(); startTime < timeslot.GetEndTime();
-             startTime++)
+        // if we found another placement for this lesson we make available previous placement and
+        // we make unavailable current placement we make last placement visited
+        if (aLesson->GetPlacement().IsValid())
         {
-          // if we found another placement for this lesson we make available previous placement and
-          // we make unavailable current placement we make last placement visited
-          if (aLesson->GetPlacement().IsValid())
+          for (auto duration = aLesson->GetPlacement().GetTimeSlot().GetStartTime();
+               duration < aLesson->GetPlacement().GetTimeSlot().GetEndTime(); duration++)
           {
             aLesson->AddVisitedPlacement(aLesson->GetPlacement());
 
             aLesson->GetTeacher()->MakeAvailableTimeSlot(
-              pair<int, int>(aLesson->GetPlacement().GetTimeSlot().GetDayOfWeek(),
-                             aLesson->GetPlacement().GetTimeSlot().GetStartTime()));
+              pair<int, int>(aLesson->GetPlacement().GetTimeSlot().GetDayOfWeek(), duration));
 
             aLesson->GetPlacement().GetRoom()->MakeAvailableTimeSlot(
-              pair<int, int>(aLesson->GetPlacement().GetTimeSlot().GetDayOfWeek(),
-                             aLesson->GetPlacement().GetTimeSlot().GetStartTime()));
+              pair<int, int>(aLesson->GetPlacement().GetTimeSlot().GetDayOfWeek(), duration));
 
             aLesson->GetGroup()->MakeAvailableTimeSlot(
-              pair<int, int>(aLesson->GetPlacement().GetTimeSlot().GetDayOfWeek(),
-                             aLesson->GetPlacement().GetTimeSlot().GetStartTime()));
+              pair<int, int>(aLesson->GetPlacement().GetTimeSlot().GetDayOfWeek(), duration));
           }
+        }
 
+        for (int startTime = timeslot.GetStartTime(); startTime < timeslot.GetEndTime();
+             startTime++)
+        {
           room->MakeUnavailableTimeSlot(pair<int, int>(timeslot.GetDayOfWeek(), startTime));
 
           aLesson->GetTeacher()->MakeUnavailableTimeSlot(

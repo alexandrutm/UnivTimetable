@@ -70,14 +70,19 @@ Placement Lesson::GetPlacement()
 
 void Lesson::ClearAssingnedData()
 {
-  GetTeacher()->MakeAvailableTimeSlot(pair<int, int>(GetPlacement().GetTimeSlot().GetDayOfWeek(),
-                                                     GetPlacement().GetTimeSlot().GetStartTime()));
+  for (auto hour = GetPlacement().GetTimeSlot().GetStartTime();
+       hour < GetPlacement().GetTimeSlot().GetEndTime(); hour++)
+  {
+    GetTeacher()->MakeAvailableTimeSlot(
+      pair<int, int>(GetPlacement().GetTimeSlot().GetDayOfWeek(), hour));
 
-  GetPlacement().GetRoom()->MakeAvailableTimeSlot(pair<int, int>(
-    GetPlacement().GetTimeSlot().GetDayOfWeek(), GetPlacement().GetTimeSlot().GetStartTime()));
+    GetPlacement().GetRoom()->MakeAvailableTimeSlot(
+      pair<int, int>(GetPlacement().GetTimeSlot().GetDayOfWeek(), hour));
 
-  GetGroup()->MakeAvailableTimeSlot(pair<int, int>(GetPlacement().GetTimeSlot().GetDayOfWeek(),
-                                                   GetPlacement().GetTimeSlot().GetStartTime()));
+    GetGroup()->MakeAvailableTimeSlot(
+      pair<int, int>(GetPlacement().GetTimeSlot().GetDayOfWeek(), hour));
+  }
+
   mVisited.clear();
   mPlacement.Clear();
 }

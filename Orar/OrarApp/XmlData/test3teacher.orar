@@ -1,0 +1,24 @@
+<?xml version="1.0" ?>
+<Context>
+    <Institution name="Institution name" nrOfHoursPerDay="12" startHour="8" endHour="20" nrOfDaysPerWeek="5" />
+    <Subjects>
+        <Subject name="1romana" id="1" />
+    </Subjects>
+    <Teachers>
+        <Teacher fname="roxana" lname="roxan" id="1" />
+        <Teacher fname="alex" lname="alex" id="2" />
+        <Teacher fname="ion" lname="ion" id="3" />
+    </Teachers>
+    <Rooms>
+        <Room name="111" capacity="0" id="1" />
+    </Rooms>
+    <Groups>
+        <Group name="Root Class" nrStudents="0" id="0" parentId="-1" />
+        <Group name="8a" nrStudents="0" id="1" parentId="0" />
+    </Groups>
+    <Lessons>
+        <Lesson teacherId="1" subjectId="1" groupId="1" lessonLength="2" lessonId="2" />
+        <Lesson teacherId="2" subjectId="1" groupId="1" lessonLength="2" lessonId="2" />
+        <Lesson teacherId="3" subjectId="1" groupId="1" lessonLength="2" lessonId="2" />
+    </Lessons>
+</Context>

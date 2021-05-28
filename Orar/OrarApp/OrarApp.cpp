@@ -113,6 +113,13 @@ void OrarApp::on_mData_triggered()
 
 void OrarApp::on_mGenerate_triggered()
 {
+  if (mContext.GetLessonSize() == 0)
+  {
+    QMessageBox::information(this, "Insert lessons",
+                             "Please insert lessons before generate timetable");
+    return;
+  }
+
   // check if we have a generated timetable
   if (mContext.CheckTimetable())
   {

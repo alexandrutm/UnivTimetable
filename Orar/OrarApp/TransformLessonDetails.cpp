@@ -3,6 +3,7 @@
 #include "Group.h"
 #include "InstituteData.h"
 #include "Lesson.h"
+#include "Placement.h"
 #include "Room.h"
 #include "Subject.h"
 #include "Teacher.h"
@@ -13,6 +14,12 @@ vector<string> TransformLessonDetails::LessonsDataToString(InstituteData * aInst
 {
   auto lessons = aSolution.GetAssignedLessons();
 
+  // sort lessons by start time
+  sort(lessons.begin(), lessons.end(), [](Lesson * first, Lesson * second) {
+    return first->GetPlacement().GetTimeSlot().GetStartTime() <
+           second->GetPlacement().GetTimeSlot().GetStartTime();
+  });
+
   vector<string> lessonsDetails(5);
 
   auto hoursDay = aInstituteData->GetHoursDay();
@@ -22,8 +29,9 @@ vector<string> TransformLessonDetails::LessonsDataToString(InstituteData * aInst
     int lessonStartTime = lesson->GetPlacement().GetTimeSlot().GetStartTime();
     int lessonEndTime   = lesson->GetPlacement().GetTimeSlot().GetEndTime();
 
-    string lessonRoom    = lesson->GetPlacement().GetRoom()->GetName();
-    string lessonTeacher = lesson->GetTeacher()->GetLastName();
+    string lessonRoom = lesson->GetPlacement().GetRoom()->GetName();
+    string lessonTeacher =
+      lesson->GetTeacher()->GetFirstName() + " " + lesson->GetTeacher()->GetLastName();
     string lessonGroup   = lesson->GetGroup()->GetName();
     string lessonSubject = lesson->GetSubject()->GetName();
 

@@ -5,7 +5,8 @@
 TimeTableViewModel::TimeTableViewModel(QObject * parent)
   : QAbstractTableModel(parent)
 {
-  mLessonsDetails.resize(5, vector<string>(1));
+  mLessons.resize(5, vector<string>());
+  mLessonsDetails.resize(5);
 }
 
 int TimeTableViewModel::rowCount(const QModelIndex & /*parent*/) const
@@ -28,19 +29,19 @@ QVariant TimeTableViewModel::data(const QModelIndex & index, int role) const
   switch (index.column())
   {
   case 0:
-    return QString::fromStdString(mLessonsDetails[0][0]);
+    return QString::fromStdString(mLessonsDetails[0]);
     break;
   case 1:
-    return QString::fromStdString(mLessonsDetails[1][0]);
+    return QString::fromStdString(mLessonsDetails[1]);
     break;
   case 2:
-    return QString::fromStdString(mLessonsDetails[2][0]);
+    return QString::fromStdString(mLessonsDetails[2]);
     break;
   case 3:
-    return QString::fromStdString(mLessonsDetails[3][0]);
+    return QString::fromStdString(mLessonsDetails[3]);
     break;
   case 4:
-    return QString::fromStdString(mLessonsDetails[4][0]);
+    return QString::fromStdString(mLessonsDetails[4]);
     break;
   default:
     break;
@@ -82,5 +83,40 @@ void TimeTableViewModel::ClearData()
 
 void TimeTableViewModel::AddData(vector<vector<string>> aLessonsDetails)
 {
-  mLessonsDetails = aLessonsDetails;
+  mLessons = aLessonsDetails;
+
+  mLessonsDetails.clear();
+  mLessonsDetails.resize(5);
+
+  int i = 0;
+  for (auto day : mLessons)
+  {
+    for (auto lesson : day)
+    {
+      mLessonsDetails[i].append(lesson);
+    }
+    i++;
+  }
+}
+
+void TimeTableViewModel::FilterData(string pattern)
+{
+  if (!pattern.empty())
+  {
+    mLessonsDetails.clear();
+    mLessonsDetails.resize(5);
+    int i = 0;
+    for (auto day : mLessons)
+    {
+      for (auto lesson : day)
+      {
+        auto pos = lesson.find(pattern);
+        if (pos != std::string::npos)
+        {
+          mLessonsDetails[i].append(lesson);
+        }
+      }
+      i++;
+    }
+  }
 }

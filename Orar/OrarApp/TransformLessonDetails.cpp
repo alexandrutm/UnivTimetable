@@ -40,7 +40,7 @@ vector<vector<string>> TransformLessonDetails::LessonsDataToString(InstituteData
     case 0:
       lessonsDetails[0].push_back(hoursDay[lessonStartTime] + "-" + hoursDay[lessonEndTime] + " " +
                                   lessonRoom + " " + lessonTeacher + " " + lessonGroup + " " +
-                                  lessonSubject);
+                                  lessonSubject + "\n");
       break;
     case 1:
       lessonsDetails[1].push_back(hoursDay[lessonStartTime] + "-" + hoursDay[lessonEndTime] + " " +

@@ -79,16 +79,9 @@ void OrarApp::ClassChanged()
 
   QModelIndex nameIndex =
     mClassesModel->index(indexRowSelected.row(), 0, indexRowSelected.parent());
-  auto name = (mClassesModel->data(nameIndex, Qt::DisplayRole)).toString();
+  auto name = (mClassesModel->data(nameIndex, Qt::DisplayRole)).toString().toStdString();
 
-  if (!name.isEmpty())
-  {
-    mProxyModel->setFilterRegularExpression(name);
-  }
-  else
-  {
-    mProxyModel->setFilterRegularExpression(QString());
-  }
+  mTableModel->FilterData(name);
 }
 
 void OrarApp::on_mSave_triggered()

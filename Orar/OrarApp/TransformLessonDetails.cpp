@@ -9,8 +9,8 @@
 #include "Teacher.h"
 #include "TimeSlot.h"
 
-vector<string> TransformLessonDetails::LessonsDataToString(InstituteData * aInstituteData,
-                                                           Solution        aSolution)
+vector<vector<string>> TransformLessonDetails::LessonsDataToString(InstituteData * aInstituteData,
+                                                                   Solution        aSolution)
 {
   auto lessons = aSolution.GetAssignedLessons();
 
@@ -20,7 +20,7 @@ vector<string> TransformLessonDetails::LessonsDataToString(InstituteData * aInst
            second->GetPlacement().GetTimeSlot().GetStartTime();
   });
 
-  vector<string> lessonsDetails(5);
+  vector<vector<string>> lessonsDetails(5);
 
   auto hoursDay = aInstituteData->GetHoursDay();
 
@@ -38,29 +38,29 @@ vector<string> TransformLessonDetails::LessonsDataToString(InstituteData * aInst
     switch (lesson->GetPlacement().GetTimeSlot().GetDayOfWeek())
     {
     case 0:
-      lessonsDetails[0].append(hoursDay[lessonStartTime] + " " + hoursDay[lessonEndTime] + " " +
-                               lessonRoom + " " + lessonTeacher + " " + lessonGroup + " " +
-                               lessonSubject + "\n");
+      lessonsDetails[0].push_back(hoursDay[lessonStartTime] + "-" + hoursDay[lessonEndTime] + " " +
+                                  lessonRoom + " " + lessonTeacher + " " + lessonGroup + " " +
+                                  lessonSubject);
       break;
     case 1:
-      lessonsDetails[1].append(hoursDay[lessonStartTime] + " " + hoursDay[lessonEndTime] + " " +
-                               lessonRoom + " " + lessonTeacher + " " + lessonGroup + " " +
-                               lessonSubject + "\n");
+      lessonsDetails[1].push_back(hoursDay[lessonStartTime] + "-" + hoursDay[lessonEndTime] + " " +
+                                  lessonRoom + " " + lessonTeacher + " " + lessonGroup + " " +
+                                  lessonSubject + "\n");
       break;
     case 2:
-      lessonsDetails[2].append(hoursDay[lessonStartTime] + " " + hoursDay[lessonEndTime] + " " +
-                               lessonRoom + " " + lessonTeacher + " " + lessonGroup + " " +
-                               lessonSubject + "\n");
+      lessonsDetails[2].push_back(hoursDay[lessonStartTime] + "-" + hoursDay[lessonEndTime] + " " +
+                                  lessonRoom + " " + lessonTeacher + " " + lessonGroup + " " +
+                                  lessonSubject + "\n");
       break;
     case 3:
-      lessonsDetails[3].append(hoursDay[lessonStartTime] + " " + hoursDay[lessonEndTime] + " " +
-                               lessonRoom + " " + lessonTeacher + " " + lessonGroup + " " +
-                               lessonSubject + "\n");
+      lessonsDetails[3].push_back(hoursDay[lessonStartTime] + "-" + hoursDay[lessonEndTime] + " " +
+                                  lessonRoom + " " + lessonTeacher + " " + lessonGroup + " " +
+                                  lessonSubject + "\n");
       break;
     case 4:
-      lessonsDetails[4].append(hoursDay[lessonStartTime] + " " + hoursDay[lessonEndTime] + " " +
-                               lessonRoom + " " + lessonTeacher + " " + lessonGroup + " " +
-                               lessonSubject + "\n");
+      lessonsDetails[4].push_back(hoursDay[lessonStartTime] + "-" + hoursDay[lessonEndTime] + " " +
+                                  lessonRoom + " " + lessonTeacher + " " + lessonGroup + " " +
+                                  lessonSubject + "\n");
       break;
     }
   }

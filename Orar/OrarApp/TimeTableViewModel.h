@@ -14,8 +14,10 @@ public:
                       int             role = Qt::DisplayRole) const Q_DECL_OVERRIDE;
 
   void ClearData();
-  void AddData(vector<string> aLessonsDetails);
+  void AddData(vector<vector<string>> aLessonsDetails);
+  void FilterData();
 
 private:
-  vector<string> mLessonsDetails;
+  vector<vector<string>> mLessons;
+  vector<string>         mLessonsDetails;
 };

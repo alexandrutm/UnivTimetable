@@ -335,7 +335,7 @@ void Context::AddLessonFromXml(
 
 void Context::DeleteLessonsPlacements()
 {
-  for (auto lesson:mLessons)
+  for (auto lesson : mLessons)
   {
     lesson->ClearAssingnedData();
   }
@@ -428,7 +428,7 @@ void Context::RemoveConstraint(int index)
   mConstraints.erase(mConstraints.begin() + index);
 }
 
-vector<string> Context::GetTimeTable()
+vector<vector<string>> Context::GetTimeTable()
 {
   Solver solver;
 

@@ -5,7 +5,7 @@
 TimeTableViewModel::TimeTableViewModel(QObject * parent)
   : QAbstractTableModel(parent)
 {
-  mLessonsDetails.resize(5, "");
+  mLessonsDetails.resize(5, vector<string>(1));
 }
 
 int TimeTableViewModel::rowCount(const QModelIndex & /*parent*/) const
@@ -28,19 +28,19 @@ QVariant TimeTableViewModel::data(const QModelIndex & index, int role) const
   switch (index.column())
   {
   case 0:
-    return QString::fromStdString(mLessonsDetails[0]);
+    return QString::fromStdString(mLessonsDetails[0][0]);
     break;
   case 1:
-    return QString::fromStdString(mLessonsDetails[1]);
+    return QString::fromStdString(mLessonsDetails[1][0]);
     break;
   case 2:
-    return QString::fromStdString(mLessonsDetails[2]);
+    return QString::fromStdString(mLessonsDetails[2][0]);
     break;
   case 3:
-    return QString::fromStdString(mLessonsDetails[3]);
+    return QString::fromStdString(mLessonsDetails[3][0]);
     break;
   case 4:
-    return QString::fromStdString(mLessonsDetails[4]);
+    return QString::fromStdString(mLessonsDetails[4][0]);
     break;
   default:
     break;
@@ -80,7 +80,7 @@ void TimeTableViewModel::ClearData()
 {
 }
 
-void TimeTableViewModel::AddData(vector<string> aLessonsDetails)
+void TimeTableViewModel::AddData(vector<vector<string>> aLessonsDetails)
 {
   mLessonsDetails = aLessonsDetails;
 }

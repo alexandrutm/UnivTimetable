@@ -71,8 +71,8 @@ public:
   TimeConstraint * GetConstraintByTeacher(Teacher * aTeacher);
   void             RemoveConstraint(int index);
 
-  vector<string> GetTimeTable();
-  bool           CheckTimetable();
+  vector<vector<string>> GetTimeTable();
+  bool                   CheckTimetable();
 
 private:
   // observer pattern

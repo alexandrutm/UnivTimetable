@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "OrarApp.h"
+#include "Group.h"
 #include "InstituteData.h"
 #include "InstitutionDetailsDialog.h"
 #include "SortFilterProxyModel.h"
@@ -69,7 +70,8 @@ void OrarApp::ChangeStatus(string aStatus)
 
 void OrarApp::ClassChanged()
 {
-  auto indexRowSelected = ui.mTreeView->selectionModel()->currentIndex();
+  vector<string> classesnames;
+  auto           indexRowSelected = ui.mTreeView->selectionModel()->currentIndex();
 
   if (!indexRowSelected.isValid())
   {
@@ -79,9 +81,11 @@ void OrarApp::ClassChanged()
 
   QModelIndex nameIndex =
     mClassesModel->index(indexRowSelected.row(), 0, indexRowSelected.parent());
-  auto name = (mClassesModel->data(nameIndex, Qt::DisplayRole)).toString().toStdString();
 
-  mTableModel->FilterData(name);
+  auto parentGroup = mClassesModel->getItem(nameIndex);
+
+  mTableModel->FilterData(mContext.GetGroupsNameToFilter(parentGroup));
+  ui.mTimeTableView->repaint();
 }
 
 void OrarApp::on_mSave_triggered()

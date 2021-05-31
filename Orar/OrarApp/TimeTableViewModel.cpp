@@ -99,21 +99,26 @@ void TimeTableViewModel::AddData(vector<vector<string>> aLessonsDetails)
   }
 }
 
-void TimeTableViewModel::FilterData(string pattern)
+void TimeTableViewModel::FilterData(vector<string> pattern)
 {
   if (!pattern.empty())
   {
     mLessonsDetails.clear();
     mLessonsDetails.resize(5);
+
     int i = 0;
+
     for (auto day : mLessons)
     {
       for (auto lesson : day)
       {
-        auto pos = lesson.find(pattern);
-        if (pos != std::string::npos)
+        for (auto groupName : pattern)
         {
-          mLessonsDetails[i].append(lesson);
+          auto pos = lesson.find(groupName);
+          if (pos != std::string::npos)
+          {
+            mLessonsDetails[i].append(lesson);
+          }
         }
       }
       i++;

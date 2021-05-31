@@ -37,11 +37,12 @@ public:
   string                      SearchSubject(Subject * aSubject);
   vector<shared_ptr<Subject>> GetSubjects();
 
-  int     GenerateGroupId();
-  Group * GetRootGroup();
-  Group * GetGroupById(int id);
-  string  SearchGroup(Group * aGroup);
-  void    LoadGroupFromXml(string aNume, int aNumberOfStudents, int aId, int aParentId);
+  int            GenerateGroupId();
+  Group *        GetRootGroup();
+  Group *        GetGroupById(int id);
+  vector<string> GetGroupsNameToFilter(Group * aGroup);
+  string         SearchGroup(Group * aGroup);
+  void           LoadGroupFromXml(string aNume, int aNumberOfStudents, int aId, int aParentId);
 
   void                       AddLesson(shared_ptr<Lesson> aLesson);
   void                       RemoveLesson(int i);

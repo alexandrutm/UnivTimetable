@@ -15,7 +15,7 @@ public:
 
   void ClearData();
   void AddData(vector<vector<string>> aLessonsDetails);
-  void FilterData(string pattern);
+  void FilterData(vector<string> pattern);
 
 private:
   vector<vector<string>> mLessons;

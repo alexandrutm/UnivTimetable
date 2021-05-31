@@ -207,6 +207,26 @@ Group * Context::GetGroupById(int id)
   return nullptr;
 }
 
+vector<string> Context::GetGroupsNameToFilter(Group * aGroup)
+{
+  vector<string> groupsNames;
+  queue<Group *> treeNodes;
+
+  treeNodes.push(aGroup);
+
+  while (!treeNodes.empty())
+  {
+    auto frontNode = treeNodes.front();
+    treeNodes.pop();
+    groupsNames.push_back(frontNode->GetName());
+
+    for (int i = 0; i < frontNode->GetChildrenSize(); i++)
+      treeNodes.push(frontNode->GetChild(i));
+  }
+
+  return groupsNames;
+}
+
 string Context::SearchGroup(Group * aGroup)
 {
   // search for every child of the aGroup to don't be refered

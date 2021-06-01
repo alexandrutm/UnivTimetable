@@ -137,10 +137,16 @@ void LessonTableModel::AddNewRow()
   beginInsertRows(QModelIndex(), newRow, newRow);
   endInsertRows();
 }
-void LessonTableModel::Update(string instruction)
+void LessonTableModel::Update(string aInstruction)
 {
-  if (instruction == "addnewrow")
+  if (aInstruction == "addnewrow")
     AddNewRow();
+  else if (aInstruction == "cleardata")
+  {
+    beginResetModel();
+    mContext.DeleteLessons();
+    endResetModel();
+  }
 }
 
 string LessonTableModel::GetModelName()

@@ -120,6 +120,12 @@ void TeacherTableModel::Update(string aInstruction)
 {
   if (aInstruction == "addnewrow")
     AddNewRow();
+  else if (aInstruction == "cleardata")
+  {
+    beginResetModel();
+    mContext.DeleteTeachers();
+    endResetModel();
+  }
 }
 
 string TeacherTableModel::GetModelName()

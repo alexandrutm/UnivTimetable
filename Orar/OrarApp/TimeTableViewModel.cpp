@@ -79,6 +79,13 @@ QVariant TimeTableViewModel::headerData(int section, Qt::Orientation orientation
 
 void TimeTableViewModel::ClearData()
 {
+  beginResetModel();
+  mLessonsDetails.clear();
+  mLessons.clear();
+  endResetModel();
+
+  mLessons.resize(5, vector<string>());
+  mLessonsDetails.resize(5);
 }
 
 void TimeTableViewModel::AddData(vector<vector<string>> aLessonsDetails)

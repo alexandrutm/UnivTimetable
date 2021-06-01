@@ -6,13 +6,6 @@ SortFilterProxyModel::SortFilterProxyModel(QObject * parent)
 {
 }
 
-// void SortFilterProxyModel::setFilterRegularExpression(const QString & pattern)
-//{
-//  if (!pattern.isEmpty())
-//  {
-//  }
-//}
-
 bool SortFilterProxyModel::lessThan(const QModelIndex & left, const QModelIndex & right) const
 {
   QVariant leftData  = sourceModel()->data(left);

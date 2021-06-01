@@ -33,9 +33,8 @@ OrarApp::OrarApp(QWidget * parent)
 void OrarApp::CreateModels()
 {
   mTableModel = make_unique<TimeTableViewModel>();
-  mProxyModel = make_unique<SortFilterProxyModel>();
-  mProxyModel->setSourceModel(mTableModel.get());
-  ui.mTimeTableView->setModel(mProxyModel.get());
+
+  ui.mTimeTableView->setModel(mTableModel.get());
 
   ui.mTimeTableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
   ui.mTimeTableView->verticalHeader()->setSectionResizeMode(QHeaderView::Stretch);
@@ -53,7 +52,7 @@ void OrarApp::ChangeView(INavigator::viewId theView)
 {
   if (theView == INavigator::viewId::homepage)
   {
-    ui.centralStackWidget->setCurrentIndex(0);
+    //   ui.centralStackWidget->setCurrentIndex(0);
   }
   else if (theView == INavigator::viewId::mainPage)
   {
@@ -171,11 +170,8 @@ void OrarApp::on_mNew_triggered()
     // delete data from context and from all models
     ui.centralStackWidget->setCurrentIndex(0);
 
-    // mTeacherView.ClearData();
-    // mSubjectView.ClearData();
-    // mClassView.ClearData();
-    // mRoomView.ClearData();
-    // mLessonView.ClearData();
+    mContext.DeleteData();
+    mTableModel->ClearData();
 
     ui.toolBar->hide();
     ui.menuBar->hide();

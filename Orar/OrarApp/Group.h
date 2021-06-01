@@ -31,6 +31,8 @@ public:
   void MakeAvailableTimeSlot(pair<int, int> aTimeSlot);
   bool IsAvailable(pair<int, int> availability);
 
+  void DeleteChilds();
+
 private:
   string mName;
   int    mNumberOfStudents;

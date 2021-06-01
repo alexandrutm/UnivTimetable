@@ -117,6 +117,12 @@ void SubjectTableModel::Update(string aInstruction)
 {
   if (aInstruction == "addnewrow")
     AddNewRow();
+  else if (aInstruction == "cleardata")
+  {
+    beginResetModel();
+    mContext.DeleteSubjects();
+    endResetModel();
+  }
 }
 
 string SubjectTableModel::GetModelName()

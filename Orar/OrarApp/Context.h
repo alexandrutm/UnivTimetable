@@ -75,6 +75,8 @@ public:
   vector<vector<string>> GetTimeTable();
   bool                   CheckTimetable();
 
+  void DeleteData();
+
 private:
   // observer pattern
   vector<shared_ptr<Observer>> mObservers;
@@ -82,7 +84,7 @@ private:
   vector<unique_ptr<TimeConstraint>> mConstraints;
   vector<shared_ptr<Subject>>        mSubjects;
   vector<shared_ptr<Teacher>>        mTeachers;
-  unique_ptr<Group>                  mRootNodeStudents;
+  unique_ptr<Group>                  mGroupsRootNode;
   vector<shared_ptr<Lesson>>         mLessons;
   vector<shared_ptr<Room>>           mRooms;
   shared_ptr<InstituteData>          mInstituteData;

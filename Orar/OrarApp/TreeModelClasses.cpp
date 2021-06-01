@@ -138,27 +138,12 @@ Group * TreeModel::getItem(const QModelIndex & index) const
 
 void TreeModel::Update(string aInstruction)
 {
-  // if (aInstruction == "treeloaded")
-  //{
-  //  // create tree
-  //  queue<Group *> treeNodes;
-
-  //  treeNodes.push(mRootGroup);
-
-  //  while (!treeNodes.empty())
-  //  {
-  //    auto frontNode = treeNodes.front();
-  //    treeNodes.pop();
-
-  //    // QModelIndex parent=
-  //    for (int position = 0; position < frontNode->GetChildrenSize(); position++)
-  //    {
-  //      // beginInsertRows(parent, position, position);
-
-  //      // endInsertRows();
-  //    }
-  //  }
-  //}
+  if (aInstruction == "cleardata")
+  {
+    beginResetModel();
+    mRootGroup->DeleteChilds();
+    endResetModel();
+  }
 }
 
 string TreeModel::GetModelName()

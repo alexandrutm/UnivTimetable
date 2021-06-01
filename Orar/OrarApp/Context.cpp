@@ -14,7 +14,7 @@
 
 Context::Context()
 {
-  mRootNodeStudents = make_unique<Group>("Root Class", 0, 0);
+  mGroupsRootNode = make_unique<Group>("Root Class", 0, 0);
 
   // create institution with default data member
   mInstituteData = make_shared<InstituteData>("Institution name", 12, 8, 20, 5);
@@ -164,7 +164,7 @@ int Context::GenerateGroupId()
   queue<Group *> treeNodes;
   int            max = 0;
 
-  treeNodes.push(mRootNodeStudents.get());
+  treeNodes.push(mGroupsRootNode.get());
 
   while (!treeNodes.empty())
   {
@@ -183,14 +183,14 @@ int Context::GenerateGroupId()
 
 Group * Context::GetRootGroup()
 {
-  return mRootNodeStudents.get();
+  return mGroupsRootNode.get();
 }
 
 Group * Context::GetGroupById(int id)
 {
   queue<Group *> treeNodes;
 
-  treeNodes.push(mRootNodeStudents.get());
+  treeNodes.push(mGroupsRootNode.get());
 
   while (!treeNodes.empty())
   {
@@ -257,7 +257,7 @@ void Context::LoadGroupFromXml(string aName, int aNumberOfStudents, int aId, int
 {
   queue<Group *> treeNodes;
 
-  treeNodes.push(mRootNodeStudents.get());
+  treeNodes.push(mGroupsRootNode.get());
 
   while (!treeNodes.empty())
   {
@@ -332,7 +332,7 @@ void Context::AddLessonFromXml(
   queue<Group *> treeNodes;
   Group *        lessonGroup;
 
-  treeNodes.push(mRootNodeStudents.get());
+  treeNodes.push(mGroupsRootNode.get());
 
   while (!treeNodes.empty())
   {
@@ -459,4 +459,10 @@ vector<vector<string>> Context::GetTimeTable()
 bool Context::CheckTimetable()
 {
   return GetLessonByIndex(0)->GetPlacement().IsValid();
+}
+
+void Context::DeleteData()
+{
+  for (auto obs : mObservers)
+    obs->Update("cleardata");
 }

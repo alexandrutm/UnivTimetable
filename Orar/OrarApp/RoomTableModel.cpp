@@ -130,6 +130,12 @@ void RoomTableModel::Update(string aInstruction)
 {
   if (aInstruction == "addnewrow")
     AddNewRow();
+  else if (aInstruction == "cleardata")
+  {
+    beginResetModel();
+    mContext.DeleteRooms();
+    endResetModel();
+  }
 }
 
 string RoomTableModel::GetModelName()

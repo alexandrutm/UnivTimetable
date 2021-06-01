@@ -38,9 +38,8 @@ private:
 
   Context mContext;
 
-  unique_ptr<TimeTableViewModel>   mTableModel;
-  shared_ptr<TreeModel>            mClassesModel;
-  unique_ptr<SortFilterProxyModel> mProxyModel;
+  unique_ptr<TimeTableViewModel> mTableModel;
+  shared_ptr<TreeModel>          mClassesModel;
 
   AddDataDialog mDataDialog;
 

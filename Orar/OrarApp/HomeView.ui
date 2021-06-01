@@ -84,104 +84,14 @@ color: rgb(70, 70, 70);</string>
           </property>
           <column>
            <property name="text">
-            <string notr="true">1</string>
+            <string notr="true"/>
            </property>
           </column>
-          <item>
-           <property name="text">
-            <string>New Subitem</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>New Subitem</string>
-           </property>
-          </item>
-          <item>
+          <column>
            <property name="text">
             <string/>
            </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>2</string>
-           </property>
-           <item>
-            <property name="text">
-             <string>New Subitem</string>
-            </property>
-            <item>
-             <property name="text">
-              <string>New Subitem</string>
-             </property>
-             <item>
-              <property name="text">
-               <string>New Subitem</string>
-              </property>
-              <item>
-               <property name="text">
-                <string>New Subitem</string>
-               </property>
-              </item>
-             </item>
-            </item>
-           </item>
-          </item>
-          <item>
-           <property name="text">
-            <string>New Item</string>
-           </property>
-           <item>
-            <property name="text">
-             <string/>
-            </property>
-           </item>
-          </item>
-          <item>
-           <property name="text">
-            <string>3</string>
-           </property>
-           <item>
-            <property name="text">
-             <string>New Item</string>
-            </property>
-            <item>
-             <property name="text">
-              <string>New Subitem</string>
-             </property>
-             <item>
-              <property name="text">
-               <string>New Subitem</string>
-              </property>
-             </item>
-            </item>
-           </item>
-          </item>
-          <item>
-           <property name="text">
-            <string>New Item</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>New Item</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>New Item</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>New Item</string>
-           </property>
-          </item>
-          <item>
-           <property name="text">
-            <string>New Item</string>
-           </property>
-          </item>
+          </column>
          </widget>
         </item>
        </layout>

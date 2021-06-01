@@ -73,6 +73,11 @@ bool Group::IsAvailable(pair<int, int> aTimeSlot)
   return true;
 }
 
+void Group::DeleteChilds()
+{
+  mChildren.clear();
+}
+
 bool Group::operator==(const Group & aClass)
 {
   return mId == aClass.mId;

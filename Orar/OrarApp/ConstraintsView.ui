@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>ConstraintsView</string>
+   <string>Constraints</string>
   </property>
   <layout class="QHBoxLayout" name="horizontalLayout">
    <item>

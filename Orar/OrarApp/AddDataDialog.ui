@@ -14,7 +14,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>AddDataDialog</string>
+   <string>Data</string>
   </property>
   <property name="styleSheet">
    <string notr="true"/>

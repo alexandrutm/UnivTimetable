@@ -30,6 +30,8 @@ public:
   void MakeUnavailableTimeSlot(pair<int, int> aTimeSlot);
   void MakeAvailableTimeSlot(pair<int, int> aTimeSlot);
   bool IsAvailable(pair<int, int> availability);
+  bool CheckParentAvailability(pair<int, int> aTimeSlot);
+  bool CheckChildAvailability(pair<int, int> aTimeSlot);
 
   void DeleteChilds();
 

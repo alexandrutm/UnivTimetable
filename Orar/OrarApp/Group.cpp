@@ -73,6 +73,37 @@ bool Group::IsAvailable(pair<int, int> aTimeSlot)
   return true;
 }
 
+bool Group::CheckParentAvailability(pair<int, int> aTimeSlot)
+{
+  // recursive check parrent avialability
+  if (mParent)
+    if (!mParent->IsAvailable(aTimeSlot))
+      return false;
+
+  return true;
+}
+
+bool Group::CheckChildAvailability(pair<int, int> aTimeSlot)
+{
+  queue<Group *> treeNodes;
+
+  treeNodes.push(this);
+
+  while (!treeNodes.empty())
+  {
+    auto frontNode = treeNodes.front();
+    treeNodes.pop();
+
+    if (!frontNode->IsAvailable(aTimeSlot))
+      return false;
+
+    for (int i = 0; i < frontNode->GetChildrenSize(); i++)
+      treeNodes.push(frontNode->GetChild(i));
+  }
+
+  return true;
+}
+
 void Group::DeleteChilds()
 {
   mChildren.clear();

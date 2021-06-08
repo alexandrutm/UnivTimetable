@@ -108,6 +108,11 @@ void Lesson::ClearVisitedPlacements()
   mVisited.clear();
 }
 
+int Lesson::GetWeight()
+{
+  return mGroup->GetWeight() + mTeacher->GetTeacherWeight();
+}
+
 bool Lesson::operator==(const Lesson & aLesson)
 {
   return mId == aLesson.mId;

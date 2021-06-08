@@ -50,6 +50,26 @@ int Group::GetId()
   return mId;
 }
 
+int Group::GetWeight()
+{
+  queue<Group *> treeNodes;
+  int            weight = 0;
+
+  treeNodes.push(this);
+
+  while (!treeNodes.empty())
+  {
+    auto frontNode = treeNodes.front();
+    treeNodes.pop();
+
+    weight++;
+
+    for (int i = 0; i < frontNode->GetChildrenSize(); i++)
+      treeNodes.push(frontNode->GetChild(i));
+  }
+  return weight;
+}
+
 void Group::MakeUnavailableTimeSlot(pair<int, int> aTimeSlot)
 {
   mAvailability.push_back(aTimeSlot);

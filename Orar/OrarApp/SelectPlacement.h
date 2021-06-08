@@ -9,7 +9,9 @@ class SelectPlacement
 public:
   SelectPlacement(Context & aContext);
   Placement        GetPlacement(Lesson * aLesson);
-  vector<TimeSlot> GetAvailableTimeslotForTeacherAndGroup(Lesson * aLesson);
+  vector<TimeSlot> GetAvailableTimeslots(Lesson * aLesson, Room * aRoom);
+  vector<Room *>   GetRoomsSortedByCapacity(Lesson * aLesson);
+  void             MakePlacementAvailable(Lesson * aLesson);
 
 private:
   Context & mContext;

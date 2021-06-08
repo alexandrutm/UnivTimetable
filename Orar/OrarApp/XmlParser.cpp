@@ -129,7 +129,7 @@ auto XmlParser::SaveLessons(Context & aContext)
     lessonElement->SetAttribute("subjectId", lesson->GetSubject()->GetId());
     lessonElement->SetAttribute("groupId", lesson->GetGroup()->GetId());
     lessonElement->SetAttribute("lessonLength", lesson->GetDuration());
-    lessonElement->SetAttribute("lessonId", lesson->GetDuration());
+    lessonElement->SetAttribute("lessonId", lesson->GetId());
 
     lessonNode->LinkEndChild(lessonElement.release());
   }

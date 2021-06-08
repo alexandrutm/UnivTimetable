@@ -35,6 +35,8 @@ public:
   bool IsVisited(Placement);
   void ClearVisitedPlacements();
 
+  int GetWeight();
+
 private:
   int mId;
 

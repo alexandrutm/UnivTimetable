@@ -18,73 +18,31 @@ SelectPlacement::SelectPlacement(Context & aContext)
 
 Placement SelectPlacement::GetPlacement(Lesson * aLesson)
 {
-  auto           rooms = mContext.GetRooms();
-  vector<Room *> roomsWithEnoughCapacity;
+  auto roomsWithEnoughCapacity = GetRoomsSortedByCapacity(aLesson);
 
-  // find room with enough capacity to hold this lesson
-  for (auto room : rooms)
-  {
-    if (room->GetCapacity() >= aLesson->GetGroup()->GetNumberOfStudents())
-    {
-      roomsWithEnoughCapacity.push_back(room.get());
-    }
-  }
-
-  auto availableTimeSlotsTeacherGroup = GetAvailableTimeslotForTeacherAndGroup(aLesson);
-
-  // no time slot or room available  for this lesson
-  if (availableTimeSlotsTeacherGroup.size() == 0 || roomsWithEnoughCapacity.size() == 0)
+  // no room available  for this lesson
+  if (roomsWithEnoughCapacity.size() == 0)
     return Placement();
 
-  // pick a pseudo-random timeslot and check for a pseudo-random room with enough capacity available
-  // otherwise pick another timeslot and check again
-  srand(time(NULL));
-  while (true)
+  // we assing the rooms in ascending order by capacity
+  for (auto room : roomsWithEnoughCapacity)
   {
-    bool roomUnavailable = false;
+    auto availableTimeSlots = GetAvailableTimeslots(aLesson, room);
 
-    int randomTimeSlot = rand() % availableTimeSlotsTeacherGroup.size();
-    int randomRoom     = rand() % roomsWithEnoughCapacity.size();
-
-    auto timeslot = availableTimeSlotsTeacherGroup[randomTimeSlot];
-    auto room     = roomsWithEnoughCapacity[randomRoom];
-
-    if (!aLesson->IsVisited(Placement(room, timeslot)))
+    // while we find a valid placement
+    while (availableTimeSlots.size() > 0)
     {
-      // room check
-      for (int startTime = timeslot.GetStartTime(); startTime < timeslot.GetEndTime(); startTime++)
-      {  // sometimes lesson lasts 4 hour(lab) check hour between start hour and end hour to be
-         // available
-        if (!room->IsAvailable(pair<int, int>(timeslot.GetDayOfWeek(), startTime)))
-        {
-          roomUnavailable = true;
-        }
-      }
+      auto timeslot = availableTimeSlots.back();
+      availableTimeSlots.pop_back();
 
-      // return an available placement for this lesson and make teacher,group and room unavailable
-      // int this time slot
-      if (!roomUnavailable)
+      if (!aLesson->IsVisited(Placement(room, timeslot)))
       {
-        // if we found another placement for this lesson we make available previous placement and
-        // we make unavailable current placement we make last placement visited
         if (aLesson->GetPlacement().IsValid())
         {
-          for (auto duration = aLesson->GetPlacement().GetTimeSlot().GetStartTime();
-               duration < aLesson->GetPlacement().GetTimeSlot().GetEndTime(); duration++)
-          {
-            aLesson->AddVisitedPlacement(aLesson->GetPlacement());
-
-            aLesson->GetTeacher()->MakeAvailableTimeSlot(
-              pair<int, int>(aLesson->GetPlacement().GetTimeSlot().GetDayOfWeek(), duration));
-
-            aLesson->GetPlacement().GetRoom()->MakeAvailableTimeSlot(
-              pair<int, int>(aLesson->GetPlacement().GetTimeSlot().GetDayOfWeek(), duration));
-
-            aLesson->GetGroup()->MakeAvailableTimeSlot(
-              pair<int, int>(aLesson->GetPlacement().GetTimeSlot().GetDayOfWeek(), duration));
-          }
+          MakePlacementAvailable(aLesson);
         }
 
+        // mark current found placement as unavailable
         for (int startTime = timeslot.GetStartTime(); startTime < timeslot.GetEndTime();
              startTime++)
         {
@@ -101,12 +59,13 @@ Placement SelectPlacement::GetPlacement(Lesson * aLesson)
       }
     }
   }
+
   return Placement();
 }
 
-vector<TimeSlot> SelectPlacement::GetAvailableTimeslotForTeacherAndGroup(Lesson * aLesson)
+vector<TimeSlot> SelectPlacement::GetAvailableTimeslots(Lesson * aLesson, Room * aRoom)
 {
-  vector<TimeSlot> availableTimeSlotsTeacherGroup;
+  vector<TimeSlot> availableTimeSlots;
   int              lessonDuration = aLesson->GetDuration();
   // search for a time slot equal to lesson duration available for teacher and group lesson
   for (int day = 0; day < mTimeSlotMatrix.size(); day++)
@@ -117,6 +76,7 @@ vector<TimeSlot> SelectPlacement::GetAvailableTimeslotForTeacherAndGroup(Lesson 
     {
       bool teacherUnavailable = false;
       bool groupUnavailable   = false;
+      bool roomUnavailable    = false;
 
       // iterate ahead to check available hours
       for (int hourCheck = currentHour; hourCheck < currentHour + lessonDuration; hourCheck++)
@@ -128,21 +88,76 @@ vector<TimeSlot> SelectPlacement::GetAvailableTimeslotForTeacherAndGroup(Lesson 
           break;
         }
         // check group availability
-        if (!aLesson->GetGroup()->IsAvailable(pair<int, int>(day, hourCheck)))
+        // check for all sub-nodes an parent nodes
+        if (!aLesson->GetGroup()->CheckChildAvailability(pair<int, int>(day, hourCheck)) ||
+            !aLesson->GetGroup()->CheckParentAvailability(pair<int, int>(day, hourCheck)))
         {
           groupUnavailable = true;
           break;
         }
+
+        if (!aRoom->IsAvailable(pair<int, int>(day, hourCheck)))
+        {
+          roomUnavailable = true;
+          break;
+        }
       }
 
-      if (!teacherUnavailable && !groupUnavailable)
+      if (!teacherUnavailable && !groupUnavailable && !roomUnavailable)
       {
         // we find a slot available for teacher and group
         // save slot into vector
-        availableTimeSlotsTeacherGroup.emplace_back(
-          TimeSlot(day, currentHour, currentHour + lessonDuration));
+        availableTimeSlots.emplace_back(TimeSlot(day, currentHour, currentHour + lessonDuration));
       }
     }
   }
-  return availableTimeSlotsTeacherGroup;
+
+  unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
+  shuffle(availableTimeSlots.begin(), availableTimeSlots.end(), std::default_random_engine(seed));
+
+  return availableTimeSlots;
+}
+
+vector<Room *> SelectPlacement::GetRoomsSortedByCapacity(Lesson * aLesson)
+{
+  auto           rooms = mContext.GetRooms();
+  vector<Room *> roomsWithEnoughCapacity;
+
+  // find room with enough capacity to hold this lesson
+  for (auto room : rooms)
+  {
+    if (room->GetCapacity() >= aLesson->GetGroup()->GetNumberOfStudents())
+    {
+      roomsWithEnoughCapacity.push_back(room.get());
+    }
+  }
+
+  // sort rooms by capacity
+  sort(roomsWithEnoughCapacity.begin(), roomsWithEnoughCapacity.end(),
+       [](Room * first, Room * second) {
+         return first->GetCapacity() < second->GetCapacity();
+       });
+  //
+  return roomsWithEnoughCapacity;
+}
+
+void SelectPlacement::MakePlacementAvailable(Lesson * aLesson)
+{
+  // if we found another placement for this lesson we make available previous placement and
+  // mark last placement as visited
+
+  for (auto duration = aLesson->GetPlacement().GetTimeSlot().GetStartTime();
+       duration < aLesson->GetPlacement().GetTimeSlot().GetEndTime(); duration++)
+  {
+    aLesson->AddVisitedPlacement(aLesson->GetPlacement());
+
+    aLesson->GetTeacher()->MakeAvailableTimeSlot(
+      pair<int, int>(aLesson->GetPlacement().GetTimeSlot().GetDayOfWeek(), duration));
+
+    aLesson->GetPlacement().GetRoom()->MakeAvailableTimeSlot(
+      pair<int, int>(aLesson->GetPlacement().GetTimeSlot().GetDayOfWeek(), duration));
+
+    aLesson->GetGroup()->MakeAvailableTimeSlot(
+      pair<int, int>(aLesson->GetPlacement().GetTimeSlot().GetDayOfWeek(), duration));
+  }
 }

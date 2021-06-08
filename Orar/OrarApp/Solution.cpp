@@ -2,7 +2,6 @@
 #include "Solution.h"
 #include "Context.h"
 #include "Lesson.h"
-#include "Teacher.h"
 
 Solution::Solution(Context & aContext)
   : mContext(aContext)
@@ -18,18 +17,18 @@ void Solution::FillUnassignedLessons()
     mUnassignedLessons.push_back(lesson.get());
 }
 
-// sort lessons by teacher unavailability time slot. the main constraint at this point
+// sort lessons by weight. the main constraint at this point
 // the most dificult to asign is the last one
 void Solution::SortUnassignedLessons()
 {
   sort(mUnassignedLessons.begin(), mUnassignedLessons.end(), [](Lesson * first, Lesson * second) {
-    return first->GetTeacher()->GetTeacherWeight() < second->GetTeacher()->GetTeacherWeight();
+    return first->GetWeight() > second->GetWeight();
   });
 }
 
-vector<Lesson *> Solution::GetUnassignedLessons()
+bool Solution::IsUnassignedLesson()
 {
-  return mUnassignedLessons;
+  return mUnassignedLessons.size() == 0 ? false : true;
 }
 
 void Solution::SetAssignedLesson(Lesson * aLesson)

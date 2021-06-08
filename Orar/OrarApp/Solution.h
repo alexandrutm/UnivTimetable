@@ -9,13 +9,11 @@ public:
   Solution(Context & mContext);
 
   void FillUnassignedLessons();
-
   void SortUnassignedLessons();
 
-  vector<Lesson *> GetUnassignedLessons();
-  void             SetAssignedLesson(Lesson * aLesson);
+  bool IsUnassignedLesson();
+  void SetAssignedLesson(Lesson * aLesson);
 
-  // get next available lesson
   Lesson * GetNextUnassignedLesson();
 
   void             UnassignLastAssignedLesson();

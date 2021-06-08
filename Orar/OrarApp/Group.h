@@ -26,6 +26,7 @@ public:
   Group * GetChild(int nr);
 
   int GetId();
+  int GetWeight();
 
   void MakeUnavailableTimeSlot(pair<int, int> aTimeSlot);
   void MakeAvailableTimeSlot(pair<int, int> aTimeSlot);
@@ -39,6 +40,7 @@ private:
   string mName;
   int    mNumberOfStudents;
   int    mId;
+  int    mWeight;
 
   vector<unique_ptr<Group>> mChildren;
   Group *                   mParent;

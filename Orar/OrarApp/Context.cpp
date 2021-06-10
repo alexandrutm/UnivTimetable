@@ -450,10 +450,18 @@ void Context::RemoveConstraint(int index)
 
 vector<vector<string>> Context::GetTimeTable()
 {
-  Solver solver;
-
+  Solver                 solver;
   TransformLessonDetails lessonsStringData;
-  return lessonsStringData.LessonsDataToString(GetInstituteData(), solver.FindSolution(*this));
+
+  auto solution = solver.FindSolution(*this);
+
+  while (!solution.IsComplete())
+  {
+    this->DeleteLessonsPlacements();
+    solution = solver.FindSolution(*this);
+  }
+
+  return lessonsStringData.LessonsDataToString(GetInstituteData(), solution);
 }
 
 bool Context::CheckTimetable()

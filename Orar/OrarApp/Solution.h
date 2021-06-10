@@ -7,6 +7,7 @@ class Solution
 {
 public:
   Solution(Context & mContext);
+  Solution & operator=(const Solution & aSolution);
 
   void FillUnassignedLessons();
   void SortUnassignedLessons();
@@ -18,6 +19,8 @@ public:
 
   void             UnassignLastAssignedLesson();
   vector<Lesson *> GetAssignedLessons();
+
+  bool IsComplete();
 
 private:
   Context & mContext;

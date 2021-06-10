@@ -6,7 +6,6 @@ Teacher::Teacher(string aFirstName, string aLastName, int aTeacherId)
   , mLastName(aLastName)
   , mId(aTeacherId)
 {
-  mWeight = 0;
 }
 
 bool Teacher::operator==(const Teacher & aTeacher)
@@ -52,7 +51,6 @@ int Teacher::GetId()
 
 void Teacher::MakeUnavailableTimeSlot(pair<int, int> aTimeSlot)
 {
-  mWeight++;
   mAvailability.push_back(aTimeSlot);
 }
 
@@ -76,5 +74,5 @@ bool Teacher::IsAvailable(pair<int, int> aTimeSlot)
 
 int Teacher::GetTeacherWeight()
 {
-  return mWeight;
+  return mAvailability.size();
 }

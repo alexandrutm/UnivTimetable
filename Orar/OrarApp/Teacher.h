@@ -26,7 +26,5 @@ private:
   string mLastName;
   int    mId;
 
-  int mWeight;
-
   vector<pair<int, int>> mAvailability;
 };

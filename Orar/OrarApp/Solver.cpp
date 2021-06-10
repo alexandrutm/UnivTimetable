@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "Solver.h"
+#include "Context.h"
 #include "Lesson.h"
 #include "SelectPlacement.h"
 
@@ -13,8 +14,10 @@ Solution Solver::FindSolution(Context & aContext)
   SelectPlacement selectPlacement(aContext);
   Solution        solution(aContext);
 
+  auto start = std::chrono::steady_clock::now();
   // Try to place each lesson in an allowed placement && give a timer
-  while (mTerminationCondition.CanContinue(&solution))
+  while (mTerminationCondition.CanContinue(&solution) ||
+         std::chrono::steady_clock::now() - start > std::chrono::seconds(10))
   {
     // select a lesson and remove it from unassigned lessons;
     auto currentLesson = solution.GetNextUnassignedLesson();
@@ -39,5 +42,6 @@ Solution Solver::FindSolution(Context & aContext)
       solution.UnassignLastAssignedLesson();
     }
   }
+
   return solution;
 }

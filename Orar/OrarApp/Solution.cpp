@@ -10,6 +10,16 @@ Solution::Solution(Context & aContext)
   SortUnassignedLessons();
 }
 
+Solution & Solution::operator=(const Solution & aSolution)
+{
+  if (this != &aSolution)
+  {
+    mUnassignedLessons = aSolution.mUnassignedLessons;
+    mAssignedLessons   = aSolution.mAssignedLessons;
+  }
+  return *this;
+}
+
 void Solution::FillUnassignedLessons()
 {
   auto lessons = mContext.GetLessons();
@@ -22,7 +32,7 @@ void Solution::FillUnassignedLessons()
 void Solution::SortUnassignedLessons()
 {
   sort(mUnassignedLessons.begin(), mUnassignedLessons.end(), [](Lesson * first, Lesson * second) {
-    return first->GetWeight() > second->GetWeight();
+    return first->GetWeight() < second->GetWeight();
   });
 }
 
@@ -59,4 +69,12 @@ void Solution::UnassignLastAssignedLesson()
 vector<Lesson *> Solution::GetAssignedLessons()
 {
   return mAssignedLessons;
+}
+
+bool Solution::IsComplete()
+{
+  if (mUnassignedLessons.size() == 0)
+    return true;
+
+  return false;
 }

@@ -31,6 +31,7 @@ public:
   void MakeUnavailableTimeSlot(pair<int, int> aTimeSlot);
   void MakeAvailableTimeSlot(pair<int, int> aTimeSlot);
   bool IsAvailable(pair<int, int> availability);
+
   bool CheckParentAvailability(pair<int, int> aTimeSlot);
   bool CheckChildAvailability(pair<int, int> aTimeSlot);
 
@@ -40,7 +41,6 @@ private:
   string mName;
   int    mNumberOfStudents;
   int    mId;
-  int    mWeight;
 
   vector<unique_ptr<Group>> mChildren;
   Group *                   mParent;

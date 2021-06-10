@@ -16,8 +16,8 @@ Solution Solver::FindSolution(Context & aContext)
 
   auto start = std::chrono::steady_clock::now();
   // Try to place each lesson in an allowed placement && give a timer
-  while (mTerminationCondition.CanContinue(&solution) ||
-         std::chrono::steady_clock::now() - start > std::chrono::seconds(10))
+  while (mTerminationCondition.CanContinue(&solution) &&
+         !(std::chrono::steady_clock::now() - start > std::chrono::seconds(15)))
   {
     // select a lesson and remove it from unassigned lessons;
     auto currentLesson = solution.GetNextUnassignedLesson();

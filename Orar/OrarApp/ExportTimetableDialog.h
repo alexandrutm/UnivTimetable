@@ -10,14 +10,10 @@ class ExportTimetableDialog : public QDialog
   Q_OBJECT
 
 public:
-  ExportTimetableDialog(Context &              aContext,
-                        vector<vector<string>> aLessons,
-                        shared_ptr<TreeModel>  aGroupModel,
-                        QWidget *              parent = Q_NULLPTR);
+  ExportTimetableDialog(Context &             aContext,
+                        shared_ptr<TreeModel> aGroupModel,
+                        QWidget *             parent = Q_NULLPTR);
   ~ExportTimetableDialog();
-
-  vector<string> FilterData(vector<string> pattern);
-  void           PrintTimetable(vector<string> aLessonsDetails);
 
 private slots:
 
@@ -26,7 +22,6 @@ private slots:
 private:
   Ui::ExportTimetableDialog ui;
 
-  Context &              mContext;
-  vector<vector<string>> mTimetable;
-  shared_ptr<TreeModel>  mGroupModel;
+  Context &             mContext;
+  shared_ptr<TreeModel> mGroupModel;
 };

@@ -105,6 +105,7 @@
     <ClCompile Include="AddDataDialog.cpp" />
     <ClCompile Include="ConstraintListModel.cpp" />
     <ClCompile Include="ConstraintsView.cpp" />
+    <ClCompile Include="ExportTimeTable.cpp" />
     <ClCompile Include="ExportTimetableDialog.cpp" />
     <ClCompile Include="Group.cpp" />
     <ClCompile Include="InstituteData.cpp" />
@@ -146,6 +147,7 @@
     <ClCompile Include="TransformLessonDetails.cpp" />
     <ClCompile Include="TreeModelClasses.cpp" />
     <QtMoc Include="ExportTimetableDialog.h" />
+    <ClInclude Include="ExportTimeTable.h" />
     <ClInclude Include="Observer.h" />
     <ClInclude Include="Placement.h" />
     <ClInclude Include="SelectPlacement.h" />

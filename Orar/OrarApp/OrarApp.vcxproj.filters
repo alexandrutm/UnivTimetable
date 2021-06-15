@@ -203,6 +203,9 @@
     <ClCompile Include="ExportTimetableDialog.cpp">
       <Filter>Source Files\ui\Dialogs</Filter>
     </ClCompile>
+    <ClCompile Include="ExportTimeTable.cpp">
+      <Filter>Source Files\data</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="ClassesView.h">
@@ -397,6 +400,9 @@
     </ClInclude>
     <ClInclude Include="Observer.h">
       <Filter>Source Files\ObserverPattern</Filter>
+    </ClInclude>
+    <ClInclude Include="ExportTimeTable.h">
+      <Filter>Source Files\data</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

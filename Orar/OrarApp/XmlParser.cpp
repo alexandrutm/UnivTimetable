@@ -261,9 +261,11 @@ void XmlParser::LoadGroups(Context & aContext, TiXmlHandle & hRoot)
     group = group->NextSiblingElement();
   }
 
-  sort(theGroups.begin(), theGroups.end(), [](auto first, auto second) {
-    return first.parentId < second.parentId;
-  });
+  sort(theGroups.begin(), theGroups.end(),
+       [](auto first, auto second)
+       {
+         return first.parentId < second.parentId;
+       });
 
   for (auto aGroup : theGroups)
   {

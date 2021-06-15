@@ -145,8 +145,7 @@ void OrarApp::on_mExport_triggered()
   if (!mContext.IsTimetableGenerated())
     return;
 
-  auto exportTimetable =
-    make_unique<ExportTimetableDialog>(mContext, mTableModel->GetTiemtableData(), mGroupModel);
+  auto exportTimetable = make_unique<ExportTimetableDialog>(mContext, mGroupModel);
 
   if (exportTimetable->exec())
   {

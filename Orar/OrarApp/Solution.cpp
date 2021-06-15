@@ -7,7 +7,7 @@ Solution::Solution(Context & aContext)
   : mContext(aContext)
 {
   FillUnassignedLessons();
-  SortUnassignedLessons();
+  SortLessons();
 }
 
 Solution & Solution::operator=(const Solution & aSolution)
@@ -29,11 +29,13 @@ void Solution::FillUnassignedLessons()
 
 // sort lessons by weight. the main constraint at this point
 // the most dificult to asign is the last one
-void Solution::SortUnassignedLessons()
+void Solution::SortLessons()
 {
-  sort(mUnassignedLessons.begin(), mUnassignedLessons.end(), [](Lesson * first, Lesson * second) {
-    return first->GetWeight() < second->GetWeight();
-  });
+  sort(mUnassignedLessons.begin(), mUnassignedLessons.end(),
+       [](Lesson * first, Lesson * second)
+       {
+         return first->GetWeight() < second->GetWeight();
+       });
 }
 
 bool Solution::IsUnassignedLesson()

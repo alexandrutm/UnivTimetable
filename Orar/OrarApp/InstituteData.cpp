@@ -15,7 +15,7 @@ InstituteData::InstituteData(
   , mNumberOfDaysPerWeek(aDaysPerWeek)
 {
   // default data
-  mDaysWeek.resize(mNumberOfHoursPerDay);
+  mDaysWeek.resize(mNumberOfDaysPerWeek);
   mDaysWeek[0] = ("Monday");
   mDaysWeek[1] = ("Tuesday");
   mDaysWeek[2] = ("Wednesday");

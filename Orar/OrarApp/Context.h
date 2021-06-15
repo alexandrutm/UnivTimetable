@@ -73,7 +73,7 @@ public:
   void             RemoveConstraint(int index);
 
   vector<vector<string>> GetTimeTable();
-  bool                   CheckTimetable();
+  bool                   IsTimetableGenerated();
 
   void DeleteData();
 

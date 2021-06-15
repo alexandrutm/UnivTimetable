@@ -17,7 +17,9 @@ public:
   void AddData(vector<vector<string>> aLessonsDetails);
   void FilterData(vector<string> pattern);
 
+  vector<vector<string>> GetTiemtableData();
+
 private:
-  vector<vector<string>> mLessons;
+  vector<vector<string>> mTimetable;
   vector<string>         mLessonsDetails;
 };

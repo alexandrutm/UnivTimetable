@@ -58,18 +58,19 @@
         <Teacher fname="Irina" lname="Tudor" id="22" />
         <Teacher fname="Dana" lname="Mihai" id="23" />
         <Teacher fname="Alexandra" lname="Vultureanu" id="24" />
+        <Teacher fname="Vali" lname="Ilie" id="25" />
+        <Teacher fname="Ana-Maria" lname="Demetrian" id="26" />
     </Teachers>
     <Rooms>
-        <Room name="sala223" capacity="80" id="1" />
-        <Room name="laborator113" capacity="40" id="3" />
-        <Room name="laborator222" capacity="33" id="4" />
-        <Room name="sala255" capacity="160" id="5" />
-        <Room name="sala266" capacity="140" id="6" />
-        <Room name="sala303" capacity="120" id="7" />
-        <Room name="sala200" capacity="90" id="8" />
-        <Room name="sala210" capacity="180" id="9" />
-        <Room name="sala211" capacity="200" id="10" />
-        <Room name="sala225" capacity="210" id="11" />
+        <Room name="Sala320" capacity="120" id="1" />
+        <Room name="Laborator113B" capacity="50" id="3" />
+        <Room name="laborator113A" capacity="50" id="4" />
+        <Room name="Sala300" capacity="150" id="5" />
+        <Room name="Sala200" capacity="120" id="6" />
+        <Room name="Sala303" capacity="150" id="7" />
+        <Room name="Laborator205" capacity="50" id="8" />
+        <Room name="Laborator200A" capacity="50" id="9" />
+        <Room name="Laborator200B" capacity="50" id="10" />
     </Rooms>
     <Groups>
         <Group name="Root Class" nrStudents="0" id="0" parentId="-1" />
@@ -78,8 +79,8 @@
         <Group name="anul3" nrStudents="120" id="4" parentId="0" />
         <Group name="masterAn1" nrStudents="40" id="6" parentId="0" />
         <Group name="masterAn2" nrStudents="40" id="9" parentId="0" />
-        <Group name="SeriaA" nrStudents="120" id="18" parentId="1" />
-        <Group name="SeriaB" nrStudents="80" id="19" parentId="1" />
+        <Group name="an1SeriaA" nrStudents="120" id="18" parentId="1" />
+        <Group name="an1SeriaB" nrStudents="80" id="19" parentId="1" />
         <Group name="grupa1an2" nrStudents="50" id="12" parentId="2" />
         <Group name="grupa2an2" nrStudents="50" id="13" parentId="2" />
         <Group name="grupa3an2" nrStudents="50" id="14" parentId="2" />
@@ -140,5 +141,31 @@
         <Lesson teacherId="2" subjectId="12" groupId="12" lessonLength="2" lessonId="45" />
         <Lesson teacherId="2" subjectId="12" groupId="13" lessonLength="2" lessonId="46" />
         <Lesson teacherId="2" subjectId="12" groupId="14" lessonLength="2" lessonId="47" />
+        <Lesson teacherId="12" subjectId="11" groupId="14" lessonLength="4" lessonId="48" />
+        <Lesson teacherId="12" subjectId="5" groupId="18" lessonLength="2" lessonId="49" />
+        <Lesson teacherId="4" subjectId="3" groupId="18" lessonLength="2" lessonId="50" />
+        <Lesson teacherId="6" subjectId="7" groupId="18" lessonLength="2" lessonId="51" />
+        <Lesson teacherId="4" subjectId="3" groupId="19" lessonLength="2" lessonId="52" />
+        <Lesson teacherId="1" subjectId="5" groupId="19" lessonLength="2" lessonId="53" />
+        <Lesson teacherId="10" subjectId="4" groupId="18" lessonLength="2" lessonId="54" />
+        <Lesson teacherId="10" subjectId="4" groupId="19" lessonLength="2" lessonId="55" />
+        <Lesson teacherId="6" subjectId="7" groupId="19" lessonLength="2" lessonId="56" />
+        <Lesson teacherId="16" subjectId="6" groupId="18" lessonLength="2" lessonId="57" />
+        <Lesson teacherId="16" subjectId="6" groupId="19" lessonLength="2" lessonId="58" />
+        <Lesson teacherId="12" subjectId="5" groupId="20" lessonLength="4" lessonId="59" />
+        <Lesson teacherId="20" subjectId="5" groupId="21" lessonLength="4" lessonId="60" />
+        <Lesson teacherId="20" subjectId="5" groupId="24" lessonLength="4" lessonId="61" />
+        <Lesson teacherId="20" subjectId="5" groupId="23" lessonLength="4" lessonId="62" />
+        <Lesson teacherId="20" subjectId="5" groupId="25" lessonLength="4" lessonId="63" />
+        <Lesson teacherId="16" subjectId="6" groupId="20" lessonLength="4" lessonId="64" />
+        <Lesson teacherId="16" subjectId="6" groupId="21" lessonLength="4" lessonId="65" />
+        <Lesson teacherId="16" subjectId="6" groupId="24" lessonLength="4" lessonId="66" />
+        <Lesson teacherId="16" subjectId="6" groupId="23" lessonLength="4" lessonId="67" />
+        <Lesson teacherId="16" subjectId="6" groupId="25" lessonLength="4" lessonId="68" />
+        <Lesson teacherId="6" subjectId="7" groupId="20" lessonLength="4" lessonId="69" />
+        <Lesson teacherId="18" subjectId="7" groupId="21" lessonLength="4" lessonId="70" />
+        <Lesson teacherId="18" subjectId="7" groupId="24" lessonLength="4" lessonId="71" />
+        <Lesson teacherId="18" subjectId="7" groupId="25" lessonLength="4" lessonId="72" />
+        <Lesson teacherId="18" subjectId="7" groupId="23" lessonLength="4" lessonId="73" />
     </Lessons>
 </Context>

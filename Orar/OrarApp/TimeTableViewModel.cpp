@@ -5,7 +5,7 @@
 TimeTableViewModel::TimeTableViewModel(QObject * parent)
   : QAbstractTableModel(parent)
 {
-  mLessons.resize(5, vector<string>());
+  mTimetable.resize(5, vector<string>());
   mLessonsDetails.resize(5);
 }
 
@@ -81,22 +81,22 @@ void TimeTableViewModel::ClearData()
 {
   beginResetModel();
   mLessonsDetails.clear();
-  mLessons.clear();
+  mTimetable.clear();
   endResetModel();
 
-  mLessons.resize(5, vector<string>());
+  mTimetable.resize(5, vector<string>());
   mLessonsDetails.resize(5);
 }
 
 void TimeTableViewModel::AddData(vector<vector<string>> aLessonsDetails)
 {
-  mLessons = aLessonsDetails;
+  mTimetable = aLessonsDetails;
 
   mLessonsDetails.clear();
   mLessonsDetails.resize(5);
 
   int i = 0;
-  for (auto day : mLessons)
+  for (auto day : mTimetable)
   {
     for (auto lesson : day)
     {
@@ -115,7 +115,7 @@ void TimeTableViewModel::FilterData(vector<string> pattern)
 
     int i = 0;
 
-    for (auto day : mLessons)
+    for (auto day : mTimetable)
     {
       for (auto lesson : day)
       {
@@ -131,4 +131,9 @@ void TimeTableViewModel::FilterData(vector<string> pattern)
       i++;
     }
   }
+}
+
+vector<vector<string>> TimeTableViewModel::GetTiemtableData()
+{
+  return mTimetable;
 }

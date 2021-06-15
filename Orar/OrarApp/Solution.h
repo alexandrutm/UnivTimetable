@@ -10,7 +10,7 @@ public:
   Solution & operator=(const Solution & aSolution);
 
   void FillUnassignedLessons();
-  void SortUnassignedLessons();
+  void SortLessons();
 
   bool IsUnassignedLesson();
   void SetAssignedLesson(Lesson * aLesson);

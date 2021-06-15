@@ -71,9 +71,11 @@ void Context::DeleteTeachers()
 
 int Context::GenerateTeacherId()
 {
-  auto maxIdIt = max_element(mTeachers.begin(), mTeachers.end(), [](auto & first, auto & second) {
-    return first->GetId() < second->GetId();
-  });
+  auto maxIdIt = max_element(mTeachers.begin(), mTeachers.end(),
+                             [](auto & first, auto & second)
+                             {
+                               return first->GetId() < second->GetId();
+                             });
 
   if (maxIdIt == mTeachers.end())
     return 1;
@@ -85,13 +87,17 @@ string Context::SearchTeacher(Teacher * aTeacher)
 {
   // If we find a reference of this teacher in constraint or in lesson we return a string with
   // location
-  auto it = find_if(mConstraints.begin(), mConstraints.end(), [&](auto const & constr) {
-    return constr->GetTeacher() == aTeacher;
-  });
+  auto it = find_if(mConstraints.begin(), mConstraints.end(),
+                    [&](auto const & constr)
+                    {
+                      return constr->GetTeacher() == aTeacher;
+                    });
 
-  auto it2 = find_if(mLessons.begin(), mLessons.end(), [&](auto const & lesson) {
-    return lesson->GetTeacher() == aTeacher;
-  });
+  auto it2 = find_if(mLessons.begin(), mLessons.end(),
+                     [&](auto const & lesson)
+                     {
+                       return lesson->GetTeacher() == aTeacher;
+                     });
 
   if (it2 != mLessons.end() && it != mConstraints.end())
     return "This teacher is referred in Lesson and Constraint view";
@@ -134,9 +140,11 @@ void Context::DeleteSubjects()
 
 int Context::GenerateSubjectId()
 {
-  auto maxIdIt = max_element(mSubjects.begin(), mSubjects.end(), [](auto & first, auto & second) {
-    return first->GetId() < second->GetId();
-  });
+  auto maxIdIt = max_element(mSubjects.begin(), mSubjects.end(),
+                             [](auto & first, auto & second)
+                             {
+                               return first->GetId() < second->GetId();
+                             });
 
   if (maxIdIt == mSubjects.end())
     return 1;
@@ -145,9 +153,11 @@ int Context::GenerateSubjectId()
 
 string Context::SearchSubject(Subject * aSubject)
 {
-  auto it = find_if(mLessons.begin(), mLessons.end(), [&](auto const & lesson) {
-    return lesson->GetSubject() == aSubject;
-  });
+  auto it = find_if(mLessons.begin(), mLessons.end(),
+                    [&](auto const & lesson)
+                    {
+                      return lesson->GetSubject() == aSubject;
+                    });
 
   if (it != mLessons.end())
     return "This subject is refered in lesson view\n";
@@ -239,9 +249,11 @@ string Context::SearchGroup(Group * aGroup)
     auto frontNode = treeNodes.front();
     treeNodes.pop();
 
-    auto it = find_if(mLessons.begin(), mLessons.end(), [&](auto const & lesson) {
-      return lesson->GetGroup() == frontNode;
-    });
+    auto it = find_if(mLessons.begin(), mLessons.end(),
+                      [&](auto const & lesson)
+                      {
+                        return lesson->GetGroup() == frontNode;
+                      });
 
     if (it != mLessons.end())
       return "This group or his children are refered in lesson view\n";
@@ -302,9 +314,11 @@ void Context::DeleteLessons()
 
 int Context::GenerateLessonId()
 {
-  auto maxIdIt = max_element(mLessons.begin(), mLessons.end(), [](auto & first, auto & second) {
-    return first->GetId() < second->GetId();
-  });
+  auto maxIdIt = max_element(mLessons.begin(), mLessons.end(),
+                             [](auto & first, auto & second)
+                             {
+                               return first->GetId() < second->GetId();
+                             });
 
   if (maxIdIt == mLessons.end())
     return 1;
@@ -321,13 +335,17 @@ void Context::AddLessonFromXml(
   int aTeacherId, int aSubjectId, int aGroupId, int aNumberOfHours, int aLessonId)
 {
   // search teacher, subject and group in context and assign them to a lesson
-  auto teacherIt = find_if(mTeachers.begin(), mTeachers.end(), [&](auto const & teacher) {
-    return teacher->GetId() == aTeacherId;
-  });
+  auto teacherIt = find_if(mTeachers.begin(), mTeachers.end(),
+                           [&](auto const & teacher)
+                           {
+                             return teacher->GetId() == aTeacherId;
+                           });
 
-  auto subjectIt = find_if(mSubjects.begin(), mSubjects.end(), [&](auto const & subject) {
-    return subject->GetId() == aSubjectId;
-  });
+  auto subjectIt = find_if(mSubjects.begin(), mSubjects.end(),
+                           [&](auto const & subject)
+                           {
+                             return subject->GetId() == aSubjectId;
+                           });
 
   queue<Group *> treeNodes;
   Group *        lessonGroup;
@@ -388,9 +406,11 @@ void Context::DeleteRooms()
 
 int Context::GenerateRoomId()
 {
-  auto maxIdIt = max_element(mRooms.begin(), mRooms.end(), [](auto & first, auto & second) {
-    return first->GetId() < second->GetId();
-  });
+  auto maxIdIt = max_element(mRooms.begin(), mRooms.end(),
+                             [](auto & first, auto & second)
+                             {
+                               return first->GetId() < second->GetId();
+                             });
 
   if (maxIdIt == mRooms.end())
     return 1;
@@ -430,9 +450,11 @@ TimeConstraint * Context::GetConstraintByIndex(int index)
 
 TimeConstraint * Context::GetConstraintByTeacher(Teacher * aTeacher)
 {
-  auto it = find_if(mConstraints.begin(), mConstraints.end(), [&](auto const & constraint) {
-    return constraint->GetTeacher() == aTeacher;
-  });
+  auto it = find_if(mConstraints.begin(), mConstraints.end(),
+                    [&](auto const & constraint)
+                    {
+                      return constraint->GetTeacher() == aTeacher;
+                    });
 
   if (it != mConstraints.end())
     return it->get();
@@ -464,9 +486,12 @@ vector<vector<string>> Context::GetTimeTable()
   return lessonsStringData.LessonsDataToString(GetInstituteData(), solution);
 }
 
-bool Context::CheckTimetable()
+bool Context::IsTimetableGenerated()
 {
-  return GetLessonByIndex(0)->GetPlacement().IsValid();
+  for (auto lesson : mLessons)
+    if (!lesson->GetPlacement().IsValid())
+      return false;
+  return true;
 }
 
 void Context::DeleteData()

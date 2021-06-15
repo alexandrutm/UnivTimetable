@@ -200,6 +200,9 @@
     <ClCompile Include="tinyxml\tinyxmlparser.cpp">
       <Filter>Source Files\tinyxml</Filter>
     </ClCompile>
+    <ClCompile Include="ExportTimetableDialog.cpp">
+      <Filter>Source Files\ui\Dialogs</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="ClassesView.h">
@@ -274,6 +277,9 @@
     <QtMoc Include="ConstraintListModel.h">
       <Filter>Source Files\ui\Models</Filter>
     </QtMoc>
+    <QtMoc Include="ExportTimetableDialog.h">
+      <Filter>Source Files\ui\Dialogs</Filter>
+    </QtMoc>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="AddDataDialog.ui">
@@ -322,6 +328,9 @@
       <Filter>Resource Files\Views</Filter>
     </QtUic>
     <QtUic Include="TeacherConstraintDialog.ui">
+      <Filter>Resource Files\Dialog</Filter>
+    </QtUic>
+    <QtUic Include="ExportTimetableDialog.ui">
       <Filter>Resource Files\Dialog</Filter>
     </QtUic>
   </ItemGroup>

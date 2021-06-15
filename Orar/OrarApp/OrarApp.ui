@@ -222,6 +222,8 @@
    <addaction name="mInstitutionData"/>
    <addaction name="separator"/>
    <addaction name="mGenerate"/>
+   <addaction name="separator"/>
+   <addaction name="mExport"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <action name="mNew">
@@ -326,6 +328,18 @@
    </property>
    <property name="statusTip">
     <string>Institution data</string>
+   </property>
+  </action>
+  <action name="mExport">
+   <property name="icon">
+    <iconset>
+     <normaloff>img/expor.png</normaloff>img/expor.png</iconset>
+   </property>
+   <property name="text">
+    <string>Export</string>
+   </property>
+   <property name="iconText">
+    <string>Export timetable</string>
    </property>
   </action>
  </widget>

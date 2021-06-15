@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "OrarApp.h"
+#include "ExportTimetableDialog.h"
 #include "Group.h"
 #include "InstituteData.h"
 #include "InstitutionDetailsDialog.h"
@@ -39,9 +40,9 @@ void OrarApp::CreateModels()
   ui.mTimeTableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
   ui.mTimeTableView->verticalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
-  mClassesModel = make_shared<TreeModel>(mContext, this);
-  ui.mTreeView->setModel(mClassesModel.get());
-  mDataDialog.AddTreeModel(mClassesModel);
+  mGroupModel = make_shared<TreeModel>(mContext, this);
+  ui.mTreeView->setModel(mGroupModel.get());
+  mDataDialog.AddTreeModel(mGroupModel);
 }
 
 OrarApp::~OrarApp()
@@ -69,8 +70,7 @@ void OrarApp::ChangeStatus(string aStatus)
 
 void OrarApp::ClassChanged()
 {
-  vector<string> classesnames;
-  auto           indexRowSelected = ui.mTreeView->selectionModel()->currentIndex();
+  auto indexRowSelected = ui.mTreeView->selectionModel()->currentIndex();
 
   if (!indexRowSelected.isValid())
   {
@@ -78,10 +78,9 @@ void OrarApp::ClassChanged()
     return;
   }
 
-  QModelIndex nameIndex =
-    mClassesModel->index(indexRowSelected.row(), 0, indexRowSelected.parent());
+  QModelIndex nameIndex = mGroupModel->index(indexRowSelected.row(), 0, indexRowSelected.parent());
 
-  auto parentGroup = mClassesModel->getItem(nameIndex);
+  auto parentGroup = mGroupModel->getItem(nameIndex);
 
   mTableModel->FilterData(mContext.GetGroupsNameToFilter(parentGroup));
   ui.mTimeTableView->repaint();
@@ -126,7 +125,7 @@ void OrarApp::on_mGenerate_triggered()
   }
 
   // check if we have a generated timetable
-  if (mContext.CheckTimetable())
+  if (mContext.IsTimetableGenerated())
   {
     // already have a timetable generated-> delete lesson placement and generated another timetable
     mContext.DeleteLessonsPlacements();
@@ -141,18 +140,31 @@ void OrarApp::on_mGenerate_triggered()
   ui.mTimeTableView->repaint();
 }
 
+void OrarApp::on_mExport_triggered()
+{
+  if (!mContext.IsTimetableGenerated())
+    return;
+
+  auto exportTimetable =
+    make_unique<ExportTimetableDialog>(mContext, mTableModel->GetTiemtableData(), mGroupModel);
+
+  if (exportTimetable->exec())
+  {
+  }
+}
+
 void OrarApp::on_mInstitutionData_triggered()
 {
-  InstitutionDetailsDialog institutionDialog = new InstitutionDetailsDialog(this);
+  auto institutionDialog = make_unique<InstitutionDetailsDialog>();
 
-  if (institutionDialog.exec())
+  if (institutionDialog->exec())
   {
-    QString name = institutionDialog.SchoolName->text();
+    QString name = institutionDialog->SchoolName->text();
 
-    int hoursPerDay = institutionDialog.HoursPerDay->value();
-    int startTime   = institutionDialog.mStartTime->value();
-    int endTime     = institutionDialog.mEndTime->value();
-    int daysPerWeek = institutionDialog.mDaysPerWeek->value();
+    int hoursPerDay = institutionDialog->HoursPerDay->value();
+    int startTime   = institutionDialog->mStartTime->value();
+    int endTime     = institutionDialog->mEndTime->value();
+    int daysPerWeek = institutionDialog->mDaysPerWeek->value();
 
     shared_ptr<InstituteData> InstitutionData =
       make_shared<InstituteData>(name.toStdString(), hoursPerDay, startTime, endTime, daysPerWeek);

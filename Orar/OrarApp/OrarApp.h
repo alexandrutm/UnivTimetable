@@ -31,6 +31,7 @@ private slots:
   void on_mOpen_triggered();
   void on_mData_triggered();
   void on_mGenerate_triggered();
+  void on_mExport_triggered();
   void on_mInstitutionData_triggered();
 
 private:
@@ -39,7 +40,7 @@ private:
   Context mContext;
 
   unique_ptr<TimeTableViewModel> mTableModel;
-  shared_ptr<TreeModel>          mClassesModel;
+  shared_ptr<TreeModel>          mGroupModel;
 
   AddDataDialog mDataDialog;
 

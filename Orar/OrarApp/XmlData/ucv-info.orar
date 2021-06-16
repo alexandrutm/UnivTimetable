@@ -74,19 +74,23 @@
     </Rooms>
     <Groups>
         <Group name="Root Class" nrStudents="0" id="0" parentId="-1" />
-        <Group name="anul1" nrStudents="200" id="1" parentId="0" />
-        <Group name="anul2" nrStudents="150" id="2" parentId="0" />
-        <Group name="anul3" nrStudents="120" id="4" parentId="0" />
-        <Group name="masterAn1" nrStudents="40" id="6" parentId="0" />
-        <Group name="masterAn2" nrStudents="40" id="9" parentId="0" />
-        <Group name="an1SeriaA" nrStudents="120" id="18" parentId="1" />
-        <Group name="an1SeriaB" nrStudents="80" id="19" parentId="1" />
-        <Group name="grupa1an2" nrStudents="50" id="12" parentId="2" />
-        <Group name="grupa2an2" nrStudents="50" id="13" parentId="2" />
-        <Group name="grupa3an2" nrStudents="50" id="14" parentId="2" />
-        <Group name="grupa1an3" nrStudents="40" id="15" parentId="4" />
-        <Group name="grupa2an3" nrStudents="40" id="16" parentId="4" />
-        <Group name="grupa3an3" nrStudents="40" id="17" parentId="4" />
+        <Group name="Anul_1" nrStudents="200" id="1" parentId="0" />
+        <Group name="Anul_2" nrStudents="150" id="2" parentId="0" />
+        <Group name="Anul_3" nrStudents="120" id="4" parentId="0" />
+        <Group name="Anul_1-Master" nrStudents="40" id="6" parentId="0" />
+        <Group name="Anul_2-Master" nrStudents="40" id="9" parentId="0" />
+        <Group name="Anul_1-Seria_A" nrStudents="120" id="18" parentId="1" />
+        <Group name="Anul_1-Seria_B" nrStudents="80" id="19" parentId="1" />
+        <Group name="Anul_2-Grupa_1" nrStudents="50" id="12" parentId="2" />
+        <Group name="Anul_2-Grupa_2" nrStudents="50" id="13" parentId="2" />
+        <Group name="Anul_2-Grupa_3" nrStudents="50" id="14" parentId="2" />
+        <Group name="Anul_3-Grupa_1" nrStudents="40" id="15" parentId="4" />
+        <Group name="Anul_3-Grupa_2" nrStudents="40" id="16" parentId="4" />
+        <Group name="Anul_3-Grupa_3" nrStudents="40" id="17" parentId="4" />
+        <Group name="Anul_1-Master_Grupa_1" nrStudents="20" id="26" parentId="6" />
+        <Group name="Anul_1-Master_Grupa_2" nrStudents="20" id="27" parentId="6" />
+        <Group name="Anul_2-Master_Grupa_1" nrStudents="20" id="28" parentId="9" />
+        <Group name="Anul_2-Master_Grupa_2" nrStudents="20" id="29" parentId="9" />
         <Group name="grupa1An1" nrStudents="40" id="20" parentId="18" />
         <Group name="grupa2An1" nrStudents="40" id="21" parentId="18" />
         <Group name="grupa3An1" nrStudents="40" id="24" parentId="18" />

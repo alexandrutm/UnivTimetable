@@ -14,42 +14,13 @@ ExportTimetable::ExportTimetable(Context & aContext)
 {
 }
 
-vector<vector<string>> ExportTimetable::FilterData(vector<string> pattern)
-{
-  vector<vector<string>> mLessonsDetails(
-    mContext.GetInstituteData()->GetNumberOfDaysPerWeek(),
-    vector<string>(mContext.GetInstituteData()->GetNumberOfHoursPerDay()));
-
-  /* if (!pattern.empty())
-   {
-     int i = 0;
-
-     for (auto day : )
-     {
-       int j = 0;
-
-       for (auto lesson : day)
-       {
-         for (auto groupName : pattern)
-         {
-           auto pos = lesson.find(groupName);
-           if (pos != std::string::npos)
-           {
-             mLessonsDetails[i][j] = lesson;
-             j++;
-           }
-         }
-       }
-       i++;
-     }
-   }*/
-
-  return mLessonsDetails;
-}
-
 void ExportTimetable::PrintTimetable(vector<string> groupsNames)
 {
-  auto lessons = mContext.GetLessons();
+  auto                               lessons     = mContext.GetLessons();
+  auto                               daysWeek    = mContext.GetInstituteData()->GetDaysWeek();
+  auto                               tableHeader = mContext.GetInstituteData()->GetHoursDay();
+  vector<vector<shared_ptr<Lesson>>> lessonsFiltered(
+    mContext.GetInstituteData()->GetNumberOfDaysPerWeek(), vector<shared_ptr<Lesson>>());
 
   // sort lessons by start time
   sort(lessons.begin(), lessons.end(),
@@ -59,59 +30,86 @@ void ExportTimetable::PrintTimetable(vector<string> groupsNames)
                 second->GetPlacement().GetTimeSlot().GetStartTime();
        });
 
-  vector<shared_ptr<Lesson>> lessonsFiltered;
-
   for (auto lesson : lessons)
   {
-    bool found = false;
     for (auto groupName : groupsNames)
     {
       if (lesson->GetGroup()->GetName() == groupName)
       {
-        lessonsFiltered.push_back(lesson);
+        lessonsFiltered[lesson->GetPlacement().GetTimeSlot().GetDayOfWeek()].push_back(lesson);
       }
     }
   }
 
-  auto header = mContext.GetInstituteData()->GetDaysWeek();
-
-  header.insert(header.begin(), "Hours \\ Days");
+  tableHeader.insert(tableHeader.begin(), " Days \\ Hours ");
 
   ofstream myfile;
-  myfile.open("timetable.html");
+  myfile.open(groupsNames.front() + "-ttable.html");
 
   myfile << " <!DOCTYPE html>\n <html>\n <head>\n<style>\n"
          << " table, th, td {\n border : 1px solid black;\n}\n</style>\n</head>\n<body>\n"
+         << "<H1><FONT COLOR=\"DARKCYAN\"><CENTER>" << groupsNames.front() << "</FONT></H1>"
          << "<table style=\"width:100%\">\n"
          << "<tr>\n";
 
-  for (auto head : header)
+  for (auto head : tableHeader)
   {
-    myfile << "    <th>" << head << "</th>\n";
+    myfile << "<th>" << head << "</th>\n";
   }
-  myfile << "  </tr>\n";
+  myfile << "</tr>\n";
 
+  // sort lessons by day
+  int dayNumber = 0;
   // print lessons
-  for (auto lesson : lessons)
+  for (auto day : lessonsFiltered)
   {
-    for (auto groupName : groupsNames)
+    myfile << "<tr>\n <td align=\"center\">" << daysWeek[dayNumber];
+    int i    = 0;
+    int size = 0;
+
+    for (auto lesson : day)
     {
-      if (lesson->GetGroup()->GetName() == groupName)
+      size++;
+      // int lessonStartTime = lesson->GetPlacement().GetTimeSlot().GetStartTime();
+      // int lessonEndTime   = lesson->GetPlacement().GetTimeSlot().GetEndTime();
+      // int dayOfWeek       = lesson->GetPlacement().GetTimeSlot().GetDayOfWeek();
+
+      string lessonRoom = lesson->GetPlacement().GetRoom()->GetName();
+      string lessonTeacher =
+        lesson->GetTeacher()->GetFirstName() + " " + lesson->GetTeacher()->GetLastName();
+      string lessonGroup   = lesson->GetGroup()->GetName();
+      string lessonSubject = lesson->GetSubject()->GetName();
+
+      for (i; i < mContext.GetInstituteData()->GetNumberOfHoursPerDay(); i++)
       {
-        int lessonStartTime = lesson->GetPlacement().GetTimeSlot().GetStartTime();
-        int lessonEndTime   = lesson->GetPlacement().GetTimeSlot().GetEndTime();
-        int day             = lesson->GetPlacement().GetTimeSlot().GetDayOfWeek();
+        if (i == lesson->GetPlacement().GetTimeSlot().GetStartTime())
+        {
+          myfile << "\n <td colspan=" << lesson->GetDuration() << "align=\"center\">"
+                 << lessonSubject + " " + lessonGroup + " " + lessonTeacher + " " + lessonRoom;
+          i += lesson->GetDuration();
 
-        string lessonRoom = lesson->GetPlacement().GetRoom()->GetName();
-        string lessonTeacher =
-          lesson->GetTeacher()->GetFirstName() + " " + lesson->GetTeacher()->GetLastName();
-        string lessonGroup   = lesson->GetGroup()->GetName();
-        string lessonSubject = lesson->GetSubject()->GetName();
+          // complete row with "---"
+          if (size == day.size())
+          {
+            for (i; i < mContext.GetInstituteData()->GetNumberOfHoursPerDay(); i++)
+            {
+              myfile << " <td align=\"center\">---";
+            }
+          }
 
-        break;
+          break;
+        }
+        else
+          myfile << " <td align=\"center\">---";
       }
+
+      // check if it is another lesson in this interval
     }
+
+    myfile << "\n</tr>";
+
+    dayNumber++;
   }
 
-  myfile << "</table >\n</body>\n</html>";
+  myfile << "</table>\n</body>\n</html>";
 }

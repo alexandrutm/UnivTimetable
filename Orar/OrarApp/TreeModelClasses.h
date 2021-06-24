@@ -39,6 +39,4 @@ public:
 private:
   Context & mContext;
   Group *   mRootGroup;
-
-  vector<pair<int, QModelIndex>> idIndexPair;
 };

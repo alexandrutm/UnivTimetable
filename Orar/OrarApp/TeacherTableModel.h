@@ -22,12 +22,11 @@ public:
   bool removeRows(int position, int rows, const QModelIndex & index = QModelIndex()) override;
 
   void PopulateModel(string, string, int);
+  void ClearContent();
 
   void   AddNewRow();
   void   Update(string aInstruction) override;
   string GetModelName() override;
-
-  void ClearContent();
 
 private:
   Context & mContext;

@@ -46,11 +46,13 @@ void ExportTimetable::PrintTimetable(vector<string> groupsNames)
   ofstream myfile;
   myfile.open(groupsNames.front() + "-ttable.html");
 
-  myfile << " <!DOCTYPE html>\n <html>\n <head>\n<style>\n"
-         << " table, th, td {\n border : 1px solid black;\n}\n</style>\n</head>\n<body>\n"
-         << "<H1><FONT COLOR=\"DARKCYAN\"><CENTER>" << groupsNames.front() << "</FONT></H1>"
-         << "<table style=\"width:100%\">\n"
-         << "<tr>\n";
+  myfile
+    << " <!DOCTYPE html>\n <html>\n <head>\n<style>\n"
+    << " table, th, td {\n border : 1px solid black;\nfont-size: 20px; face=\"Times New Roman\""
+    << "\n}\n</style>\n</head>\n<body>\n"
+    << "<H1><FONT  COLOR=\"DARKCYAN\"><CENTER>" << groupsNames.front() << "</FONT></H1>"
+    << "<table style=\"width:100%\">\n"
+    << "<tr>\n";
 
   for (auto head : tableHeader)
   {

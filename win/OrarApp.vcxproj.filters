@@ -1,0 +1,401 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="ui">
+      <UniqueIdentifier>{95f5529c-ca53-401c-96fe-6b73e2916c0a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="res">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="xmlLib">
+      <UniqueIdentifier>{d07614ef-9d68-4b6d-8745-559267b00a56}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="win">
+      <UniqueIdentifier>{a8a0c88d-0f23-4fae-99f4-9cbe8aec0b79}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="ui\dialogs">
+      <UniqueIdentifier>{18b9c0d3-5744-40e3-8315-ca4ccd37310b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ui\views">
+      <UniqueIdentifier>{51b8343c-35b3-4e8b-b886-41849d8f9f2c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ui\models">
+      <UniqueIdentifier>{a225e783-6b1e-4c08-9a46-542332034b0e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\containers">
+      <UniqueIdentifier>{2693cdb2-e2d6-4eb1-8d20-7c2c5e0d2ea1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\constraints">
+      <UniqueIdentifier>{d5aaaa56-9046-4a1a-8079-47bfb52d01a6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\generator">
+      <UniqueIdentifier>{08759e9f-d858-4874-a088-fb60abb9f1a3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\utility">
+      <UniqueIdentifier>{26c7b0cc-88b3-4f68-8869-61bcf4f8c176}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\interface">
+      <UniqueIdentifier>{9fe30101-d93a-47b6-97e9-279874fd7c1b}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="tinyxml\tinyxmlparser.cpp">
+      <Filter>xmlLib</Filter>
+    </ClCompile>
+    <ClCompile Include="tinyxml\tinyxmlerror.cpp">
+      <Filter>xmlLib</Filter>
+    </ClCompile>
+    <ClCompile Include="tinyxml\tinyxml.cpp">
+      <Filter>xmlLib</Filter>
+    </ClCompile>
+    <ClCompile Include="tinyxml\tinystr.cpp">
+      <Filter>xmlLib</Filter>
+    </ClCompile>
+    <ClCompile Include="ui\dialogs\ExportTimetableDialog.cpp">
+      <Filter>ui\dialogs</Filter>
+    </ClCompile>
+    <ClCompile Include="ui\dialogs\InstitutionDetailsDialog.cpp">
+      <Filter>ui\dialogs</Filter>
+    </ClCompile>
+    <ClCompile Include="ui\dialogs\LessonDialog.cpp">
+      <Filter>ui\dialogs</Filter>
+    </ClCompile>
+    <ClCompile Include="ui\dialogs\RoomDialog.cpp">
+      <Filter>ui\dialogs</Filter>
+    </ClCompile>
+    <ClCompile Include="ui\dialogs\SubjectDialog.cpp">
+      <Filter>ui\dialogs</Filter>
+    </ClCompile>
+    <ClCompile Include="ui\dialogs\TeacherConstraintDialog.cpp">
+      <Filter>ui\dialogs</Filter>
+    </ClCompile>
+    <ClCompile Include="ui\dialogs\TeacherDialog.cpp">
+      <Filter>ui\dialogs</Filter>
+    </ClCompile>
+    <ClCompile Include="ui\dialogs\AddDataDialog.cpp">
+      <Filter>ui\dialogs</Filter>
+    </ClCompile>
+    <ClCompile Include="ui\dialogs\ClassesDialog.cpp">
+      <Filter>ui\dialogs</Filter>
+    </ClCompile>
+    <ClCompile Include="ui\views\HomeView.cpp">
+      <Filter>ui\views</Filter>
+    </ClCompile>
+    <ClCompile Include="ui\views\LessonView.cpp">
+      <Filter>ui\views</Filter>
+    </ClCompile>
+    <ClCompile Include="ui\views\RoomView.cpp">
+      <Filter>ui\views</Filter>
+    </ClCompile>
+    <ClCompile Include="ui\views\SubjectView.cpp">
+      <Filter>ui\views</Filter>
+    </ClCompile>
+    <ClCompile Include="ui\views\TeacherView.cpp">
+      <Filter>ui\views</Filter>
+    </ClCompile>
+    <ClCompile Include="ui\views\ClassesView.cpp">
+      <Filter>ui\views</Filter>
+    </ClCompile>
+    <ClCompile Include="ui\views\ConstraintsView.cpp">
+      <Filter>ui\views</Filter>
+    </ClCompile>
+    <ClCompile Include="ui\model\RoomTableModel.cpp">
+      <Filter>ui\models</Filter>
+    </ClCompile>
+    <ClCompile Include="ui\model\SortFilterProxyModel.cpp">
+      <Filter>ui\models</Filter>
+    </ClCompile>
+    <ClCompile Include="ui\model\SubjectTableModel.cpp">
+      <Filter>ui\models</Filter>
+    </ClCompile>
+    <ClCompile Include="ui\model\TeacherTableModel.cpp">
+      <Filter>ui\models</Filter>
+    </ClCompile>
+    <ClCompile Include="ui\model\TimeTableViewModel.cpp">
+      <Filter>ui\models</Filter>
+    </ClCompile>
+    <ClCompile Include="ui\model\TreeModelClasses.cpp">
+      <Filter>ui\models</Filter>
+    </ClCompile>
+    <ClCompile Include="ui\model\ConstraintListModel.cpp">
+      <Filter>ui\models</Filter>
+    </ClCompile>
+    <ClCompile Include="ui\model\LessonTableModel.cpp">
+      <Filter>ui\models</Filter>
+    </ClCompile>
+    <ClCompile Include="win\stdafx.cpp">
+      <Filter>win</Filter>
+    </ClCompile>
+    <ClCompile Include="src\main.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\OrarApp.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Containers\Lesson.cpp">
+      <Filter>src\containers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Containers\Placement.cpp">
+      <Filter>src\containers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Containers\Room.cpp">
+      <Filter>src\containers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Containers\Subject.cpp">
+      <Filter>src\containers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Containers\Teacher.cpp">
+      <Filter>src\containers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Containers\TimeSlot.cpp">
+      <Filter>src\containers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Containers\Context.cpp">
+      <Filter>src\containers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Containers\Group.cpp">
+      <Filter>src\containers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Containers\InstituteData.cpp">
+      <Filter>src\containers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Constraints\Constraint.cpp">
+      <Filter>src\constraints</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Constraints\TimeConstraint.cpp">
+      <Filter>src\constraints</Filter>
+    </ClCompile>
+    <ClCompile Include="src\TimetableGeneration\SelectPlacement.cpp">
+      <Filter>src\generator</Filter>
+    </ClCompile>
+    <ClCompile Include="src\TimetableGeneration\Solution.cpp">
+      <Filter>src\generator</Filter>
+    </ClCompile>
+    <ClCompile Include="src\TimetableGeneration\Solver.cpp">
+      <Filter>src\generator</Filter>
+    </ClCompile>
+    <ClCompile Include="src\TimetableGeneration\TerminationCondition.cpp">
+      <Filter>src\generator</Filter>
+    </ClCompile>
+    <ClCompile Include="src\TimetableGeneration\TransformLessonDetails.cpp">
+      <Filter>src\generator</Filter>
+    </ClCompile>
+    <ClCompile Include="src\xml\XmlParser.cpp">
+      <Filter>src\utility</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\xml\ExportTimeTable.cpp">
+      <Filter>src\utility</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="tinyxml\tinyxml.h">
+      <Filter>xmlLib</Filter>
+    </ClInclude>
+    <ClInclude Include="tinyxml\tinystr.h">
+      <Filter>xmlLib</Filter>
+    </ClInclude>
+    <ClInclude Include="win\stdafx.h">
+      <Filter>win</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Containers\Lesson.h">
+      <Filter>src\containers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Containers\Placement.h">
+      <Filter>src\containers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Containers\Room.h">
+      <Filter>src\containers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Containers\Subject.h">
+      <Filter>src\containers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Containers\Teacher.h">
+      <Filter>src\containers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Containers\TimeSlot.h">
+      <Filter>src\containers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Containers\Context.h">
+      <Filter>src\containers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Containers\Group.h">
+      <Filter>src\containers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Containers\InstituteData.h">
+      <Filter>src\containers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Constraints\Constraint.h">
+      <Filter>src\constraints</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Constraints\TimeConstraint.h">
+      <Filter>src\constraints</Filter>
+    </ClInclude>
+    <ClInclude Include="src\TimetableGeneration\SelectPlacement.h">
+      <Filter>src\generator</Filter>
+    </ClInclude>
+    <ClInclude Include="src\TimetableGeneration\Solution.h">
+      <Filter>src\generator</Filter>
+    </ClInclude>
+    <ClInclude Include="src\TimetableGeneration\Solver.h">
+      <Filter>src\generator</Filter>
+    </ClInclude>
+    <ClInclude Include="src\TimetableGeneration\TerminationCondition.h">
+      <Filter>src\generator</Filter>
+    </ClInclude>
+    <ClInclude Include="src\TimetableGeneration\TransformLessonDetails.h">
+      <Filter>src\generator</Filter>
+    </ClInclude>
+    <ClInclude Include="src\xml\XmlParser.h">
+      <Filter>src\utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\xml\ExportTimeTable.h">
+      <Filter>src\utility</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\interface\Observer.h">
+      <Filter>src\interface</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\interface\INavigator.h">
+      <Filter>src\interface</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="ui\dialogs\ExportTimetableDialog.h">
+      <Filter>ui\dialogs</Filter>
+    </QtMoc>
+    <QtMoc Include="ui\dialogs\InstitutionDetailsDialog.h">
+      <Filter>ui\dialogs</Filter>
+    </QtMoc>
+    <QtMoc Include="ui\dialogs\LessonDialog.h">
+      <Filter>ui\dialogs</Filter>
+    </QtMoc>
+    <QtMoc Include="ui\dialogs\RoomDialog.h">
+      <Filter>ui\dialogs</Filter>
+    </QtMoc>
+    <QtMoc Include="ui\dialogs\SubjectDialog.h">
+      <Filter>ui\dialogs</Filter>
+    </QtMoc>
+    <QtMoc Include="ui\dialogs\TeacherConstraintDialog.h">
+      <Filter>ui\dialogs</Filter>
+    </QtMoc>
+    <QtMoc Include="ui\dialogs\TeacherDialog.h">
+      <Filter>ui\dialogs</Filter>
+    </QtMoc>
+    <QtMoc Include="ui\dialogs\AddDataDialog.h">
+      <Filter>ui\dialogs</Filter>
+    </QtMoc>
+    <QtMoc Include="ui\dialogs\ClassesDialog.h">
+      <Filter>ui\dialogs</Filter>
+    </QtMoc>
+    <QtMoc Include="ui\views\ConstraintsView.h">
+      <Filter>ui\views</Filter>
+    </QtMoc>
+    <QtMoc Include="ui\views\HomeView.h">
+      <Filter>ui\views</Filter>
+    </QtMoc>
+    <QtMoc Include="ui\views\LessonView.h">
+      <Filter>ui\views</Filter>
+    </QtMoc>
+    <QtMoc Include="ui\views\RoomView.h">
+      <Filter>ui\views</Filter>
+    </QtMoc>
+    <QtMoc Include="ui\views\SubjectView.h">
+      <Filter>ui\views</Filter>
+    </QtMoc>
+    <QtMoc Include="ui\views\TeacherView.h">
+      <Filter>ui\views</Filter>
+    </QtMoc>
+    <QtMoc Include="ui\views\ClassesView.h">
+      <Filter>ui\views</Filter>
+    </QtMoc>
+    <QtMoc Include="ui\model\LessonTableModel.h">
+      <Filter>ui\models</Filter>
+    </QtMoc>
+    <QtMoc Include="ui\model\RoomTableModel.h">
+      <Filter>ui\models</Filter>
+    </QtMoc>
+    <QtMoc Include="ui\model\SortFilterProxyModel.h">
+      <Filter>ui\models</Filter>
+    </QtMoc>
+    <QtMoc Include="ui\model\SubjectTableModel.h">
+      <Filter>ui\models</Filter>
+    </QtMoc>
+    <QtMoc Include="ui\model\TeacherTableModel.h">
+      <Filter>ui\models</Filter>
+    </QtMoc>
+    <QtMoc Include="ui\model\TimeTableViewModel.h">
+      <Filter>ui\models</Filter>
+    </QtMoc>
+    <QtMoc Include="ui\model\TreeModelClasses.h">
+      <Filter>ui\models</Filter>
+    </QtMoc>
+    <QtMoc Include="ui\model\ConstraintListModel.h">
+      <Filter>ui\models</Filter>
+    </QtMoc>
+    <QtMoc Include="src\OrarApp.h">
+      <Filter>src</Filter>
+    </QtMoc>
+  </ItemGroup>
+  <ItemGroup>
+    <QtUic Include="ui\dialogs\ExportTimetableDialog.ui">
+      <Filter>ui\dialogs</Filter>
+    </QtUic>
+    <QtUic Include="ui\dialogs\InstitutionDetailsDialog.ui">
+      <Filter>ui\dialogs</Filter>
+    </QtUic>
+    <QtUic Include="ui\dialogs\LessonDialog.ui">
+      <Filter>ui\dialogs</Filter>
+    </QtUic>
+    <QtUic Include="ui\dialogs\RoomDialog.ui">
+      <Filter>ui\dialogs</Filter>
+    </QtUic>
+    <QtUic Include="ui\dialogs\SubjectDialog.ui">
+      <Filter>ui\dialogs</Filter>
+    </QtUic>
+    <QtUic Include="ui\dialogs\TeacherConstraintDialog.ui">
+      <Filter>ui\dialogs</Filter>
+    </QtUic>
+    <QtUic Include="ui\dialogs\TeacherDialog.ui">
+      <Filter>ui\dialogs</Filter>
+    </QtUic>
+    <QtUic Include="ui\dialogs\AddDataDialog.ui">
+      <Filter>ui\dialogs</Filter>
+    </QtUic>
+    <QtUic Include="ui\dialogs\ClassesDialog.ui">
+      <Filter>ui\dialogs</Filter>
+    </QtUic>
+    <QtUic Include="ui\views\ConstraintsView.ui">
+      <Filter>ui\views</Filter>
+    </QtUic>
+    <QtUic Include="ui\views\HomeView.ui">
+      <Filter>ui\views</Filter>
+    </QtUic>
+    <QtUic Include="ui\views\LessonView.ui">
+      <Filter>ui\views</Filter>
+    </QtUic>
+    <QtUic Include="ui\views\OrarApp.ui">
+      <Filter>ui\views</Filter>
+    </QtUic>
+    <QtUic Include="ui\views\RoomView.ui">
+      <Filter>ui\views</Filter>
+    </QtUic>
+    <QtUic Include="ui\views\SubjectView.ui">
+      <Filter>ui\views</Filter>
+    </QtUic>
+    <QtUic Include="ui\views\TeacherView.ui">
+      <Filter>ui\views</Filter>
+    </QtUic>
+    <QtUic Include="ui\views\ClassesView.ui">
+      <Filter>ui\views</Filter>
+    </QtUic>
+  </ItemGroup>
+  <ItemGroup>
+    <QtRcc Include="OrarApp.qrc">
+      <Filter>res</Filter>
+    </QtRcc>
+  </ItemGroup>
+</Project>

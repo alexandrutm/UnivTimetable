@@ -1,0 +1,236 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{9F368329-CF42-4BA9-BDB2-15243D8FC4DF}</ProjectGuid>
+    <Keyword>QtVS_v303</Keyword>
+    <WindowsTargetPlatformVersion Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">10.0.19041.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">10.0.18362.0</WindowsTargetPlatformVersion>
+    <QtMsBuild Condition="'$(QtMsBuild)'=='' OR !Exists('$(QtMsBuild)\qt.targets')">$(MSBuildProjectDirectory)\QtMsBuild</QtMsBuild>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <Target Name="QtMsBuildNotFound" BeforeTargets="CustomBuild;ClCompile" Condition="!Exists('$(QtMsBuild)\qt.targets') or !Exists('$(QtMsBuild)\qt.props')">
+    <Message Importance="High" Text="QtMsBuild: could not locate qt.targets, qt.props; project may not build correctly." />
+  </Target>
+  <ImportGroup Label="ExtensionSettings" />
+  <ImportGroup Label="Shared" />
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <ImportGroup Condition="Exists('$(QtMsBuild)\qt_defaults.props')">
+    <Import Project="$(QtMsBuild)\qt_defaults.props" />
+  </ImportGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <OutDir>$(ProjectDir)$(Platform)\$(Configuration)\</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutDir>$(ProjectDir)$(Platform)\$(Configuration)\</OutDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <WarningLevel>Level4</WarningLevel>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="QtSettings">
+    <QtInstall>6.1.3_msvc2019_64</QtInstall>
+    <QtModules>core;gui;testlib;widgets</QtModules>
+    <QtBuildConfig>debug</QtBuildConfig>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'" Label="QtSettings">
+    <QtInstall>6.1.3_msvc2019_64</QtInstall>
+    <QtModules>core;gui;widgets</QtModules>
+    <QtBuildConfig>release</QtBuildConfig>
+  </PropertyGroup>
+  <ImportGroup Condition="Exists('$(QtMsBuild)\qt.props')">
+    <Import Project="$(QtMsBuild)\qt.props" />
+  </ImportGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="Configuration">
+    <ClCompile>
+      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <Optimization>Disabled</Optimization>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <UsePrecompiledHeader>Use</UsePrecompiledHeader>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+    <QtMoc>
+      <PrependInclude>stdafx.h;%(PrependInclude)</PrependInclude>
+    </QtMoc>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'" Label="Configuration">
+    <ClCompile>
+      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <DebugInformationFormat>None</DebugInformationFormat>
+      <Optimization>MaxSpeed</Optimization>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <UsePrecompiledHeader>Use</UsePrecompiledHeader>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+    </Link>
+    <QtMoc>
+      <PrependInclude>stdafx.h;%(PrependInclude)</PrependInclude>
+    </QtMoc>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\src\xml\ExportTimeTable.cpp" />
+    <ClCompile Include="src\Constraints\Constraint.cpp" />
+    <ClCompile Include="src\Constraints\TimeConstraint.cpp" />
+    <ClCompile Include="src\Containers\Context.cpp" />
+    <ClCompile Include="src\Containers\Group.cpp" />
+    <ClCompile Include="src\Containers\InstituteData.cpp" />
+    <ClCompile Include="src\Containers\Lesson.cpp" />
+    <ClCompile Include="src\Containers\Placement.cpp" />
+    <ClCompile Include="src\Containers\Room.cpp" />
+    <ClCompile Include="src\Containers\Subject.cpp" />
+    <ClCompile Include="src\Containers\Teacher.cpp" />
+    <ClCompile Include="src\Containers\TimeSlot.cpp" />
+    <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\OrarApp.cpp" />
+    <ClCompile Include="src\TimetableGeneration\SelectPlacement.cpp" />
+    <ClCompile Include="src\TimetableGeneration\Solution.cpp" />
+    <ClCompile Include="src\TimetableGeneration\Solver.cpp" />
+    <ClCompile Include="src\TimetableGeneration\TerminationCondition.cpp" />
+    <ClCompile Include="src\TimetableGeneration\TransformLessonDetails.cpp" />
+    <ClCompile Include="src\xml\XmlParser.cpp" />
+    <ClCompile Include="tinyxml\tinystr.cpp" />
+    <ClCompile Include="tinyxml\tinyxml.cpp" />
+    <ClCompile Include="tinyxml\tinyxmlerror.cpp" />
+    <ClCompile Include="tinyxml\tinyxmlparser.cpp" />
+    <ClCompile Include="ui\dialogs\AddDataDialog.cpp" />
+    <ClCompile Include="ui\dialogs\ClassesDialog.cpp" />
+    <ClCompile Include="ui\dialogs\ExportTimetableDialog.cpp" />
+    <ClCompile Include="ui\dialogs\InstitutionDetailsDialog.cpp" />
+    <ClCompile Include="ui\dialogs\LessonDialog.cpp" />
+    <ClCompile Include="ui\dialogs\RoomDialog.cpp" />
+    <ClCompile Include="ui\dialogs\SubjectDialog.cpp" />
+    <ClCompile Include="ui\dialogs\TeacherConstraintDialog.cpp" />
+    <ClCompile Include="ui\dialogs\TeacherDialog.cpp" />
+    <ClCompile Include="ui\model\ConstraintListModel.cpp" />
+    <ClCompile Include="ui\model\LessonTableModel.cpp" />
+    <ClCompile Include="ui\model\RoomTableModel.cpp" />
+    <ClCompile Include="ui\model\SortFilterProxyModel.cpp" />
+    <ClCompile Include="ui\model\SubjectTableModel.cpp" />
+    <ClCompile Include="ui\model\TeacherTableModel.cpp" />
+    <ClCompile Include="ui\model\TimeTableViewModel.cpp" />
+    <ClCompile Include="ui\model\TreeModelClasses.cpp" />
+    <ClCompile Include="ui\views\ClassesView.cpp" />
+    <ClCompile Include="ui\views\ConstraintsView.cpp" />
+    <ClCompile Include="ui\views\HomeView.cpp" />
+    <ClCompile Include="ui\views\LessonView.cpp" />
+    <ClCompile Include="ui\views\RoomView.cpp" />
+    <ClCompile Include="ui\views\SubjectView.cpp" />
+    <ClCompile Include="ui\views\TeacherView.cpp" />
+    <ClCompile Include="win\stdafx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClInclude Include="..\src\interface\INavigator.h" />
+    <ClInclude Include="..\src\interface\Observer.h" />
+    <ClInclude Include="..\src\xml\ExportTimeTable.h" />
+    <ClInclude Include="src\Constraints\Constraint.h" />
+    <ClInclude Include="src\Constraints\TimeConstraint.h" />
+    <ClInclude Include="src\Containers\Context.h" />
+    <ClInclude Include="src\Containers\Group.h" />
+    <ClInclude Include="src\Containers\InstituteData.h" />
+    <ClInclude Include="src\Containers\Lesson.h" />
+    <ClInclude Include="src\Containers\Placement.h" />
+    <ClInclude Include="src\Containers\Room.h" />
+    <ClInclude Include="src\Containers\Subject.h" />
+    <ClInclude Include="src\Containers\Teacher.h" />
+    <ClInclude Include="src\Containers\TimeSlot.h" />
+    <QtMoc Include="src\OrarApp.h" />
+    <ClInclude Include="src\TimetableGeneration\SelectPlacement.h" />
+    <ClInclude Include="src\TimetableGeneration\Solution.h" />
+    <ClInclude Include="src\TimetableGeneration\Solver.h" />
+    <ClInclude Include="src\TimetableGeneration\TerminationCondition.h" />
+    <ClInclude Include="src\TimetableGeneration\TransformLessonDetails.h" />
+    <ClInclude Include="src\xml\XmlParser.h" />
+    <ClInclude Include="tinyxml\tinystr.h" />
+    <ClInclude Include="tinyxml\tinyxml.h" />
+    <ClInclude Include="win\stdafx.h" />
+    <QtMoc Include="ui\model\ConstraintListModel.h" />
+    <QtMoc Include="ui\model\TreeModelClasses.h" />
+    <QtMoc Include="ui\model\TimeTableViewModel.h" />
+    <QtMoc Include="ui\model\TeacherTableModel.h" />
+    <QtMoc Include="ui\model\SubjectTableModel.h" />
+    <QtMoc Include="ui\model\SortFilterProxyModel.h" />
+    <QtMoc Include="ui\model\RoomTableModel.h" />
+    <QtMoc Include="ui\model\LessonTableModel.h" />
+    <QtMoc Include="ui\views\ClassesView.h" />
+    <QtMoc Include="ui\views\TeacherView.h" />
+    <QtMoc Include="ui\views\SubjectView.h" />
+    <QtMoc Include="ui\views\RoomView.h" />
+    <QtMoc Include="ui\views\LessonView.h" />
+    <QtMoc Include="ui\views\HomeView.h" />
+    <QtMoc Include="ui\views\ConstraintsView.h" />
+    <QtMoc Include="ui\dialogs\ClassesDialog.h" />
+    <QtMoc Include="ui\dialogs\AddDataDialog.h" />
+    <QtMoc Include="ui\dialogs\TeacherDialog.h" />
+    <QtMoc Include="ui\dialogs\TeacherConstraintDialog.h" />
+    <QtMoc Include="ui\dialogs\SubjectDialog.h" />
+    <QtMoc Include="ui\dialogs\RoomDialog.h" />
+    <QtMoc Include="ui\dialogs\LessonDialog.h" />
+    <QtMoc Include="ui\dialogs\InstitutionDetailsDialog.h" />
+    <QtMoc Include="ui\dialogs\ExportTimetableDialog.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtUic Include="ui\dialogs\AddDataDialog.ui" />
+    <QtUic Include="ui\dialogs\ClassesDialog.ui" />
+    <QtUic Include="ui\dialogs\ExportTimetableDialog.ui" />
+    <QtUic Include="ui\dialogs\InstitutionDetailsDialog.ui" />
+    <QtUic Include="ui\dialogs\LessonDialog.ui" />
+    <QtUic Include="ui\dialogs\RoomDialog.ui" />
+    <QtUic Include="ui\dialogs\SubjectDialog.ui" />
+    <QtUic Include="ui\dialogs\TeacherConstraintDialog.ui" />
+    <QtUic Include="ui\dialogs\TeacherDialog.ui" />
+    <QtUic Include="ui\views\ClassesView.ui" />
+    <QtUic Include="ui\views\ConstraintsView.ui" />
+    <QtUic Include="ui\views\HomeView.ui" />
+    <QtUic Include="ui\views\LessonView.ui" />
+    <QtUic Include="ui\views\OrarApp.ui" />
+    <QtUic Include="ui\views\RoomView.ui" />
+    <QtUic Include="ui\views\SubjectView.ui" />
+    <QtUic Include="ui\views\TeacherView.ui" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtRcc Include="OrarApp.qrc" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">
+    <Import Project="$(QtMsBuild)\qt.targets" />
+  </ImportGroup>
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

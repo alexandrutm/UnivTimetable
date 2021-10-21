@@ -1,7 +1,7 @@
 #include "stdafx.h"
-#include "SubjectTableModel.h"
-#include "Context.h"
-#include "Subject.h"
+#include "../model/SubjectTableModel.h"
+#include "../src/containers/Context.h"
+#include "../src/containers/Subject.h"
 
 SubjectTableModel::SubjectTableModel(Context & aContext, QObject * parent)
   : QAbstractTableModel(parent)

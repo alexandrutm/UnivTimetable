@@ -1,8 +1,8 @@
 #include "stdafx.h"
 #include "Solver.h"
-#include "Context.h"
-#include "Lesson.h"
 #include "SelectPlacement.h"
+#include "src/containers/Context.h"
+#include "src/containers/Lesson.h"
 
 Solver::Solver()
   : mTerminationCondition(TerminationCondition())

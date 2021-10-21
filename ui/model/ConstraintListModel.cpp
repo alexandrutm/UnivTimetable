@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "ConstraintListModel.h"
-#include "Context.h"
-#include "TimeConstraint.h"
+#include "../src/constraints/TimeConstraint.h"
+#include "../src/containers/Context.h"
 
 ConstraintListModel::ConstraintListModel(Context & aContext, QObject * parent)
   : QAbstractListModel(parent)

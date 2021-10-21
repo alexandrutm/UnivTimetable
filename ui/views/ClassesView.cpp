@@ -1,9 +1,9 @@
 #include "stdafx.h"
 #include "ClassesView.h"
-#include "ClassesDialog.h"
-#include "Context.h"
-#include "Group.h"
-#include "TreeModelClasses.h"
+#include "../dialogs/ClassesDialog.h"
+#include "../src/containers/Context.h"
+#include "../src/containers/Group.h"
+#include "../ui/model/TreeModelClasses.h"
 
 ClassesView::ClassesView(Context & aContext, QWidget * parent)
   : QWidget(parent)

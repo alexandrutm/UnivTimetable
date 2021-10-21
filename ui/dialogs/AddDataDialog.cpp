@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "AddDataDialog.h"
-#include "Context.h"
+#include "../src/containers/Context.h"
 
 AddDataDialog::AddDataDialog(Context & aContext, QWidget * parent)
   : QDialog(parent)

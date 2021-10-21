@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "Solution.h"
-#include "Context.h"
-#include "Lesson.h"
+#include "src/containers/Context.h"
+#include "src/containers/Lesson.h"
 
 Solution::Solution(Context & aContext)
   : mContext(aContext)

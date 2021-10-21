@@ -1,10 +1,10 @@
 #pragma once
-#include "ClassesView.h"
-#include "ConstraintsView.h"
-#include "LessonView.h"
-#include "RoomView.h"
-#include "SubjectView.h"
-#include "TeacherView.h"
+#include "../views/ClassesView.h"
+#include "../views/ConstraintsView.h"
+#include "../views/LessonView.h"
+#include "../views/RoomView.h"
+#include "../views/SubjectView.h"
+#include "../views/TeacherView.h"
 #include "ui_AddDataDialog.h"
 
 class Context;

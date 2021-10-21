@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Observer.h"
+#include "../src/interface/Observer.h"
 class Group;
 class Context;
 

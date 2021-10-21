@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "TimeConstraint.h"
-#include "Teacher.h"
+#include "../Containers/Teacher.h"
 
 TimeConstraint::TimeConstraint(vector<pair<int, int>> aDayAndHour, Teacher * aTeacher)
   : mTeacher(aTeacher)

@@ -1,10 +1,10 @@
 #include "stdafx.h"
 #include "SubjectView.h"
-#include "Context.h"
-#include "SortFilterProxyModel.h"
-#include "Subject.h"
-#include "SubjectDialog.h"
-#include "SubjectTableModel.h"
+#include "../dialogs/SubjectDialog.h"
+#include "../model/SortFilterProxyModel.h"
+#include "../model/SubjectTableModel.h"
+#include "../src/containers/Context.h"
+#include "../src/containers/Subject.h"
 
 SubjectView::SubjectView(Context & aContext, QWidget * parent)
   : QWidget(parent)

@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "TeacherConstraintDialog.h"
-#include "Context.h"
-#include "InstituteData.h"
+#include "../src/containers/Context.h"
+#include "../src/containers/InstituteData.h"
 
 TeacherConstraintDialog::TeacherConstraintDialog(Context & aContext, QWidget * parent)
   : QDialog(parent)

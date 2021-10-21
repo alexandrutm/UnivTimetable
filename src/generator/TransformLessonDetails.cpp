@@ -1,13 +1,13 @@
 #include "stdafx.h"
 #include "TransformLessonDetails.h"
-#include "Group.h"
-#include "InstituteData.h"
-#include "Lesson.h"
-#include "Placement.h"
-#include "Room.h"
-#include "Subject.h"
-#include "Teacher.h"
-#include "TimeSlot.h"
+#include "src/containers/Group.h"
+#include "src/containers/InstituteData.h"
+#include "src/containers/Lesson.h"
+#include "src/containers/Placement.h"
+#include "src/containers/Room.h"
+#include "src/containers/Subject.h"
+#include "src/containers/Teacher.h"
+#include "src/containers/TimeSlot.h"
 
 vector<vector<string>> TransformLessonDetails::LessonsDataToString(InstituteData * aInstituteData,
                                                                    Solution        aSolution)
@@ -15,10 +15,12 @@ vector<vector<string>> TransformLessonDetails::LessonsDataToString(InstituteData
   auto lessons = aSolution.GetAssignedLessons();
 
   // sort lessons by start time
-  sort(lessons.begin(), lessons.end(), [](Lesson * first, Lesson * second) {
-    return first->GetPlacement().GetTimeSlot().GetStartTime() <
-           second->GetPlacement().GetTimeSlot().GetStartTime();
-  });
+  sort(lessons.begin(), lessons.end(),
+       [](Lesson * first, Lesson * second)
+       {
+         return first->GetPlacement().GetTimeSlot().GetStartTime() <
+                second->GetPlacement().GetTimeSlot().GetStartTime();
+       });
 
   vector<vector<string>> lessonsDetails(5);
 

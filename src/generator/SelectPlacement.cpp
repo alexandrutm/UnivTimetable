@@ -1,11 +1,11 @@
 #include "stdafx.h"
 #include "SelectPlacement.h"
-#include "Context.h"
-#include "Group.h"
-#include "InstituteData.h"
-#include "Lesson.h"
-#include "Room.h"
-#include "Teacher.h"
+#include "src/containers/Context.h"
+#include "src/containers/Group.h"
+#include "src/containers/InstituteData.h"
+#include "src/containers/Lesson.h"
+#include "src/containers/Room.h"
+#include "src/containers/Teacher.h"
 
 SelectPlacement::SelectPlacement(Context & aContext)
   : mContext(aContext)
@@ -112,8 +112,9 @@ vector<TimeSlot> SelectPlacement::GetAvailableTimeslots(Lesson * aLesson, Room *
     }
   }
 
-  unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
-  shuffle(availableTimeSlots.begin(), availableTimeSlots.end(), std::default_random_engine(seed));
+  auto seed = std::chrono::system_clock::now().time_since_epoch().count();
+  shuffle(availableTimeSlots.begin(), availableTimeSlots.end(),
+          std::default_random_engine(static_cast<unsigned>(seed)));
 
   return availableTimeSlots;
 }
@@ -134,7 +135,8 @@ vector<Room *> SelectPlacement::GetRoomsSortedByCapacity(Lesson * aLesson)
 
   // sort rooms by capacity
   sort(roomsWithEnoughCapacity.begin(), roomsWithEnoughCapacity.end(),
-       [](Room * first, Room * second) {
+       [](Room * first, Room * second)
+       {
          return first->GetCapacity() < second->GetCapacity();
        });
   //

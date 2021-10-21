@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Observer.h"
+#include "../src/interface/Observer.h"
 class Context;
 
 class SubjectTableModel
@@ -18,8 +18,8 @@ public:
                       Qt::Orientation orientation,
                       int             role = Qt::DisplayRole) const Q_DECL_OVERRIDE;
   bool     SubjectTableModel::setData(const QModelIndex & index,
-                                  const QVariant &    aName,
-                                  int                 role) override;
+                                      const QVariant &    aName,
+                                      int                 role) override;
 
   void RemoveItemFromModel(int aRowSelected);
   void PopulateModel(QString aFirstName, int aId);

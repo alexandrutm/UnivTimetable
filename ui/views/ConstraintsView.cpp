@@ -1,12 +1,12 @@
 #include "stdafx.h"
 #include "ConstraintsView.h"
-#include "ConstraintListModel.h"
-#include "Context.h"
-#include "InstituteData.h"
-#include "Teacher.h"
-#include "TeacherConstraintDialog.h"
-#include "TeacherTableModel.h"
-#include "TimeConstraint.h"
+#include "src/constraints/TimeConstraint.h"
+#include "src/containers/Context.h"
+#include "src/containers/InstituteData.h"
+#include "src/containers/Teacher.h"
+#include "ui/dialogs/TeacherConstraintDialog.h"
+#include "ui/model/ConstraintListModel.h"
+#include "ui/model/TeacherTableModel.h"
 
 ConstraintsView::ConstraintsView(Context & aContext, QWidget * parent)
   : QWidget(parent)

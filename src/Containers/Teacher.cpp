@@ -62,9 +62,11 @@ void Teacher::MakeAvailableTimeSlot(pair<int, int> aTimeSlot)
 
 bool Teacher::IsAvailable(pair<int, int> aTimeSlot)
 {
-  auto it = find_if(mAvailability.begin(), mAvailability.end(), [&](const auto & timeslot) {
-    return timeslot == aTimeSlot;
-  });
+  auto it = find_if(mAvailability.begin(), mAvailability.end(),
+                    [&](const auto & timeslot)
+                    {
+                      return timeslot == aTimeSlot;
+                    });
 
   if (it != mAvailability.end())
     return false;
@@ -74,5 +76,5 @@ bool Teacher::IsAvailable(pair<int, int> aTimeSlot)
 
 int Teacher::GetTeacherWeight()
 {
-  return mAvailability.size();
+  return static_cast<int>(mAvailability.size());
 }

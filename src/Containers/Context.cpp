@@ -1,16 +1,16 @@
 #include "stdafx.h"
 #include "Context.h"
+#include "../src/constraints/TimeConstraint.h"
+#include "../src/generator/Solution.h"
+#include "../src/generator/Solver.h"
+#include "../src/generator/TransformLessonDetails.h"
+#include "../src/interface/Observer.h"
 #include "Group.h"
 #include "InstituteData.h"
 #include "Lesson.h"
-#include "Observer.h"
 #include "Room.h"
-#include "Solution.h"
-#include "Solver.h"
 #include "Subject.h"
 #include "Teacher.h"
-#include "TimeConstraint.h"
-#include "TransformLessonDetails.h"
 
 Context::Context()
 {

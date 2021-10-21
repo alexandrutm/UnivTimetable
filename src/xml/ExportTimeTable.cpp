@@ -1,13 +1,13 @@
 #include "stdafx.h"
 #include "ExportTimeTable.h"
-#include "Context.h"
-#include "Group.h"
-#include "InstituteData.h"
-#include "Lesson.h"
-#include "Placement.h"
-#include "Room.h"
-#include "Subject.h"
-#include "Teacher.h"
+#include "../src/containers/Context.h"
+#include "../src/containers/Group.h"
+#include "../src/containers/InstituteData.h"
+#include "../src/containers/Lesson.h"
+#include "../src/containers/Placement.h"
+#include "../src/containers/Room.h"
+#include "../src/containers/Subject.h"
+#include "../src/containers/Teacher.h"
 
 ExportTimetable::ExportTimetable(Context & aContext)
   : mContext(aContext)

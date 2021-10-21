@@ -1,13 +1,13 @@
 #include "stdafx.h"
 #include "OrarApp.h"
-#include "ExportTimetableDialog.h"
-#include "Group.h"
-#include "InstituteData.h"
-#include "InstitutionDetailsDialog.h"
-#include "SortFilterProxyModel.h"
-#include "TimeTableViewModel.h"
-#include "TreeModelClasses.h"
-#include "XmlParser.h "
+#include "src/containers/Group.h"
+#include "src/containers/InstituteData.h"
+#include "src/xml/XmlParser.h"
+#include "ui/dialogs/ExportTimetableDialog.h"
+#include "ui/dialogs/InstitutionDetailsDialog.h"
+#include "ui/model/SortFilterProxyModel.h"
+#include "ui/model/TimeTableViewModel.h"
+#include "ui/model/TreeModelClasses.h"
 
 OrarApp::OrarApp(QWidget * parent)
   : QMainWindow(parent)

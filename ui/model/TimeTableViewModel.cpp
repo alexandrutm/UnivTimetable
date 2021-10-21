@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "TimeTableViewModel.h"
-#include "InstituteData.h"
+#include "../src/containers/InstituteData.h"
 
 TimeTableViewModel::TimeTableViewModel(QObject * parent)
   : QAbstractTableModel(parent)

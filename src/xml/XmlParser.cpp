@@ -1,13 +1,13 @@
 #include "stdafx.h"
 #include "XmlParser.h"
-#include "Context.h"
-#include "Group.h"
-#include "InstituteData.h"
-#include "Lesson.h"
-#include "Room.h"
-#include "Subject.h"
-#include "Teacher.h"
-#include "tinyxml/tinyxml.h"
+#include "../containers/Context.h"
+#include "../containers/Group.h"
+#include "../containers/InstituteData.h"
+#include "../containers/Lesson.h"
+#include "../containers/Room.h"
+#include "../containers/Subject.h"
+#include "../containers/Teacher.h"
+#include "../xml/tinyxml/tinyxml.h"
 
 // save data functions
 auto XmlParser::SaveInstituteData(Context & aContext)

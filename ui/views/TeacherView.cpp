@@ -1,10 +1,10 @@
 #include "stdafx.h"
 #include "TeacherView.h"
-#include "../model/SortFilterProxyModel.h"
-#include "../model/TeacherTableModel.h"
-#include "../src/containers/Context.h"
-#include "../src/containers/Teacher.h"
-#include "../ui/dialogs/TeacherDialog.h"
+#include "src/containers/Context.h"
+#include "src/containers/Teacher.h"
+#include "ui/dialogs/TeacherDialog.h"
+#include "ui/model/SortFilterProxyModel.h"
+#include "ui/model/TeacherTableModel.h"
 
 TeacherView::TeacherView(Context & aContext, QWidget * parent)
   : QWidget(parent)

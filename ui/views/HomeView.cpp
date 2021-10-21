@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "HomeView.h"
-#include "../src/interface/INavigator.h"
+#include "src/interface/INavigator.h"
 
 HomeView::HomeView(INavigator * navigator, QWidget * parent)
   : QWidget(parent)

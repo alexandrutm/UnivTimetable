@@ -1,8 +1,8 @@
 #include "stdafx.h"
 #include "ExportTimetableDialog.h"
-#include "../model/TreeModelClasses.h"
-#include "../src/containers/Context.h"
-#include "../src/xml/ExportTimeTable.h"
+#include "src/containers/Context.h"
+#include "src/xml/ExportTimeTable.h"
+#include "ui/model/TreeModelClasses.h"
 
 ExportTimetableDialog::ExportTimetableDialog(Context &             aContext,
                                              shared_ptr<TreeModel> aGroupModel,

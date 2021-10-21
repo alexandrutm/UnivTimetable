@@ -1,9 +1,9 @@
 #pragma once
 
-#include "../src/containers/Context.h"
-#include "../src/interface/INavigator.h"
-#include "../ui/dialogs/AddDataDialog.h"
-#include "../ui/views/HomeView.h"
+#include "src/containers/Context.h"
+#include "src/interface/INavigator.h"
+#include "ui/dialogs/AddDataDialog.h"
+#include "ui/views/HomeView.h"
 #include "ui_OrarApp.h"
 
 class SortFilterProxyModel;

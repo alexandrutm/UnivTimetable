@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "RoomTableModel.h"
-#include "../src/containers/Context.h"
-#include "../src/containers/Room.h"
+#include "src/containers/Context.h"
+#include "src/containers/Room.h"
 
 RoomTableModel::RoomTableModel(Context & aContext, QObject * parent)
   : QAbstractTableModel(parent)

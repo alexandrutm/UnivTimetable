@@ -1,7 +1,7 @@
 #include "stdafx.h"
-#include "../model/TeacherTableModel.h"
-#include "../src/containers/Context.h"
-#include "../src/containers/Teacher.h"
+#include "ui/model/TeacherTableModel.h"
+#include "src/containers/Context.h"
+#include "src/containers/Teacher.h"
 
 TeacherTableModel::TeacherTableModel(Context & aContext, QObject * parent)
   : QAbstractTableModel(parent)

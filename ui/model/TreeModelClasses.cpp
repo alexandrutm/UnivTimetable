@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "TreeModelClasses.h"
-#include "../src/containers/Context.h"
-#include "../src/containers/Group.h"
+#include "src/containers/Context.h"
+#include "src/containers/Group.h"
 
 TreeModel::TreeModel(Context & aContext, QObject * parent)
   : QAbstractItemModel(parent)

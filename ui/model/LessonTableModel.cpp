@@ -1,11 +1,11 @@
 #include "stdafx.h"
-#include "../model/LessonTableModel.h"
-#include "../src/containers/Context.h"
-#include "../src/containers/Group.h"
-#include "../src/containers/Lesson.h"
-#include "../src/containers/Room.h"
-#include "../src/containers/Subject.h"
-#include "../src/containers/Teacher.h"
+#include "ui/model/LessonTableModel.h"
+#include "src/containers/Context.h"
+#include "src/containers/Group.h"
+#include "src/containers/Lesson.h"
+#include "src/containers/Room.h"
+#include "src/containers/Subject.h"
+#include "src/containers/Teacher.h"
 
 LessonTableModel::LessonTableModel(Context & aContext, QObject * parent)
   : QAbstractTableModel(parent)

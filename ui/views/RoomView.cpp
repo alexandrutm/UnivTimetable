@@ -1,9 +1,9 @@
 #include "stdafx.h"
 #include "RoomView.h"
-#include "../dialogs/RoomDialog.h"
-#include "../model/RoomTableModel.h"
-#include "../model/SortFilterProxyModel.h"
-#include "../src/containers/Context.h"
+#include "src/containers/Context.h"
+#include "ui/dialogs/RoomDialog.h"
+#include "ui/model/RoomTableModel.h"
+#include "ui/model/SortFilterProxyModel.h"
 
 RoomView::RoomView(Context & aContext, QWidget * parent)
   : QWidget(parent)

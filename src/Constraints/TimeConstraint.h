@@ -6,10 +6,11 @@ class TimeConstraint
 {
 public:
   TimeConstraint(vector<pair<int, int>> aDayAndHour, Teacher * aTeacher);
-  bool                   Validate();
-  string                 GetConstraintName();
-  vector<pair<int, int>> GetConstraintDetailsDayAndHour();
-  Teacher *              GetTeacher();
+  bool Validate();
+
+  const string &                 GetConstraintName() const;
+  const vector<pair<int, int>> & GetConstraintDetailsDayAndHour() const;
+  const Teacher *                GetTeacher() const;
 
 private:
   Teacher *              mTeacher;

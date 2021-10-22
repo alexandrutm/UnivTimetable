@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "TimeConstraint.h"
-#include "../Containers/Teacher.h"
+#include "src/Containers/Teacher.h"
 
 TimeConstraint::TimeConstraint(vector<pair<int, int>> aDayAndHour, Teacher * aTeacher)
   : mTeacher(aTeacher)
@@ -13,17 +13,17 @@ bool TimeConstraint::Validate()
   return true;
 }
 
-string TimeConstraint::GetConstraintName()
+const string & TimeConstraint::GetConstraintName() const
 {
   return mTeacher->GetFirstName() + "  " + mTeacher->GetLastName();
 }
 
-vector<pair<int, int>> TimeConstraint::GetConstraintDetailsDayAndHour()
+const vector<pair<int, int>> & TimeConstraint::GetConstraintDetailsDayAndHour() const
 {
   return mDayAndHour;
 }
 
-Teacher * TimeConstraint::GetTeacher()
+const Teacher * TimeConstraint::GetTeacher() const
 {
   return mTeacher;
 }

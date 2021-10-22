@@ -114,7 +114,7 @@
     </QtMoc>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\src\Constraints\Constraint.cpp" />
+    <ClCompile Include="..\src\constraints\Constraint.cpp" />
     <ClCompile Include="..\src\Constraints\TimeConstraint.cpp" />
     <ClCompile Include="..\src\Containers\Context.cpp" />
     <ClCompile Include="..\src\Containers\Group.cpp" />

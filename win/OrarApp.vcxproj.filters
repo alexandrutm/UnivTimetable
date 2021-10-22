@@ -167,9 +167,6 @@
     <ClCompile Include="..\src\Constraints\TimeConstraint.cpp">
       <Filter>src\constraints</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\Constraints\Constraint.cpp">
-      <Filter>src\constraints</Filter>
-    </ClCompile>
     <ClCompile Include="..\src\main.cpp" />
     <ClCompile Include="..\src\OrarApp.cpp" />
     <ClCompile Include="..\src\generator\TerminationCondition.cpp">
@@ -186,6 +183,9 @@
     </ClCompile>
     <ClCompile Include="..\src\generator\Solver.cpp">
       <Filter>src\generator</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\constraints\Constraint.cpp">
+      <Filter>src\constraints</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

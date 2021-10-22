@@ -59,9 +59,10 @@ void ConstraintsView::ListItemChanged(QModelIndex index)
 
     for (int i = 0; i < daysConstraint.size(); i++)
     {
-      detailsConstraint.append(QString::fromStdString(instituteDaysWeek[daysConstraint[i].first]));
       detailsConstraint.append(
-        QString::fromStdString(": " + instituteHoursDay[daysConstraint[i].second] + "; "));
+        QString::fromStdString(instituteDaysWeek[daysConstraint[i].GetDayNumber()]));
+      detailsConstraint.append(
+        QString::fromStdString(": " + instituteHoursDay[daysConstraint[i].GetHourNumber()] + "; "));
     }
 
     ui.mConstraintDetails->setPlainText(detailsConstraint);
@@ -85,7 +86,7 @@ void ConstraintsView::AddTeacherConstraint()
 
   if (ConstraintDialog.exec())
   {
-    vector<pair<int, int>> dayAndHour;
+    vector<Timeslot> dayAndHour;
 
     int currentSelectedRow = ConstraintDialog.mTeacher->currentIndex();
 
@@ -93,9 +94,9 @@ void ConstraintsView::AddTeacherConstraint()
       for (int hour = 0; hour < mContext.GetInstituteData()->GetNumberOfHoursPerDay(); hour++)
         if (ConstraintDialog.mTeacherTableAviabileTime->item(hour, day)->text() == "X")
         {
-          dayAndHour.push_back(make_pair(day, hour));
+          dayAndHour.push_back(Timeslot(day, hour));
           mContext.GetTeacherByIndex(currentSelectedRow)
-            ->MakeUnavailableTimeSlot(make_pair(day, hour));
+            ->AddUnavailableTimeslot(Timeslot(day, hour));
         }
 
     unique_ptr<TimeConstraint> constraint =

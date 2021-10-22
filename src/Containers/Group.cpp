@@ -34,10 +34,11 @@ int Group::GetChildNumber() const
 {
   if (mParent)
   {
-    auto it =
-      find_if(mParent->mChildren.begin(), mParent->mChildren.end(), [&](auto const & child) {
-        return child.get() == this;
-      });
+    auto it = find_if(mParent->mChildren.begin(), mParent->mChildren.end(),
+                      [&](auto const & child)
+                      {
+                        return child.get() == this;
+                      });
 
     if (it != mParent->mChildren.end())
       return static_cast<int>(it - mParent->mChildren.begin());
@@ -70,12 +71,12 @@ int Group::GetWeight()
   return weight;
 }
 
-void Group::MakeUnavailableTimeSlot(pair<int, int> aTimeSlot)
+void Group::AddUnavailableTimeslot(pair<int, int> aTimeSlot)
 {
   mAvailability.push_back(aTimeSlot);
 }
 
-void Group::MakeAvailableTimeSlot(pair<int, int> aTimeSlot)
+void Group::EraseUnavailableTimeslot(pair<int, int> aTimeSlot)
 {
   mAvailability.erase(remove(mAvailability.begin(), mAvailability.end(), aTimeSlot),
                       mAvailability.end());
@@ -83,9 +84,11 @@ void Group::MakeAvailableTimeSlot(pair<int, int> aTimeSlot)
 
 bool Group::IsAvailable(pair<int, int> aTimeSlot)
 {
-  auto it = find_if(mAvailability.begin(), mAvailability.end(), [&](const auto & timeslot) {
-    return timeslot == aTimeSlot;
-  });
+  auto it = find_if(mAvailability.begin(), mAvailability.end(),
+                    [&](const auto & timeslot)
+                    {
+                      return timeslot == aTimeSlot;
+                    });
 
   if (it != mAvailability.end())
     return false;

@@ -28,8 +28,8 @@ public:
   int GetId();
   int GetWeight();
 
-  void MakeUnavailableTimeSlot(pair<int, int> aTimeSlot);
-  void MakeAvailableTimeSlot(pair<int, int> aTimeSlot);
+  void AddUnavailableTimeslot(pair<int, int> aTimeSlot);
+  void EraseUnavailableTimeslot(pair<int, int> aTimeSlot);
   bool IsAvailable(pair<int, int> availability);
 
   bool CheckParentAvailability(pair<int, int> aTimeSlot);

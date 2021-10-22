@@ -46,12 +46,12 @@ Placement SelectPlacement::GetPlacement(Lesson * aLesson)
         for (int startTime = timeslot.GetStartTime(); startTime < timeslot.GetEndTime();
              startTime++)
         {
-          room->MakeUnavailableTimeSlot(pair<int, int>(timeslot.GetDayOfWeek(), startTime));
+          room->AddUnavailableTimeslot(pair<int, int>(timeslot.GetDayOfWeek(), startTime));
 
-          aLesson->GetTeacher()->MakeUnavailableTimeSlot(
-            pair<int, int>(timeslot.GetDayOfWeek(), startTime));
+          aLesson->GetTeacher()->AddUnavailableTimeslot(
+            Timeslot(timeslot.GetDayOfWeek(), startTime));
 
-          aLesson->GetGroup()->MakeUnavailableTimeSlot(
+          aLesson->GetGroup()->AddUnavailableTimeslot(
             pair<int, int>(timeslot.GetDayOfWeek(), startTime));
         }
         // return valid placement
@@ -82,7 +82,7 @@ vector<TimeSlot> SelectPlacement::GetAvailableTimeslots(Lesson * aLesson, Room *
       for (int hourCheck = currentHour; hourCheck < currentHour + lessonDuration; hourCheck++)
       {
         // check teacher availability
-        if (!aLesson->GetTeacher()->IsAvailable(pair<int, int>(day, hourCheck)))
+        if (!aLesson->GetTeacher()->IsAvailable(Timeslot(day, hourCheck)))
         {
           teacherUnavailable = true;
           break;
@@ -153,13 +153,13 @@ void SelectPlacement::MakePlacementAvailable(Lesson * aLesson)
   {
     aLesson->AddVisitedPlacement(aLesson->GetPlacement());
 
-    aLesson->GetTeacher()->MakeAvailableTimeSlot(
+    aLesson->GetTeacher()->EraseUnavailableTimeslot(
+      Timeslot(aLesson->GetPlacement().GetTimeSlot().GetDayOfWeek(), duration));
+
+    aLesson->GetPlacement().GetRoom()->EraseUnavailableTimeslot(
       pair<int, int>(aLesson->GetPlacement().GetTimeSlot().GetDayOfWeek(), duration));
 
-    aLesson->GetPlacement().GetRoom()->MakeAvailableTimeSlot(
-      pair<int, int>(aLesson->GetPlacement().GetTimeSlot().GetDayOfWeek(), duration));
-
-    aLesson->GetGroup()->MakeAvailableTimeSlot(
+    aLesson->GetGroup()->EraseUnavailableTimeslot(
       pair<int, int>(aLesson->GetPlacement().GetTimeSlot().GetDayOfWeek(), duration));
   }
 }

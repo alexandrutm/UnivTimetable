@@ -116,6 +116,7 @@
   <ItemGroup>
     <ClCompile Include="..\src\constraints\Constraint.cpp" />
     <ClCompile Include="..\src\Constraints\TimeConstraint.cpp" />
+    <ClCompile Include="..\src\containers\ConstraintTimeslot.cpp" />
     <ClCompile Include="..\src\Containers\Context.cpp" />
     <ClCompile Include="..\src\Containers\Group.cpp" />
     <ClCompile Include="..\src\Containers\InstituteData.cpp" />
@@ -168,6 +169,7 @@
     </ClCompile>
     <ClInclude Include="..\src\Constraints\Constraint.h" />
     <ClInclude Include="..\src\Constraints\TimeConstraint.h" />
+    <ClInclude Include="..\src\containers\ConstraintTimeslot.h" />
     <ClInclude Include="..\src\Containers\Context.h" />
     <ClInclude Include="..\src\Containers\Group.h" />
     <ClInclude Include="..\src\Containers\InstituteData.h" />

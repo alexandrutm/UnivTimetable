@@ -1,4 +1,5 @@
 #pragma once
+#include "src/containers/ConstraintTimeslot.h"
 
 class Teacher
 {
@@ -7,15 +8,16 @@ public:
   Teacher & operator=(const Teacher & aTeacher);
 
   Teacher(string, string, int);
+
   string GetLastName();
   string GetFirstName();
   void   SetFirstName(string aName);
   void   SetLastName(string aName);
   int    GetId();
 
-  void MakeUnavailableTimeSlot(pair<int, int> aTimeSlot);
-  void MakeAvailableTimeSlot(pair<int, int> aTimeSlot);
-  bool IsAvailable(pair<int, int> availability);
+  void AddUnavailableTimeslot(const Timeslot aUnavailableTimeslot);
+  void EraseUnavailableTimeslot(const Timeslot aTimeslot);
+  bool IsAvailable(const Timeslot aTimeslot);
 
   // the size of mAvailability
   // used for sort lesson by teacher constraint
@@ -26,5 +28,5 @@ private:
   string mLastName;
   int    mId;
 
-  vector<pair<int, int>> mAvailability;
+  vector<Timeslot> mAvailability;
 };

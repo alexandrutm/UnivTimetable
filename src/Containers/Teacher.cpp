@@ -2,8 +2,8 @@
 #include "Teacher.h"
 
 Teacher::Teacher(string aFirstName, string aLastName, int aTeacherId)
-  : mFirstName(aFirstName)
-  , mLastName(aLastName)
+  : mFirstName(move(aFirstName))
+  , mLastName(move(aLastName))
   , mId(aTeacherId)
 {
 }
@@ -17,9 +17,9 @@ Teacher & Teacher::operator=(const Teacher & aTeacher)
 {
   if (this != &aTeacher)
   {
-    this->mFirstName = aTeacher.mFirstName;
-    this->mLastName  = aTeacher.mLastName;
-    this->mId        = aTeacher.mId;
+    mFirstName = aTeacher.mFirstName;
+    mLastName  = aTeacher.mLastName;
+    mId        = aTeacher.mId;
   }
   return *this;
 }
@@ -49,23 +49,23 @@ int Teacher::GetId()
   return mId;
 }
 
-void Teacher::MakeUnavailableTimeSlot(pair<int, int> aTimeSlot)
+void Teacher::AddUnavailableTimeslot(const Timeslot aUnavailableTimeslott)
 {
-  mAvailability.push_back(aTimeSlot);
+  mAvailability.push_back(aUnavailableTimeslott);
 }
 
-void Teacher::MakeAvailableTimeSlot(pair<int, int> aTimeSlot)
+void Teacher::EraseUnavailableTimeslot(const Timeslot aTimeslot)
 {
-  mAvailability.erase(remove(mAvailability.begin(), mAvailability.end(), aTimeSlot),
+  mAvailability.erase(remove(mAvailability.begin(), mAvailability.end(), aTimeslot),
                       mAvailability.end());
 }
 
-bool Teacher::IsAvailable(pair<int, int> aTimeSlot)
+bool Teacher::IsAvailable(const Timeslot aTimeslot)
 {
   auto it = find_if(mAvailability.begin(), mAvailability.end(),
                     [&](const auto & timeslot)
                     {
-                      return timeslot == aTimeSlot;
+                      return timeslot == aTimeslot;
                     });
 
   if (it != mAvailability.end())

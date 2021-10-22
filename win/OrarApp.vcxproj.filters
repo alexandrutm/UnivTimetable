@@ -187,6 +187,9 @@
     <ClCompile Include="..\src\constraints\Constraint.cpp">
       <Filter>src\constraints</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\containers\ConstraintTimeslot.cpp">
+      <Filter>src\containers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\xml\ExportTimeTable.h">
@@ -257,6 +260,9 @@
     </ClInclude>
     <ClInclude Include="..\src\generator\Solution.h">
       <Filter>src\generator</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\containers\ConstraintTimeslot.h">
+      <Filter>src\containers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

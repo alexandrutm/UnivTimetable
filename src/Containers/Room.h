@@ -16,8 +16,8 @@ public:
 
   int GetId();
 
-  void MakeUnavailableTimeSlot(pair<int, int> availability);
-  void MakeAvailableTimeSlot(pair<int, int> availability);
+  void AddUnavailableTimeslot(pair<int, int> availability);
+  void EraseUnavailableTimeslot(pair<int, int> availability);
   bool IsAvailable(pair<int, int> availability);
 
 private:

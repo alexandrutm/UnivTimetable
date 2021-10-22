@@ -73,14 +73,14 @@ void Lesson::ClearAssingnedData()
   for (auto hour = GetPlacement().GetTimeSlot().GetStartTime();
        hour < GetPlacement().GetTimeSlot().GetEndTime(); hour++)
   {
-    GetTeacher()->MakeAvailableTimeSlot(
-      pair<int, int>(GetPlacement().GetTimeSlot().GetDayOfWeek(), hour));
+    GetTeacher()->EraseUnavailableTimeslot(
+      Timeslot(GetPlacement().GetTimeSlot().GetDayOfWeek(), hour));
 
     if (GetPlacement().GetRoom())
-      GetPlacement().GetRoom()->MakeAvailableTimeSlot(
+      GetPlacement().GetRoom()->EraseUnavailableTimeslot(
         pair<int, int>(GetPlacement().GetTimeSlot().GetDayOfWeek(), hour));
 
-    GetGroup()->MakeAvailableTimeSlot(
+    GetGroup()->EraseUnavailableTimeslot(
       pair<int, int>(GetPlacement().GetTimeSlot().GetDayOfWeek(), hour));
   }
 
@@ -95,9 +95,11 @@ void Lesson::AddVisitedPlacement(Placement aPlacement)
 
 bool Lesson::IsVisited(Placement aPlacement)
 {
-  auto it = find_if(mVisited.begin(), mVisited.end(), [&](auto placement) {
-    return placement == aPlacement;
-  });
+  auto it = find_if(mVisited.begin(), mVisited.end(),
+                    [&](auto placement)
+                    {
+                      return placement == aPlacement;
+                    });
 
   if (it != mVisited.end())
     return true;

@@ -48,12 +48,12 @@ int Room::GetId()
   return mId;
 }
 
-void Room::MakeUnavailableTimeSlot(pair<int, int> aTimeSlot)
+void Room::AddUnavailableTimeslot(pair<int, int> aTimeSlot)
 {
   mAvailability.push_back(aTimeSlot);
 }
 
-void Room::MakeAvailableTimeSlot(pair<int, int> aTimeSlot)
+void Room::EraseUnavailableTimeslot(pair<int, int> aTimeSlot)
 {
   mAvailability.erase(remove(mAvailability.begin(), mAvailability.end(), aTimeSlot),
                       mAvailability.end());
@@ -61,9 +61,11 @@ void Room::MakeAvailableTimeSlot(pair<int, int> aTimeSlot)
 
 bool Room::IsAvailable(pair<int, int> aTimeSlot)
 {
-  auto it = find_if(mAvailability.begin(), mAvailability.end(), [&](const auto & timeslot) {
-    return timeslot == aTimeSlot;
-  });
+  auto it = find_if(mAvailability.begin(), mAvailability.end(),
+                    [&](const auto & timeslot)
+                    {
+                      return timeslot == aTimeSlot;
+                    });
 
   if (it != mAvailability.end())
     return false;

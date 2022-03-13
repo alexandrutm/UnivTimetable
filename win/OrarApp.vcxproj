@@ -65,7 +65,7 @@
     </ClCompile>
   </ItemDefinitionGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="QtSettings">
-    <QtInstall>6.1.3_msvc2019_64</QtInstall>
+    <QtInstall>6.2.3_msvc2019_64</QtInstall>
     <QtModules>core;gui;testlib;widgets</QtModules>
     <QtBuildConfig>debug</QtBuildConfig>
   </PropertyGroup>
